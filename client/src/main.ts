@@ -6,7 +6,8 @@
  * beginning `#/` are treated as routes.
  */
 
-import { findPiece, HOME } from './content';
+import { chapters } from './chapters';
+import { findPiece, HOME, THESIS } from './content';
 import { footer, masthead, renderPiece } from './page';
 import './style.css';
 
@@ -26,10 +27,19 @@ function parseHash(): { slug: string; chapter?: number } {
 
 function route(scrollToTop = true) {
   const { slug, chapter } = parseHash();
-  const piece = findPiece(slug) ?? HOME;
 
-  app.replaceChildren(masthead(piece.slug), renderPiece(piece, chapter), footer());
-  document.title = piece.slug ? `${piece.title} — Machine Oracle` : 'Machine Oracle';
+  // The thesis's front matter now lives on the home page, so a bare thesis slug
+  // has nothing of its own to show — send it home rather than render a stub.
+  if (slug === THESIS.slug && !chapter) {
+    location.replace('#/');
+    return;
+  }
+
+  const piece = findPiece(slug) ?? HOME;
+  app.replaceChildren(masthead(piece.slug, chapter), renderPiece(piece, chapter), footer());
+
+  const chapterTitle = chapter ? chapters(THESIS)[chapter - 1]?.title : undefined;
+  document.title = [chapterTitle ?? (piece.slug ? piece.title : ''), 'Machine Oracle'].filter(Boolean).join(' — ');
 
   if (scrollToTop) scrollTo({ top: 0, behavior: 'auto' });
 }

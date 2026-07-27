@@ -59,6 +59,9 @@ export const PIECES: Piece[] = [letter, infiniteSoftware];
 
 export const HOME = letter;
 
+/** The thesis whose chapters form the site's spine. */
+export const THESIS = infiniteSoftware;
+
 export function findPiece(slug: string): Piece | undefined {
   return PIECES.find((p) => p.slug === slug);
 }

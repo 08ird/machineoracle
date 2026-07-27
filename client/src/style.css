@@ -466,10 +466,32 @@ blockquote cite {
   font-weight: 600;
 }
 
-/* Contents list on the deck's front page. */
+/* Where the thesis begins on the home page, after the letter. */
+.thesis {
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+  padding-top: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+  border-top: 2px solid var(--ink);
+}
+.thesis__title {
+  font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.6rem);
+  margin-top: 0.5rem;
+}
+.thesis__sub {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--ink-3);
+  margin-top: 0.5rem;
+  font-size: clamp(1rem, 0.92rem + 0.45vw, 1.25rem);
+}
+
+/* Contents list of the five parts. */
 .chapters {
-  margin-top: 2.5rem;
+  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+  padding-top: 1.5rem;
   border-top: 1px solid var(--rule);
+}
+.chapters .label {
+  margin-bottom: 0.5rem;
 }
 .chapters__item {
   display: grid;
@@ -1033,8 +1055,21 @@ tbody tr.is-hl th {
   font-weight: 700;
   font-style: normal;
 }
+/* Size the attribution absolutely — inheriting `em` from the oversized quote
+   made it compete with the quote itself. */
 .bigquote cite {
   text-align: center;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  margin-top: 1rem;
+}
+.bigquote > p {
+  text-align: center;
+  max-width: 34rem;
+  margin: 1.25rem auto 0;
+}
+.bigquote .note {
+  font-size: 0.75rem;
 }
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */

@@ -9,7 +9,7 @@
 
 import type { Slide } from './data/slides';
 import { chapters, frontMatter, splitBackMatter } from './chapters';
-import { INDEXED, PIECES } from './content';
+import { INDEXED, PIECES, THESIS } from './content';
 import type { Article, Block, Chapter, Deck, Piece } from './content/types';
 import { el, renderExhibit } from './render';
 
@@ -24,7 +24,11 @@ const WORDS = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight
 
 // ── Chrome ──────────────────────────────────────────────────────────────────
 
-export function masthead(activeSlug: string): HTMLElement {
+/**
+ * The nav lists the introduction and then every chapter of the thesis, so the
+ * whole work is reachable from any page — the reference site's pattern.
+ */
+export function masthead(activeSlug: string, activeChapter?: number): HTMLElement {
   const head = el('header', 'masthead');
   const wrap = el('div', 'wrap');
 
@@ -34,14 +38,29 @@ export function masthead(activeSlug: string): HTMLElement {
 
   const nav = el('nav', 'nav');
   nav.setAttribute('aria-label', 'Contents');
+
+  const intro = el('a', undefined, 'Introduction');
+  intro.href = '#/';
+  if (!activeSlug && !activeChapter) intro.setAttribute('aria-current', 'page');
+  nav.append(intro);
+
+  for (const c of chapters(THESIS)) {
+    const a = el('a', undefined, `${c.numeral}. ${c.title}`);
+    a.href = chapHref(THESIS.slug, c.n);
+    if (activeSlug === THESIS.slug && activeChapter === c.n) a.setAttribute('aria-current', 'page');
+    nav.append(a);
+  }
+
+  // Any further pieces (future essays) follow the thesis chapters.
   for (const p of PIECES) {
+    if (p.slug === '' || p.slug === THESIS.slug) continue;
     const a = el('a', undefined, p.navLabel ?? p.title);
     a.href = href(p.slug);
     if (p.slug === activeSlug) a.setAttribute('aria-current', 'page');
     nav.append(a);
   }
-  wrap.append(nav);
 
+  wrap.append(nav);
   head.append(wrap, el('hr', 'masthead__rule'));
   return head;
 }
@@ -263,24 +282,76 @@ function renderChapter(p: Deck, c: Chapter, all: Chapter[]): HTMLElement {
 
 // ── Home ────────────────────────────────────────────────────────────────────
 
+/**
+ * The home page carries the whole front of the work: the letter, then the
+ * thesis's opening sections, then links into the five parts. A reader who never
+ * clicks anything still gets the argument; a reader who wants the detail has the
+ * five doors in front of them.
+ */
 function renderHome(letter: Article): HTMLElement {
   const main = renderArticle(letter);
+  const deck = THESIS as Deck;
 
-  const index = el('section', 'index');
-  index.append(el('div', 'label', 'The series'));
-  const list = el('ul', 'index__list');
-  for (const p of INDEXED) {
-    const li = el('li', 'index__item');
-    const meta = [p.kind === 'deck' ? 'Presentation' : 'Essay', p.date].filter(Boolean).join(' · ');
-    li.append(el('div', 'index__meta', meta));
-    const a = el('a', undefined, p.title);
-    a.href = href(p.slug);
-    li.append(a);
-    if (p.blurb) li.append(el('p', 'index__blurb', p.blurb));
-    list.append(li);
+  // The thesis proper begins here — title, standfirst, then its front matter.
+  const open = el('section', 'thesis');
+  open.append(el('div', 'label', 'The thesis'));
+  const h = el('h2', 'thesis__title', deck.title);
+  open.append(h);
+  if (deck.subtitle) open.append(el('div', 'thesis__sub', deck.subtitle));
+  if (deck.date) open.append(el('div', 'head__date', deck.date));
+  main.append(open);
+
+  if (deck.intro) main.append(prose(deck.intro));
+  for (const s of frontMatter(deck)) {
+    // The agenda slide is replaced by the live chapter links below.
+    if (s.body.kind === 'agenda') continue;
+    const sec = sectionNode(deck, s, null);
+    if (sec) main.append(sec);
   }
-  index.append(list);
-  main.append(index);
+
+  // The five parts, as navigation.
+  const chaps = chapters(deck);
+  const list = el('nav', 'chapters');
+  list.setAttribute('aria-label', 'Parts');
+  list.append(el('div', 'label', 'Five parts, one thesis'));
+  for (const c of chaps) {
+    const item = el('div', 'chapters__item');
+    item.append(el('div', 'chapters__num', c.numeral));
+    const a = el('a', undefined, c.title);
+    a.href = chapHref(deck.slug, c.n);
+    item.append(a, el('div', 'chapters__sub', c.sub));
+    list.append(item);
+  }
+  main.append(list);
+
+  const nav = el('div', 'chapnav');
+  const next = el('div', 'chapnav__side chapnav__side--next');
+  next.append(el('span', 'chapnav__lab', 'Begin'));
+  const a = el('a', undefined, `${chaps[0].numeral}. ${chaps[0].title}`);
+  a.href = chapHref(deck.slug, 1);
+  next.append(a);
+  nav.append(next);
+  main.append(nav);
+
+  // Any additional pieces published later.
+  const others = INDEXED.filter((p) => p.slug !== deck.slug);
+  if (others.length) {
+    const index = el('section', 'index');
+    index.append(el('div', 'label', 'Also'));
+    const ul = el('ul', 'index__list');
+    for (const p of others) {
+      const li = el('li', 'index__item');
+      const meta = [p.kind === 'deck' ? 'Presentation' : 'Essay', p.date].filter(Boolean).join(' · ');
+      li.append(el('div', 'index__meta', meta));
+      const link = el('a', undefined, p.title);
+      link.href = href(p.slug);
+      li.append(link);
+      if (p.blurb) li.append(el('p', 'index__blurb', p.blurb));
+      ul.append(li);
+    }
+    index.append(ul);
+    main.append(index);
+  }
   return main;
 }
 
