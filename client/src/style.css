@@ -726,6 +726,16 @@ blockquote cite {
 .chart__slab.is-muted {
   fill: var(--ink-4);
 }
+.chart__tick {
+  stroke: var(--ink-4);
+  stroke-width: 1;
+}
+.chart__mark {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: var(--ink-2);
+}
 
 /* ── Exhibit: grouped columns ───────────────────────────────────────────── */
 

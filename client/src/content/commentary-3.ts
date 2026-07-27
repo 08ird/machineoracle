@@ -103,12 +103,17 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The company shipped its AI agent in February 2026. Over the following sixteen weeks the stock fell 48% while the proof compounded in plain sight. Then on 27 May 2026 the CFO named the agent as the largest single driver of a guidance raise, and the stock rose 36% overnight.',
+        'The stock peaked at about $271 in November 2025 and then fell for twenty-two weeks to a trough near $135 in early April 2026 — a drawdown of roughly 50%. The company shipped its CoCo agent in February 2026, in the middle of that decline, and the tape did not react at all.',
     },
     {
       kind: 'p',
       text:
-        'Nothing about the business changed on 27 May. The only thing that changed was that the filing said out loud what the product had been doing since February. That sixteen-week gap between truth and price is the window this entire thesis is designed to stand inside.',
+        'Then on 27 May 2026 the CFO named CoCo as the largest single driver of a raised full-year forecast. The stock gained about 36% overnight and 47% over that week, from $178 to $261. By late July it was back to $268, roughly double the April trough.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Nothing about the business changed on 27 May. The only thing that changed was that the filing said out loud what the product had been doing since February — about sixteen weeks earlier. That gap between truth and price is the window this entire thesis is designed to stand inside.',
     },
   ],
 };

@@ -28,7 +28,11 @@ export type Body =
   | { kind: 'table'; head: string[]; rows: string[][]; highlight?: number }
   | { kind: 'timeline'; tracks: { name: string; items: { when: string; text: string; here?: boolean }[] }[] }
   | { kind: 'waves'; items: { name: string; era: string; cos: string[]; last?: boolean }[] }
-  /** Multi-series time series. `dashed` marks modelled rather than actual data. */
+  /**
+   * Multi-series time series. `dashed` marks modelled rather than actual data.
+   * Empty strings in `x` suppress that tick label, so a long series can carry
+   * many points but few labels. `marks` annotates specific points.
+   */
   | {
       kind: 'line';
       axis?: string;
@@ -41,6 +45,8 @@ export type Body =
         dashed?: boolean;
         tone?: 'accent' | 'muted' | 'warn';
       }[];
+      /** `lift` pushes a label further from its point, to stagger neighbours. */
+      marks?: { at: number; text: string; below?: boolean; lift?: number }[];
     }
   /** Two or more measures compared across the same categories. */
   | {
@@ -710,14 +716,32 @@ export const SLIDES: Slide[] = [
   {
     id: 29,
     part: 3,
-    kicker: 'SNOW weekly close, Jan 2025 – Jul 2026 ($, adjusted)',
+    kicker: 'SNOW month-end close, Jan 2025 – Jul 2026 ($, split/dividend adjusted)',
     title: 'Snowflake: sixteen weeks from ship to pay',
     body: {
-      kind: 'steps',
-      items: [
-        { n: 'Feb ’26', head: 'Ships AI agent', desc: 'the proof becomes public' },
-        { n: '16 weeks', head: '−48% while proof compounds', desc: 'the tape ignores it entirely' },
-        { n: 'May 27 ’26', head: 'CFO names it → +36% overnight', desc: 'agent named largest driver of the guidance raise' },
+      kind: 'line',
+      axis: 'Share price, $',
+      x: [
+        'Jan ’25', '', '', 'Apr ’25', '', '', 'Jul ’25', '', '',
+        'Oct ’25', '', '', 'Jan ’26', '', '', 'Apr ’26', '', '', 'Jul ’26',
+      ],
+      series: [
+        {
+          name: '',
+          values: [
+            189.1, 173.6, 149.5, 168.4, 209.1, 216.0, 205.8, 233.6, 225.6, 265.4,
+            259.7, 234.5, 173.2, 165.8, 150.8, 141.7, 261.1, 254.5, 268.1,
+          ],
+          display: [
+            null, null, null, null, null, null, null, null, null, '$265',
+            null, null, null, null, null, null, '$261', null, '$268',
+          ],
+        },
+      ],
+      marks: [
+        { at: 13, text: 'Ships CoCo agent, Feb ’26', below: true },
+        { at: 15, text: 'Trough, −50% from peak', below: true, lift: 20 },
+        { at: 16, text: 'CFO names it — +47% in a week', lift: 14 },
       ],
     },
     takeaway: {
@@ -725,7 +749,7 @@ export const SLIDES: Slide[] = [
       text: 'The proof was public the entire time — the tape paid only when the filing said it',
     },
     footnote:
-      'Massive market data, weekly adjusted closes. May 27, 2026: agent named largest driver of guidance raise. Past performance not indicative.',
+      'Month-end adjusted closes per Yahoo Finance, retrieved July 2026; the deck’s own exhibit uses Massive weekly adjusted closes, so figures may differ slightly. Peak-to-trough on this series is −50.1% (5 Nov 2025 $271.26 → 8 Apr 2026 $135.47 weekly). Week of 27 May 2026: $178 → $261, +47%; the overnight move on the print was ~+36%. Past performance is not indicative of future results.',
   },
 
   // ── Part 04 ───────────────────────────────────────────────────────────────

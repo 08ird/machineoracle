@@ -280,6 +280,7 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     // Baseline and category ticks.
     svg.append(ns('line', { x1: String(pad.l), y1: String(H - pad.b), x2: String(W - pad.r), y2: String(H - pad.b), class: 'chart__axis' }));
     b.x.forEach((label, i) => {
+      if (!label) return; // Empty label = point without a tick.
       const t = ns('text', { x: String(xOf(i)), y: String(H - pad.b + 18), class: 'chart__xlab' });
       t.textContent = label;
       svg.append(t);
@@ -317,6 +318,28 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       name.textContent = s.name;
       svg.append(name);
     });
+
+    // Event annotations pinned to the first series' points.
+    if (b.marks) {
+      const base = b.series[0];
+      for (const m of b.marks) {
+        const v = base.values[m.at];
+        if (v == null) continue;
+        const x = xOf(m.at);
+        const y = yOf(v);
+        const dir = m.below ? 1 : -1;
+        const lift = m.lift ?? 0;
+        svg.append(ns('line', { x1: String(x), y1: String(y + dir * 7), x2: String(x), y2: String(y + dir * (22 + lift)), class: 'chart__tick' }));
+        const t = ns('text', {
+          x: String(x),
+          y: String(y + dir * (30 + lift)),
+          class: 'chart__mark',
+          'text-anchor': m.at > b.x.length * 0.72 ? 'end' : m.at < b.x.length * 0.28 ? 'start' : 'middle',
+        });
+        t.textContent = m.text;
+        svg.append(t);
+      }
+    }
 
     w.append(svg);
     return w;
