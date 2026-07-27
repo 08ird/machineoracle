@@ -1219,8 +1219,8 @@ export const SLIDES: Slide[] = [
       kind: 'quote',
       quote: ['Machine labor is a tidal wave.', 'It changes the rules.'],
       attrib: 'Skycatcher · July 2026 · thirty-one years after Bill Gates’ Tidal Wave Memo',
-      extra:
-        'Five public companies sit at the tollbooths of machine labor. With roughly $120 billion of combined market value and $15.9 billion of revenue, they meter the infrastructure every AI agent must use — every query, transaction, write, test, and log. Every scenario in our sensitivity analysis produces upside, while our central case points to approximately 5× returns over four years. The analogous infrastructure winners of the internet era returned 5–13× from this stage.',
+      // The deck's closing paragraph lives in the commentary for this slide, so
+      // it is not repeated here.
     },
     footnote: 'Not an offer of securities. Projections are illustrative and not guarantees of future results — see Disclosures.',
   },

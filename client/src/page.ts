@@ -236,15 +236,35 @@ function renderChapter(p: Deck, c: Chapter, all: Chapter[]): HTMLElement {
   const main = el('main', 'wrap');
   main.append(el('div', 'chapline', `${p.title} · Part ${c.numeral}`));
 
-  const { body, back } = splitBackMatter(c);
-  let figNo = 0;
-  for (const s of body) {
-    const node = sectionNode(p, s, ++figNo);
-    if (node) main.append(node);
-  }
-  for (const s of back) {
-    const node = sectionNode(p, s, null);
-    if (node) main.append(node);
+  // The conclusion renders from its declared sequence; regular parts from slides.
+  const isConclusion = p.conclusion && c.n === all.length;
+  if (isConclusion && p.conclusion) {
+    let figNo = 0;
+    for (const entry of p.conclusion.sequence) {
+      if ('slide' in entry) {
+        const s = p.slides.find((x) => x.id === entry.slide);
+        if (!s) continue;
+        const hasExhibit = !['quote', 'prose'].includes(s.body.kind);
+        const node = sectionNode(p, s, hasExhibit ? ++figNo : null);
+        if (node) main.append(node);
+      } else {
+        const sec = el('section', 'sec');
+        if (entry.heading) sec.append(el('h2', undefined, entry.heading));
+        sec.append(prose(entry.blocks));
+        main.append(sec);
+      }
+    }
+  } else {
+    const { body, back } = splitBackMatter(c);
+    let figNo = 0;
+    for (const s of body) {
+      const node = sectionNode(p, s, ++figNo);
+      if (node) main.append(node);
+    }
+    for (const s of back) {
+      const node = sectionNode(p, s, null);
+      if (node) main.append(node);
+    }
   }
 
   // Previous / next chapter.
@@ -313,7 +333,7 @@ function renderHome(letter: Article): HTMLElement {
   const chaps = chapters(deck);
   const list = el('nav', 'chapters');
   list.setAttribute('aria-label', 'Parts');
-  list.append(el('div', 'label', 'Five parts, one thesis'));
+  list.append(el('div', 'label', `${WORDS[chaps.length] ?? chaps.length} parts, one thesis`));
   for (const c of chaps) {
     const item = el('div', 'chapters__item');
     item.append(el('div', 'chapters__num', c.numeral));

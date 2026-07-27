@@ -15,6 +15,7 @@ import { part2 } from './commentary-2';
 import { part3 } from './commentary-3';
 import { part4 } from './commentary-4';
 import { back, front, part5 } from './commentary-5';
+import { conclusion } from './conclusion';
 import { letter } from './letter';
 import type { Piece } from './types';
 
@@ -53,6 +54,7 @@ const infiniteSoftware: Piece = {
     4: { text: 'Own the meters; collect the royalty.', cite: 'Skycatcher' },
     5: { text: 'Courageous action: to do what no one has done, and prove it in the real world.', cite: 'Leonardo da Vinci' },
   },
+  conclusion,
 };
 
 export const PIECES: Piece[] = [letter, infiniteSoftware];

@@ -64,6 +64,20 @@ export interface Deck extends Base {
   commentary?: Record<number, Block[]>;
   /** Per-part epigraphs for the chapter opener, keyed by part number. */
   epigraphs?: Record<number, { text: string; cite: string }>;
+  /**
+   * A closing chapter assembled from slides that belong at the end rather than
+   * inside a part, interleaved with prose that has no slide of its own. Slides
+   * listed here are removed from the part they would otherwise fall in.
+   */
+  conclusion?: Conclusion;
+}
+
+export interface Conclusion {
+  title: string;
+  sub: string;
+  epigraph?: { text: string; cite: string };
+  /** Rendered in order: either an existing slide, or a written section. */
+  sequence: ({ slide: number } | { heading?: string; blocks: Block[] })[];
 }
 
 export type Piece = Article | Deck;

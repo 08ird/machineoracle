@@ -20,6 +20,11 @@ export function frontMatter(deck: Deck): Slide[] {
 }
 
 export function chapters(deck: Deck): Chapter[] {
+  // Slides claimed by the conclusion are lifted out of their original part.
+  const claimed = new Set(
+    (deck.conclusion?.sequence ?? []).flatMap((e) => ('slide' in e ? [e.slide] : []))
+  );
+
   const out: Chapter[] = [];
   for (const s of deck.slides) {
     if (s.body.kind === 'section') {
@@ -32,9 +37,21 @@ export function chapters(deck: Deck): Chapter[] {
         epigraph: deck.epigraphs?.[n],
         slides: [],
       });
-    } else if (out.length) {
+    } else if (out.length && !claimed.has(s.id)) {
       out[out.length - 1].slides.push(s);
     }
+  }
+
+  if (deck.conclusion) {
+    const n = out.length + 1;
+    out.push({
+      n,
+      numeral: NUMERALS[n - 1] ?? String(n),
+      title: deck.conclusion.title,
+      sub: deck.conclusion.sub,
+      epigraph: deck.conclusion.epigraph,
+      slides: [], // rendered from `sequence`, not from here
+    });
   }
   return out;
 }
