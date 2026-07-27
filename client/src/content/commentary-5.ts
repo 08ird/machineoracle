@@ -253,6 +253,13 @@ export const front: Record<number, Block[]> = {
 
 /** Back matter — the closing statement and disclosures. */
 export const back: Record<number, Block[]> = {
+  50: [
+    {
+      kind: 'p',
+      text:
+        'What follows is the full disclosure language governing everything above. We would rather you read it than skip it: it names which figures are audited and which are ours, where our estimates carry error bars, which companies we hold and which appear only as exhibits, and where our own interests conflict with a disinterested reading.',
+    },
+  ],
   49: [
     {
       kind: 'p',

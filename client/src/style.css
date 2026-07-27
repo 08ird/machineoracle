@@ -667,6 +667,176 @@ blockquote cite {
   }
 }
 
+/* ── Exhibit: line chart ────────────────────────────────────────────────── */
+
+.chart__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  margin-top: 0.5rem;
+}
+.chart__axis {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.chart__line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.25;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.chart__line.is-muted {
+  stroke: var(--ink-4);
+  stroke-width: 1.75;
+}
+.chart__line.is-warn {
+  stroke: var(--warn);
+}
+.chart__line.is-dashed {
+  stroke-dasharray: 5 4;
+}
+.chart__dot {
+  fill: var(--accent);
+}
+.chart__dot.is-muted {
+  fill: var(--ink-4);
+}
+.chart__xlab,
+.chart__vlab,
+.chart__slab {
+  font-family: var(--sans);
+  fill: var(--ink-3);
+}
+.chart__xlab {
+  font-size: 11px;
+  text-anchor: middle;
+}
+.chart__vlab {
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+  fill: var(--ink);
+}
+.chart__slab {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--accent);
+}
+.chart__slab.is-muted {
+  fill: var(--ink-4);
+}
+
+/* ── Exhibit: grouped columns ───────────────────────────────────────────── */
+
+.grouped {
+  display: grid;
+  gap: 1.5rem;
+}
+.grouped__name {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-4);
+  margin-bottom: 0.5rem;
+}
+.grouped__track {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-end;
+}
+.grouped__cell {
+  flex: 1 1 0;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 5.5rem auto;
+  gap: 0.25rem;
+  text-align: center;
+}
+.grouped__colwrap {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+.grouped__bar {
+  width: 100%;
+  background: var(--accent);
+  border-radius: 1px 1px 0 0;
+  min-height: 2px;
+}
+.grouped__bar.is-muted {
+  background: var(--rule);
+}
+.grouped__v {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+.grouped__x {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  color: var(--ink-4);
+}
+
+/* ── Exhibit: decomposition ─────────────────────────────────────────────── */
+
+.decomp {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+.decomp__factor {
+  flex: 1 1 9rem;
+  min-width: 8rem;
+  padding-top: 0.5rem;
+  border-top: 2px solid var(--rule);
+}
+.decomp__factor--result {
+  border-top-color: var(--accent);
+}
+.decomp__v {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+.decomp__l {
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  margin-top: 0.2rem;
+}
+.decomp__note {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  color: var(--ink-4);
+  margin-top: 0.15rem;
+}
+.decomp__move {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  color: var(--ink-3);
+  display: flex;
+  gap: 0.3rem;
+  align-items: baseline;
+}
+.decomp__to {
+  font-weight: 700;
+  color: var(--accent);
+}
+.decomp__op {
+  align-self: center;
+  font-family: var(--display);
+  font-size: 1.1rem;
+  color: var(--ink-4);
+  flex: none;
+}
+
 /* ── Exhibit: stats ─────────────────────────────────────────────────────── */
 
 .stats {

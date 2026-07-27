@@ -83,9 +83,14 @@ export const part4: Record<number, Block[]> = {
         'We built our revenue case by taking four honest haircuts, because a number nobody can attack is a number nobody believes.',
     },
     {
-      kind: 'p',
-      text:
-        'We assume unit prices fall 30 to 50% a year and that all of it is given back to customers. We assume discounted multi-year commitments rather than list price. We convert usage to revenue at the measured elasticity of 0.5 to 0.7 rather than at unity. And we carry the margin cost of agent revenue being compute-heavier than seat revenue.',
+      kind: 'list',
+      ordered: true,
+      items: [
+        'Unit prices fall 30 to 50% a year, and all of it is given back to customers.',
+        'Revenue is booked on discounted multi-year commitments rather than at list price.',
+        'Usage converts to revenue at the measured elasticity of 0.5 to 0.7, not at unity.',
+        'Agent revenue is compute-heavier than seat revenue, and we carry that margin cost.',
+      ],
     },
     {
       kind: 'p',

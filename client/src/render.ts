@@ -244,6 +244,127 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     }
     return w;
   },
+
+  line(b) {
+    const w = el('div', 'chart');
+    if (b.axis) w.append(el('div', 'bars__axis', b.axis));
+
+    // Geometry in a fixed viewBox; the SVG then scales to its container.
+    const W = 660;
+    const H = 300;
+    const pad = { t: 22, r: 92, b: 34, l: 46 };
+    const flat = b.series.flatMap((s) => s.values).filter((v): v is number => v != null && v > 0);
+    const max = Math.max(...flat);
+    const min = Math.min(...flat);
+    const lo = b.log ? Math.log10(min) - 0.25 : 0;
+    const hi = b.log ? Math.log10(max) + 0.12 : max * 1.1;
+    const yOf = (v: number) => {
+      const t = ((b.log ? Math.log10(v) : v) - lo) / (hi - lo);
+      return H - pad.b - t * (H - pad.t - pad.b);
+    };
+    const xOf = (i: number) =>
+      pad.l + (b.x.length === 1 ? 0 : (i / (b.x.length - 1)) * (W - pad.l - pad.r));
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('class', 'chart__svg');
+    svg.setAttribute('aria-label', b.series.map((s) => `${s.name}: ${s.values.join(', ')}`).join('. '));
+
+    const ns = (tag: string, attrs: Record<string, string>) => {
+      const n = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+      return n;
+    };
+
+    // Baseline and category ticks.
+    svg.append(ns('line', { x1: String(pad.l), y1: String(H - pad.b), x2: String(W - pad.r), y2: String(H - pad.b), class: 'chart__axis' }));
+    b.x.forEach((label, i) => {
+      const t = ns('text', { x: String(xOf(i)), y: String(H - pad.b + 18), class: 'chart__xlab' });
+      t.textContent = label;
+      svg.append(t);
+    });
+
+    b.series.forEach((s, si) => {
+      const pts = s.values
+        .map((v, i) => (v == null ? null : { x: xOf(i), y: yOf(v), i, v }))
+        .filter((p): p is { x: number; y: number; i: number; v: number } => p != null);
+      if (!pts.length) return;
+
+      const d = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+      const cls = `chart__line${s.tone === 'muted' ? ' is-muted' : ''}${s.tone === 'warn' ? ' is-warn' : ''}${
+        s.dashed ? ' is-dashed' : ''
+      }`;
+      svg.append(ns('path', { d, class: cls }));
+
+      for (const p of pts) {
+        svg.append(ns('circle', { cx: String(p.x), cy: String(p.y), r: '3.2', class: `chart__dot${s.tone === 'muted' ? ' is-muted' : ''}` }));
+        const disp = s.display?.[p.i];
+        if (disp) {
+          const t = ns('text', { x: String(p.x), y: String(p.y - 10), class: 'chart__vlab' });
+          t.textContent = disp;
+          svg.append(t);
+        }
+      }
+
+      // Series name at the right end of its last point.
+      const last = pts[pts.length - 1];
+      const name = ns('text', {
+        x: String(last.x + 8),
+        y: String(last.y + 4 + (si === 0 ? 0 : 0)),
+        class: `chart__slab${s.tone === 'muted' ? ' is-muted' : ''}`,
+      });
+      name.textContent = s.name;
+      svg.append(name);
+    });
+
+    w.append(svg);
+    return w;
+  },
+
+  grouped(b) {
+    const w = el('div', 'grouped');
+    if (b.axis) w.append(el('div', 'bars__axis', b.axis));
+    for (const s of b.series) {
+      const row = el('div', 'grouped__series');
+      row.append(el('div', 'grouped__name', s.name));
+      const track = el('div', 'grouped__track');
+      const vals = s.values.filter((v): v is number => v != null);
+      const max = Math.max(...vals);
+      s.values.forEach((v, i) => {
+        const cell = el('div', 'grouped__cell');
+        const colwrap = el('div', 'grouped__colwrap');
+        const col = el('div', `grouped__bar${s.tone === 'muted' ? ' is-muted' : ''}`);
+        col.style.height = v == null ? '0' : `${Math.max(4, (v / max) * 100)}%`;
+        colwrap.append(col);
+        cell.append(el('div', 'grouped__v', s.display[i] ?? ''), colwrap, el('div', 'grouped__x', b.x[i]));
+        track.append(cell);
+      });
+      row.append(track);
+      w.append(row);
+    }
+    return w;
+  },
+
+  decompose(b) {
+    const w = el('div', 'decomp');
+    b.factors.forEach((f, i) => {
+      const card = el('div', 'decomp__factor');
+      card.append(el('div', 'decomp__v', f.value), el('div', 'decomp__l', f.label));
+      if (f.note) card.append(el('div', 'decomp__note', f.note));
+      const move = el('div', 'decomp__move');
+      move.append(el('span', 'decomp__from', f.from), el('span', 'decomp__arrow', '→'), el('span', 'decomp__to', f.to));
+      card.append(move);
+      w.append(card);
+      if (i < b.factors.length - 1) w.append(el('div', 'decomp__op', '×'));
+    });
+    w.append(el('div', 'decomp__op', '='));
+    const res = el('div', 'decomp__factor decomp__factor--result');
+    res.append(el('div', 'decomp__v', b.result.value), el('div', 'decomp__l', b.result.label));
+    if (b.result.note) res.append(el('div', 'decomp__note', b.result.note));
+    w.append(res);
+    return w;
+  },
 };
 
 export function renderExhibit(b: Body): HTMLElement {

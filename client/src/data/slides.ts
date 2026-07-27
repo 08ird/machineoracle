@@ -28,6 +28,33 @@ export type Body =
   | { kind: 'table'; head: string[]; rows: string[][]; highlight?: number }
   | { kind: 'timeline'; tracks: { name: string; items: { when: string; text: string; here?: boolean }[] }[] }
   | { kind: 'waves'; items: { name: string; era: string; cos: string[]; last?: boolean }[] }
+  /** Multi-series time series. `dashed` marks modelled rather than actual data. */
+  | {
+      kind: 'line';
+      axis?: string;
+      x: string[];
+      log?: boolean;
+      series: {
+        name: string;
+        values: (number | null)[];
+        display?: (string | null)[];
+        dashed?: boolean;
+        tone?: 'accent' | 'muted' | 'warn';
+      }[];
+    }
+  /** Two or more measures compared across the same categories. */
+  | {
+      kind: 'grouped';
+      axis?: string;
+      x: string[];
+      series: { name: string; values: (number | null)[]; display: (string | null)[]; tone?: 'accent' | 'muted' }[];
+    }
+  /** Factors multiplied to a result, each shown today → 2029. */
+  | {
+      kind: 'decompose';
+      factors: { value: string; label: string; note?: string; from: string; to: string }[];
+      result: { value: string; label: string; note?: string };
+    }
   | { kind: 'split'; groups: { head: string; parts: { pct: number; label: string }[] }[] }
   | { kind: 'prose'; paras: { head?: string; text: string }[] };
 
@@ -312,11 +339,22 @@ export const SLIDES: Slide[] = [
     kicker: 'What happened, 2022–26 — price down ÷50x, volume up ×2,000x, on the measured slope',
     title: 'Every 10x price drop has bought 15–20x more demand',
     body: {
-      kind: 'table',
-      head: ['', '2022', '2023', '2024', '2025', '2026'],
-      rows: [
-        ['Price — $ / M tokens · ÷50x', '$20', '$8', '$2', '$1', '$0.40'],
-        ['Volume — Q tokens / yr · ×2,000x', '0.05', '0.5', '5', '25', '100'],
+      kind: 'line',
+      axis: 'Log scale · price falling against volume rising',
+      x: ['2022', '2023', '2024', '2025', '2026'],
+      log: true,
+      series: [
+        {
+          name: 'Volume  ×2,000',
+          values: [0.05, 0.5, 5, 25, 100],
+          display: ['0.05Q', '0.5Q', '5Q', '25Q', '100Q'],
+        },
+        {
+          name: 'Price  ÷50',
+          values: [20, 8, 2, 1, 0.4],
+          display: ['$20', '$8', '$2', '$1', '$0.40'],
+          tone: 'muted',
+        },
       ],
     },
     takeaway: { icon: '📐', text: 'Measured slope ≈ 1.6 — every 10x price drop bought 15–20x more demand' },
@@ -370,13 +408,24 @@ export const SLIDES: Slide[] = [
     kicker: 'Quadrillion tokens / year (log scale) — tidal-wave case vs. the street’s floor',
     title: 'Our call: ~2,700Q tokens by 2029 — a 27x from here',
     body: {
-      kind: 'table',
-      head: ['', '2026', '2027', '2028', '2029'],
-      rows: [
-        ['Tidal-wave case — ×3.0 / yr', '100Q', '~300Q', '~900Q', '~2,700Q'],
-        ['Street floor — ×2.2 / yr', '100Q', '~225Q', '~500Q', '~1,100Q'],
+      kind: 'line',
+      axis: 'Quadrillion tokens / year · log scale',
+      x: ['2026', '2027', '2028', '2029'],
+      log: true,
+      series: [
+        {
+          name: 'Tidal wave  ×3.0/yr',
+          values: [100, 300, 900, 2700],
+          display: ['100Q', '~300Q', '~900Q', '~2,700Q'],
+        },
+        {
+          name: 'Street floor  ×2.2/yr',
+          values: [100, 225, 500, 1100],
+          display: [null, '~225Q', '~500Q', '~1,100Q'],
+          tone: 'muted',
+          dashed: true,
+        },
       ],
-      highlight: 0,
     },
     takeaway: { icon: '🚀', text: 'History ran ×7 / yr. The wave case is a deceleration by more than half.' },
     footnote:
@@ -388,13 +437,19 @@ export const SLIDES: Slide[] = [
     kicker: 'The 2029 end state, bottom-up — each factor against today',
     title: '2,700Q, decomposed: three assumptions, multiplied',
     body: {
-      kind: 'flow',
-      items: [
-        { head: '~2B weekly AI users', desc: '×2 vs today — ~1B today → ~2B 2029e' },
-        { head: '~15% run always-on agents', desc: '×6 vs today — 2.5% today → 15% 2029e' },
-        { head: '10–25M tokens per agent-day', desc: 'the observed band — 10M floor, 25M wave' },
+      kind: 'decompose',
+      factors: [
+        { value: '~2B', label: 'weekly AI users', note: '×2 vs today', from: '~1B today', to: '~2B 2029e' },
+        { value: '~15%', label: 'run always-on agents', note: '×6 vs today', from: '2.5% today', to: '15% 2029e' },
+        {
+          value: '10–25M',
+          label: 'tokens per agent-day',
+          note: 'the observed band',
+          from: '10M floor',
+          to: '25M wave',
+        },
       ],
-      out: [{ value: '~2,700Q', label: 'tokens per year — ×27 vs today (100Q)' }],
+      result: { value: '~2,700Q', label: 'tokens per year', note: '×27 vs today’s 100Q' },
     },
     takeaway: {
       icon: '🧮',
@@ -460,13 +515,25 @@ export const SLIDES: Slide[] = [
     kicker: 'Growth index, 2026 = 1 (log scale) — billable-weighted infrastructure events vs. tokens',
     title: 'The wave amplifies as it lands: events grow ~130x',
     body: {
-      kind: 'table',
-      head: ['', '2026', '2027', '2028', '2029'],
-      rows: [
-        ['Infra events — ×4–6 / yr', '1x', '6x', '25x', '130x'],
-        ['Tokens — ×3 / yr', '1x', '3x', '9x', '27x'],
+      kind: 'line',
+      axis: 'Growth index, 2026 = 1 · log scale · dashed = modelled',
+      x: ['2026', '2027', '2028', '2029'],
+      log: true,
+      series: [
+        {
+          name: 'Infra events  ×4–6/yr',
+          values: [1, 6, 25, 130],
+          display: ['1x', '6x', '25x', '130x'],
+          dashed: true,
+        },
+        {
+          name: 'Tokens  ×3/yr',
+          values: [1, 3, 9, 27],
+          display: [null, '3x', '9x', '27x'],
+          tone: 'muted',
+          dashed: true,
+        },
       ],
-      highlight: 0,
     },
     takeaway: {
       icon: '🌊',
@@ -738,11 +805,21 @@ export const SLIDES: Slide[] = [
     kicker: 'Aggregate five-meter valuation by fiscal year — EV / NTM revenue and forward P/E (approximate)',
     title: 'Multiples compressed while fundamentals compounded',
     body: {
-      kind: 'table',
-      head: ['', 'FY21', 'FY22', 'FY23', 'FY24', 'FY25', 'Jul ’26'],
-      rows: [
-        ['EV / NTM revenue', '30x', '12x', '10x', '9x', '8x', '7.5x'],
-        ['Forward P/E', 'n/m', 'n/m', 'n/m', '50x', '30x', '21x'],
+      kind: 'grouped',
+      axis: 'Approximate, by fiscal year',
+      x: ['FY21', 'FY22', 'FY23', 'FY24', 'FY25', 'Jul ’26'],
+      series: [
+        {
+          name: 'EV / NTM revenue',
+          values: [30, 12, 10, 9, 8, 7.5],
+          display: ['30x', '12x', '10x', '9x', '8x', '7.5x'],
+        },
+        {
+          name: 'Forward P/E',
+          values: [null, null, null, 50, 30, 21],
+          display: ['n/m', 'n/m', 'n/m', '50x', '30x', '21x'],
+          tone: 'muted',
+        },
       ],
     },
     takeaway: {
@@ -769,8 +846,7 @@ export const SLIDES: Slide[] = [
     },
     takeaway: {
       icon: '💰',
-      text:
-        'The four haircuts: unit prices fall 30–50%/yr, all given to customers · discounted multi-year commits, not list · usage→revenue at measured 0.5–0.7 elasticity · agent revenue is compute-heavier, margin carried. The $21B/yr wedge between wave and fade is the entire trade.',
+      text: 'The $21B/yr wedge between wave and fade is the entire trade.',
     },
     footnote:
       'Skycatcher model vs. consensus estimates. ~41% CAGR from ~$15.9B today. Illustrative; see assumptions appendix.',
@@ -871,13 +947,23 @@ export const SLIDES: Slide[] = [
     kicker: 'Aggregate revenue growth, y/y — same starting point, two shapes',
     title: 'The street isn’t bearish on agents — it has never modeled them',
     body: {
-      kind: 'table',
-      head: ['', '2026e', '2027e', '2028e', '2029e'],
-      rows: [
-        ['The event math (this deck)', '20%', '25%', '31%', '36%'],
-        ['Every sell-side model (the fade)', '20%', '15%', '14%', '13%'],
+      kind: 'line',
+      axis: 'Aggregate revenue growth, y/y',
+      x: ['2026e', '2027e', '2028e', '2029e'],
+      series: [
+        {
+          name: 'The event math',
+          values: [20, 25, 31, 36],
+          display: ['20%', '25%', '31%', '36%'],
+        },
+        {
+          name: 'The fade',
+          values: [20, 15, 14, 13],
+          display: [null, '15%', '14%', '13%'],
+          tone: 'muted',
+          dashed: true,
+        },
       ],
-      highlight: 0,
     },
     footnote:
       'Growth paths implied by the aggregate revenue models: consensus fade to ~$23B vs the event-math path to ~$44B on our call by 2029. Illustrative.',
@@ -937,12 +1023,31 @@ export const SLIDES: Slide[] = [
     kicker: 'Combined value of the five meters, 2026–2029e ($B, Skycatcher scenarios)',
     title: 'Our case: ~5x over four years',
     body: {
-      kind: 'bars',
-      axis: '2029 combined value',
-      items: [
-        { label: 'Consensus drift', sub: '+17%', value: 140, display: '~$140B', tone: 'muted' },
-        { label: 'Reference floor', sub: '+220%', value: 384, display: '~$384B' },
-        { label: 'Skycatcher case', sub: '+420%', value: 624, display: '$624B', tone: 'accent' },
+      kind: 'line',
+      axis: 'Combined value of the five meters, $B',
+      x: ['2026', '2027', '2028', '2029'],
+      series: [
+        // Intermediate years are constant-rate interpolations between today's
+        // ~$120B and each 2029 outcome — the deck states the endpoints, not the
+        // path. Disclosed in the footnote so the shape is not read as forecast.
+        {
+          name: 'Skycatcher  +420%',
+          values: [120, 207.8, 359.8, 624],
+          display: ['$120B', null, null, '$624B'],
+        },
+        {
+          name: 'Reference floor  +220%',
+          values: [120, 176.9, 260.8, 384],
+          display: [null, null, null, '~$384B'],
+          dashed: true,
+        },
+        {
+          name: 'Consensus drift  +17%',
+          values: [120, 126.3, 132.9, 140],
+          display: [null, null, null, '~$140B'],
+          tone: 'muted',
+          dashed: true,
+        },
       ],
     },
     takeaway: {
@@ -951,7 +1056,7 @@ export const SLIDES: Slide[] = [
         '+420% attributed: earnings growth at today’s 21x → +$214B · the re-rate, 21x → 40x → +$290B. Hyperboom ≈ $1T (~8.3x) at 4,000Q tokens & 1999-regime multiples — shown, not underwritten.',
     },
     footnote:
-      'Skycatcher scenarios, illustrative; central case capitalizes the unmodeled wedge at 40x — the conservative end of historical re-acceleration regimes. 1996–99 rails paid 6–13x.',
+      'Skycatcher scenarios, illustrative; central case capitalizes the unmodeled wedge at 40x — the conservative end of historical re-acceleration regimes. 1996–99 rails paid 6–13x. Endpoints are from the model; 2027 and 2028 are constant-rate interpolations shown to indicate shape, not a year-by-year forecast.',
   },
   {
     id: 44,
