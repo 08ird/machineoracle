@@ -56,6 +56,29 @@ export interface Deck extends Base {
   slides: Slide[];
   /** Optional standfirst paragraphs before the first section. */
   intro?: Block[];
+  /**
+   * Prose that carries the argument, keyed by slide id. The slide's exhibit
+   * becomes a numbered figure inside this prose rather than the other way
+   * round — the writing leads, the visual supports.
+   */
+  commentary?: Record<number, Block[]>;
+  /** Per-part epigraphs for the chapter opener, keyed by part number. */
+  epigraphs?: Record<number, { text: string; cite: string }>;
 }
 
 export type Piece = Article | Deck;
+
+/**
+ * One chapter of a deck: a part divider plus the sections that follow it, each
+ * paired with its commentary. Derived from the slides at render time so adding a
+ * section divider to any deck automatically creates a new chapter page.
+ */
+export interface Chapter {
+  /** 1-based part number, used in the URL. */
+  n: number;
+  numeral: string;
+  title: string;
+  sub: string;
+  epigraph?: { text: string; cite: string };
+  slides: Slide[];
+}

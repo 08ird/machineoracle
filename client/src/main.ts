@@ -12,17 +12,23 @@ import './style.css';
 
 const app = document.getElementById('app') as HTMLDivElement;
 
-function slugFromHash(): string {
+/** `#/infinite-software/3` → { slug: 'infinite-software', chapter: 3 } */
+function parseHash(): { slug: string; chapter?: number } {
   const h = location.hash;
-  if (!h.startsWith('#/')) return '';
-  return h.slice(2).replace(/\/$/, '');
+  if (!h.startsWith('#/')) return { slug: '' };
+  const parts = h.slice(2).replace(/\/$/, '').split('/');
+  const last = parts[parts.length - 1];
+  if (parts.length > 1 && /^\d+$/.test(last)) {
+    return { slug: parts.slice(0, -1).join('/'), chapter: Number(last) };
+  }
+  return { slug: parts.join('/') };
 }
 
 function route(scrollToTop = true) {
-  const slug = slugFromHash();
+  const { slug, chapter } = parseHash();
   const piece = findPiece(slug) ?? HOME;
 
-  app.replaceChildren(masthead(piece.slug), renderPiece(piece), footer());
+  app.replaceChildren(masthead(piece.slug), renderPiece(piece, chapter), footer());
   document.title = piece.slug ? `${piece.title} — Machine Oracle` : 'Machine Oracle';
 
   if (scrollToTop) scrollTo({ top: 0, behavior: 'auto' });

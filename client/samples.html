@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Design samples — Machine Oracle</title>
+    <style>
+      /* Shared tokens — same palette/type as the live site. */
+      :root {
+        --ink: #1c1c1c;
+        --ink-2: #383838;
+        --ink-3: #6b6b6b;
+        --ink-4: #949494;
+        --bg: #fffefb;
+        --bg-2: #f6f4ef;
+        --rule: #ddd8ce;
+        --rule-2: #ebe7df;
+        --accent: #1b5fd0;
+        --accent-pale: #e8eefb;
+        --display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+        --body: Georgia, 'Times New Roman', Times, serif;
+        --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #ece8e1; --ink-2: #d3cec5; --ink-3: #9d978c; --ink-4: #7b7568;
+          --bg: #14140f; --bg-2: #1c1c16; --rule: #35342c; --rule-2: #262620;
+          --accent: #7aa8f5; --accent-pale: #1b2333;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; background: var(--bg); color: var(--ink-2);
+        font: 1.125rem/1.62 var(--body); -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3, h4 { font-family: var(--display); color: var(--ink); margin: 0; line-height: 1.15; }
+      h2 { margin-bottom: 0.7em; }
+      p { margin: 0 0 1.15em; }
+      .lead::first-letter {
+        float: left; font-family: var(--display); font-size: 3.9em; line-height: 0.82;
+        font-weight: 700; color: var(--ink); padding: 0.05em 0.09em 0 0;
+      }
+
+      /* Sample switcher */
+      .switch {
+        position: sticky; top: 0; z-index: 10; display: flex; gap: 0.5rem; flex-wrap: wrap;
+        justify-content: center; padding: 0.6rem 1rem;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule);
+        font-family: var(--sans); font-size: 0.75rem;
+      }
+      .switch a {
+        color: var(--ink-2); text-decoration: none; padding: 0.3rem 0.7rem;
+        border: 1px solid var(--rule); border-radius: 100px;
+      }
+      .switch a:hover { border-color: var(--accent); color: var(--accent); }
+      .banner {
+        font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.16em;
+        text-transform: uppercase; font-weight: 600; color: #fff; background: var(--accent);
+        padding: 0.6rem 1rem; text-align: center;
+      }
+      .variant { padding-bottom: 5rem; border-bottom: 8px solid var(--bg-2); }
+
+      /* ── Shared exhibit bits ───────────────────────────────────────────── */
+      .bars { display: grid; gap: 0.5rem; }
+      .bar { display: grid; grid-template-columns: minmax(7rem, 13ch) 1fr; gap: 0.15rem 0.85rem; align-items: center; }
+      .bar__l { font-family: var(--sans); font-size: 0.8125rem; color: var(--ink-2); }
+      .bar__l small { display: block; color: var(--ink-4); }
+      .bar__t { display: flex; align-items: center; gap: 0.55rem; }
+      .bar__f { height: 0.7rem; background: var(--accent); border-radius: 1px; flex: none; }
+      .bar__f--m { background: var(--rule); }
+      .bar__v { font-family: var(--display); font-weight: 700; font-size: 0.95rem; color: var(--ink); white-space: nowrap; }
+      @media (max-width: 34rem) { .bar { grid-template-columns: 1fr; } }
+
+      .cols2 { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+      .cols2 h4 { font-size: 1rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--rule); }
+      .cols2 .big { font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 1.2rem; margin-top: 0.4rem; }
+      .cols2 ul { margin: 0.5rem 0 0; padding-left: 1.2em; font-size: 0.875rem; }
+      .cols2 li { margin-bottom: 0.25em; }
+      .cols2 em { font-size: 0.8125rem; display: block; margin-top: 0.5rem; color: var(--ink); }
+
+      /* ══ VARIANT A — Research paper ═════════════════════════════════════ */
+      .a-wrap { max-width: 42rem; margin: 0 auto; padding: 3rem 1.25rem 0; }
+      .a-chapno {
+        font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.18em;
+        text-transform: uppercase; font-weight: 600; color: var(--accent);
+      }
+      .a-wrap h1 { font-size: clamp(1.9rem, 1.3rem + 2.6vw, 2.8rem); margin: 0.5rem 0 0.5rem; }
+      .a-abstract {
+        font-size: 1rem; color: var(--ink-3); border-left: 2px solid var(--rule);
+        padding-left: 1rem; margin: 1.5rem 0 2.5rem;
+      }
+      .a-sec { margin-top: 2.75rem; }
+      .a-sec h2 { font-size: 1.35rem; }
+      .a-sec h2 .num { color: var(--ink-4); font-weight: 400; margin-right: 0.5rem; }
+      .a-fig { margin: 1.75rem 0; padding: 1.1rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+      .a-fig figcaption {
+        font-family: var(--sans); font-size: 0.75rem; color: var(--ink-3);
+        margin-bottom: 0.9rem; line-height: 1.5;
+      }
+      .a-fig figcaption b { color: var(--ink); font-weight: 600; }
+      .a-src { font-family: var(--sans); font-size: 0.7rem; color: var(--ink-4); margin-top: 0.9rem; line-height: 1.45; }
+
+      /* ══ VARIANT B — Margin notes (Tufte) ═══════════════════════════════ */
+      .b-wrap { max-width: 64rem; margin: 0 auto; padding: 3rem 1.25rem 0; }
+      .b-head { max-width: 36rem; }
+      .b-chapno {
+        font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.18em;
+        text-transform: uppercase; font-weight: 600; color: var(--accent);
+      }
+      .b-wrap h1 { font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3rem); margin: 0.5rem 0 0; }
+      .b-sub { font-family: var(--display); font-style: italic; color: var(--ink-3); margin-top: 0.6rem; font-size: 1.2rem; }
+      .b-sec { margin-top: 2.75rem; }
+      .b-sec h2 { font-size: 1.4rem; max-width: 36rem; }
+      /* Text and margin share a grid; the margin holds sources and asides. */
+      .b-row { display: grid; grid-template-columns: minmax(0, 36rem) 14rem; gap: 2rem; align-items: start; }
+      .b-body { min-width: 0; }
+      .b-margin {
+        font-family: var(--sans); font-size: 0.75rem; line-height: 1.5; color: var(--ink-3);
+        border-top: 1px solid var(--rule); padding-top: 0.5rem;
+      }
+      .b-margin b { color: var(--ink); font-weight: 600; display: block; margin-bottom: 0.2rem; }
+      .b-fig { margin: 1.5rem 0; }
+      .b-fig figcaption {
+        font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+        font-weight: 600; color: var(--ink-4); margin-bottom: 0.7rem;
+      }
+      @media (max-width: 60rem) {
+        .b-row { grid-template-columns: 1fr; gap: 1rem; }
+        .b-margin { border-top: 1px solid var(--rule-2); }
+      }
+
+      /* ══ VARIANT C — Chaptered book ═════════════════════════════════════ */
+      .c-open {
+        min-height: 78vh; display: grid; align-content: center; text-align: center;
+        padding: 3rem 1.25rem; background: var(--bg-2); border-bottom: 1px solid var(--rule);
+      }
+      .c-open .num {
+        font-family: var(--display); font-size: clamp(3.5rem, 2rem + 9vw, 7rem);
+        line-height: 0.9; color: var(--ink); font-weight: 700;
+      }
+      .c-open .part { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+      .c-open h1 { font-size: clamp(1.8rem, 1.2rem + 2.8vw, 3rem); margin-top: 0.75rem; }
+      .c-open .sub { font-family: var(--display); font-style: italic; color: var(--ink-3); margin-top: 0.6rem; }
+      .c-open .epi {
+        max-width: 26rem; margin: 2.5rem auto 0; font-family: var(--display); font-style: italic;
+        color: var(--ink-2); font-size: 1.05rem;
+      }
+      .c-open .epi cite { display: block; font-style: normal; font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4); margin-top: 0.6rem; }
+      .c-wrap { max-width: 40rem; margin: 0 auto; padding: 3rem 1.25rem 0; }
+      .c-sec { margin-top: 3rem; }
+      .c-sec h2 { font-size: 1.5rem; }
+      .c-kicker { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--ink-4); margin-bottom: 0.35rem; }
+      /* Figures break the measure and sit on a tinted band. */
+      .c-fig {
+        margin: 2rem calc(50% - 50vw); padding: 2rem calc(50vw - 50% + 1.25rem);
+        background: var(--bg-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      }
+      .c-fig figcaption { font-family: var(--sans); font-size: 0.72rem; color: var(--ink-3); margin-bottom: 1rem; }
+      .c-fig figcaption b { color: var(--ink); font-weight: 600; }
+      .c-fig .inner { max-width: 40rem; margin: 0 auto; }
+      .c-src { font-family: var(--sans); font-size: 0.68rem; color: var(--ink-4); margin-top: 1rem; }
+      .c-pull {
+        font-family: var(--display); font-size: 1.4rem; line-height: 1.3; color: var(--ink);
+        text-align: center; margin: 2.5rem auto; max-width: 26rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="switch">
+      <a href="#a">A · Research paper</a>
+      <a href="#b">B · Margin notes</a>
+      <a href="#c">C · Chaptered book</a>
+    </nav>
+
+    <!-- ══════════════════ A ══════════════════ -->
+    <div class="variant" id="a">
+      <div class="banner">Sample A — Research paper: one column, numbered sections, figures ruled into the flow</div>
+      <div class="a-wrap">
+        <div class="a-chapno">Part one of five</div>
+        <h1>Infinite Software</h1>
+        <p class="a-abstract">
+          Machine labor makes software unlimited. This part establishes the era: why the cost of producing
+          software has collapsed by roughly four thousand times in a single step, and why that collapse moves
+          the money from making software to running it.
+        </p>
+
+        <section class="a-sec">
+          <h2><span class="num">1.1</span>Software production just broke free of human hands</h2>
+          <p class="lead">
+            For three decades the cost of software work fell in steps, and each step took about a decade to
+            arrive. Artisan engineering ran near two hundred dollars a unit of work. Offshoring and outsourcing
+            took it to sixty. Open source and reuse took it to twenty. Copilots took it to five.
+          </p>
+          <p>
+            Then, in a single step, agent production took it to five cents.
+          </p>
+
+          <figure class="a-fig">
+            <figcaption><b>Figure 1.</b> Cost per unit of software work, by production regime. Log scale, illustrative.</figcaption>
+            <div class="bars">
+              <div class="bar"><div class="bar__l">Artisan engineering<small>1990s–2000s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:82%"></div><div class="bar__v">$200</div></div></div>
+              <div class="bar"><div class="bar__l">Offshore &amp; outsourcing<small>2000s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:66%"></div><div class="bar__v">$60</div></div></div>
+              <div class="bar"><div class="bar__l">Open source &amp; reuse<small>2010s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:53%"></div><div class="bar__v">$20</div></div></div>
+              <div class="bar"><div class="bar__l">Copilot-assisted<small>2021–24</small></div><div class="bar__t"><div class="bar__f" style="width:37%"></div><div class="bar__v">$5</div></div></div>
+              <div class="bar"><div class="bar__l">Agent-produced<small>2026</small></div><div class="bar__t"><div class="bar__f" style="width:8%"></div><div class="bar__v">$0.05</div></div></div>
+            </div>
+            <p class="a-src">Skycatcher illustration; inference economics per Epoch AI constant-performance price data. Illustrative only.</p>
+          </figure>
+
+          <p>
+            The magnitude matters more than the direction. When any input becomes four thousand times cheaper,
+            nobody buys the same quantity of it more cheaply — they buy vastly more of it. That is the whole
+            setup for the inversion in §1.3: if making software approaches free, the software population
+            explodes, and everything that software must consume in order to run becomes the scarce good.
+          </p>
+        </section>
+
+        <section class="a-sec">
+          <h2><span class="num">1.2</span>Labor is no longer human-limited</h2>
+          <p>
+            The price collapse is the symptom. The regime change is the cause. A copilot keeps a person inside
+            every loop: you prompt, it answers, you check, you prompt again. An agent takes an objective and
+            runs — planning, acting, verifying, looping until the work is done. The human stops being the
+            operator and becomes the manager.
+          </p>
+
+          <figure class="a-fig">
+            <figcaption><b>Figure 2.</b> From copilots that help you, to agents that work for you.</figcaption>
+            <div class="cols2">
+              <div>
+                <h4>Copilots / Chat</h4>
+                <div class="big">1 analyst helping you</div>
+                <ul><li>You prompt</li><li>It answers</li><li>You check</li><li>You prompt again…</li></ul>
+                <em>Human required in every loop</em>
+              </div>
+              <div>
+                <h4>Agents</h4>
+                <div class="big">1,000 analysts working 24/7</div>
+                <ul><li>You define the objective</li><li>Agents plan, act, verify</li><li>Tool calls · writes · tests</li><li>Loop until completion</li></ul>
+                <em>Human becomes the manager</em>
+              </div>
+            </div>
+            <p class="a-src">Skycatcher framework. Agent capabilities illustrative; reliability and supervision remain constraints.</p>
+          </figure>
+
+          <p>
+            Three consequences follow, and they compound. The human bottleneck disappears, so attention-hours
+            no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred
+            simultaneous workstreams. And the duty cycle changes: forty attention-hours a week becomes one
+            hundred and sixty-eight machine-hours.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <!-- ══════════════════ B ══════════════════ -->
+    <div class="variant" id="b">
+      <div class="banner">Sample B — Margin notes: sources and asides live beside the text, figures stay in the column</div>
+      <div class="b-wrap">
+        <div class="b-head">
+          <div class="b-chapno">Part one of five</div>
+          <h1>Infinite Software</h1>
+          <div class="b-sub">Machine labor makes software unlimited.</div>
+        </div>
+
+        <section class="b-sec">
+          <h2>Software production just broke free of human hands</h2>
+          <div class="b-row">
+            <div class="b-body">
+              <p class="lead">
+                For three decades the cost of software work fell in steps, and each step took about a decade to
+                arrive. Artisan engineering ran near two hundred dollars a unit of work. Offshoring took it to
+                sixty. Open source and reuse took it to twenty. Copilots took it to five.
+              </p>
+              <p>Then, in a single step, agent production took it to five cents.</p>
+
+              <figure class="b-fig">
+                <figcaption>Cost per unit of software work · log scale</figcaption>
+                <div class="bars">
+                  <div class="bar"><div class="bar__l">Artisan<small>1990s–2000s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:82%"></div><div class="bar__v">$200</div></div></div>
+                  <div class="bar"><div class="bar__l">Offshore<small>2000s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:66%"></div><div class="bar__v">$60</div></div></div>
+                  <div class="bar"><div class="bar__l">Open source<small>2010s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:53%"></div><div class="bar__v">$20</div></div></div>
+                  <div class="bar"><div class="bar__l">Copilot<small>2021–24</small></div><div class="bar__t"><div class="bar__f" style="width:37%"></div><div class="bar__v">$5</div></div></div>
+                  <div class="bar"><div class="bar__l">Agent-produced<small>2026</small></div><div class="bar__t"><div class="bar__f" style="width:8%"></div><div class="bar__v">$0.05</div></div></div>
+                </div>
+              </figure>
+
+              <p>
+                The magnitude matters more than the direction. When any input becomes four thousand times
+                cheaper, nobody buys the same quantity more cheaply — they buy vastly more. That is the setup
+                for the scarcity inversion two sections ahead.
+              </p>
+            </div>
+            <aside class="b-margin">
+              <b>Figure 1</b>
+              Each prior step took roughly a decade. The final step is ~4,000× in one move.
+              <p style="margin:0.8rem 0 0"><b>Source</b>Skycatcher illustration; inference economics per Epoch AI constant-performance price data.</p>
+            </aside>
+          </div>
+        </section>
+
+        <section class="b-sec">
+          <h2>Labor is no longer human-limited</h2>
+          <div class="b-row">
+            <div class="b-body">
+              <p>
+                The price collapse is the symptom; the regime change is the cause. A copilot keeps a person
+                inside every loop. An agent takes an objective and runs — planning, acting, verifying, looping
+                until the work is done. The human stops being the operator and becomes the manager.
+              </p>
+              <figure class="b-fig">
+                <figcaption>The delegation shift</figcaption>
+                <div class="cols2">
+                  <div>
+                    <h4>Copilots / Chat</h4>
+                    <div class="big">1 analyst helping you</div>
+                    <ul><li>You prompt</li><li>It answers</li><li>You check</li></ul>
+                    <em>Human in every loop</em>
+                  </div>
+                  <div>
+                    <h4>Agents</h4>
+                    <div class="big">1,000 analysts, 24/7</div>
+                    <ul><li>You define the objective</li><li>Agents plan, act, verify</li><li>Loop until completion</li></ul>
+                    <em>Human becomes the manager</em>
+                  </div>
+                </div>
+              </figure>
+              <p>
+                Three consequences compound: the human bottleneck disappears, work parallelizes because agents
+                launch agents, and the duty cycle goes from forty attention-hours a week to one hundred and
+                sixty-eight machine-hours.
+              </p>
+            </div>
+            <aside class="b-margin">
+              <b>Figure 2</b>
+              One analyst helping you becomes a thousand analysts working around the clock.
+              <p style="margin:0.8rem 0 0"><b>Caveat</b>Reliability and supervision requirements remain real constraints on this substitution.</p>
+            </aside>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ══════════════════ C ══════════════════ -->
+    <div class="variant" id="c">
+      <div class="banner">Sample C — Chaptered book: each part opens as a chapter, figures break out full-width</div>
+      <header class="c-open">
+        <div class="part">Part one</div>
+        <div class="num">I</div>
+        <h1>Infinite Software</h1>
+        <div class="sub">machine labor makes software unlimited</div>
+        <div class="epi">
+          “The Internet is a tidal wave. It changes the rules.”
+          <cite>Bill Gates · May 1995</cite>
+        </div>
+      </header>
+
+      <div class="c-wrap">
+        <section class="c-sec">
+          <div class="c-kicker">Chapter one</div>
+          <h2>Software production just broke free of human hands</h2>
+          <p class="lead">
+            For three decades the cost of software work fell in steps, and each step took about a decade to
+            arrive. Artisan engineering ran near two hundred dollars a unit of work. Offshoring and outsourcing
+            took it to sixty. Open source and reuse took it to twenty. Copilots took it to five.
+          </p>
+          <p>Then, in a single step, agent production took it to five cents.</p>
+        </section>
+
+        <figure class="c-fig">
+          <div class="inner">
+            <figcaption><b>Figure 1.</b> Cost per unit of software work, by production regime. Log scale, illustrative.</figcaption>
+            <div class="bars">
+              <div class="bar"><div class="bar__l">Artisan engineering<small>1990s–2000s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:82%"></div><div class="bar__v">$200</div></div></div>
+              <div class="bar"><div class="bar__l">Offshore &amp; outsourcing<small>2000s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:66%"></div><div class="bar__v">$60</div></div></div>
+              <div class="bar"><div class="bar__l">Open source &amp; reuse<small>2010s</small></div><div class="bar__t"><div class="bar__f bar__f--m" style="width:53%"></div><div class="bar__v">$20</div></div></div>
+              <div class="bar"><div class="bar__l">Copilot-assisted<small>2021–24</small></div><div class="bar__t"><div class="bar__f" style="width:37%"></div><div class="bar__v">$5</div></div></div>
+              <div class="bar"><div class="bar__l">Agent-produced<small>2026</small></div><div class="bar__t"><div class="bar__f" style="width:8%"></div><div class="bar__v">$0.05</div></div></div>
+            </div>
+            <p class="c-src">Skycatcher illustration; inference economics per Epoch AI constant-performance price data.</p>
+          </div>
+        </figure>
+
+        <div class="c-wrap" style="padding-top:0">
+          <p>
+            The magnitude matters more than the direction. When any input becomes four thousand times cheaper,
+            nobody buys the same quantity of it more cheaply — they buy vastly more of it.
+          </p>
+          <p class="c-pull">If making software approaches free, the software population explodes.</p>
+
+          <section class="c-sec">
+            <div class="c-kicker">Chapter two</div>
+            <h2>Labor is no longer human-limited</h2>
+            <p>
+              The price collapse is the symptom. The regime change is the cause. A copilot keeps a person inside
+              every loop: you prompt, it answers, you check, you prompt again. An agent takes an objective and
+              runs — planning, acting, verifying, looping until the work is done. The human stops being the
+              operator and becomes the manager.
+            </p>
+          </section>
+        </div>
+      </div>
+
+      <figure class="c-fig">
+        <div class="inner">
+          <figcaption><b>Figure 2.</b> From copilots that help you, to agents that work for you.</figcaption>
+          <div class="cols2">
+            <div>
+              <h4>Copilots / Chat</h4>
+              <div class="big">1 analyst helping you</div>
+              <ul><li>You prompt</li><li>It answers</li><li>You check</li><li>You prompt again…</li></ul>
+              <em>Human required in every loop</em>
+            </div>
+            <div>
+              <h4>Agents</h4>
+              <div class="big">1,000 analysts working 24/7</div>
+              <ul><li>You define the objective</li><li>Agents plan, act, verify</li><li>Tool calls · writes · tests</li><li>Loop until completion</li></ul>
+              <em>Human becomes the manager</em>
+            </div>
+          </div>
+        </div>
+      </figure>
+
+      <div class="c-wrap" style="padding-top:0">
+        <p>
+          Three consequences follow, and they compound. The human bottleneck disappears, so attention-hours no
+          longer cap output. Work parallelizes, because agents launch agents. And the duty cycle changes: forty
+          attention-hours a week becomes one hundred and sixty-eight machine-hours.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
