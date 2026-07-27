@@ -735,21 +735,16 @@ blockquote cite {
  * white ground, so the band stays light in both color schemes — it is a piece
  * of the deck, not a themed surface.
  */
+/* Flows inside the essay as an oversized pull quote rather than a band:
+   no background, text-measure width, the wave art fading out at both ends
+   beneath it like a flourish. */
 .wavecall {
-  margin: clamp(2rem, 1.5rem + 1.5vw, 3rem) calc(50% - 50vw);
-  width: 100vw;
-  margin-left: calc(50% - 50cqw);
-  margin-right: calc(50% - 50cqw);
-  width: 100cqw;
-  background: #fff;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
+  margin: clamp(2.25rem, 1.75rem + 1.5vw, 3.25rem) auto;
   text-align: center;
 }
 .wavecall__inner {
-  max-width: 34rem;
+  max-width: 32rem;
   margin: 0 auto;
-  padding: clamp(2rem, 1.5rem + 2vw, 3.25rem) 1.25rem 0;
 }
 .wavecall blockquote {
   margin: 0;
@@ -760,7 +755,7 @@ blockquote cite {
   line-height: 1.2;
   font-weight: 700;
   font-style: normal;
-  color: #1a2233;
+  color: var(--ink);
 }
 .wavecall__attrib {
   font-family: var(--sans);
@@ -768,28 +763,35 @@ blockquote cite {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
-  color: #8a97b0;
+  color: var(--ink-4);
   margin-top: 1rem;
 }
 .wavecall__sub {
   font-family: var(--display);
   font-style: italic;
   font-size: clamp(1rem, 0.95rem + 0.35vw, 1.15rem);
-  color: #3a4358;
+  color: var(--ink-2);
   margin: 1.1em 0 0;
 }
 .wavecall__extra {
   font-family: var(--sans);
   font-size: 0.75rem;
   line-height: 1.55;
-  color: #5a6478;
+  color: var(--ink-3);
   margin: 0.9em 0 0;
 }
+/* The artwork, cropped to its wave portion (the source has a white sky above)
+   and faded out at both ends so it reads as a flourish under the quote rather
+   than a banner across the page. */
 .wavecall__art {
   display: block;
-  width: 100%;
-  height: auto;
-  margin-top: clamp(0.5rem, 0.25rem + 1vw, 1.25rem);
+  width: min(100%, 38rem);
+  margin: clamp(0.9rem, 0.6rem + 1vw, 1.5rem) auto 0;
+  height: clamp(54px, 9cqw, 84px);
+  object-fit: cover;
+  object-position: 50% 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
 }
 
 /* Inline exhibits (used inside articles) stay within the measure. */
