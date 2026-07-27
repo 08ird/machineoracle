@@ -172,6 +172,9 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
   table(b) {
     const wrap = el('div', 'tablewrap');
     const t = el('table');
+    // Tables of sentences (scoreboard, kill conditions) read left-aligned in the
+    // body face; tables of figures stay right-aligned in the display face.
+    if (b.rows.some((r) => r.slice(1).some((c) => c.length > 42))) t.classList.add('table--prose');
     const thead = el('thead');
     const hr = el('tr');
     for (const h of b.head) hr.append(el('th', undefined, h));

@@ -42,6 +42,12 @@ function route(scrollToTop = true) {
   document.title = [chapterTitle ?? (piece.slug ? piece.title : ''), 'Machine Oracle'].filter(Boolean).join(' — ');
 
   if (scrollToTop) scrollTo({ top: 0, behavior: 'auto' });
+
+  // When the compact nav scrolls horizontally (phones), keep the current page's
+  // link in view.
+  document
+    .querySelector('.masthead--compact .nav a[aria-current="page"]')
+    ?.scrollIntoView({ inline: 'center', block: 'nearest' });
 }
 
 addEventListener('hashchange', () => {

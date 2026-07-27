@@ -17,6 +17,8 @@ import { part4 } from './commentary-4';
 import { back, front, part5 } from './commentary-5';
 import { conclusion } from './conclusion';
 import { letter } from './letter';
+import { scoreboard } from './scoreboard';
+import { trackRecord } from './track-record';
 import type { Piece } from './types';
 
 const infiniteSoftware: Piece = {
@@ -57,7 +59,7 @@ const infiniteSoftware: Piece = {
   conclusion,
 };
 
-export const PIECES: Piece[] = [letter, infiniteSoftware];
+export const PIECES: Piece[] = [letter, infiniteSoftware, trackRecord, scoreboard];
 
 export const HOME = letter;
 

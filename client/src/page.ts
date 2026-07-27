@@ -29,7 +29,10 @@ const WORDS = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight
  * whole work is reachable from any page — the reference site's pattern.
  */
 export function masthead(activeSlug: string, activeChapter?: number): HTMLElement {
-  const head = el('header', 'masthead');
+  // The home page carries the full masthead; every interior page gets the
+  // compact sticky one so switching chapters is one click from anywhere.
+  const compact = Boolean(activeSlug) || Boolean(activeChapter);
+  const head = el('header', `masthead${compact ? ' masthead--compact' : ''}`);
   const wrap = el('div', 'wrap');
 
   const title = el('a', 'masthead__title', SITE);
