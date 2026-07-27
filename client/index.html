@@ -2,32 +2,66 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SpacetimeDB Guestbook</title>
-    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#1a2233" />
+    <title>Infinite Software — Skycatcher</title>
+    <link rel="icon" href="/logo.png" />
   </head>
   <body>
-    <main id="app">
-      <header>
-        <h1>📖 Guestbook</h1>
-        <p class="status" id="status">connecting…</p>
-      </header>
+    <div class="progress" id="progress"></div>
 
-      <section class="identity-card">
-        <label for="name">Your name</label>
-        <div class="row">
-          <input id="name" type="text" maxlength="32" placeholder="Anonymous" autocomplete="off" />
-          <button id="save-name" type="button">Save</button>
-        </div>
-      </section>
+    <header class="bar-top">
+      <a class="bar-top__brand" href="#1">
+        <img src="/logo.png" alt="" width="18" />
+        Skycatcher
+      </a>
+      <span class="bar-top__part" id="part-label"></span>
+      <span class="bar-top__spacer"></span>
+      <span class="bar-top__count" id="counter">01 / 50</span>
 
-      <ul id="messages" class="messages"></ul>
+      <button class="iconbtn" id="btn-overview" aria-pressed="false" title="All slides (O)" aria-label="All slides">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </button>
+      <button class="iconbtn" id="btn-notes" aria-pressed="false" title="Speaker notes (N)" aria-label="Speaker notes">
+        <svg viewBox="0 0 24 24"><path d="M4 5h16M4 10h16M4 15h10"/></svg>
+      </button>
+      <button class="iconbtn" id="btn-help" title="Shortcuts (?)" aria-label="Keyboard shortcuts">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8"/><path d="M12 17h.01"/></svg>
+      </button>
+    </header>
 
-      <form id="compose" class="compose" autocomplete="off">
-        <input id="text" type="text" maxlength="256" placeholder="Leave a message…" required />
-        <button id="send" type="submit">Sign</button>
-      </form>
-    </main>
+    <button class="edge edge--up" id="btn-prev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+    <button class="edge edge--down" id="btn-next" aria-label="Next slide">
+      <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+
+    <nav class="rail" id="rail" aria-label="Parts"></nav>
+
+    <main id="deck"></main>
+
+    <div class="nudge" id="nudge">Swipe or press → to advance</div>
+
+    <div class="overview" id="overview" data-open="false" aria-label="All slides"></div>
+
+    <aside class="notes" id="notes" data-open="false" aria-live="polite">
+      <div class="notes__head">Speaker notes</div>
+      <div id="notes-body"></div>
+    </aside>
+
+    <div class="help" id="help" data-open="false">
+      <div class="help__card">
+        <h3>Getting around</h3>
+        <div class="help__row"><span>Next / previous</span><span><kbd>→</kbd> <kbd>←</kbd> <kbd>space</kbd></span></div>
+        <div class="help__row"><span>All slides</span><span><kbd>O</kbd> <kbd>esc</kbd></span></div>
+        <div class="help__row"><span>Speaker notes</span><span><kbd>N</kbd></span></div>
+        <div class="help__row"><span>Jump to part</span><span><kbd>1</kbd>–<kbd>5</kbd></span></div>
+        <div class="help__row"><span>First / last</span><span><kbd>home</kbd> <kbd>end</kbd></span></div>
+        <div class="help__row"><span>On mobile</span><span>swipe up / down</span></div>
+      </div>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
