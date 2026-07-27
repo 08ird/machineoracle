@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pdf": "bash scripts/make-pdf.sh"
   },
   "dependencies": {
     "spacetimedb": "2.6.*"

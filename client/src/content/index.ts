@@ -10,6 +10,7 @@
  */
 
 import { SLIDES } from '../data/slides';
+import { about } from './about';
 import { part1 } from './commentary-1';
 import { part2 } from './commentary-2';
 import { part3 } from './commentary-3';
@@ -66,7 +67,7 @@ const infiniteSoftware: Piece = {
   },
 };
 
-export const PIECES: Piece[] = [letter, infiniteSoftware, scoreboard];
+export const PIECES: Piece[] = [letter, infiniteSoftware, scoreboard, about];
 
 export const HOME = letter;
 

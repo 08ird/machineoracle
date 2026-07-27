@@ -63,6 +63,11 @@ export function masthead(activeSlug: string, activeChapter?: number): HTMLElemen
     nav.append(a);
   }
 
+  // The reference site's move: the whole series as a downloadable PDF.
+  const pdf = el('a', undefined, 'Full thesis as PDF');
+  pdf.href = 'infinite-software.pdf';
+  nav.append(pdf);
+
   wrap.append(nav);
   head.append(wrap, el('hr', 'masthead__rule'));
   return head;
@@ -347,7 +352,10 @@ function renderHome(letter: Article): HTMLElement {
   );
   const allLink = el('a', undefined, 'on one page');
   allLink.href = '#/all';
-  note.append(allLink, document.createTextNode(', for reading straight through or printing.'));
+  note.append(allLink, document.createTextNode(' and as a '));
+  const pdfLink = el('a', undefined, 'PDF');
+  pdfLink.href = 'infinite-software.pdf';
+  note.append(pdfLink, document.createTextNode('.'));
   toc.append(note);
 
   const addEntry = (link: string, title: string, blurb?: string, tag?: string) => {
