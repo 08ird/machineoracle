@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpacetimeDB Guestbook</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <header>
+        <h1>📖 Guestbook</h1>
+        <p class="status" id="status">connecting…</p>
+      </header>
+
+      <section class="identity-card">
+        <label for="name">Your name</label>
+        <div class="row">
+          <input id="name" type="text" maxlength="32" placeholder="Anonymous" autocomplete="off" />
+          <button id="save-name" type="button">Save</button>
+        </div>
+      </section>
+
+      <ul id="messages" class="messages"></ul>
+
+      <form id="compose" class="compose" autocomplete="off">
+        <input id="text" type="text" maxlength="256" placeholder="Leave a message…" required />
+        <button id="send" type="submit">Sign</button>
+      </form>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
