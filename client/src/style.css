@@ -1467,13 +1467,29 @@ tbody tr.is-hl th {
   .nav,
   .foot,
   .pager,
-  .toc {
+  .toc,
+  .chapnav,
+  .masthead__rule {
     display: none;
   }
   body {
     background: #fff;
     color: #000;
     font-size: 11pt;
+  }
+  .sheet {
+    border: 0;
+    box-shadow: none;
+    max-width: 100%;
+  }
+  .masthead--compact {
+    position: static;
+    background: none;
+  }
+  .opener {
+    min-height: auto;
+    padding: 2rem 1rem;
+    page-break-before: always;
   }
   .part {
     page-break-before: always;

@@ -162,6 +162,11 @@ export const part5: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
+        'Treat the average with the respect a seven-event sample deserves — it is a small set, drawn from our own index, and a skeptic should ask how the events were marked before crediting the mean. The direction is the claim, not the decimal: agent disclosures have re-priced these businesses upward, at the print, every time one has landed so far.',
+    },
+    {
+      kind: 'p',
+      text:
         'There are twelve prints between here and 2029. Capital that is in before the print owns that gap. Capital that waits for proof pays it, because the proof and the re-pricing arrive on the same morning. Past re-pricings are not predictive of future ones, and we are not promising a gap up. We are pointing out that the reward for being early here is not patience — it is a specific, repeatedly observed discount.',
     },
   ],

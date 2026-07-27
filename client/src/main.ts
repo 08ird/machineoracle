@@ -8,7 +8,8 @@
 
 import { chapters } from './chapters';
 import { findPiece, HOME, THESIS } from './content';
-import { footer, masthead, renderPiece } from './page';
+import { footer, masthead, renderAll, renderPiece } from './page';
+import type { Deck } from './content/types';
 import './style.css';
 
 const app = document.getElementById('app') as HTMLDivElement;
@@ -27,6 +28,18 @@ function parseHash(): { slug: string; chapter?: number } {
 
 function route(scrollToTop = true) {
   const { slug, chapter } = parseHash();
+
+  // The full thesis on one page, mainly for reading straight through or
+  // printing to PDF.
+  if (slug === 'all') {
+    const sheet = document.createElement('div');
+    sheet.className = 'sheet';
+    sheet.append(renderAll(THESIS as Deck));
+    app.replaceChildren(masthead(THESIS.slug), sheet, footer());
+    document.title = 'Infinite Software — full text — Machine Oracle';
+    if (scrollToTop) scrollTo({ top: 0, behavior: 'auto' });
+    return;
+  }
 
   // The thesis's front matter now lives on the home page, so a bare thesis slug
   // has nothing of its own to show — send it home rather than render a stub.

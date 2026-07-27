@@ -20,6 +20,11 @@ export const part4: Record<number, Block[]> = {
       text:
         'Layers two through five are the investable sweet spot: the tool rails of API, MCP, identity and auth; context, data, analytics and memory; build and verify, meaning repos, CI/CD, evals and tests; and observe, govern and secure — traces, policy, cost. These are the runtime meter, the memory meter, the build meter, and the audit meter. They are the least dependent on GPU availability and the most directly tied to software volume, compliance, and enterprise trust.',
     },
+    {
+      kind: 'p',
+      text:
+        'The fair question is why not simply own the obvious expressions of this wave — NVIDIA, the hyperscalers, the labs. Our answer is that those trades are either crowded or unavailable. NVIDIA is priced for the buildout by everyone who can read a headline; it is the consensus expression, and consensus is in the price. The hyperscalers own layer six, but at three trillion dollars of market value the agent effect is a rounding error on the multiple. The labs are private, and their layer is the one where competition gives the gains to customers — the price war that drives our entire demand curve is their margin. The meters are where the same wave lands un-modeled, in liquid public companies small enough for it to matter. That is the definition of the gap we hunt.',
+    },
   ],
 
   32: [

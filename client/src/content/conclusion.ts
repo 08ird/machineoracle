@@ -42,7 +42,17 @@ export const conclusion: Conclusion = {
         {
           kind: 'p',
           text:
-            'Two more we take seriously. Vertical integration: the hyperscalers could absorb the meters — bundle identity, observability, and build into the compute bill — and the layer we own becomes a feature rather than a business; against this we hold the meters with the deepest enterprise moats and watch attach pricing, not just attach volume. And concentration: five names is not a diversified thesis, it is a conviction basket, and we size it as the manifesto sizes everything — deep conviction, pre-written exits, and no pretence that the two are a substitute for each other.',
+            'Second, self-hosting. The sharpest version comes from engineers: if agents make building software free, they also make operating it cheap — an agent can run your Postgres, rotate your certificates, and triage your pagers, so why rent a meter at all? We concede the premise for some layers, and we deliberately hold the commodity-exposed ones lightly. What cannot be self-hosted away is the part of the bill that is really insurance: identity, audit, and compliance sell a third party to blame, and no enterprise counsel accepts its own agent as the counterparty of record. Self-hosted stacks still run on metered compute and delivery, and every agent an enterprise deploys enlarges the surface that has to be observed and governed by someone whose name is on a contract. The watch item is attach pricing in the observability layer — the first place self-hosting would show up.',
+        },
+        {
+          kind: 'p',
+          text:
+            'Third, the buildout itself. If power and compute supply cannot carry 27x token demand, the wave caps at the floor no matter what elasticity says. Two answers. The floor is priced in our grid — at 21x today’s multiple the floor case still returns +69%, and eight of nine paths beat today. And a supply-capped wave concentrates pricing power in whoever meters scarce capacity efficiently, which is not a bad description of the companies we own.',
+        },
+        {
+          kind: 'p',
+          text:
+            'Last, the ones we can only size, not solve. Vertical integration: the hyperscalers could bundle identity, observability, and build into the compute bill, turning the layer we own into a feature — against this we hold the meters with the deepest enterprise moats and watch attach pricing, not just attach volume. And concentration: five names is not a diversified thesis, it is a conviction basket, and we size it as the manifesto sizes everything — deep conviction, pre-written exits, and no pretence that the two are a substitute for each other.',
         },
       ],
     },

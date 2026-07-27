@@ -18,7 +18,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'These are aggregated platform disclosures, not a survey and not our imagination, and they carry error bars we would not pretend away. But the shape is not in dispute, and the shape is the point.',
+        'These are aggregated platform disclosures, not a survey and not our imagination. The honest caveats: tokenizers differ across labs, so cross-platform token counts are not perfectly commensurable, and the disclosure anchors are sparse — a “100 trillion a quarter” here, a “quadrillion a month” there — so the series carries error bars of tens of percent. None of that matters to the argument. The uncertainty is in the second digit; the phenomenon is in the exponent.',
     },
   ],
 
@@ -36,7 +36,12 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'We checked the obvious objection, which is that buyers were purchasing capability rather than responding to price. Against constant-capability tiers the slope holds. Cheaper tokens do not shrink this market. They enlarge it, and they enlarge it faster than they cut it.',
+        'We checked the obvious objection, which is that buyers were purchasing capability rather than responding to price — the confound would be that each year’s tokens simply do more. So we ran the same measurement against constant-capability tiers: models held at a fixed benchmark level whose prices fell as newer tiers arrived above them. The slope holds. Cheaper tokens do not shrink this market. They enlarge it, and they enlarge it faster than they cut it.',
+    },
+    {
+      kind: 'p',
+      text:
+        'A note on terms, because we use two elasticities in this document and they are not the same number. The 1.6 here is demand elasticity — tokens bought per unit of price cut. The 0.5 to 0.7 in Parts IV and V is monetization elasticity — revenue captured per unit of usage growth, after discounts and commitments. The first says the wave builds; the second, deliberately conservative, says how much of it the meters keep.',
     },
   ],
 
@@ -126,7 +131,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Across our own stack and public platform documentation, we measure 20 to 40 billable infrastructure events dragged behind every thousand agentic tokens. Machine labor does not arrive as a token invoice. It arrives as an invoice on somebody else’s rails.',
+        'Two numbers here need to be squared, because a careful reader will divide one by the other. The 100,000-plus figure counts raw metered events — every log line, trace span, and cache read the task touches. Most of those are bundled or priced near zero. When we weight events by what actually bills, the same task nets out to 20 to 40 billable-weighted events per thousand agentic tokens, and that is the conservative number every downstream forecast in this document uses. Machine labor does not arrive as a token invoice. It arrives as an invoice on somebody else’s rails.',
     },
   ],
 

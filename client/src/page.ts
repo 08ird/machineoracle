@@ -339,13 +339,16 @@ function renderHome(letter: Article): HTMLElement {
   const chaps = chapters(deck);
   const toc = el('section', 'toc2');
   toc.append(el('h2', undefined, 'Table of contents'));
-  toc.append(
-    el(
-      'p',
-      'toc2__note',
-      'Each part is meant to stand on its own, though we would encourage reading the series in order.'
+  const note = el('p', 'toc2__note');
+  note.append(
+    document.createTextNode(
+      'Each part is meant to stand on its own, though we would encourage reading the series in order. The full thesis is also available '
     )
   );
+  const allLink = el('a', undefined, 'on one page');
+  allLink.href = '#/all';
+  note.append(allLink, document.createTextNode(', for reading straight through or printing.'));
+  toc.append(note);
 
   const addEntry = (link: string, title: string, blurb?: string, tag?: string) => {
     const entry = el('div', 'toc2__entry');
@@ -370,6 +373,30 @@ function renderHome(letter: Article): HTMLElement {
   main.append(toc);
 
   return main;
+}
+
+/**
+ * The whole thesis on one page — the reference site's "full series" affordance,
+ * and the way to get a complete PDF from the browser's print dialog.
+ */
+export function renderAll(p: Deck): HTMLElement {
+  const frag = el('div');
+
+  const head = el('header', 'head');
+  head.className = 'head wrap';
+  head.append(el('h1', undefined, p.title));
+  if (p.subtitle) head.append(el('div', 'head__sub', p.subtitle));
+  head.append(el('div', 'head__date', `Skycatcher · ${p.date ?? ''} · full text`));
+  frag.append(head);
+
+  const all = chapters(p);
+  for (const c of all) {
+    const chapter = renderChapter(p, c, all);
+    // Chapter-to-chapter links are noise when everything is already one page.
+    chapter.querySelectorAll('.chapnav').forEach((n) => n.remove());
+    frag.append(chapter);
+  }
+  return frag;
 }
 
 // ── Entry ───────────────────────────────────────────────────────────────────

@@ -83,7 +83,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The economic law here is not new. Jevons described it in 1865: make an input more efficient and its consumption expands rather than shrinks. Nadella invoked exactly this in January 2025. The instruction the slide leaves us with is one line, and it is the thesis of this entire piece — own the right-hand column.',
+        'The economic framing here is not new. Jevons described it in 1865: make an input more efficient and its consumption expands rather than shrinks. Nadella invoked exactly this in January 2025. An economist will fairly object that the modern literature calls this the rebound effect, and that full backfire — consumption growing faster than efficiency improves — is historically rare, because it requires demand elasticity above one. That is precisely the point: we are not assuming the rare case, we have measured it, four years running, and Part II shows the slope. Where elasticity sits is where this thesis lives or dies, which is why it leads our kill conditions.',
+    },
+    {
+      kind: 'p',
+      text:
+        'One more objection belongs here, because every IT professional raises it within a minute: if agents make building software free, don’t they also make running your own rails free — why pay a meter when an agent can babysit your own Postgres? Partly, yes, and we hold the layers most exposed to that lightly. But identity, audit, and compliance cannot be self-hosted away, because their product is not uptime — it is a third party to blame, and no enterprise lets an agent be the counterparty of record. We return to this at full length in the conclusion.',
     },
   ],
 
