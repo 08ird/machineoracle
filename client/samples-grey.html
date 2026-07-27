@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Greyscale samples — Machine Oracle</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font: 1.125rem/1.62 Georgia, 'Times New Roman', serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2 { font-family: 'Iowan Old Style', Palatino, Georgia, serif; margin: 0; line-height: 1.15; }
+      p { margin: 0 0 1.15em; }
+      .switch {
+        position: sticky; top: 0; z-index: 10; display: flex; gap: 0.5rem; flex-wrap: wrap;
+        justify-content: center; padding: 0.6rem 1rem; background: #fffc; backdrop-filter: blur(8px);
+        border-bottom: 1px solid #ddd; font-family: system-ui, sans-serif; font-size: 0.75rem;
+      }
+      .switch a { color: #333; text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid #ccc; border-radius: 100px; }
+      .banner {
+        font-family: system-ui, sans-serif; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+        font-weight: 600; color: #fff; background: #444; padding: 0.6rem 1rem; text-align: center;
+      }
+
+      /* Each variant defines its own tokens. */
+      .v { padding-bottom: 4rem; background: var(--bg); color: var(--ink2); }
+      .v h1, .v h2 { color: var(--ink); }
+      .wrap { max-width: 43rem; margin: 0 auto; padding: 2.5rem 1.25rem 0; }
+      .kicker {
+        font-family: system-ui, sans-serif; font-size: 0.6875rem; letter-spacing: 0.16em;
+        text-transform: uppercase; font-weight: 600; color: var(--accent); margin-bottom: 0.4rem;
+      }
+      .v h1 { font-size: 2.1rem; }
+      .v h2 { font-size: 1.45rem; margin: 0 0 0.7em; }
+      .sub { font-style: italic; color: var(--ink3); margin: 0.5rem 0 2rem; }
+      .lead::first-letter {
+        float: left; font-size: 3.9em; line-height: 0.82; font-weight: 700;
+        color: var(--ink); padding: 0.05em 0.09em 0 0; font-family: 'Iowan Old Style', Palatino, serif;
+      }
+      .band {
+        margin: 2rem 0; padding: 1.75rem 1.25rem; background: var(--band);
+        border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      }
+      .band .inner { max-width: 43rem; margin: 0 auto; }
+      .cap {
+        font-family: system-ui, sans-serif; font-size: 0.7375rem; color: var(--ink3); margin-bottom: 1rem;
+      }
+      .cap b { color: var(--ink); }
+      .bar { display: grid; grid-template-columns: 11ch 1fr; gap: 0.15rem 0.85rem; align-items: center; margin-bottom: 0.5rem; }
+      .bar .l { font-family: system-ui, sans-serif; font-size: 0.8125rem; }
+      .bar .t { display: flex; align-items: center; gap: 0.55rem; }
+      .bar .f { height: 0.7rem; background: var(--accent); border-radius: 1px; }
+      .bar .f.m { background: var(--rule); }
+      .bar .n { font-family: 'Iowan Old Style', Palatino, serif; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+      .take {
+        font-family: 'Iowan Old Style', Palatino, serif; font-size: 1.08em; color: var(--ink);
+        margin: 1.1em 0 0; padding-left: 1.1em; border-left: 2px solid var(--accent);
+      }
+      .src { font-family: system-ui, sans-serif; font-size: 0.7rem; color: var(--ink4); margin-top: 1rem; }
+      a.demo { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 2px; }
+
+      /* A — current warm paper (baseline) */
+      #a { --bg:#fffefb; --band:#f6f4ef; --ink:#1c1c1c; --ink2:#383838; --ink3:#6b6b6b; --ink4:#949494;
+           --rule:#ddd8ce; --accent:#1b5fd0; }
+      /* B — neutral greyscale, blue kept for data */
+      #b { --bg:#fafafa; --band:#f0f0f0; --ink:#141414; --ink2:#333333; --ink3:#666666; --ink4:#8f8f8f;
+           --rule:#d9d9d9; --accent:#1b5fd0; }
+      /* C — grey page, raised white column */
+      #c { --bg:#eceded; --band:#e3e4e5; --ink:#17181a; --ink2:#33353a; --ink3:#63666d; --ink4:#8b8e95;
+           --rule:#d2d3d6; --accent:#1b5fd0; }
+      #c .sheet {
+        max-width: 47rem; margin: 2.5rem auto; background: #fdfdfd; border: 1px solid #dcdddf;
+        box-shadow: 0 1px 2px rgba(20,22,26,.05), 0 12px 32px -18px rgba(20,22,26,.18);
+      }
+      #c .sheet .wrap { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+      #c .band { background: #f1f2f2; }
+      /* D — all-grey ink accent, no blue at all */
+      #d { --bg:#fafafa; --band:#f0f0f0; --ink:#141414; --ink2:#333333; --ink3:#666666; --ink4:#8f8f8f;
+           --rule:#d9d9d9; --accent:#3d3d3d; }
+    </style>
+  </head>
+  <body>
+    <nav class="switch">
+      <a href="#a">A · Current (warm)</a>
+      <a href="#b">B · Neutral grey</a>
+      <a href="#c">C · Grey + white sheet</a>
+      <a href="#d">D · Grey, no blue</a>
+    </nav>
+
+    <!-- The same content four times; only tokens change. -->
+    <div class="v" id="a">
+      <div class="banner">A — Current warm paper · #FFFEFB page, #F6F4EF figure bands</div>
+      <div class="wrap">
+        <div class="kicker">Part two · The Token Tidal Wave</div>
+        <h1>Tokens grew ~2,000x in four years</h1>
+        <p class="sub">the phenomenon — our ~27x call, landing on the rails</p>
+        <p class="lead">Before any forecast, the record. Global token consumption went from 0.05 quadrillion a year in 2022 to roughly 100 quadrillion in 2026. That is about 2,000x in four years, and it arrived in an orderly sequence: 10x, then 10x, then 5x, then 4x.</p>
+        <p>Note what that line ran through: two market corrections and one full-scale <a class="demo" href="#a">AI panic</a>. Demand never blinked. Not once did the curve bend to accommodate the narrative.</p>
+      </div>
+      <div class="band"><div class="inner">
+        <div class="cap"><b>Figure 1.</b> Global token consumption, quadrillion tokens / year (log scale)</div>
+        <div class="bar"><div class="l">2022</div><div class="t"><div class="f m" style="width:6%"></div><div class="n">0.05Q</div></div></div>
+        <div class="bar"><div class="l">2024</div><div class="t"><div class="f" style="width:42%"></div><div class="n">5Q</div></div></div>
+        <div class="bar"><div class="l">2026</div><div class="t"><div class="f" style="width:78%"></div><div class="n">100Q</div></div></div>
+        <p class="src">Platform disclosures, Skycatcher aggregation; error bars apply. Illustrative.</p>
+      </div></div>
+      <div class="wrap"><p class="take">Through two market corrections and one full-scale AI panic — demand never blinked.</p></div>
+    </div>
+
+    <div class="v" id="b">
+      <div class="banner">B — Neutral greyscale · #FAFAFA page, #F0F0F0 bands, blue kept for data & links</div>
+      <div class="wrap">
+        <div class="kicker">Part two · The Token Tidal Wave</div>
+        <h1>Tokens grew ~2,000x in four years</h1>
+        <p class="sub">the phenomenon — our ~27x call, landing on the rails</p>
+        <p class="lead">Before any forecast, the record. Global token consumption went from 0.05 quadrillion a year in 2022 to roughly 100 quadrillion in 2026. That is about 2,000x in four years, and it arrived in an orderly sequence: 10x, then 10x, then 5x, then 4x.</p>
+        <p>Note what that line ran through: two market corrections and one full-scale <a class="demo" href="#b">AI panic</a>. Demand never blinked. Not once did the curve bend to accommodate the narrative.</p>
+      </div>
+      <div class="band"><div class="inner">
+        <div class="cap"><b>Figure 1.</b> Global token consumption, quadrillion tokens / year (log scale)</div>
+        <div class="bar"><div class="l">2022</div><div class="t"><div class="f m" style="width:6%"></div><div class="n">0.05Q</div></div></div>
+        <div class="bar"><div class="l">2024</div><div class="t"><div class="f" style="width:42%"></div><div class="n">5Q</div></div></div>
+        <div class="bar"><div class="l">2026</div><div class="t"><div class="f" style="width:78%"></div><div class="n">100Q</div></div></div>
+        <p class="src">Platform disclosures, Skycatcher aggregation; error bars apply. Illustrative.</p>
+      </div></div>
+      <div class="wrap"><p class="take">Through two market corrections and one full-scale AI panic — demand never blinked.</p></div>
+    </div>
+
+    <div class="v" id="c">
+      <div class="banner">C — Grey desk, white sheet · #ECEDED page, content on a raised #FDFDFD column</div>
+      <div class="sheet">
+        <div class="wrap">
+          <div class="kicker">Part two · The Token Tidal Wave</div>
+          <h1>Tokens grew ~2,000x in four years</h1>
+          <p class="sub">the phenomenon — our ~27x call, landing on the rails</p>
+          <p class="lead">Before any forecast, the record. Global token consumption went from 0.05 quadrillion a year in 2022 to roughly 100 quadrillion in 2026. That is about 2,000x in four years, and it arrived in an orderly sequence: 10x, then 10x, then 5x, then 4x.</p>
+          <p>Note what that line ran through: two market corrections and one full-scale <a class="demo" href="#c">AI panic</a>. Demand never blinked. Not once did the curve bend to accommodate the narrative.</p>
+          <div class="band" style="margin-left:-1.25rem;margin-right:-1.25rem"><div class="inner">
+            <div class="cap"><b>Figure 1.</b> Global token consumption, quadrillion tokens / year (log scale)</div>
+            <div class="bar"><div class="l">2022</div><div class="t"><div class="f m" style="width:6%"></div><div class="n">0.05Q</div></div></div>
+            <div class="bar"><div class="l">2024</div><div class="t"><div class="f" style="width:42%"></div><div class="n">5Q</div></div></div>
+            <div class="bar"><div class="l">2026</div><div class="t"><div class="f" style="width:78%"></div><div class="n">100Q</div></div></div>
+            <p class="src">Platform disclosures, Skycatcher aggregation; error bars apply. Illustrative.</p>
+          </div></div>
+          <p class="take">Through two market corrections and one full-scale AI panic — demand never blinked.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="v" id="d">
+      <div class="banner">D — Strict greyscale · same as B but the accent is grey too (no blue anywhere)</div>
+      <div class="wrap">
+        <div class="kicker">Part two · The Token Tidal Wave</div>
+        <h1>Tokens grew ~2,000x in four years</h1>
+        <p class="sub">the phenomenon — our ~27x call, landing on the rails</p>
+        <p class="lead">Before any forecast, the record. Global token consumption went from 0.05 quadrillion a year in 2022 to roughly 100 quadrillion in 2026. That is about 2,000x in four years, and it arrived in an orderly sequence: 10x, then 10x, then 5x, then 4x.</p>
+        <p>Note what that line ran through: two market corrections and one full-scale <a class="demo" href="#d">AI panic</a>. Demand never blinked. Not once did the curve bend to accommodate the narrative.</p>
+      </div>
+      <div class="band"><div class="inner">
+        <div class="cap"><b>Figure 1.</b> Global token consumption, quadrillion tokens / year (log scale)</div>
+        <div class="bar"><div class="l">2022</div><div class="t"><div class="f m" style="width:6%"></div><div class="n">0.05Q</div></div></div>
+        <div class="bar"><div class="l">2024</div><div class="t"><div class="f" style="width:42%"></div><div class="n">5Q</div></div></div>
+        <div class="bar"><div class="l">2026</div><div class="t"><div class="f" style="width:78%"></div><div class="n">100Q</div></div></div>
+        <p class="src">Platform disclosures, Skycatcher aggregation; error bars apply. Illustrative.</p>
+      </div></div>
+      <div class="wrap"><p class="take">Through two market corrections and one full-scale AI panic — demand never blinked.</p></div>
+    </div>
+  </body>
+</html>

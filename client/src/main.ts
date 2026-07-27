@@ -36,7 +36,11 @@ function route(scrollToTop = true) {
   }
 
   const piece = findPiece(slug) ?? HOME;
-  app.replaceChildren(masthead(piece.slug, chapter), renderPiece(piece, chapter), footer());
+  // All content sits on the raised sheet; masthead and footer stay on the desk.
+  const sheet = document.createElement('div');
+  sheet.className = 'sheet';
+  sheet.append(renderPiece(piece, chapter));
+  app.replaceChildren(masthead(piece.slug, chapter), sheet, footer());
 
   const chapterTitle = chapter ? chapters(THESIS)[chapter - 1]?.title : undefined;
   document.title = [chapterTitle ?? (piece.slug ? piece.title : ''), 'Machine Oracle'].filter(Boolean).join(' — ');

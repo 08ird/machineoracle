@@ -8,17 +8,20 @@
    ───────────────────────────────────────────────────────────────────────────── */
 
 :root {
-  --ink: #1c1c1c;
-  --ink-2: #383838;
-  --ink-3: #6b6b6b;
-  --ink-4: #949494;
-  --bg: #fffefb;
-  --bg-2: #f6f4ef;
-  --rule: #ddd8ce;
-  --rule-2: #ebe7df;
+  /* Greyscale scheme (variant C): a grey "desk" with the document on a raised
+     near-white sheet. Blue is kept for links, figures, and data series. */
+  --ink: #17181a;
+  --ink-2: #33353a;
+  --ink-3: #63666d;
+  --ink-4: #8b8e95;
+  --bg: #eceded; /* the desk */
+  --sheet: #fdfdfd; /* the paper */
+  --bg-2: #f1f2f2; /* figure bands on the paper */
+  --rule: #d2d3d6;
+  --rule-2: #e5e6e8;
   --accent: #1b5fd0;
   --accent-2: #2777ef;
-  --accent-pale: #e8eefb;
+  --accent-pale: #e9eef8;
   --warn: #b8452c;
 
   /* System serifs — no network request, and close to the reference's feel. */
@@ -36,14 +39,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink: #ece8e1;
-    --ink-2: #d3cec5;
-    --ink-3: #9d978c;
-    --ink-4: #7b7568;
-    --bg: #14140f;
-    --bg-2: #1c1c16;
-    --rule: #35342c;
-    --rule-2: #262620;
+    --ink: #eaebec;
+    --ink-2: #cfd1d4;
+    --ink-3: #989ba1;
+    --ink-4: #75787f;
+    --bg: #101114; /* the desk */
+    --sheet: #17181c; /* the paper */
+    --bg-2: #1d1f23; /* figure bands */
+    --rule: #2e3036;
+    --rule-2: #24262b;
     --accent: #7aa8f5;
     --accent-2: #92b8f7;
     --accent-pale: #1b2333;
@@ -82,6 +86,30 @@ body {
   max-width: var(--measure);
   margin: 0 auto;
   padding: 0 1.25rem;
+}
+
+/*
+ * The sheet: the raised near-white column all content sits on. It is a size
+ * container so figure bands can bleed to its edges with container-query units
+ * regardless of viewport width.
+ */
+.sheet {
+  max-width: 52rem;
+  margin: 0 auto clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-top: 0;
+  box-shadow: 0 1px 2px rgba(23, 24, 26, 0.05), 0 14px 36px -20px rgba(23, 24, 26, 0.2);
+  container-type: inline-size;
+  padding-bottom: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+  overflow: hidden; /* keep bleeding bands inside the rounded edge */
+}
+@media (max-width: 54rem) {
+  .sheet {
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: 0;
+  }
 }
 
 h1,
@@ -614,12 +642,18 @@ blockquote cite {
  * negative margin escapes `.wrap`; the inner element re-centres the content.
  */
 .figure {
+  /* Bleed to the sheet's edges, not the viewport's. The vw pair is the
+     fallback for browsers without container-query units; cqw wins where
+     supported because the sheet is an inline-size container. */
   margin: clamp(2rem, 1.5rem + 1.5vw, 3rem) calc(50% - 50vw);
+  width: 100vw;
+  margin-left: calc(50% - 50cqw);
+  margin-right: calc(50% - 50cqw);
+  width: 100cqw;
   padding: clamp(1.5rem, 1rem + 2vw, 2.5rem) 1.25rem;
   background: var(--bg-2);
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
-  width: 100vw;
 }
 .figure__inner {
   max-width: var(--wide);
@@ -1339,9 +1373,9 @@ tbody tr.is-hl th {
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 
 .foot {
-  margin-top: clamp(3rem, 2rem + 3vw, 5rem);
-  padding: 1.5rem 0 3rem;
-  border-top: 1px solid var(--rule);
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 3rem;
   font-family: var(--sans);
   font-size: 0.75rem;
   color: var(--ink-4);
