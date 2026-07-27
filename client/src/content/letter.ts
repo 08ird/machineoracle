@@ -21,14 +21,17 @@ export const letter: Article = {
       text: 'You can see the future first in the usage logs.',
     },
     {
-      kind: 'p',
-      text:
-        'In May 1995, Bill Gates sent an internal memo calling the internet a tidal wave that changes the rules. He could not have named Google, the smartphone, or SaaS, and he did not need to — the claim was about magnitude, and it was correct. Thirty-one years later the wave is running again, and this time it is denominated in tokens. Every prior computing wave sold tools that made people more productive. This one sells the labor itself, and the addressable market is not the software budget. It is the labor budget.',
+      kind: 'wavequote',
+      quote: ['The Internet is a tidal wave.', 'It changes the rules.'],
+      attrib: 'Bill Gates, internal Microsoft memo · May 26, 1995',
+      sub: 'Thirty-one years later, the wave is running again — denominated in tokens.',
+      extra:
+        'It marked the moment an incumbent recognized a paradigm shift. The framing was right about magnitude, even when details were fuzzy. It timestamps the beginning of a ~30-year value creation wave.',
     },
     {
       kind: 'p',
       text:
-        'When machines write software, the cost of producing it collapses toward zero and the quantity of it explodes. But software that exists has to run somewhere. It has to store state, prove identity, get delivered, get observed, and get billed. Production is becoming free; operation never will be. So the money moves — off the thing being made, onto the meters the made thing runs through. Those meters are owned by a small number of public companies that already disclose their usage every ninety days.',
+        'When machines write software, the cost of producing it collapses toward zero and the quantity of it explodes. But software that exists has to run somewhere. It has to store state, prove identity, get delivered, get observed, and get billed. Production is becoming free; operation never will be. So the money moves — off the thing being made, onto the meters the made thing runs through. Those meters are owned by a small number of public companies that already disclose their usage every ninety days. Every prior computing wave sold tools that made people more productive; this one sells the labor itself, and the addressable market is not the software budget but the labor budget.',
     },
     {
       kind: 'p',

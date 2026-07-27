@@ -113,6 +113,24 @@ function renderBlock(b: Block): HTMLElement {
       });
       return s;
     }
+    case 'wavequote': {
+      const band = el('aside', 'wavecall');
+      const inner = el('div', 'wavecall__inner');
+      const q = el('blockquote');
+      b.quote.forEach((line, i) => {
+        q.append(document.createTextNode((i === 0 ? '“' : '') + line + (i === b.quote.length - 1 ? '”' : '')));
+        if (i < b.quote.length - 1) q.append(el('br'));
+      });
+      inner.append(q, el('div', 'wavecall__attrib', '— ' + b.attrib));
+      if (b.sub) inner.append(el('p', 'wavecall__sub', b.sub));
+      if (b.extra) inner.append(el('p', 'wavecall__extra', b.extra));
+      band.append(inner);
+      const img = el('img', 'wavecall__art');
+      img.src = 'wave.png';
+      img.alt = '';
+      band.append(img);
+      return band;
+    }
     case 'exhibit': {
       const fig = el('figure', 'exhibit');
       if (b.caption) fig.append(el('figcaption', 'exhibit__cap', b.caption));

@@ -26,6 +26,8 @@ export type Block =
   | { kind: 'rule' }
   /** Signature block at the end of a letter. */
   | { kind: 'signoff'; lines: string[] }
+  /** Full-width quote callout with the deck's wave artwork along its base. */
+  | { kind: 'wavequote'; quote: string[]; attrib: string; sub?: string; extra?: string }
   /** Embed any of the deck exhibit layouts (bars, table, stats, timeline…). */
   | { kind: 'exhibit'; caption?: string; body: Body; source?: string };
 

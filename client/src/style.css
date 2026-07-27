@@ -729,6 +729,69 @@ blockquote cite {
   margin: 1rem 0 0;
 }
 
+/*
+ * Wave-quote callout: the deck's Gates-memo slide, as a band that bleeds to
+ * the sheet edges with the brand wave art along its base. The artwork has a
+ * white ground, so the band stays light in both color schemes — it is a piece
+ * of the deck, not a themed surface.
+ */
+.wavecall {
+  margin: clamp(2rem, 1.5rem + 1.5vw, 3rem) calc(50% - 50vw);
+  width: 100vw;
+  margin-left: calc(50% - 50cqw);
+  margin-right: calc(50% - 50cqw);
+  width: 100cqw;
+  background: #fff;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+}
+.wavecall__inner {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 1.5rem + 2vw, 3.25rem) 1.25rem 0;
+}
+.wavecall blockquote {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 1.15rem + 1.8vw, 2.3rem);
+  line-height: 1.2;
+  font-weight: 700;
+  font-style: normal;
+  color: #1a2233;
+}
+.wavecall__attrib {
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #8a97b0;
+  margin-top: 1rem;
+}
+.wavecall__sub {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.15rem);
+  color: #3a4358;
+  margin: 1.1em 0 0;
+}
+.wavecall__extra {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: #5a6478;
+  margin: 0.9em 0 0;
+}
+.wavecall__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: clamp(0.5rem, 0.25rem + 1vw, 1.25rem);
+}
+
 /* Inline exhibits (used inside articles) stay within the measure. */
 .exhibit {
   margin: 1.5em 0 0;
