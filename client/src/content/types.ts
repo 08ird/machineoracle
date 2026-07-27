@@ -64,6 +64,8 @@ export interface Deck extends Base {
   commentary?: Record<number, Block[]>;
   /** Per-part epigraphs for the chapter opener, keyed by part number. */
   epigraphs?: Record<number, { text: string; cite: string }>;
+  /** Home-page table-of-contents abstracts, keyed by chapter number. */
+  chapterBlurbs?: Record<number, string>;
   /**
    * A closing chapter assembled from slides that belong at the end rather than
    * inside a part, interleaved with prose that has no slide of its own. Slides

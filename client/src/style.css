@@ -403,6 +403,56 @@ blockquote cite {
   color: var(--ink-3);
 }
 
+/* ── Home table of contents (with abstracts) ────────────────────────────── */
+
+.toc2 {
+  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+  padding-top: clamp(1.25rem, 1rem + 1vw, 2rem);
+  border-top: 1px solid var(--rule);
+}
+.toc2 h2 {
+  font-size: clamp(1.35rem, 1.1rem + 1.1vw, 1.8rem);
+}
+.toc2__note {
+  font-size: 0.9375rem;
+  color: var(--ink-3);
+  margin: 0.6em 0 0;
+}
+.toc2__entry {
+  margin-top: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+}
+.toc2__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.toc2__title a {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  color: var(--ink);
+  text-decoration: none;
+}
+.toc2__title a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+}
+.toc2__tag {
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-4);
+}
+.toc2__blurb {
+  margin: 0.35em 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
 /* ── Contents box ───────────────────────────────────────────────────────── */
 
 .toc {

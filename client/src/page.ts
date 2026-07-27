@@ -260,6 +260,16 @@ function renderChapter(p: Deck, c: Chapter, all: Chapter[]): HTMLElement {
   } else {
     const { body, back } = splitBackMatter(c);
     let figNo = 0;
+    // The deck's front matter (the memo, the 1996 clock, the executive summary)
+    // opens Part I, since the home page now carries only the hook and contents.
+    if (c.n === 1) {
+      for (const s of frontMatter(p)) {
+        if (s.body.kind === 'agenda') continue; // superseded by the contents page
+        const hasExhibit = !['quote', 'prose'].includes(s.body.kind);
+        const node = sectionNode(p, s, hasExhibit ? ++figNo : null);
+        if (node) main.append(node);
+      }
+    }
     for (const s of body) {
       const node = sectionNode(p, s, ++figNo);
       if (node) main.append(node);
@@ -306,75 +316,59 @@ function renderChapter(p: Deck, c: Chapter, all: Chapter[]): HTMLElement {
 // ── Home ────────────────────────────────────────────────────────────────────
 
 /**
- * The home page carries the whole front of the work: the letter, then the
- * thesis's opening sections, then links into the five parts. A reader who never
- * clicks anything still gets the argument; a reader who wants the detail has the
- * five doors in front of them.
+ * The home page, in the reference site's structure: the thesis title and byline
+ * at the top, a short hook essay, then a table of contents where every chapter
+ * gets a real abstract. The reader who stops here still leaves with the whole
+ * argument in miniature.
  */
 function renderHome(letter: Article): HTMLElement {
-  const main = renderArticle(letter);
+  const main = el('main', 'wrap');
   const deck = THESIS as Deck;
 
-  // The thesis proper begins here — title, standfirst, then its front matter.
-  const open = el('section', 'thesis');
-  open.append(el('div', 'label', 'The thesis'));
-  const h = el('h2', 'thesis__title', deck.title);
-  open.append(h);
-  if (deck.subtitle) open.append(el('div', 'thesis__sub', deck.subtitle));
-  if (deck.date) open.append(el('div', 'head__date', deck.date));
-  main.append(open);
+  // Thesis head.
+  const head = el('header', 'head');
+  head.append(el('h1', undefined, deck.title));
+  if (deck.subtitle) head.append(el('div', 'head__sub', deck.subtitle));
+  head.append(el('div', 'head__date', `Skycatcher · ${deck.date ?? ''}`));
+  main.append(head);
 
-  if (deck.intro) main.append(prose(deck.intro));
-  for (const s of frontMatter(deck)) {
-    // The agenda slide is replaced by the live chapter links below.
-    if (s.body.kind === 'agenda') continue;
-    const sec = sectionNode(deck, s, null);
-    if (sec) main.append(sec);
-  }
+  // The hook.
+  main.append(prose(letter.blocks));
 
-  // The five parts, as navigation.
+  // Table of contents with abstracts.
   const chaps = chapters(deck);
-  const list = el('nav', 'chapters');
-  list.setAttribute('aria-label', 'Parts');
-  list.append(el('div', 'label', `${WORDS[chaps.length] ?? chaps.length} parts, one thesis`));
+  const toc = el('section', 'toc2');
+  toc.append(el('h2', undefined, 'Table of contents'));
+  toc.append(
+    el(
+      'p',
+      'toc2__note',
+      'Each part is meant to stand on its own, though we would encourage reading the series in order.'
+    )
+  );
+
+  const addEntry = (link: string, title: string, blurb?: string, tag?: string) => {
+    const entry = el('div', 'toc2__entry');
+    const h = el('div', 'toc2__title');
+    const a = el('a', undefined, title);
+    a.href = link;
+    h.append(a);
+    if (tag) h.append(el('span', 'toc2__tag', tag));
+    entry.append(h);
+    if (blurb) entry.append(el('p', 'toc2__blurb', blurb));
+    toc.append(entry);
+  };
+
   for (const c of chaps) {
-    const item = el('div', 'chapters__item');
-    item.append(el('div', 'chapters__num', c.numeral));
-    const a = el('a', undefined, c.title);
-    a.href = chapHref(deck.slug, c.n);
-    item.append(a, el('div', 'chapters__sub', c.sub));
-    list.append(item);
+    addEntry(chapHref(deck.slug, c.n), `${c.numeral}. ${c.title}`, deck.chapterBlurbs?.[c.n] ?? c.sub);
   }
-  main.append(list);
-
-  const nav = el('div', 'chapnav');
-  const next = el('div', 'chapnav__side chapnav__side--next');
-  next.append(el('span', 'chapnav__lab', 'Begin'));
-  const a = el('a', undefined, `${chaps[0].numeral}. ${chaps[0].title}`);
-  a.href = chapHref(deck.slug, 1);
-  next.append(a);
-  nav.append(next);
-  main.append(nav);
-
-  // Any additional pieces published later.
-  const others = INDEXED.filter((p) => p.slug !== deck.slug);
-  if (others.length) {
-    const index = el('section', 'index');
-    index.append(el('div', 'label', 'Also'));
-    const ul = el('ul', 'index__list');
-    for (const p of others) {
-      const li = el('li', 'index__item');
-      const meta = [p.kind === 'deck' ? 'Presentation' : 'Essay', p.date].filter(Boolean).join(' · ');
-      li.append(el('div', 'index__meta', meta));
-      const link = el('a', undefined, p.title);
-      link.href = href(p.slug);
-      li.append(link);
-      if (p.blurb) li.append(el('p', 'index__blurb', p.blurb));
-      ul.append(li);
-    }
-    index.append(ul);
-    main.append(index);
+  // Other pieces (the scoreboard, future essays) join the same list.
+  for (const p of INDEXED) {
+    if (p.slug === deck.slug) continue;
+    addEntry(href(p.slug), p.navLabel ?? p.title, p.blurb, p.kind === 'deck' ? 'presentation' : undefined);
   }
+  main.append(toc);
+
   return main;
 }
 
