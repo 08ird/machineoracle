@@ -262,10 +262,29 @@ function renderChapter(p: Deck, c: Chapter, all: Chapter[]): HTMLElement {
   const main = el('main', 'wrap');
   main.append(el('div', 'chapline', `${p.title} · Part ${c.numeral}`));
 
-  // The conclusion renders from its declared sequence; regular parts from slides.
-  const isConclusion = p.conclusion && c.n === all.length;
-  if (isConclusion && p.conclusion) {
-    let figNo = 0;
+  const { body, back } = splitBackMatter(c);
+  let figNo = 0;
+  // The deck's front matter (the memo, the 1996 clock, the executive summary)
+  // opens Part I, since the home page carries only the hook and contents.
+  if (c.n === 1) {
+    for (const s of frontMatter(p)) {
+      if (s.body.kind === 'agenda') continue; // superseded by the contents page
+      const hasExhibit = !['quote', 'prose'].includes(s.body.kind);
+      const node = sectionNode(p, s, hasExhibit ? ++figNo : null);
+      if (node) main.append(node);
+    }
+  }
+  for (const s of body) {
+    const node = sectionNode(p, s, ++figNo);
+    if (node) main.append(node);
+  }
+  for (const s of back) {
+    const node = sectionNode(p, s, null);
+    if (node) main.append(node);
+  }
+  // The conclusion closes the final chapter: its sequence mixes slides it has
+  // claimed out of the normal flow with written sections of its own.
+  if (p.conclusion && c.n === all.length) {
     for (const entry of p.conclusion.sequence) {
       if ('slide' in entry) {
         const s = p.slides.find((x) => x.id === entry.slide);
@@ -279,27 +298,6 @@ function renderChapter(p: Deck, c: Chapter, all: Chapter[]): HTMLElement {
         sec.append(prose(entry.blocks));
         main.append(sec);
       }
-    }
-  } else {
-    const { body, back } = splitBackMatter(c);
-    let figNo = 0;
-    // The deck's front matter (the memo, the 1996 clock, the executive summary)
-    // opens Part I, since the home page now carries only the hook and contents.
-    if (c.n === 1) {
-      for (const s of frontMatter(p)) {
-        if (s.body.kind === 'agenda') continue; // superseded by the contents page
-        const hasExhibit = !['quote', 'prose'].includes(s.body.kind);
-        const node = sectionNode(p, s, hasExhibit ? ++figNo : null);
-        if (node) main.append(node);
-      }
-    }
-    for (const s of body) {
-      const node = sectionNode(p, s, ++figNo);
-      if (node) main.append(node);
-    }
-    for (const s of back) {
-      const node = sectionNode(p, s, null);
-      if (node) main.append(node);
     }
   }
 

@@ -936,7 +936,7 @@ export const SLIDES: Slide[] = [
       kind: 'section',
       num: '05',
       label: 'Machine Oracle',
-      sub: 'our sensing edge — the opportunity, the assumptions, and why now',
+      sub: 'the underwriting, the risks, and what to do — our sensing edge and our conclusion',
     },
   },
   {

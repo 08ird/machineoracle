@@ -59,6 +59,12 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     w.append(q);
     if (b.sub) w.append(el('p', undefined, b.sub));
     if (b.extra) w.append(el('p', 'note', b.extra));
+    // The wave flourish from the introduction's pull quote — the tidal-wave
+    // quotes open and close the thesis with the same mark.
+    const art = el('img', 'wavecall__art');
+    art.src = 'wave.png';
+    art.alt = '';
+    w.append(art);
     return w;
   },
 

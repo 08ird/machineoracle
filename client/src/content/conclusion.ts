@@ -86,8 +86,28 @@ export const conclusion: Conclusion = {
       ],
     },
 
-    // Close on the echo of the memo.
-    { slide: 49 },
+    // Close on the echo of the memo: prose into the quote, prose out of it.
+    {
+      blocks: [
+        {
+          kind: 'p',
+          text:
+            'Five public companies sit at the tollbooths of machine labor. With roughly $120 billion of combined market value against $15.9 billion of revenue, they meter the infrastructure every agent must use — every query, transaction, write, test, and log. Thirty-one years ago, an internal memo named the last wave while the street still called it a fad. This document is ours:',
+        },
+        {
+          kind: 'wavequote',
+          quote: ['Machine labor is a tidal wave.', 'It changes the rules.'],
+          attrib: 'Skycatcher · July 2026',
+        },
+        {
+          kind: 'p',
+          text:
+            'Every scenario in our sensitivity analysis produces upside; the central case points to roughly 5x over four years, and the analogous rails of the internet era returned 5 to 13x from exactly this stage — while the argument was still being had. It is 1996 by the internet clock. The meters are already running. What remains is discipline: the scoreboard is live, the kill conditions are armed, and the next print is weeks away.',
+        },
+      ],
+    },
     { slide: 50 },
   ],
+  // Slide 49's own layout is superseded by the written finale above.
+  claim: [49],
 };

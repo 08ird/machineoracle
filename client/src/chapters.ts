@@ -20,10 +20,12 @@ export function frontMatter(deck: Deck): Slide[] {
 }
 
 export function chapters(deck: Deck): Chapter[] {
-  // Slides claimed by the conclusion are lifted out of their original part.
-  const claimed = new Set(
-    (deck.conclusion?.sequence ?? []).flatMap((e) => ('slide' in e ? [e.slide] : []))
-  );
+  // Slides claimed by the conclusion are lifted out of their original part —
+  // both the ones its sequence renders and the ones it explicitly supersedes.
+  const claimed = new Set([
+    ...(deck.conclusion?.sequence ?? []).flatMap((e) => ('slide' in e ? [e.slide] : [])),
+    ...(deck.conclusion?.claim ?? []),
+  ]);
 
   const out: Chapter[] = [];
   for (const s of deck.slides) {
@@ -42,17 +44,8 @@ export function chapters(deck: Deck): Chapter[] {
     }
   }
 
-  if (deck.conclusion) {
-    const n = out.length + 1;
-    out.push({
-      n,
-      numeral: NUMERALS[n - 1] ?? String(n),
-      title: deck.conclusion.title,
-      sub: deck.conclusion.sub,
-      epigraph: deck.conclusion.epigraph,
-      slides: [], // rendered from `sequence`, not from here
-    });
-  }
+  // The conclusion renders as the back half of the final chapter rather than
+  // as a chapter of its own — the deck is a five-part structure and stays one.
   return out;
 }
 

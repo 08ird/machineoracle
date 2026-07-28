@@ -82,6 +82,11 @@ export interface Conclusion {
   epigraph?: { text: string; cite: string };
   /** Rendered in order: either an existing slide, or a written section. */
   sequence: ({ slide: number } | { heading?: string; blocks: Block[] })[];
+  /**
+   * Slides removed from the normal chapter flow without being rendered by the
+   * sequence — used when a written section supersedes a slide's own layout.
+   */
+  claim?: number[];
 }
 
 export type Piece = Article | Deck;
