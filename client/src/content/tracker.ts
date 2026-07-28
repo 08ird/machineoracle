@@ -23,7 +23,7 @@ export const tracker: Article = {
       kind: 'p',
       lead: true,
       text:
-        `The three series below are the thesis reduced to what can be measured from filings. Retention says the royalty is compounding; backlog says the demand is already contracted; overage says agents are outrunning the budgets set for them. Aggregate revenue across the tracked meters grew ${REV_YOY_LATEST}% year over year at the latest print; the dashed extensions are our wave-case forecast, written before the prints they predict.`,
+        `The three series below are the thesis reduced to what can be measured from filings. Retention says the royalty is compounding; backlog says the demand is already contracted; overage says agents are outrunning the budgets set for them. Aggregate revenue across the tracked meters grew ${REV_YOY_LATEST}% year over year at the latest print; the dashed extensions are our wave-case forecast out to 2030, written in July 2026 — before any of the prints it predicts. Each quarter, one dashed point becomes a solid one, or it doesn't.`,
     },
     {
       kind: 'note',
