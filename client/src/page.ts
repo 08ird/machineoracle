@@ -14,7 +14,6 @@ import type { Article, Block, Chapter, Deck, Piece } from './content/types';
 import { el, renderExhibit } from './render';
 
 const SITE = 'Machine Oracle';
-const TAGLINE = 'Notes on the infrastructure of infinite software';
 
 const href = (slug: string) => (slug ? `#/${slug}` : '#/');
 const chapHref = (slug: string, n: number) => `#/${slug}/${n}`;
@@ -37,7 +36,7 @@ export function masthead(activeSlug: string, activeChapter?: number): HTMLElemen
 
   const title = el('a', 'masthead__title', SITE);
   title.href = '#/';
-  wrap.append(title, el('div', 'masthead__sub', TAGLINE));
+  wrap.append(title);
 
   const nav = el('nav', 'nav');
   nav.setAttribute('aria-label', 'Contents');
