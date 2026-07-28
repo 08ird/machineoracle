@@ -1085,7 +1085,7 @@ export const SLIDES: Slide[] = [
   {
     id: 44,
     part: 5,
-    kicker: 'The Machine Oracle scoreboard',
+    kicker: 'The Machine Oracle tracker',
     title: 'Upcoming inflections',
     body: {
       kind: 'steps',

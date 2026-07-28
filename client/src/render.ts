@@ -265,8 +265,12 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     const flat = b.series.flatMap((s) => s.values).filter((v): v is number => v != null && v > 0);
     const max = Math.max(...flat);
     const min = Math.min(...flat);
-    const lo = b.log ? Math.log10(min) - 0.25 : 0;
-    const hi = b.log ? Math.log10(max) + 0.12 : max * 1.1;
+    // Narrow-band series (retention rates) zoom to their range; wide ones keep
+    // a zero-ish baseline so magnitudes stay honest.
+    const span = max - min;
+    const zoomed = !b.log && span / max < 0.2;
+    const lo = b.log ? Math.log10(min) - 0.25 : zoomed ? min - span * 0.9 : 0;
+    const hi = b.log ? Math.log10(max) + 0.12 : zoomed ? max + span * 0.5 : max * 1.1;
     const yOf = (v: number) => {
       const t = ((b.log ? Math.log10(v) : v) - lo) / (hi - lo);
       return H - pad.b - t * (H - pad.t - pad.b);

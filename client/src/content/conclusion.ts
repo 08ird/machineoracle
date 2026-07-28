@@ -57,7 +57,7 @@ export const conclusion: Conclusion = {
       ],
     },
 
-    // How you will know — the dated scoreboard.
+    // How you will know — the dated tracker.
     { slide: 44 },
     { slide: 46 },
 
@@ -102,7 +102,7 @@ export const conclusion: Conclusion = {
         {
           kind: 'p',
           text:
-            'Every scenario in our sensitivity analysis produces upside; the central case points to roughly 5x over four years, and the analogous rails of the internet era returned 5 to 13x from exactly this stage — while the argument was still being had. It is 1996 by the internet clock. The meters are already running. What remains is discipline: the scoreboard is live, the kill conditions are armed, and the next print is weeks away.',
+            'Every scenario in our sensitivity analysis produces upside; the central case points to roughly 5x over four years, and the analogous rails of the internet era returned 5 to 13x from exactly this stage — while the argument was still being had. It is 1996 by the internet clock. The meters are already running. What remains is discipline: the tracker is live, the kill conditions are armed, and the next print is weeks away.',
         },
       ],
     },

@@ -388,7 +388,7 @@ function renderHome(letter: Article): HTMLElement {
   for (const c of chaps) {
     addEntry(chapHref(deck.slug, c.n), `${c.numeral}. ${c.title}`, deck.chapterBlurbs?.[c.n] ?? c.sub);
   }
-  // Other pieces (the scoreboard, future essays) join the same list.
+  // Other pieces (the tracker, future essays) join the same list.
   for (const p of INDEXED) {
     if (p.slug === deck.slug) continue;
     addEntry(href(p.slug), p.navLabel ?? p.title, p.blurb, p.kind === 'deck' ? 'presentation' : undefined);

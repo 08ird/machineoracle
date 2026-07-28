@@ -22,7 +22,7 @@ export const about: Article = {
     {
       kind: 'p',
       text:
-        'Machine Oracle is the public ledger for our machine-labor thesis. It exists because the deck version of an argument cannot be held to account: here, every forecast is dated, keyed to third-party filings, and graded quarterly on the scoreboard — hits and misses alike. Sky1, our internal research system, does the tracking; the grades it produces are our own assessments and not independent research.',
+        'Machine Oracle is the public ledger for our machine-labor thesis. It exists because the deck version of an argument cannot be held to account: here, every forecast is dated, keyed to third-party filings, and graded quarterly on the tracker — hits and misses alike. Sky1, our internal research system, does the tracking; the grades it produces are our own assessments and not independent research.',
     },
     {
       kind: 'p',
