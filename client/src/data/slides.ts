@@ -236,33 +236,6 @@ export const SLIDES: Slide[] = [
       ],
     },
   },
-  {
-    id: 6,
-    kicker: 'The method behind every number in this piece',
-    title: 'Straight lines, graded in public',
-    body: {
-      kind: 'steps',
-      items: [
-        {
-          head: 'Measure the slopes',
-          desc: 'Every forecast extrapolates a measured trend — token volumes, price curves, attach rates, filings — never a narrative. Where a slope is ours, the raw series is shown; where it is third-party, it is dated and sourced.',
-        },
-        {
-          head: 'Pre-register the calls',
-          desc: 'Predictions carry deadlines. Kill conditions are written before they are needed, and grading criteria are fixed at publication. If the ledger fills with misses, the thesis shrinks — in public.',
-        },
-        {
-          head: 'Separate the bases',
-          desc: 'Measured, estimated, and modeled figures are labeled as such on every exhibit. Scenario outputs are not forecasts; the fade case is always shown next to the wave.',
-        },
-      ],
-    },
-    takeaway: {
-      icon: '📐',
-      text: 'Trend extrapolation, with consequences — every claim is checkable, and most carry a date.',
-    },
-  },
-
   // ── Part 01 ───────────────────────────────────────────────────────────────
   {
     id: 7,

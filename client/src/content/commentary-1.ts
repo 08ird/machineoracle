@@ -9,6 +9,20 @@
 import type { Block } from './types';
 
 export const part1: Record<number, Block[]> = {
+  // Front matter: the internet clock, bridging the Gates quote into Part 01.
+  3: [
+    {
+      kind: 'p',
+      text:
+        'The memo timestamps the last wave; the clock below sets both waves side by side. Every entry on the internet track already happened, in that order — the naming, the rails, the mania, the fortunes. The token track is three years old and holding the same sequence: ChatGPT was its Netscape moment, and 2026 sits where 1996 sat — the rails being built and billed while the street still debates whether any of it is durable.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The reading discipline for everything that follows is laid out in the introduction — measured slopes, dated calls, public grades — and it starts paying its way immediately: nothing in this part asks for belief, only for checking. First, the era.',
+    },
+  ],
+
   8: [
     {
       kind: 'p',
