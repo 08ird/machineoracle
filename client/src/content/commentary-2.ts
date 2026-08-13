@@ -13,7 +13,12 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Note what that line ran through: two market corrections and one full-scale AI panic, complete with declarations that the buildout was a bubble and the models had hit a wall. Demand never blinked. The honest caveats: tokenizers differ across labs, so cross-platform counts are not perfectly commensurable, and the disclosure anchors are sparse. The uncertainty is in the second digit; the phenomenon is in the exponent.',
+        'Note what that line ran through: two market corrections and one full-scale AI panic, complete with declarations that the buildout was a bubble and the models had hit a wall. Demand never blinked.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The honest caveats: tokenizers differ across labs, so cross-platform counts are not perfectly commensurable, and the disclosure anchors are sparse. The uncertainty is in the second digit; the phenomenon is in the exponent.',
     },
   ],
 
@@ -56,7 +61,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'We hold this answer with less confidence than the rest of the document, which is why tokens-per-task in our own production stack is a leading indicator we watch directly — the filings cannot give it to us.',
+        'The variant that would bite is tokens-per-task falling faster than tasks multiply — which is why tokens-per-task in our own production stack is a leading indicator we watch directly. The filings cannot give it to us.',
     },
   ],
 
@@ -103,7 +108,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The 40x is not a curve we drew and then justified. It is three assumptions multiplied, each of which can be argued with separately — and the debate between us and consensus is entirely about the middle two.',
+        'The 40x is not a curve we drew and then justified. It is three assumptions multiplied, each of which can be argued with separately.',
     },
   ],
 
@@ -116,7 +121,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Our 2026 global estimate of about 100Q needs roughly six Googles. Alphabet alone was at a ~16Q annual run-rate as of its third-quarter 2025 disclosure.',
+        'Alphabet alone was at a ~16Q annual run-rate as of its third-quarter 2025 disclosure — one platform, a sixth of our global estimate.',
     },
   ],
 
@@ -129,7 +134,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'An independent forecast drawn two years ago, graded against today’s prints: the wave keeps arriving on schedule, whoever draws the curve. Note that his central claim — AGI by 2027 — is not ours, and nothing in this piece requires it.',
+        'His central claim — AGI by 2027 — is not ours, and nothing in this piece requires it.',
     },
   ],
 
@@ -155,7 +160,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'And the capital has already been committed. A build of this size only clears its cost of capital if token demand compounds roughly like our curve — which means the suppliers have underwritten our demand forecast with their own balance sheets.',
+        'And the capital has already been committed: the suppliers have underwritten our demand forecast with their own balance sheets.',
     },
   ],
 
@@ -202,7 +207,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Events outgrow tokens in every single year of the forecast, because two things deepen simultaneously: the agentic share of tokens, and the number of billable events each agentic token drags behind it. For the labs this is a token story; for the meters it is an event story. We would rather own the event.',
+        'Events outgrow tokens in every single year of the forecast, because two things deepen simultaneously: the agentic share of tokens, and the number of billable events each agentic token drags behind it. For the labs this is a token story; for the meters it is an event story — and the event is the larger number.',
     },
   ],
 

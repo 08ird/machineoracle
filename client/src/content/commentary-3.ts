@@ -30,7 +30,7 @@ export const part3: Record<number, Block[]> = {
     },
     {
       kind: 'p',
-      text: 'Underwriting a royalty on machine labor is underwriting capture. That is what this section prices, meter by meter.',
+      text: 'Underwriting a royalty on machine labor is underwriting capture. That is what this part prices, meter by meter.',
     },
   ],
 
@@ -38,12 +38,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Hardware computes, models reason, infrastructure remembers, runtimes coordinate, applications deliver. Five layers, and they are not equally investable.',
+        'Hardware computes, models reason, infrastructure remembers, runtimes coordinate, applications deliver. Five layers — and they do not collect the royalty equally.',
     },
     {
       kind: 'p',
       text:
-        'We avoid layer 0, where the economics are capital-heavy and already priced, and layer 1, where competition hands the gains to customers and there is no public pure play in any case. The key layers meter work and accumulate state.',
+        'Layer 0 is capital-heavy and already priced. Layer 1 is competitive and deflating, and has no public pure play in any case. The key layers are the ones that meter work and accumulate state.',
     },
   ],
 
@@ -55,7 +55,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The backend is what agents run on: three unavoidable activities — execute, remember, and answer for it. Twenty-five companies, and every unit of machine labor passes through them, most of it billed by the unit. The worksite is where agents do the work: forty-two companies whose rails get paid per action, whose records convert or compress, and whose seats are the other side of the trade.',
+        'The backend is what agents run on: three unavoidable activities — execute, remember, and answer for it. Twenty-five companies. The worksite is where agents do the work: forty-two companies whose rails get paid per action, whose records convert or compress, and whose seats are the other side of the trade.',
     },
     {
       kind: 'p',
@@ -106,7 +106,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The old TAM is a line item inside the new one. Delegation share, not software budgets, sets the ceiling on the royalty — and at 5% delegation the new pond is one to two times the entire old TAM, every year.',
+        'The old TAM is a line item inside the new one. Delegation share, not software budgets, sets the ceiling on the royalty.',
     },
   ],
 
@@ -128,7 +128,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'They also fail differently, which is why we hold both. Open, portable state formats would break the ledger case; model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty.',
+        'They also fail differently. Open, portable state formats would break the ledger case; model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty.',
     },
   ],
 
@@ -202,7 +202,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Scaled meters clear roughly 7 to 10x revenue in a sale. That is a floor of sorts under the public names — set by people who have done diligence the public market has not.',
+        'That sets a floor of sorts under the public names — made by buyers who have done the diligence the public market has not.',
     },
   ],
 

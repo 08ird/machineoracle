@@ -8,7 +8,7 @@ export const part1: Record<number, Block[]> = {
       kind: 'p',
       lead: true,
       text:
-        'Mainframes, PCs, networking, the web, mobile, cloud. Each wave was larger than the one before, and each sold a better tool. The AI wave, running from 2022, is different in kind: every prior wave sold tools; this one sells labor.',
+        'Mainframes, PCs, networking, the web, mobile, cloud. Each wave was larger than the one before, and each sold a better tool. The AI wave, running from 2022, is different in kind.',
     },
     { kind: 'p', text: 'That single difference drives everything in this piece.' },
   ],
@@ -40,7 +40,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Agent-produced software in 2026 takes it to five cents. Each prior step took roughly a decade; the last one is a ~4,000x collapse in a single step.',
+        'Agent-produced software in 2026 takes it to five cents. Each prior step took roughly a decade to arrive; the last one arrived all at once.',
     },
   ],
 
@@ -79,7 +79,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'That is a maker population of a billion or more — roughly 33x more makers, and every one of them a customer of the meters. When everyone can make software, the money moves to what all software must rent.',
+        'That is a maker population of a billion or more. When everyone can make software, the money moves to what all software must rent.',
     },
   ],
 
@@ -88,11 +88,6 @@ export const part1: Record<number, Block[]> = {
       kind: 'p',
       text:
         'It is worth walking through a single day, because the abstraction hides where the money lands. Nothing in the sequence below requires a capability that does not exist in 2026.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The software was disposable. The state and the audit trail weren’t. That asymmetry is the whole thesis in one Tuesday.',
     },
   ],
 
@@ -115,7 +110,6 @@ export const part1: Record<number, Block[]> = {
       text:
         'We have a precedent, close enough to be uncomfortable. In the four years after the tidal-wave memo — May 1995 to May 1999, all of it before the mania began — the NASDAQ roughly tripled. Intel returned about 6x, Microsoft about 7x, and Cisco, which sold nothing to consumers and everything to the people building the network, about 13x.',
     },
-    { kind: 'p', text: 'The crowd debated; the rails compounded.' },
   ],
 
   17: [

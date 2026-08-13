@@ -231,11 +231,6 @@ export const SLIDES: Slide[] = [
         },
       ],
     },
-    takeaway: {
-      icon: '∞',
-      text:
-        'Not more apps in the store — software becoming as abundant as documents, and every piece of it running on rented, metered rails.',
-    },
   },
   {
     id: 10,
@@ -305,10 +300,6 @@ export const SLIDES: Slide[] = [
         { value: '8M', label: 'users on Lovable', sub: 'building apps from plain English' },
       ],
     },
-    takeaway: {
-      icon: '📈',
-      text: 'Makers up ~2x and the machine-written share up ~5x in three years — a measured trend, not a metaphor.',
-    },
   },
   {
     id: 13,
@@ -355,7 +346,10 @@ export const SLIDES: Slide[] = [
         },
       ],
     },
-    takeaway: { icon: '🧾', text: 'Multiply this Tuesday by a billion makers — that’s the royalty.' },
+    takeaway: {
+      icon: '🧾',
+      text: 'The software was disposable. The state and the audit trail weren’t. Multiply this Tuesday by a billion makers — that’s the royalty.',
+    },
   },
   {
     id: 15,
@@ -380,7 +374,6 @@ export const SLIDES: Slide[] = [
       ],
     },
     takeaway: { icon: '💡', text: 'The value moves to the metered column.' },
-    footnote: 'Jevons (1865): efficiency in an input expands rather than reduces its consumption.',
   },
   {
     id: 16,
@@ -435,10 +428,6 @@ export const SLIDES: Slide[] = [
         { label: '2026', value: 100, display: '~100Q', tone: 'accent' },
       ],
     },
-    takeaway: {
-      icon: '😲',
-      text: 'Through two market corrections and one full-scale AI panic — demand never blinked.',
-    },
     footnote: 'Platform disclosures, Skycatcher aggregation; error bars apply. Illustrative.',
   },
   {
@@ -455,10 +444,6 @@ export const SLIDES: Slide[] = [
         { name: 'Volume  ×2,000', values: [0.05, 0.5, 5, 25, 100], display: ['0.05Q', '0.5Q', '5Q', '25Q', '100Q'] },
         { name: 'Price  ÷50', values: [20, 8, 2, 1, 0.4], display: ['$20', '$8', '$2', '$1', '$0.40'], tone: 'muted' },
       ],
-    },
-    takeaway: {
-      icon: '📐',
-      text: 'The measured slope is ~1.2–1.3 — the demand curve for machine cognition is elastic above one.',
     },
     footnote:
       'Skycatcher analysis of platform volume disclosures vs. frontier pricing, 2022–26. Historical only; capability-vs-price confound checked against constant-capability tiers.',
@@ -487,10 +472,6 @@ export const SLIDES: Slide[] = [
           desc: 'Usage per user grew ~100x in a decade; data revenue rose as voice died.',
         },
       ],
-    },
-    takeaway: {
-      icon: '🔁',
-      text: 'Every time compute’s inputs got 10x cheaper, spend grew anyway. Tokens are running the same curve, faster.',
     },
   },
   {
@@ -550,11 +531,6 @@ export const SLIDES: Slide[] = [
         { head: '2029 — our case', parts: [{ pct: 25, label: 'Ask (chat)' }, { pct: 75, label: 'Doing (delegate + automate)' }] },
       ],
     },
-    takeaway: {
-      icon: '🔑',
-      text:
-        '77% of a major lab’s API traffic already classifies as automation; coding went 11% → 50%+ of routed traffic in a year; enterprise API tokens +150% in five months.',
-    },
     footnote: 'Lab and marketplace traffic disclosures, 2025–26. Above 60% doing-share already beats consensus.',
   },
   {
@@ -578,8 +554,7 @@ export const SLIDES: Slide[] = [
         },
       ],
     },
-    takeaway: { icon: '🚀', text: 'History ran ×7 a year. The wave case is a deceleration by half.' },
-    footnote: 'Skycatcher scenarios. Floor applies unit elasticity to the announced price path.',
+    footnote: 'Skycatcher scenarios; scenario outputs are not forecasts.',
   },
   {
     id: 26,
@@ -668,10 +643,6 @@ export const SLIDES: Slide[] = [
       ],
       highlight: 4,
     },
-    takeaway: {
-      icon: '🗺️',
-      text: 'The maps multiply rather than compete: where they disagree is upside to the meters, not risk.',
-    },
   },
   {
     id: 30,
@@ -713,11 +684,6 @@ export const SLIDES: Slide[] = [
         { label: 'Physical ceiling', sub: '~10x power × 3x FLOPs × 2.5x perf/watt', value: 7500, display: '~7,500Q', tone: 'warn' },
       ],
     },
-    takeaway: {
-      icon: '📊',
-      text:
-        'Through the same event math and capture, the SA case pays the cohort ~$55–70B of 2029 revenue against ~$42B in our wave.',
-    },
   },
   {
     id: 32,
@@ -736,11 +702,6 @@ export const SLIDES: Slide[] = [
         { n: 'Ongoing', head: 'The green transition', desc: 'Trillions, still running.' },
         { n: 'Now', head: 'The AI buildout', desc: 'Approaching $1T a year — ~3% of GDP.' },
       ],
-    },
-    takeaway: {
-      icon: '🏗️',
-      text:
-        'Economies periodically rebuild themselves around a new input, and the metered owners of the new rails collected the era’s royalties each time.',
     },
   },
   {
@@ -778,11 +739,7 @@ export const SLIDES: Slide[] = [
         { name: 'Tokens', values: [1, 3.4, 11.5, 40], display: [null, '3.4x', '11.5x', '40x'], tone: 'muted', dashed: true },
       ],
     },
-    takeaway: {
-      icon: '🌊',
-      text: 'From 0.3Q to ~57Q of billable events by 2029 — events outgrow tokens every single year, as agentic share and attach both deepen.',
-    },
-    footnote: 'Skycatcher conversion model. For the labs this is a token story; for the meters it is an event story.',
+    footnote: 'Skycatcher conversion model.',
   },
   {
     id: 36,
@@ -881,10 +838,6 @@ export const SLIDES: Slide[] = [
           label: 'of buyers keep paying at list price where usage caps bind',
         },
       ],
-    },
-    takeaway: {
-      icon: '🎯',
-      text: 'Underwriting a royalty on machine labor is underwriting capture.',
     },
   },
   {
@@ -1008,7 +961,6 @@ export const SLIDES: Slide[] = [
         { label: 'Security budget behind both', sub: 'almost none of it usage-billed yet', value: 240, display: '~$240B', tone: 'muted' },
       ],
     },
-    takeaway: { icon: '🪣', text: 'That is the conversion prize.' },
   },
   {
     id: 48,
@@ -1046,11 +998,6 @@ export const SLIDES: Slide[] = [
         ['Apps', '17%', '4.0x', '22%'],
       ],
       highlight: 0,
-    },
-    takeaway: {
-      icon: '📊',
-      text:
-        'Most of the universe sits below 25% growth and below 8x; above the rule-of-40 line at 30%+ growth sits almost nobody — and what’s there is work and state, not apps.',
     },
   },
   {
@@ -1101,7 +1048,6 @@ export const SLIDES: Slide[] = [
         { name: 'Apps', values: [101, 101, 101, 101, 101, 101], display: ['101', null, null, null, null, '101'], tone: 'muted' },
       ],
     },
-    takeaway: { icon: '📈', text: 'Six quarters, rising — while seat-priced apps sit flat at ~101.' },
   },
   {
     id: 57,
@@ -1129,7 +1075,7 @@ export const SLIDES: Slide[] = [
     },
     takeaway: {
       icon: '⚡',
-      text: 'Apps: zero. Deferred revenue tells the same story — state +15% → +22% y/y and accelerating, work +17%, apps ~+14%.',
+      text: 'Deferred revenue tells the same story one step earlier: state +15% → +22% y/y and accelerating, work +17%, apps ~+14%.',
     },
   },
   {
@@ -1170,10 +1116,6 @@ export const SLIDES: Slide[] = [
       ],
       highlight: 0,
     },
-    takeaway: {
-      icon: '🤨',
-      text: 'All three layers ground sideways-to-down through the biggest software demand shock ever. Consensus forward numbers carry zero agents.',
-    },
   },
   {
     id: 64,
@@ -1189,7 +1131,6 @@ export const SLIDES: Slide[] = [
         { label: 'State', sub: 'inflected from 14% — six points in a year', value: 21, display: '21%' },
       ],
     },
-    takeaway: { icon: '💵', text: 'Falling multiples, rising cash. That divergence is the anomaly Part 04 examines.' },
   },
   {
     id: 65,
@@ -1284,11 +1225,6 @@ export const SLIDES: Slide[] = [
         { value: '+218%', label: 'since ChatGPT', sub: 'equal-weighted, ahead of both source layers, no selection' },
       ],
     },
-    takeaway: {
-      icon: '📏',
-      text:
-        'The rule: a company enters the cohort when the majority of its revenue is recognized from measured consumption — billed per unit used, or drawn down against commitments. It could have been applied in 2022 from public pricing pages alone.',
-    },
     footnote: 'At August 11, 2026 marks. A mechanical research screen, not a portfolio or recommendation.',
   },
   {
@@ -1309,10 +1245,6 @@ export const SLIDES: Slide[] = [
         ['Twilio · Bandwidth', 'Pass the billing test but sit on the worksite, not the backend', 'Tracked, not constituents'],
       ],
       highlight: 0,
-    },
-    takeaway: {
-      icon: '🔍',
-      text: 'The rule survives contact with the filings; backend names that fail it stay out, however much we like the story.',
     },
   },
   {
@@ -1352,13 +1284,6 @@ export const SLIDES: Slide[] = [
         { name: 'Overage share', values: [11, 13, 15, 17, 19], display: ['11%', null, null, null, '19%'], dashed: true },
       ],
     },
-    takeaway: {
-      icon: '📊',
-      text:
-        'Overage dollars more than doubled to ~$0.59B a quarter. And the rule alone beats the layers: +218% since ChatGPT against +177% state, +175% work, +55% apps.',
-    },
-    footnote:
-      'The honest cut: the cohort also absorbed the deepest 2022 derate (−60%), and from January 2022 it is +18% — behind both layers on the full period.',
   },
   {
     id: 81,
@@ -1452,11 +1377,6 @@ export const SLIDES: Slide[] = [
         { label: '20–30%', value: 4.9, display: '4.9x' },
         { label: '30%+', value: 15.1, display: '15.1x', tone: 'accent' },
       ],
-    },
-    takeaway: {
-      icon: '🪜',
-      text:
-        'Past ~30% growth the tape triples what it pays. Which band a name occupies is the only multiple question that matters — and the three growth worlds map onto those bands.',
     },
   },
   {
@@ -1572,7 +1492,6 @@ export const SLIDES: Slide[] = [
         { head: 'Agent-execution revenue at the model labs exceeding the cohort’s', desc: 'The runtime being absorbed.' },
       ],
     },
-    takeaway: { icon: '🚨', text: 'Each is measurable in public data; each is mapped to an action.' },
   },
   {
     id: 86,

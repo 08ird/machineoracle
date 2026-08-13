@@ -79,7 +79,7 @@ export function masthead(activeSlug: string, activeChapter?: number): HTMLElemen
 export function footer(): HTMLElement {
   const f = el('footer', 'foot');
   f.append(el('span', undefined, `© ${new Date().getFullYear()} Skycatcher`));
-  f.append(el('span', undefined, 'Confidential — for discussion with qualified investors'));
+  f.append(el('span', undefined, 'Research commentary — not investment advice · see Disclosures, Part 04'));
   return f;
 }
 

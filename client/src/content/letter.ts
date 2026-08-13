@@ -22,7 +22,7 @@ export const letter: Article = {
     {
       kind: 'p',
       text:
-        'Thirty-one years ago, someone named the last wave while it was still deniable. In May 1995, with the street debating whether the whole thing was a fad, Bill Gates sent Microsoft an internal memo:',
+        'Someone named the last wave while it was still deniable. In May 1995, with the street debating whether the whole thing was a fad, Bill Gates sent Microsoft an internal memo:',
     },
     {
       kind: 'wavequote',
