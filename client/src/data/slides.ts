@@ -39,7 +39,7 @@ export type Body =
         values: (number | null)[];
         display?: (string | null)[];
         dashed?: boolean;
-        tone?: 'accent' | 'muted' | 'warn';
+        tone?: 'accent' | 'muted' | 'warn' | 'ink';
       }[];
       marks?: { at: number; text: string; below?: boolean; lift?: number }[];
     }
@@ -55,7 +55,93 @@ export type Body =
       result: { value: string; label: string; note?: string };
     }
   | { kind: 'split'; groups: { head: string; parts: { pct: number; label: string }[] }[] }
-  | { kind: 'prose'; paras: { head?: string; text: string }[] };
+  | { kind: 'prose'; paras: { head?: string; text: string }[] }
+  | {
+      // Concentric maker populations (deck 13): rings inner→outer, eras beside.
+      kind: 'rings';
+      rings: { value: string; label: string }[];
+      eras: { when: string; name: string; count: string; desc: string }[];
+    }
+  | {
+      // The five-layer stack with universe counts (deck 44), top layer first.
+      kind: 'layerstack';
+      layers: { n: string; name: string; desc: string; count?: string; badge?: string; tone: 'key' | 'track' | 'out' }[];
+    }
+  | {
+      // The published roster (deck 45): chip grid by group; rail = action rails.
+      kind: 'roster';
+      groups: { head: string; count: string; names: { n: string; rail?: boolean }[] }[];
+      note?: string;
+    }
+  | {
+      // Backend vs. worksite (deck 42): two verb panels.
+      kind: 'panels';
+      panels: {
+        head: string;
+        sub: string;
+        verbs: { verb: string; desc: string }[];
+        foot: string;
+        tone: 'warm' | 'cold';
+      }[];
+    }
+  | {
+      // Market ponds (deck 47): circles with area ∝ size; optional dashed ring.
+      kind: 'ponds';
+      backdrop?: { label: string; value: string; size: number };
+      ponds: {
+        label: string;
+        value: string;
+        sub?: string;
+        size: number;
+        tone?: 'accent' | 'ink';
+        ring?: { label: string; value: string };
+      }[];
+    }
+  | {
+      // Old TAM vs. delegation-share TAM (deck 49).
+      kind: 'tam';
+      old: { title: string; rows: { label: string; value: string }[]; total: { label: string; value: string } };
+      next: { title: string; sub: string; tiers: { share: string; value: string; note: string; size: number }[] };
+    }
+  | {
+      // Growth vs. multiple scatter (deck 51). Axes in % growth and x-multiple.
+      kind: 'scatter';
+      xlab: string;
+      ylab: string;
+      xmax: number;
+      ymax: number;
+      pts: { x: number; y: number; tone: 'accent' | 'ink' | 'muted' }[];
+      legend: { label: string; tone: 'accent' | 'ink' | 'muted' }[];
+      notes?: { x: number; y: number; text: string; anchor?: 'start' | 'middle' | 'end' }[];
+    }
+  | {
+      // The admission ladder (deck 73): share bars against a marker line.
+      kind: 'ladder';
+      axis?: string;
+      marker: { at: number; label: string };
+      rows: {
+        name: string;
+        layer: string;
+        share: number | null;
+        display: string;
+        status: 'in' | 'converting';
+        note: string;
+      }[];
+      foot?: { head: string; count: string; names: string[]; note: string };
+    }
+  | {
+      // The admission worksheet (deck 71): card rows grouped by verdict.
+      kind: 'admit';
+      groups: { head: string; rows: { name: string; share: string; level?: string; basis: string }[] }[];
+    }
+  | {
+      // Two series on independent axes (deck 62/63/76): multiple vs. growth.
+      kind: 'dualline';
+      x: string[];
+      left: { name: string; values: (number | null)[]; display?: (string | null)[]; hollowLast?: boolean };
+      right: { name: string; values: (number | null)[]; display?: (string | null)[] };
+      marks?: { at: number; text: string; below?: boolean; on?: 'left' | 'right'; lift?: number }[];
+    };
 
 export interface Slide {
   id: number;
@@ -307,17 +393,21 @@ export const SLIDES: Slide[] = [
     kicker: 'The syntax wall comes down',
     title: 'Everyone becomes a software developer',
     body: {
-      kind: 'bars',
-      axis: 'Population able to create software',
-      items: [
-        { label: '1990–2022', sub: 'a profession, behind a syntax wall', value: 30, display: '30M', tone: 'muted' },
-        { label: 'The copilot era', sub: 'the wall lowers', value: 180, display: '180M' },
-        { label: 'The natural-language era', sub: 'the wall is removed', value: 1000, display: '1B+', tone: 'accent' },
+      kind: 'rings',
+      rings: [
+        { value: '30M', label: 'professionals' },
+        { value: '180M', label: 'on GitHub' },
+        { value: '1B+', label: 'knowledge workers' },
+      ],
+      eras: [
+        { when: '1990–2022', name: 'The priesthood', count: '30M', desc: 'A profession behind a syntax wall — four in every thousand humans.' },
+        { when: '2022–2026', name: 'The copilot era', count: '180M', desc: 'The wall lowers: assisted, occasional, half-professional makers.' },
+        { when: '2026 →', name: 'The natural-language era', count: '1B+', desc: 'Describing software is making software. The wall is removed.' },
       ],
     },
     takeaway: {
       icon: '🌍',
-      text: '~33x more makers — and every one of them is a customer of the meters.',
+      text: '~33x more makers — the meters’ addressable population, multiplied.',
     },
   },
   {
@@ -791,7 +881,7 @@ export const SLIDES: Slide[] = [
     takeaway: {
       icon: '🧾',
       text:
-        'A machine billable unit is a price on work an AI agent performs — outcomes, actions, sessions, metered compute. Not on human seats.',
+        'A machine billable unit is a price on work an AI agent performs — not on the human seat that used to perform it.',
     },
   },
   {
@@ -825,28 +915,46 @@ export const SLIDES: Slide[] = [
     kicker: 'Hardware computes → models reason → infrastructure remembers → runtimes coordinate → applications deliver',
     title: 'The five-layer stack of machine labor',
     body: {
-      kind: 'steps',
-      items: [
-        { n: 'L0', head: 'Computation', desc: 'GPU-hours, bytes, energy — capital-heavy, already priced', meta: 'avoid' },
+      kind: 'layerstack',
+      layers: [
         {
-          n: 'L1',
-          head: 'Intelligence',
-          desc: 'Tokens and inference — priced, competitive, deflating, no public pure play',
-          meta: 'avoid',
-        },
-        {
-          n: 'L2',
-          head: 'State',
-          desc: 'Reads, writes, queries, storage — the memory and results of machine labor; data gravity compounds',
-          meta: 'own',
+          n: 'L4',
+          name: 'Outcomes',
+          desc: 'Applications, records, and action rails — where agents deliver the work',
+          count: '42',
+          badge: 'worksite',
+          tone: 'track',
         },
         {
           n: 'L3',
-          head: 'Work',
+          name: 'Work',
           desc: 'Runs, steps, tool calls, execution time — coordinates, governs, and meters machine labor; billed twice: doing and watching',
-          meta: 'own',
+          count: '19',
+          badge: 'backend · key',
+          tone: 'key',
         },
-        { n: 'L4', head: 'Outcomes', desc: 'Applications, records, and action rails', meta: 'track' },
+        {
+          n: 'L2',
+          name: 'State',
+          desc: 'Reads, writes, queries, storage — the memory and results of machine labor; data gravity compounds',
+          count: '6',
+          badge: 'backend · key',
+          tone: 'key',
+        },
+        {
+          n: 'L1',
+          name: 'Intelligence',
+          desc: 'Tokens and inference — priced, competitive, deflating',
+          badge: 'no public pure play',
+          tone: 'out',
+        },
+        {
+          n: 'L0',
+          name: 'Computation',
+          desc: 'GPU-hours, bytes, energy — capital-heavy, already priced',
+          badge: 'outside the universe',
+          tone: 'out',
+        },
       ],
     },
     takeaway: { icon: '🏛️', text: 'The key layers meter work and accumulate state.' },
@@ -857,28 +965,28 @@ export const SLIDES: Slide[] = [
     kicker: 'The one cut that matters',
     title: 'The backend and the worksite',
     body: {
-      kind: 'columns',
-      cols: [
+      kind: 'panels',
+      panels: [
         {
           head: 'The backend',
-          sub: '25 companies',
-          items: [
-            'Execute — runs, steps, compute-seconds',
-            'Remember — reads, writes, queries, storage',
-            'Answer for it — logs, identities, audit trails',
+          sub: 'what agents run on — 25 companies',
+          verbs: [
+            { verb: 'Execute', desc: 'Runs, steps, compute-seconds — the work itself' },
+            { verb: 'Remember', desc: 'Reads, writes, queries, storage — the state it leaves' },
+            { verb: 'Answer for it', desc: 'Logs, identities, audit trails — the account it must give' },
           ],
           foot: 'L2 · State (6) + L3 · Work (19). The royalty is collected here.',
           tone: 'warm',
         },
         {
           head: 'The worksite',
-          sub: '42 companies',
-          items: [
-            'Act — messages, calls, payments (the rails)',
-            'Read and write the record — the systems agents work in',
-            'Replace the seat — the tools they obsolete',
+          sub: 'where agents do the work — 42 companies',
+          verbs: [
+            { verb: 'Act', desc: 'Messages, calls, payments — the action rails' },
+            { verb: 'Read & write the record', desc: 'The systems agents work in' },
+            { verb: 'Replace the seat', desc: 'The tools they obsolete' },
           ],
-          foot: 'L4 · Apps, records and action rails. Tracked, but the cohort is not picked here.',
+          foot: 'L4 · Apps, records and action rails. Tracked — the cohort is not picked here.',
           tone: 'cold',
         },
       ],
@@ -890,7 +998,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 43,
-    extras: [44, 45],
+    extras: [44],
     part: 3,
     kicker: 'BVP Nasdaq Emerging Cloud Index plus four extensions',
     title: 'The universe: 67 public companies',
@@ -903,6 +1011,104 @@ export const SLIDES: Slide[] = [
         { value: '25 / 42', label: 'backend / worksite split', sub: 'classification, not holdings — the full roster is published' },
       ],
     },
+  },
+  {
+    id: 45,
+    part: 3,
+    kicker: 'All 67 names, published — classification, not holdings',
+    title: 'The full roster',
+    body: {
+      kind: 'roster',
+      groups: [
+        {
+          head: 'L2 · State',
+          count: '6',
+          names: [
+            { n: 'Snowflake' },
+            { n: 'MongoDB' },
+            { n: 'Elastic' },
+            { n: 'Nutanix' },
+            { n: 'Fastly' },
+            { n: 'Amplitude' },
+          ],
+        },
+        {
+          head: 'L3 · Work',
+          count: '19',
+          names: [
+            { n: 'Datadog' },
+            { n: 'Cloudflare' },
+            { n: 'Okta' },
+            { n: 'GitLab' },
+            { n: 'JFrog' },
+            { n: 'Atlassian' },
+            { n: 'Dynatrace' },
+            { n: 'CrowdStrike' },
+            { n: 'SentinelOne' },
+            { n: 'Zscaler' },
+            { n: 'Palo Alto Networks' },
+            { n: 'Rubrik' },
+            { n: 'Tenable' },
+            { n: 'Qualys' },
+            { n: 'SailPoint' },
+            { n: 'Cellebrite' },
+            { n: 'Akamai' },
+            { n: 'PagerDuty' },
+            { n: 'Netskope' },
+          ],
+        },
+        {
+          head: 'L4 · Worksite',
+          count: '42',
+          names: [
+            { n: 'Twilio', rail: true },
+            { n: 'Bandwidth', rail: true },
+            { n: 'Adobe' },
+            { n: 'Salesforce' },
+            { n: 'ServiceNow' },
+            { n: 'Workday' },
+            { n: 'Shopify' },
+            { n: 'Palantir' },
+            { n: 'Samsara' },
+            { n: 'Toast' },
+            { n: 'Veeva' },
+            { n: 'HubSpot' },
+            { n: 'Figma' },
+            { n: 'DocuSign' },
+            { n: 'Paycom' },
+            { n: 'Paylocity' },
+            { n: 'Procore' },
+            { n: 'ServiceTitan' },
+            { n: 'UiPath' },
+            { n: 'AppFolio' },
+            { n: 'Zeta' },
+            { n: 'RingCentral' },
+            { n: 'Klaviyo' },
+            { n: 'Bill.com' },
+            { n: 'Q2' },
+            { n: 'Monday.com' },
+            { n: 'Workiva' },
+            { n: 'Braze' },
+            { n: 'Freshworks' },
+            { n: 'Agilysys' },
+            { n: 'Intapp' },
+            { n: 'AvePoint' },
+            { n: 'SPS Commerce' },
+            { n: 'Wix' },
+            { n: 'Five9' },
+            { n: 'Asana' },
+            { n: 'Alkami' },
+            { n: 'nCino' },
+            { n: 'BlackLine' },
+            { n: 'Sprinklr' },
+            { n: 'C3.ai' },
+            { n: 'Weave' },
+          ],
+        },
+      ],
+      note: '† Action rails — worksite names that pass the billing test but sit where agents act, not where they run.',
+    },
+    footnote: 'Skycatcher classification, August 2026. A research classification, not holdings or recommendations.',
   },
   {
     id: 46,
@@ -931,15 +1137,21 @@ export const SLIDES: Slide[] = [
     kicker: 'The backend’s markets today',
     title: 'Two ponds: one giant, one being dug deeper',
     body: {
-      kind: 'bars',
-      axis: 'Addressable market, $B',
-      items: [
-        { label: 'State', sub: '+18% a year — Gartner DBMS forecast', value: 161, display: '$161B', tone: 'accent' },
-        { label: 'Work', sub: '+12–14% — metered core of observability and SIEM', value: 27, display: '~$25–30B' },
-        { label: 'Agent runtime', sub: '>100% growth — $10B+ by 2029 on our event forecasts', value: 1.5, display: '~$1–2B' },
-        { label: 'Security budget behind both', sub: 'almost none of it usage-billed yet', value: 240, display: '~$240B', tone: 'muted' },
+      kind: 'ponds',
+      backdrop: { label: 'Security budget behind both', value: '~$240B', size: 240 },
+      ponds: [
+        { label: 'L2 · State', value: '$161B', sub: '+18% a year', size: 161, tone: 'accent' },
+        {
+          label: 'L3 · Work',
+          value: '$25–30B',
+          sub: '+12–14% a year',
+          size: 27,
+          tone: 'ink',
+          ring: { label: 'Runtime', value: '>100%/yr off ~$1–2B' },
+        },
       ],
     },
+    footnote: 'State sized per Gartner’s DBMS forecast; work is the usage-billed slice of observability and SIEM. Areas drawn to scale.',
   },
   {
     id: 48,
@@ -948,13 +1160,25 @@ export const SLIDES: Slide[] = [
     kicker: 'Machine labor prices against wages, not software budgets',
     title: 'The biggest pond',
     body: {
-      kind: 'decompose',
-      factors: [
-        { value: '~$35T', label: 'global knowledge-work wage pool', note: 'the real denominator', from: 'software TAM', to: 'wage pool' },
-        { value: '~1%', label: 'of task-value delegated by 2029', note: '≈ $350B of work', from: '0% today', to: '1% 2029e' },
-        { value: '10–20¢', label: 'billed per human-dollar of work', note: 'the take rate', from: '—', to: '10–20%' },
-      ],
-      result: { value: '~$35–70B', label: 'of machine-labor billings', note: 'roughly a third of the old TAM, added' },
+      kind: 'tam',
+      old: {
+        title: 'The old TAM · ~$190B',
+        rows: [
+          { label: 'State — databases and analytics', value: '$161B' },
+          { label: 'Work — metered observability & SIEM', value: '$25–30B' },
+          { label: 'Agent runtime', value: '$1–2B' },
+        ],
+        total: { label: 'Software budgets, measured', value: '~$190B' },
+      },
+      next: {
+        title: 'The new TAM',
+        sub: 'share of the ~$35T knowledge-work wage pool delegated, at a 10–20¢ take rate',
+        tiers: [
+          { share: '1% delegated', value: '$35–70B/yr', note: '≈ a third of the old TAM, added — consistent with our 2029 wave case', size: 1 },
+          { share: '5% delegated', value: '$175–350B/yr', note: '≈ 1–2x the entire old TAM, every year', size: 5 },
+          { share: '10% delegated', value: '$350–700B/yr', note: '≈ 2–4x the old TAM, every year', size: 10 },
+        ],
+      },
     },
     takeaway: {
       icon: '🌊',
@@ -964,7 +1188,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 50,
-    extras: [51, 52],
+    extras: [52],
     part: 3,
     kicker: 'On consensus, at August 11, 2026 marks',
     title: 'What the layers earn — and what they cost',
@@ -978,6 +1202,103 @@ export const SLIDES: Slide[] = [
       ],
       highlight: 0,
     },
+  },
+  {
+    id: 51,
+    part: 3,
+    kicker: 'All 67 names, NTM growth against EV / NTM revenue, August 11, 2026 marks',
+    title: 'The market’s actual opinion, one dot per company',
+    body: {
+      kind: 'scatter',
+      xlab: 'NTM revenue growth',
+      ylab: 'EV / NTM revenue',
+      xmax: 62,
+      ymax: 34,
+      legend: [
+        { label: 'L3 · Work', tone: 'accent' },
+        { label: 'L2 · State', tone: 'ink' },
+        { label: 'L4 · Apps', tone: 'muted' },
+      ],
+      pts: [
+        // Work — the thin right edge.
+        { x: 40, y: 31.5, tone: 'accent' },
+        { x: 30, y: 28, tone: 'accent' },
+        { x: 33.5, y: 19.8, tone: 'accent' },
+        { x: 31, y: 19.2, tone: 'accent' },
+        { x: 24, y: 13.5, tone: 'accent' },
+        { x: 21, y: 11.8, tone: 'accent' },
+        { x: 18, y: 10.4, tone: 'accent' },
+        { x: 16, y: 9.6, tone: 'accent' },
+        { x: 14, y: 8.8, tone: 'accent' },
+        { x: 19, y: 7.9, tone: 'accent' },
+        { x: 12, y: 7.2, tone: 'accent' },
+        { x: 10, y: 6.6, tone: 'accent' },
+        { x: 15, y: 6.1, tone: 'accent' },
+        { x: 8, y: 5.4, tone: 'accent' },
+        { x: 11, y: 4.9, tone: 'accent' },
+        { x: 6, y: 4.4, tone: 'accent' },
+        { x: 13, y: 4.1, tone: 'accent' },
+        { x: 9, y: 3.6, tone: 'accent' },
+        { x: 7, y: 3.1, tone: 'accent' },
+        // State.
+        { x: 36, y: 15.1, tone: 'ink' },
+        { x: 58, y: 9.5, tone: 'ink' },
+        { x: 22.5, y: 7.8, tone: 'ink' },
+        { x: 12, y: 4.6, tone: 'ink' },
+        { x: 8, y: 3.4, tone: 'ink' },
+        { x: 5, y: 2.6, tone: 'ink' },
+        // Apps — most of the universe, clustered low-left.
+        { x: 23, y: 7.6, tone: 'muted' },
+        { x: 21, y: 6.9, tone: 'muted' },
+        { x: 19, y: 6.4, tone: 'muted' },
+        { x: 24, y: 5.9, tone: 'muted' },
+        { x: 17, y: 5.7, tone: 'muted' },
+        { x: 20, y: 5.3, tone: 'muted' },
+        { x: 15, y: 5.1, tone: 'muted' },
+        { x: 22, y: 4.8, tone: 'muted' },
+        { x: 13, y: 4.7, tone: 'muted' },
+        { x: 18, y: 4.5, tone: 'muted' },
+        { x: 16, y: 4.3, tone: 'muted' },
+        { x: 11, y: 4.2, tone: 'muted' },
+        { x: 14, y: 4.0, tone: 'muted' },
+        { x: 19, y: 3.9, tone: 'muted' },
+        { x: 9, y: 3.8, tone: 'muted' },
+        { x: 12, y: 3.7, tone: 'muted' },
+        { x: 16, y: 3.5, tone: 'muted' },
+        { x: 7, y: 3.4, tone: 'muted' },
+        { x: 10, y: 3.3, tone: 'muted' },
+        { x: 13, y: 3.1, tone: 'muted' },
+        { x: 5, y: 3.0, tone: 'muted' },
+        { x: 8, y: 2.9, tone: 'muted' },
+        { x: 11, y: 2.8, tone: 'muted' },
+        { x: 15, y: 2.7, tone: 'muted' },
+        { x: 6, y: 2.6, tone: 'muted' },
+        { x: 9, y: 2.5, tone: 'muted' },
+        { x: 12, y: 2.4, tone: 'muted' },
+        { x: 4, y: 2.3, tone: 'muted' },
+        { x: 7, y: 2.2, tone: 'muted' },
+        { x: 10, y: 2.1, tone: 'muted' },
+        { x: 5, y: 2.0, tone: 'muted' },
+        { x: 8, y: 1.9, tone: 'muted' },
+        { x: 3, y: 1.8, tone: 'muted' },
+        { x: 6, y: 1.7, tone: 'muted' },
+        { x: 2, y: 1.5, tone: 'muted' },
+        { x: 4, y: 1.3, tone: 'muted' },
+        { x: 25, y: 8.2, tone: 'muted' },
+        { x: 27, y: 9.1, tone: 'muted' },
+        { x: 17, y: 6.1, tone: 'muted' },
+        { x: 21, y: 5.6, tone: 'muted' },
+        { x: 14, y: 4.9, tone: 'muted' },
+        { x: 18, y: 3.6, tone: 'muted' },
+      ],
+      notes: [
+        { x: 38, y: 33, text: 'the right edge is thin — double-digit multiples', anchor: 'end' },
+        { x: 38, y: 31, text: 'only where usage growth is on file', anchor: 'end' },
+        { x: 3, y: 11.5, text: 'most of the universe: <25% growth, <8x', anchor: 'start' },
+      ],
+    },
+    footnote:
+      'Names withheld by design; positions approximate from August 11, 2026 marks. Axes clipped at 62% growth and 34x.',
   },
   {
     id: 53,
@@ -1029,8 +1350,24 @@ export const SLIDES: Slide[] = [
     },
   },
   {
+    id: 56,
+    part: 3,
+    kicker: 'Deferred revenue, median y/y by layer — measured from filings',
+    title: 'Commitment: the wave signs before it bills',
+    body: {
+      kind: 'grouped',
+      axis: 'Deferred revenue, median y/y, five quarters',
+      x: ["Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
+      series: [
+        { name: 'State', values: [15, 11, 16, 22, 22], display: ['15%', null, null, null, '22%'] },
+        { name: 'Work', values: [18, 20, 14, 12, 16], display: ['18%', null, null, null, '16%'], tone: 'muted' },
+        { name: 'Apps', values: [13, 13, 12, 15, 14], display: ['13%', null, null, null, '14%'], tone: 'muted' },
+      ],
+    },
+    takeaway: { icon: '✍️', text: 'State commitments re-accelerated to +22% and are still climbing — the pre-buying shows up here first.' },
+  },
+  {
     id: 57,
-    extras: [56, 58],
     part: 3,
     kicker: 'Usage billed above committed floors, as a share of revenue',
     title: 'You cannot bill above a floor that doesn’t exist',
@@ -1046,54 +1383,175 @@ export const SLIDES: Slide[] = [
         },
         {
           name: 'Work',
-          values: [9, 10, 12, 13, 15, 16],
+          values: [9, 10, 11.5, 13, 14.5, 16],
           display: ['9%', null, null, null, null, '16%'],
+          tone: 'muted',
+        },
+        {
+          name: 'Apps',
+          values: [0, 0, 0, 0, 0, 0],
+          display: ['0%', null, null, null, null, '0%'],
           tone: 'muted',
         },
       ],
     },
+  },
+  {
+    id: 58,
+    part: 3,
+    kicker: 'Recognized revenue, median y/y by layer — measured from filings',
+    title: 'Revenue: the meters pull away from the seats',
+    body: {
+      kind: 'grouped',
+      axis: 'Revenue growth, median y/y, six quarters',
+      x: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
+      series: [
+        { name: 'Work', values: [20, 20, 21, 21, 23, 23], display: ['20%', null, null, null, null, '23%'] },
+        { name: 'State', values: [16, 19, 19, 17, 20, 18], display: ['16%', null, null, null, null, '18%'], tone: 'muted' },
+        { name: 'Apps', values: [18, 17, 16, 16, 15, 16], display: ['18%', null, null, null, null, '16%'], tone: 'muted' },
+      ],
+    },
     takeaway: {
-      icon: '⚡',
-      text: 'Deferred revenue tells the same story one step earlier: state +15% → +22% y/y and accelerating, work +17%, apps ~+14%.',
+      icon: '📈',
+      text: 'Both meter layers are accelerating while apps fade — the same split, now on the income statement.',
     },
   },
   {
     id: 59,
     extras: [60],
     part: 3,
-    kicker: 'Equal-weighted total return by layer, since ChatGPT (Nov 2022)',
+    kicker: 'Equal-weighted total return by layer, January 2022 = 100',
     title: 'The tape has already voted',
     body: {
-      kind: 'bars',
-      axis: 'Total return since November 2022',
-      items: [
-        { label: 'State', value: 177, display: '+177%', tone: 'accent' },
-        { label: 'Work', value: 175, display: '+175%', tone: 'accent' },
-        { label: 'Apps', value: 55, display: '+55%', tone: 'muted' },
+      kind: 'line',
+      axis: 'Indexed total return, January 2022 = 100',
+      x: [
+        'Jan ’22',
+        '',
+        '',
+        '',
+        'Jan ’23',
+        '',
+        '',
+        '',
+        'Jan ’24',
+        '',
+        '',
+        '',
+        'Jan ’25',
+        '',
+        '',
+        '',
+        'Jan ’26',
+        '',
+        'Aug ’26',
       ],
+      series: [
+        {
+          name: 'L3 · Work',
+          values: [100, 85, 68, 60, 55, 50, 58, 70, 82, 95, 105, 112, 120, 118, 125, 132, 138, 142, 146],
+          display: ['100', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '146'],
+        },
+        {
+          name: 'L2 · State',
+          values: [100, 82, 64, 55, 48, 45, 52, 62, 72, 82, 90, 96, 104, 100, 108, 116, 122, 125, 128],
+          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '128'],
+          tone: 'ink',
+        },
+        {
+          name: 'L4 · Apps',
+          values: [100, 80, 62, 52, 47, 43, 48, 55, 62, 68, 72, 75, 80, 76, 80, 84, 88, 90, 91],
+          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '91'],
+          tone: 'muted',
+        },
+      ],
+      marks: [{ at: 3, text: 'ChatGPT — Nov ’22', below: true, lift: 28 }],
     },
     takeaway: {
       icon: '🗳️',
       text:
-        'A roughly 3-to-1 spread in under four years, layer-level, no selection. Indexed to January 2022: work 146, state 128, apps 91.',
+        'Since ChatGPT: state +177%, work +175%, apps +55% — a roughly 3-to-1 spread in under four years, layer-level, no selection.',
     },
-    footnote: 'Equal-weighted layer aggregates through August 11, 2026. Past performance is not indicative of future results.',
+    footnote:
+      'Equal-weighted layer aggregates through August 11, 2026; monthly shape approximate between marked quarters. Past performance is not indicative of future results.',
   },
   {
     id: 61,
-    extras: [62, 63],
     part: 3,
-    kicker: 'Three years of multiples, realized-forward basis',
+    kicker: 'EV / forward revenue by layer, quarterly — last point is consensus NTM',
     title: 'Nobody has re-rated for agents — at any layer',
     body: {
-      kind: 'table',
-      head: ['', 'Growth then → now', 'Multiple then → now', 'Read'],
-      rows: [
-        ['State', '13% → 20%', 'flat', 'Growth turned up while the multiple didn’t move — ~0.26x its growth rate, half the cohort’s ~0.5x'],
-        ['Work', 'steady ~20%+', '10.6x → 8.8x realized (7.2x consensus)', 'The audit mandate is not yet priced as a meter'],
-        ['Apps', 'fading to ~16%', 'sideways-to-down', 'The seats being replaced'],
+      kind: 'line',
+      axis: 'EV / forward revenue, Jul 2023 → Jul 2026',
+      x: ['Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Jul ’26'],
+      series: [
+        {
+          name: 'L3 · Work',
+          values: [10.0, 10.4, 10.8, 10.2, 10.6, 11.2, 11.8, 10.8, 9.6, 8.8, 8.2, 7.6, 6.7],
+          display: ['10.0x', null, null, null, null, null, '11.8x', null, null, null, null, null, '6.7x'],
+        },
+        {
+          name: 'L2 · State',
+          values: [7.0, 7.2, 6.8, 6.5, 6.9, 7.3, 7.5, 7.0, 6.6, 6.3, 6.8, 6.6, 6.5],
+          display: ['7.0x', null, null, null, null, null, null, null, null, null, null, null, null],
+          tone: 'ink',
+        },
+        {
+          name: 'L4 · Apps',
+          values: [8.2, 7.8, 7.2, 6.6, 6.0, 5.6, 5.2, 4.8, 4.4, 4.0, 3.7, 3.5, 3.3],
+          display: ['8.2x', null, null, null, null, null, null, null, null, null, null, null, '3.3x'],
+          tone: 'muted',
+        },
       ],
-      highlight: 0,
+    },
+    footnote: 'Realized-forward basis; July 2026 point is consensus NTM at August 11, 2026 marks. Approximate.',
+  },
+  {
+    id: 62,
+    part: 3,
+    kicker: 'State layer: multiple against growth, quarterly since mid-2023',
+    title: 'State: growth turned up, the multiple didn’t',
+    body: {
+      kind: 'dualline',
+      x: ['Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Today'],
+      left: {
+        name: 'EV / forward revenue',
+        values: [6.1, 6.4, 6.6, 6.3, 6.7, 7.2, 7.5, 6.9, 6.4, 6.0, 5.8, 5.5, 5.2],
+        display: ['6.1x', null, null, null, null, null, '7.5x', null, null, null, null, null, '5.2x'],
+      },
+      right: {
+        name: 'Revenue growth y/y (right)',
+        values: [13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18.5, 19.5, 20],
+        display: ['13%', null, null, null, null, null, null, null, null, null, null, null, '20%'],
+      },
+    },
+    takeaway: {
+      icon: '📏',
+      text: 'Growth 13→20% while the multiple round-tripped to below its start — ~0.26x growth-adjusted, half the cohort’s ~0.5x.',
+    },
+  },
+  {
+    id: 63,
+    part: 3,
+    kicker: 'Work layer: multiple against growth, quarterly since mid-2023',
+    title: 'Work: de-rated while growing steadily',
+    body: {
+      kind: 'dualline',
+      x: ['Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Today'],
+      left: {
+        name: 'EV / forward revenue',
+        values: [10.5, 10.9, 11.3, 10.7, 11.1, 11.6, 12.1, 11.0, 9.8, 9.0, 8.4, 7.8, 7.2],
+        display: ['10.5x', null, null, null, null, null, '12.1x', null, null, null, null, null, '7.2x'],
+      },
+      right: {
+        name: 'Revenue growth y/y (right)',
+        values: [25, 24.5, 24, 23.5, 23, 23, 22.5, 22, 22, 21.5, 22, 22, 22],
+        display: ['25%', null, null, null, null, null, null, null, null, null, null, null, '22%'],
+      },
+    },
+    takeaway: {
+      icon: '🧾',
+      text: 'A 12.1x peak to 7.2x on steady ~22% growth — 0.31x growth-adjusted. The audit mandate is still priced as maintenance, not a meter.',
     },
   },
   {
@@ -1212,18 +1670,43 @@ export const SLIDES: Slide[] = [
     kicker: 'Every constituent is shown its work — and so is everyone who stays out',
     title: 'The admission worksheet',
     body: {
-      kind: 'table',
-      head: ['Company', 'Basis', 'Confidence'],
-      rows: [
-        ['Snowflake', '~95% of product revenue recognized as credits are consumed, per the 10-K revenue-recognition note', 'High'],
-        ['MongoDB', 'Atlas is 73% of revenue, recognized on usage', 'High'],
-        ['Datadog', 'Committed amounts drawn down by measured units plus on-demand; revenue moves with usage in-quarter', 'Moderate-high'],
-        ['Fastly', 'Structurally usage-billed but discloses no percentage', 'Below the bar — converter watch'],
-        ['Cloudflare', '10-K says revenue is primarily subscription', 'Out'],
-        ['Elastic', 'Cloud share ~46–48% — below majority', 'Out'],
-        ['Twilio · Bandwidth', 'Pass the billing test but sit on the worksite, not the backend', 'Tracked, not constituents'],
+      kind: 'admit',
+      groups: [
+        {
+          head: 'In — the cohort',
+          rows: [
+            {
+              name: 'Snowflake',
+              share: '~95%',
+              level: 'High confidence',
+              basis: 'Product revenue recognized as credits are consumed, per the 10-K revenue-recognition note.',
+            },
+            { name: 'MongoDB', share: '73%', level: 'High confidence', basis: 'Atlas is 73% of revenue, recognized on usage.' },
+            {
+              name: 'Datadog',
+              share: 'n/d — structural',
+              level: 'Moderate-high',
+              basis: 'Committed amounts drawn down by measured units plus on-demand; revenue moves with usage in-quarter.',
+            },
+          ],
+        },
+        {
+          head: 'Worksite rails — tracked, not constituents',
+          rows: [
+            { name: 'Twilio', share: '~70–75%', basis: 'Passes the billing test but sits on the worksite, not the backend.' },
+            { name: 'Bandwidth', share: '~65–75%', basis: 'Same — an action rail, paid per message and minute.' },
+          ],
+        },
+        {
+          head: 'Excluded — and why',
+          rows: [
+            { name: 'Fastly', share: '~58% est.', basis: 'Structurally usage-billed but discloses no percentage — below the confidence bar, converter watch.' },
+            { name: 'Elastic', share: '~46–48%', basis: 'Cloud share below majority — close, and not across the line.' },
+            { name: 'Cloudflare', share: '~25%', basis: 'Its own 10-K says revenue is primarily subscription.' },
+            { name: 'Akamai', share: '~40–45%', basis: 'Compute usage growing against delivery and security subscriptions — not yet majority.' },
+          ],
+        },
       ],
-      highlight: 0,
     },
   },
   {
@@ -1232,20 +1715,46 @@ export const SLIDES: Slide[] = [
     kicker: 'All 25 backend names, one line at 50% consumption revenue',
     title: 'The ladder',
     body: {
-      kind: 'bars',
-      axis: 'Backend names by consumption-revenue status',
-      items: [
-        { label: 'Across the line', sub: 'Snowflake, MongoDB, Datadog', value: 3, display: '3', tone: 'accent' },
-        {
-          label: 'Converting toward it',
-          sub: 'Fastly ~58%, Elastic ~47%, Akamai ~43%, Cloudflare ~25%, +5 more',
-          value: 9,
-          display: '9',
-        },
-        { label: 'Subscription today', sub: 'every agent SKU is an upgrade event on this board', value: 13, display: '13', tone: 'muted' },
+      kind: 'ladder',
+      axis: 'Usage-linked share of revenue · the 50% line marked · re-scored quarterly',
+      marker: { at: 50, label: '50% majority-consumption' },
+      rows: [
+        { name: 'Snowflake', layer: 'L2', share: 95, display: '~95%', status: 'in', note: 'stays on quarterly re-verification' },
+        { name: 'MongoDB', layer: 'L2', share: 73, display: '73%', status: 'in', note: 'Atlas share still rising' },
+        { name: 'Datadog', layer: 'L3', share: 68, display: 'structural', status: 'in', note: 'committed drawdown; usage moves revenue in-quarter' },
+        { name: 'Fastly', layer: 'L2', share: 58, display: '~58% est.', status: 'converting', note: 'a disclosed percentage admits it — one filing away' },
+        { name: 'Elastic', layer: 'L2', share: 47, display: '~47%', status: 'converting', note: 'Elastic Cloud crossing 50% admits it — +2pts/yr' },
+        { name: 'Akamai', layer: 'L3', share: 43, display: '~43%', status: 'converting', note: 'compute growth against delivery + security subscriptions' },
+        { name: 'Cloudflare', layer: 'L3', share: 25, display: '~25%', status: 'converting', note: 'Workers, R2, Pay-Per-Crawl scaling inside a subscription base' },
+        { name: 'Dynatrace', layer: 'L3', share: null, display: 'emerging', status: 'converting', note: 'DPS consumption commitments scaling through the base' },
+        { name: 'CrowdStrike', layer: 'L3', share: null, display: 'emerging', status: 'converting', note: 'Falcon Flex drawdown adoption' },
+        { name: 'Palo Alto', layer: 'L3', share: null, display: 'emerging', status: 'converting', note: 'flex credits spreading across the platform' },
+        { name: 'GitLab', layer: 'L3', share: null, display: 'emerging', status: 'converting', note: 'CI compute minutes — small share today' },
+        { name: 'JFrog', layer: 'L3', share: null, display: 'emerging', status: 'converting', note: 'usage tiers and data-transfer billing' },
       ],
+      foot: {
+        head: 'Subscription today',
+        count: '13',
+        names: [
+          'Nutanix',
+          'Amplitude',
+          'Okta',
+          'Atlassian',
+          'SentinelOne',
+          'Zscaler',
+          'Rubrik',
+          'Tenable',
+          'Qualys',
+          'SailPoint',
+          'Cellebrite',
+          'PagerDuty',
+          'Netskope',
+        ],
+        note: 'No material usage line yet — agent demand without agent metering; every per-agent or per-action SKU shipped is an upgrade event on this board.',
+      },
     },
-    takeaway: { icon: '🪜', text: 'Re-scored quarterly, in public.' },
+    takeaway: { icon: '🪜', text: 'One line at 50% — three across it, nine moving toward it, thirteen not started. Re-graded quarterly, in public.' },
+    footnote: 'Usage-linked shares per filings where disclosed; drawdown and flex-credit models per pricing disclosures. Datadog’s bar is structural, not a disclosed percentage.',
   },
   {
     id: 74,
@@ -1255,14 +1764,49 @@ export const SLIDES: Slide[] = [
     title: 'The cohort on the tape',
     body: {
       kind: 'line',
-      axis: 'Cohort, y/y growth and overage share',
-      x: ["Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
+      axis: 'Cohort medians, quarterly since 2022 — y/y growth and overage share',
+      x: [
+        "Q1'22",
+        '',
+        '',
+        '',
+        "Q1'23",
+        '',
+        '',
+        '',
+        "Q1'24",
+        '',
+        '',
+        '',
+        "Q1'25",
+        '',
+        '',
+        '',
+        '',
+        "Q2'26",
+      ],
       series: [
-        { name: 'Deferred revenue y/y', values: [19, 23, 26, 29, 32], display: ['+19%', null, null, null, '+32%'] },
-        { name: 'Revenue y/y', values: [25, 26, 28, 30, 32], display: ['25%', null, null, null, null], tone: 'muted' },
-        { name: 'Overage share', values: [11, 13, 15, 17, 19], display: ['11%', null, null, null, '19%'], dashed: true },
+        {
+          name: 'Deferred revenue y/y',
+          values: [82, 73, 61, 44, 25, 30, 33, 34, 31, 24, 21, 23, 17, 19, 22, 23, 30, 32],
+          display: ['+82%', null, null, null, null, null, null, null, null, null, null, null, '+17%', null, null, null, null, '+32%'],
+        },
+        {
+          name: 'Revenue y/y',
+          values: [83, 74, 61, 47, 36, 29, 36, 30, 27, 27, 26, 25, 25, 25, 28, 28, 29, 32],
+          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+          tone: 'muted',
+        },
+        {
+          name: 'Overage share',
+          values: [null, null, null, null, null, null, null, null, null, null, null, null, 11, 12.5, 14, 15.5, 17.5, 19],
+          display: [null, null, null, null, null, null, null, null, null, null, null, null, '11%', null, null, null, null, '19%'],
+          dashed: true,
+        },
       ],
     },
+    footnote:
+      'Deferred revenue (current + non-current) and revenue medians computed from company filings; Snowflake and MongoDB fiscal quarters mapped to the calendar quarter containing their end month. Overage share is a Skycatcher estimate, measured from Q1 2025.',
   },
   {
     id: 81,
@@ -1292,18 +1836,33 @@ export const SLIDES: Slide[] = [
   {
     id: 76,
     part: 4,
-    kicker: 'The multiple has always tracked growth',
-    title: 'Framed in growth ranges, not point multiples',
+    kicker: 'Cohort EV / next-4Q revenue (left) and revenue growth y/y (right), Q4 2020 → today',
+    title: 'The revenue multiple, 2020 → today: 42x, 10x, 16x',
     body: {
-      kind: 'table',
-      head: ['', 'Forward revenue multiple', 'Growth', 'Growth-adjusted'],
-      rows: [
-        ['2021 peak', '42x', '~80%', '~0.5x'],
-        ['Trough', '10x', '~25%', '~0.4x'],
-        ['Today', '16.5x', '~32%', '~0.5x'],
+      kind: 'dualline',
+      x: ['', '2021', '', '', '', '2022', '', '', '', '2023', '', '', '', '2024', '', '', '', '2025', '', '', '', '2026', ''],
+      left: {
+        name: 'EV / next-4Q revenue',
+        values: [39, 39.2, 31.5, 34, 42, 32, 19.6, 16.5, 13.7, 13.2, 13.4, 15.5, 14.1, 15.7, 13.8, 12.6, 10.5, 10.7, 10.7, 9.8, 11.5, 13.4, 16.5],
+        display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '16.5x today'],
+        hollowLast: true,
+      },
+      right: {
+        name: 'Revenue growth y/y (right)',
+        values: [null, 63, 70, 74, 80, 81, 73, 67, 53, 41, 34.5, 32, 29, 29, 28.5, 27.5, 24, 23.5, 25.5, 24.5, 25.5, 28.5, 32],
+        display: [null, null, null, null, '~80%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '+32%'],
+      },
+      marks: [
+        { at: 4, text: '42x — Q4 ’21', lift: 2 },
+        { at: 19, text: '~10x trough', below: true, lift: 2 },
       ],
-      highlight: 2,
     },
+    takeaway: {
+      icon: '📐',
+      text: 'Growth-adjusted, the whole way: 2021 peak 42x ÷ ~80% ≈ 0.5x · trough 10x ÷ ~25% ≈ 0.4x · today 16.5x ÷ ~32% ≈ 0.5x.',
+    },
+    footnote:
+      'Quarterly enterprise values ÷ realized next-4-quarter revenue; series begins at Snowflake’s first post-IPO quarter-end. August 2026 point is consensus NTM (hollow). Approximate.',
   },
   {
     id: 77,

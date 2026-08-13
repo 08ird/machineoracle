@@ -1532,6 +1532,755 @@ tbody tr.is-hl th {
   margin-bottom: 0.2rem;
 }
 
+/* ── Rings (deck 13): concentric maker populations ─────────────────────── */
+
+.rings {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin-top: 0.75rem;
+}
+.rings__svg {
+  flex: 0 1 21rem;
+  min-width: 0;
+  height: auto;
+  overflow: visible;
+}
+.rings__c {
+  fill: var(--bg-2);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.rings__c--1 {
+  fill: var(--accent-pale);
+}
+.rings__c--0 {
+  fill: var(--accent);
+  stroke: none;
+}
+.rings__v {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 17px;
+  fill: var(--ink);
+}
+.rings__v--0 {
+  fill: #fff;
+}
+.rings__l {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--ink-3);
+}
+.rings__v--0 + .rings__l {
+  fill: rgba(255, 255, 255, 0.85);
+}
+.rings__eras {
+  flex: 1 1 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.rings__era {
+  display: flex;
+  gap: 0.85rem;
+  align-items: baseline;
+}
+.rings__when {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  flex: 0 0 5.2rem;
+}
+.rings__name {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.rings__count {
+  color: var(--accent);
+}
+.rings__desc {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  margin-top: 0.15rem;
+}
+@media (max-width: 40rem) {
+  .rings {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .rings__svg {
+    max-width: 17rem;
+    margin: 0 auto;
+  }
+}
+
+/* ── Layer stack (deck 44) ─────────────────────────────────────────────── */
+
+.lstack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+.lstack__row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--sheet);
+}
+.lstack__row--key {
+  border-color: var(--accent);
+  background: var(--accent-pale);
+}
+.lstack__row--out {
+  border-style: dashed;
+  background: none;
+}
+.lstack__n {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-4);
+  flex: 0 0 1.6rem;
+}
+.lstack__row--key .lstack__n {
+  color: var(--accent);
+}
+.lstack__mid {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.lstack__name {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.lstack__desc {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  color: var(--ink-3);
+  margin-top: 0.1rem;
+}
+.lstack__row--out .lstack__name,
+.lstack__row--out .lstack__desc {
+  color: var(--ink-4);
+}
+.lstack__side {
+  flex: 0 0 auto;
+  text-align: right;
+}
+.lstack__count {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+.lstack__row--key .lstack__count {
+  color: var(--accent);
+}
+.lstack__badge {
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-top: 0.2rem;
+}
+
+/* ── Roster (deck 45) ──────────────────────────────────────────────────── */
+
+.roster {
+  margin-top: 0.75rem;
+}
+.roster__group {
+  margin-bottom: 1.1rem;
+}
+.roster__head {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.roster__count {
+  color: var(--accent);
+}
+.roster__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.roster__chip {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  background: var(--bg-2);
+  border: 1px solid var(--rule-2);
+  border-radius: 4px;
+  padding: 0.16rem 0.45rem;
+  white-space: nowrap;
+}
+.roster__chip--rail {
+  background: var(--accent-pale);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.roster__note {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--ink-4);
+  margin-top: 0.35rem;
+}
+
+/* ── Panels (deck 42): backend vs. worksite ────────────────────────────── */
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+.panel {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1rem 1.1rem;
+  background: var(--sheet);
+}
+.panel--warm {
+  border-color: var(--accent);
+  border-width: 1.5px;
+}
+.panel__head {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.panel--warm .panel__head {
+  color: var(--accent);
+}
+.panel__sub {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--ink-4);
+  margin: 0.15rem 0 0.8rem;
+}
+.panel__verb {
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--rule-2);
+}
+.panel__verbname {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.panel__verbdesc {
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  margin-top: 0.12rem;
+}
+.panel__foot {
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--rule-2);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.panel--warm .panel__foot {
+  color: var(--accent);
+}
+@media (max-width: 40rem) {
+  .panels {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Ponds (deck 47) ───────────────────────────────────────────────────── */
+
+.ponds__back {
+  fill: none;
+  stroke: var(--rule);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+.ponds__backlab {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  fill: var(--ink-4);
+}
+.ponds__c {
+  fill: var(--accent);
+  opacity: 0.92;
+}
+.ponds__c.is-ink {
+  fill: var(--ink-2);
+}
+.ponds__ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.ponds__ringlab {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: var(--accent);
+}
+.ponds__v {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--ink);
+}
+.ponds__v--in {
+  fill: #fff;
+  font-size: 19px;
+}
+.ponds__v--insm {
+  fill: #fff;
+  font-size: 13px;
+}
+.ponds__l {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--ink-3);
+}
+.ponds__l--in {
+  fill: rgba(255, 255, 255, 0.9);
+}
+.ponds__s {
+  font-family: var(--sans);
+  font-size: 10px;
+  fill: var(--ink-4);
+}
+.ponds__s--in {
+  fill: rgba(255, 255, 255, 0.75);
+}
+
+/* ── TAM expansion (deck 49) ───────────────────────────────────────────── */
+
+.tam {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) auto minmax(0, 3fr);
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.tam__card {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1rem 1.1rem;
+  background: var(--bg-2);
+}
+.tam__card--new {
+  background: var(--accent-pale);
+  border-color: var(--accent);
+}
+.tam__title {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 0.2rem;
+}
+.tam__card--new .tam__title {
+  color: var(--accent);
+}
+.tam__sub {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  color: var(--ink-4);
+  margin-bottom: 0.7rem;
+}
+.tam__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  padding: 0.42rem 0;
+  border-top: 1px solid var(--rule-2);
+}
+.tam__rowv {
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.tam__row--total {
+  border-top: 2px solid var(--rule);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.tam__arrow {
+  align-self: center;
+  font-size: 1.4rem;
+  color: var(--ink-4);
+}
+.tam__tier {
+  margin-bottom: 0.65rem;
+}
+.tam__pill {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  min-width: 0;
+}
+.tam__share {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+.tam__pillv {
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.tam__note {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  color: var(--ink-4);
+  margin-top: 0.2rem;
+}
+@media (max-width: 40rem) {
+  .tam {
+    grid-template-columns: 1fr;
+  }
+  .tam__arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
+}
+
+/* ── Scatter (deck 51) ─────────────────────────────────────────────────── */
+
+.chart__grid {
+  stroke: var(--rule-2);
+  stroke-width: 0.75;
+}
+.chart__alab {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  fill: var(--ink-4);
+}
+.scatter__pt {
+  opacity: 0.85;
+}
+.scatter__pt.is-accent {
+  fill: var(--accent);
+}
+.scatter__pt.is-ink {
+  fill: var(--ink-2);
+}
+.scatter__pt.is-muted {
+  fill: var(--ink-4);
+  opacity: 0.45;
+}
+.scatter__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  margin-top: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+.scatter__leg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.scatter__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+.scatter__dot.is-accent {
+  background: var(--accent);
+}
+.scatter__dot.is-ink {
+  background: var(--ink-2);
+}
+.scatter__dot.is-muted {
+  background: var(--ink-4);
+  opacity: 0.5;
+}
+.chart__dot.is-hollow {
+  fill: var(--sheet);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+.chart__line.is-ink {
+  stroke: var(--ink-2);
+  stroke-width: 2;
+}
+.chart__dot.is-ink {
+  fill: var(--ink-2);
+}
+.chart__vlab.is-muted {
+  fill: var(--ink-3);
+}
+
+/* ── Ladder (deck 73) ──────────────────────────────────────────────────── */
+
+.ladder {
+  margin-top: 0.75rem;
+}
+.ladder__row {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(6rem, 1fr) 4.2rem 6.2rem minmax(10rem, 1.4fr);
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.42rem 0.5rem;
+  border-radius: 5px;
+  font-family: var(--sans);
+}
+.ladder__row.is-in {
+  background: var(--accent-pale);
+}
+.ladder__who {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.ladder__name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ladder__layer {
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: var(--ink-4);
+}
+.ladder__track {
+  position: relative;
+  height: 0.55rem;
+  background: var(--bg-2);
+  border-radius: 999px;
+}
+.ladder__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--ink-4);
+  opacity: 0.55;
+}
+.ladder__fill.is-in {
+  background: var(--accent);
+  opacity: 1;
+}
+.ladder__fill.is-emerging {
+  opacity: 0.3;
+}
+.ladder__mark {
+  position: absolute;
+  top: -0.28rem;
+  bottom: -0.28rem;
+  width: 1.5px;
+  background: var(--ink-2);
+}
+.ladder__share {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-align: right;
+  white-space: nowrap;
+}
+.ladder__status {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+}
+.ladder__status.is-in {
+  color: var(--accent);
+}
+.ladder__note {
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+.ladder__markerlab {
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  color: var(--ink-4);
+  margin: 0.3rem 0 0 0.5rem;
+}
+.ladder__foot {
+  margin-top: 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--bg-2);
+  padding: 0.8rem 1rem;
+  font-family: var(--sans);
+}
+.ladder__foothead {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+.ladder__footcount {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.ladder__footnames {
+  font-size: 0.74rem;
+  color: var(--ink-2);
+  margin-top: 0.35rem;
+}
+.ladder__footnote {
+  font-size: 0.7rem;
+  color: var(--ink-4);
+  margin-top: 0.3rem;
+}
+@media (max-width: 44rem) {
+  .ladder__row {
+    grid-template-columns: 7.4rem 1fr 3.4rem;
+    grid-template-areas:
+      'who track share'
+      'note note status';
+    row-gap: 0.15rem;
+  }
+  .ladder__who {
+    grid-area: who;
+  }
+  .ladder__track {
+    grid-area: track;
+  }
+  .ladder__share {
+    grid-area: share;
+  }
+  .ladder__status {
+    grid-area: status;
+    text-align: right;
+  }
+  .ladder__note {
+    grid-area: note;
+    font-size: 0.68rem;
+  }
+}
+
+/* ── Admission worksheet (deck 71) ─────────────────────────────────────── */
+
+.admit {
+  margin-top: 0.75rem;
+}
+.admit__group {
+  margin-bottom: 1.1rem;
+}
+.admit__head {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 0.45rem;
+}
+.admit__row {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--sheet);
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 0.4rem;
+}
+.admit__group:first-child .admit__row {
+  border-color: var(--accent);
+  background: var(--accent-pale);
+}
+.admit__top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.admit__name {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.admit__share {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.admit__level {
+  margin-left: auto;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.08rem 0.5rem;
+  white-space: nowrap;
+}
+.admit__basis {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  color: var(--ink-3);
+  margin-top: 0.2rem;
+}
+
 /* ── Print ──────────────────────────────────────────────────────────────── */
 
 @media print {

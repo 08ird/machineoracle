@@ -40,7 +40,30 @@ function barWidths(values: number[]): number[] {
 }
 
 /** Exhibits that benefit from running wider than the text measure. */
-export const WIDE: ReadonlySet<Body['kind']> = new Set(['table', 'timeline', 'waves', 'columns', 'flow']);
+export const WIDE: ReadonlySet<Body['kind']> = new Set([
+  'table',
+  'timeline',
+  'waves',
+  'columns',
+  'flow',
+  'panels',
+  'roster',
+  'ladder',
+  'tam',
+]);
+
+function svg(tag: string, attrs: Record<string, string> = {}): SVGElement {
+  const n = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  return n;
+}
+
+function svgText(x: number, y: number, text: string, cls: string, anchor?: string): SVGElement {
+  const t = svg('text', { x: String(x), y: String(y), class: cls });
+  if (anchor) t.setAttribute('text-anchor', anchor);
+  t.textContent = text;
+  return t;
+}
 
 const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLElement } = {
   // The cover never appears in document flow — the page head replaces it.
@@ -316,18 +339,25 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
 
       const d = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
       const cls = `chart__line${s.tone === 'muted' ? ' is-muted' : ''}${s.tone === 'warn' ? ' is-warn' : ''}${
-        s.dashed ? ' is-dashed' : ''
-      }`;
+        s.tone === 'ink' ? ' is-ink' : ''
+      }${s.dashed ? ' is-dashed' : ''}`;
       svg.append(ns('path', { d, class: cls }));
 
       for (const p of pts) {
-        svg.append(ns('circle', { cx: String(p.x), cy: String(p.y), r: '3.2', class: `chart__dot${s.tone === 'muted' ? ' is-muted' : ''}` }));
+        svg.append(
+          ns('circle', {
+            cx: String(p.x),
+            cy: String(p.y),
+            r: '3.2',
+            class: `chart__dot${s.tone === 'muted' ? ' is-muted' : ''}${s.tone === 'ink' ? ' is-ink' : ''}`,
+          })
+        );
         const disp = s.display?.[p.i];
         if (disp) vlabels.push({ x: p.x, y: p.y - 10, text: disp });
       }
 
       const last = pts[pts.length - 1];
-      nlabels.push({ x: last.x + 8, y: last.y + 4, text: s.name, muted: s.tone === 'muted' });
+      nlabels.push({ x: last.x + 8, y: last.y + 4, text: s.name, muted: s.tone === 'muted' || s.tone === 'ink' });
     });
 
     // Same-x value labels that would stack: flip later ones below their point.
@@ -338,16 +368,28 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
         }
       }
     }
-    for (const l of vlabels) {
-      const t = ns('text', { x: String(l.x), y: String(l.y), class: 'chart__vlab' });
-      t.textContent = l.text;
-      svg.append(t);
-    }
 
     // Series names: nudge apart vertically when their line-ends coincide.
     nlabels.sort((a, b2) => a.y - b2.y);
     for (let i = 1; i < nlabels.length; i++) {
       if (nlabels[i].y - nlabels[i - 1].y < 14) nlabels[i].y = nlabels[i - 1].y + 14;
+    }
+
+    // End-point value labels that land on a (possibly nudged) series name:
+    // flip them below their point.
+    for (const v of vlabels) {
+      for (const n of nlabels) {
+        const nx1 = n.x;
+        const nx2 = n.x + n.text.length * 6.2;
+        const vx1 = v.x - v.text.length * 3.1;
+        const vx2 = v.x + v.text.length * 3.1;
+        if (vx2 > nx1 && vx1 < nx2 && Math.abs(v.y - n.y) < 13) v.y += 30;
+      }
+    }
+    for (const l of vlabels) {
+      const t = ns('text', { x: String(l.x), y: String(l.y), class: 'chart__vlab' });
+      t.textContent = l.text;
+      svg.append(t);
     }
     for (const l of nlabels) {
       const t = ns('text', {
@@ -426,6 +468,398 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     res.append(el('div', 'decomp__v', b.result.value), el('div', 'decomp__l', b.result.label));
     if (b.result.note) res.append(el('div', 'decomp__note', b.result.note));
     w.append(res);
+    return w;
+  },
+
+  // ── Deck 13: concentric maker populations ─────────────────────────────────
+  rings(b) {
+    const w = el('div', 'rings');
+
+    const W = 340;
+    const H = 320;
+    const cx = W / 2;
+    const base = H - 10;
+    // Radii on a partial-sqrt scale — true areas would make the inner ring
+    // unreadably small at 30M vs 1B+.
+    const maxR = (H - 30) / 2;
+    const rs = [maxR * 0.3, maxR * 0.62, maxR];
+    const s = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'rings__svg', role: 'img' }) as SVGSVGElement;
+    s.setAttribute('aria-label', b.rings.map((r) => `${r.value} ${r.label}`).join('; '));
+    // Outer→inner so the inner rings paint on top; tangent at the baseline.
+    [...b.rings].reverse().forEach((ring, idx) => {
+      const i = b.rings.length - 1 - idx;
+      const r = rs[i];
+      s.append(svg('circle', { cx: String(cx), cy: String(base - r), r: String(r), class: `rings__c rings__c--${i}` }));
+      // Value + label sit just inside the top of each ring's exposed band.
+      const y = base - 2 * r + (i === 0 ? r * 0.82 : 20);
+      s.append(svgText(cx, y, ring.value, `rings__v rings__v--${i}`, 'middle'));
+      s.append(svgText(cx, y + 14, ring.label, 'rings__l', 'middle'));
+    });
+    w.append(s);
+
+    const eras = el('div', 'rings__eras');
+    for (const e of b.eras) {
+      const row = el('div', 'rings__era');
+      row.append(el('div', 'rings__when', e.when));
+      const body = el('div');
+      const head = el('div', 'rings__name');
+      head.append(document.createTextNode(e.name + ' '), el('span', 'rings__count', '— ' + e.count));
+      body.append(head, el('div', 'rings__desc', e.desc));
+      row.append(body);
+      eras.append(row);
+    }
+    w.append(eras);
+    return w;
+  },
+
+  // ── Deck 44: the five-layer stack with universe counts ────────────────────
+  layerstack(b) {
+    const w = el('div', 'lstack');
+    for (const l of b.layers) {
+      const row = el('div', `lstack__row lstack__row--${l.tone}`);
+      row.append(el('div', 'lstack__n', l.n));
+      const mid = el('div', 'lstack__mid');
+      mid.append(el('div', 'lstack__name', l.name), el('div', 'lstack__desc', l.desc));
+      row.append(mid);
+      const side = el('div', 'lstack__side');
+      if (l.count) side.append(el('div', 'lstack__count', l.count));
+      if (l.badge) side.append(el('div', 'lstack__badge', l.badge));
+      row.append(side);
+      w.append(row);
+    }
+    return w;
+  },
+
+  // ── Deck 45: the published roster ──────────────────────────────────────────
+  roster(b) {
+    const w = el('div', 'roster');
+    for (const g of b.groups) {
+      const grp = el('div', 'roster__group');
+      const head = el('div', 'roster__head');
+      head.append(el('span', 'roster__title', g.head), el('span', 'roster__count', g.count));
+      grp.append(head);
+      const chips = el('div', 'roster__chips');
+      for (const n of g.names) chips.append(el('span', `roster__chip${n.rail ? ' roster__chip--rail' : ''}`, n.n + (n.rail ? ' †' : '')));
+      grp.append(chips);
+      w.append(grp);
+    }
+    if (b.note) w.append(el('div', 'roster__note', b.note));
+    return w;
+  },
+
+  // ── Deck 42: backend vs. worksite ──────────────────────────────────────────
+  panels(b) {
+    const w = el('div', 'panels');
+    for (const p of b.panels) {
+      const panel = el('div', `panel panel--${p.tone}`);
+      panel.append(el('div', 'panel__head', p.head), el('div', 'panel__sub', p.sub));
+      for (const v of p.verbs) {
+        const row = el('div', 'panel__verb');
+        row.append(el('div', 'panel__verbname', v.verb), el('div', 'panel__verbdesc', v.desc));
+        panel.append(row);
+      }
+      panel.append(el('div', 'panel__foot', p.foot));
+      w.append(panel);
+    }
+    return w;
+  },
+
+  // ── Deck 47: market ponds, area-proportional ───────────────────────────────
+  ponds(b) {
+    const w = el('div', 'ponds');
+    const W = 660;
+    const H = 348;
+    const base = H - 62;
+    const s = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart__svg', role: 'img' }) as SVGSVGElement;
+    s.setAttribute(
+      'aria-label',
+      b.ponds.map((p) => `${p.label}: ${p.value}`).join('; ') + (b.backdrop ? `; ${b.backdrop.label}: ${b.backdrop.value}` : '')
+    );
+
+    const maxSize = Math.max(...b.ponds.map((p) => p.size), b.backdrop?.size ?? 0);
+    const maxR = (base - 26) / 2;
+    const rOf = (size: number) => Math.max(14, Math.sqrt(size / maxSize) * maxR);
+
+    // The backdrop (the security budget) sits behind both ponds.
+    if (b.backdrop) {
+      const r = rOf(b.backdrop.size);
+      const cx = W / 2 + 60;
+      s.append(svg('circle', { cx: String(cx), cy: String(base - r), r: String(r), class: 'ponds__back' }));
+      s.append(svgText(cx + r * 0.2, base - 2 * r + 16, `${b.backdrop.label} · ${b.backdrop.value}`, 'ponds__backlab', 'middle'));
+    }
+
+    // Ponds left→right with their centers spread across the width.
+    const slots = b.ponds.length;
+    b.ponds.forEach((p, i) => {
+      const r = rOf(p.size);
+      const cx = (W / (slots + 1)) * (i + 1) + (i === 0 ? -30 : 40);
+      const cy = base - r;
+      if (p.ring) {
+        const rr = r + 26;
+        s.append(svg('circle', { cx: String(cx), cy: String(cy), r: String(rr), class: 'ponds__ring' }));
+        s.append(svgText(cx, cy - rr - 8, `${p.ring.label} · ${p.ring.value}`, 'ponds__ringlab', 'middle'));
+      }
+      s.append(svg('circle', { cx: String(cx), cy: String(cy), r: String(r), class: `ponds__c${p.tone === 'ink' ? ' is-ink' : ''}` }));
+      if (r > 70) {
+        // Large pond: everything fits inside.
+        s.append(svgText(cx, cy - 8, p.value, 'ponds__v ponds__v--in', 'middle'));
+        s.append(svgText(cx, cy + 8, p.label, 'ponds__l ponds__l--in', 'middle'));
+        if (p.sub) s.append(svgText(cx, cy + 23, p.sub, 'ponds__s ponds__s--in', 'middle'));
+      } else {
+        // Small pond: value inside, label below — clear of the dashed ring.
+        s.append(svgText(cx, cy + 4, p.value, 'ponds__v ponds__v--insm', 'middle'));
+        const ly = base + (p.ring ? 40 : 20);
+        s.append(svgText(cx, ly, p.label, 'ponds__l', 'middle'));
+        if (p.sub) s.append(svgText(cx, ly + 14, p.sub, 'ponds__s', 'middle'));
+      }
+    });
+
+    w.append(s);
+    return w;
+  },
+
+  // ── Deck 49: the old TAM and the delegation-share TAM ─────────────────────
+  tam(b) {
+    const w = el('div', 'tam');
+
+    const old = el('div', 'tam__card tam__card--old');
+    old.append(el('div', 'tam__title', b.old.title));
+    for (const r of b.old.rows) {
+      const row = el('div', 'tam__row');
+      row.append(el('span', undefined, r.label), el('span', 'tam__rowv', r.value));
+      old.append(row);
+    }
+    const tot = el('div', 'tam__row tam__row--total');
+    tot.append(el('span', undefined, b.old.total.label), el('span', 'tam__rowv', b.old.total.value));
+    old.append(tot);
+    w.append(old);
+
+    w.append(el('div', 'tam__arrow', '→'));
+
+    const next = el('div', 'tam__card tam__card--new');
+    next.append(el('div', 'tam__title', b.next.title), el('div', 'tam__sub', b.next.sub));
+    const maxSize = Math.max(...b.next.tiers.map((t) => t.size));
+    for (const t of b.next.tiers) {
+      const tier = el('div', 'tam__tier');
+      const pill = el('div', 'tam__pill');
+      // Compressed scale: proportional pills would leave the smallest tier too
+      // narrow for its own label.
+      pill.style.width = `${52 + (t.size / maxSize) * 48}%`;
+      pill.append(el('span', 'tam__share', t.share), el('span', 'tam__pillv', t.value));
+      tier.append(pill, el('div', 'tam__note', t.note));
+      next.append(tier);
+    }
+    w.append(next);
+    return w;
+  },
+
+  // ── Deck 51: growth vs. multiple scatter ──────────────────────────────────
+  scatter(b) {
+    const w = el('div', 'chart');
+    const W = 660;
+    const H = 360;
+    const pad = { t: 16, r: 18, b: 46, l: 52 };
+    const xOf = (v: number) => pad.l + (v / b.xmax) * (W - pad.l - pad.r);
+    const yOf = (v: number) => H - pad.b - (v / b.ymax) * (H - pad.t - pad.b);
+
+    const s = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart__svg', role: 'img' }) as SVGSVGElement;
+    s.setAttribute('aria-label', `${b.pts.length} companies plotted, ${b.xlab} against ${b.ylab}`);
+
+    // Axes and light gridlines.
+    s.append(svg('line', { x1: String(pad.l), y1: String(H - pad.b), x2: String(W - pad.r), y2: String(H - pad.b), class: 'chart__axis' }));
+    s.append(svg('line', { x1: String(pad.l), y1: String(pad.t), x2: String(pad.l), y2: String(H - pad.b), class: 'chart__axis' }));
+    for (let gx = 10; gx < b.xmax; gx += 10) {
+      s.append(svg('line', { x1: String(xOf(gx)), y1: String(pad.t), x2: String(xOf(gx)), y2: String(H - pad.b), class: 'chart__grid' }));
+      s.append(svgText(xOf(gx), H - pad.b + 16, `${gx}%`, 'chart__xlab'));
+    }
+    for (let gy = 10; gy < b.ymax; gy += 10) {
+      s.append(svg('line', { x1: String(pad.l), y1: String(yOf(gy)), x2: String(W - pad.r), y2: String(yOf(gy)), class: 'chart__grid' }));
+      s.append(svgText(pad.l - 8, yOf(gy) + 4, `${gy}x`, 'chart__xlab', 'end'));
+    }
+    s.append(svgText(W - pad.r, H - pad.b + 34, b.xlab, 'chart__alab', 'end'));
+    s.append(svgText(pad.l + 4, pad.t + 4, b.ylab, 'chart__alab', 'start'));
+
+    for (const p of b.pts) {
+      s.append(
+        svg('circle', {
+          cx: xOf(Math.min(p.x, b.xmax)).toFixed(1),
+          cy: yOf(Math.min(p.y, b.ymax)).toFixed(1),
+          r: '5',
+          class: `scatter__pt is-${p.tone}`,
+        })
+      );
+    }
+
+    if (b.notes) {
+      for (const n of b.notes) {
+        s.append(svgText(xOf(n.x), yOf(n.y), n.text, 'chart__mark', n.anchor ?? 'start'));
+      }
+    }
+    w.append(s);
+
+    const leg = el('div', 'scatter__legend');
+    for (const l of b.legend) {
+      const item = el('span', 'scatter__leg');
+      item.append(el('span', `scatter__dot is-${l.tone}`), document.createTextNode(l.label));
+      leg.append(item);
+    }
+    w.append(leg);
+    return w;
+  },
+
+  // ── Deck 73: the admission ladder ──────────────────────────────────────────
+  ladder(b) {
+    const w = el('div', 'ladder');
+    if (b.axis) w.append(el('div', 'bars__axis', b.axis));
+    for (const r of b.rows) {
+      const row = el('div', `ladder__row${r.status === 'in' ? ' is-in' : ''}`);
+      const who = el('div', 'ladder__who');
+      who.append(el('span', 'ladder__name', r.name), el('span', 'ladder__layer', r.layer));
+      row.append(who);
+
+      const track = el('div', 'ladder__track');
+      const fill = el('div', `ladder__fill${r.status === 'in' ? ' is-in' : ''}${r.share == null ? ' is-emerging' : ''}`);
+      fill.style.width = `${r.share == null ? 7 : Math.min(r.share, 100)}%`;
+      const mark = el('div', 'ladder__mark');
+      mark.style.left = `${b.marker.at}%`;
+      track.append(fill, mark);
+      row.append(track);
+
+      row.append(el('div', 'ladder__share', r.display));
+      row.append(el('div', `ladder__status${r.status === 'in' ? ' is-in' : ''}`, r.status === 'in' ? 'IN' : 'CONVERTING'));
+      row.append(el('div', 'ladder__note', r.note));
+      w.append(row);
+    }
+    w.append(el('div', 'ladder__markerlab', `the ${b.marker.label} line`));
+    if (b.foot) {
+      const foot = el('div', 'ladder__foot');
+      const head = el('div', 'ladder__foothead');
+      head.append(el('span', undefined, b.foot.head), el('span', 'ladder__footcount', b.foot.count));
+      foot.append(head);
+      foot.append(el('div', 'ladder__footnames', b.foot.names.join(' · ')));
+      foot.append(el('div', 'ladder__footnote', b.foot.note));
+      w.append(foot);
+    }
+    return w;
+  },
+
+  // ── Deck 71: the admission worksheet ───────────────────────────────────────
+  admit(b) {
+    const w = el('div', 'admit');
+    for (const g of b.groups) {
+      const grp = el('div', 'admit__group');
+      grp.append(el('div', 'admit__head', g.head));
+      for (const r of g.rows) {
+        const row = el('div', 'admit__row');
+        const top = el('div', 'admit__top');
+        top.append(el('span', 'admit__name', r.name), el('span', 'admit__share', r.share));
+        if (r.level) top.append(el('span', 'admit__level', r.level));
+        row.append(top, el('div', 'admit__basis', r.basis));
+        grp.append(row);
+      }
+      w.append(grp);
+    }
+    return w;
+  },
+
+  // ── Deck 62/63/76: two series on independent axes ─────────────────────────
+  dualline(b) {
+    const w = el('div', 'chart');
+    const W = 660;
+    const H = 320;
+    const pad = { t: 26, r: 52, b: 34, l: 52 };
+
+    const s = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart__svg', role: 'img' }) as SVGSVGElement;
+    s.setAttribute('aria-label', `${b.left.name} (left axis) and ${b.right.name} (right axis)`);
+
+    const xOf = (i: number) => pad.l + (b.x.length === 1 ? 0 : (i / (b.x.length - 1)) * (W - pad.l - pad.r));
+    const scaleOf = (values: (number | null)[]) => {
+      const vals = values.filter((v): v is number => v != null);
+      const max = Math.max(...vals);
+      const min = Math.min(...vals);
+      const span = max - min || 1;
+      const lo = min - span * 0.35;
+      const hi = max + span * 0.3;
+      return (v: number) => H - pad.b - ((v - lo) / (hi - lo)) * (H - pad.t - pad.b);
+    };
+    const yL = scaleOf(b.left.values);
+    const yR = scaleOf(b.right.values);
+
+    s.append(svg('line', { x1: String(pad.l), y1: String(H - pad.b), x2: String(W - pad.r), y2: String(H - pad.b), class: 'chart__axis' }));
+    b.x.forEach((label, i) => {
+      if (!label) return;
+      s.append(svgText(xOf(i), H - pad.b + 18, label, 'chart__xlab'));
+    });
+
+    const dlabels: { x: number; y: number; text: string; muted: boolean }[] = [];
+    const draw = (
+      series: { name: string; values: (number | null)[]; display?: (string | null)[]; hollowLast?: boolean },
+      yOf: (v: number) => number,
+      muted: boolean
+    ) => {
+      const pts = series.values
+        .map((v, i) => (v == null ? null : { x: xOf(i), y: yOf(v), i }))
+        .filter((p): p is { x: number; y: number; i: number } => p != null);
+      if (!pts.length) return;
+      const d = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+      s.append(svg('path', { d, class: `chart__line${muted ? ' is-muted' : ''}` }));
+      pts.forEach((p, idx) => {
+        const hollow = series.hollowLast && idx === pts.length - 1;
+        s.append(
+          svg('circle', {
+            cx: String(p.x),
+            cy: String(p.y),
+            r: hollow ? '4.2' : '2.8',
+            class: `chart__dot${muted ? ' is-muted' : ''}${hollow ? ' is-hollow' : ''}`,
+          })
+        );
+        const disp = series.display?.[p.i];
+        if (disp) dlabels.push({ x: p.x, y: p.y + (muted ? 20 : -10), text: disp, muted });
+      });
+      // Axis-side series label — lifted clear of the end-point value label.
+      const last = pts[pts.length - 1];
+      const first = pts[0];
+      const lastHasV = Boolean(series.display?.[last.i]);
+      const firstHasV = Boolean(series.display?.[first.i]);
+      if (muted) s.append(svgText(first.x, Math.max(pad.t + 8, first.y - (firstHasV ? 14 : 12)), series.name, 'chart__slab is-muted', 'start'));
+      else {
+        // Clear the end-point value label: half its width plus a gap.
+        const vHalf = lastHasV ? ((series.display![last.i] as string).length * 5.5) / 2 + 10 : 0;
+        s.append(svgText(last.x - vHalf, Math.max(pad.t + 8, last.y - 12), series.name, 'chart__slab', 'end'));
+      }
+    };
+    draw(b.right, yR, true);
+    draw(b.left, yL, false);
+
+    // Where the two series converge, their value labels can land on each
+    // other — push the muted one down until clear (staying above the axis).
+    for (const a of dlabels.filter((l) => !l.muted)) {
+      for (const m of dlabels.filter((l) => l.muted)) {
+        if (Math.abs(a.x - m.x) < (a.text.length + m.text.length) * 3.1 && Math.abs(a.y - m.y) < 13) {
+          m.y = Math.min(a.y + 15, H - pad.b - 4);
+        }
+      }
+    }
+    for (const l of dlabels) s.append(svgText(l.x, l.y, l.text, `chart__vlab${l.muted ? ' is-muted' : ''}`));
+
+    if (b.marks) {
+      for (const m of b.marks) {
+        const onLeft = m.on !== 'right';
+        const series = onLeft ? b.left : b.right;
+        const v = series.values[m.at];
+        if (v == null) continue;
+        const x = xOf(m.at);
+        const y = (onLeft ? yL : yR)(v);
+        const dir = m.below ? 1 : -1;
+        const lift = m.lift ?? 0;
+        s.append(svg('line', { x1: String(x), y1: String(y + dir * 7), x2: String(x), y2: String(y + dir * (20 + lift)), class: 'chart__tick' }));
+        s.append(
+          svgText(x, y + dir * (30 + lift), m.text, 'chart__mark', m.at > b.x.length * 0.72 ? 'end' : m.at < b.x.length * 0.28 ? 'start' : 'middle')
+        );
+      }
+    }
+
+    w.append(s);
     return w;
   },
 };

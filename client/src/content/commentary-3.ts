@@ -83,6 +83,14 @@ export const part3: Record<number, Block[]> = {
     },
   ],
 
+  45: [
+    {
+      kind: 'p',
+      text:
+        'And here it is, name by name — six state meters, nineteen work meters, forty-two worksite names, with the two action rails marked. Publishing the roster costs us nothing and buys the one thing a research program cannot fake: any reader can re-run the classification, disagree with a bucket, and tell us so. The exhibit is the audit trail for everything the next ten sections claim.',
+    },
+  ],
+
   46: [
     {
       kind: 'p',
@@ -126,12 +134,20 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Scatter all 67 names on growth against multiple and the market’s actual opinion emerges: most of the universe sits below 25% growth and below 8x forward revenue. The right edge is thin, and above the rule-of-40 line at 30%-plus growth sits almost nobody — and what is there is work and state, not apps.',
+        'Read the three layer rows and a division of labor appears. Work earns today — 23% growth, the richest multiple of the three, 26% cash conversion. State compounds for decades — the slowest to show the wave, and the hardest to displace once it has. Apps grow slowest, convert least distinctively, and sit on the layer infinite software actively erodes. The tape, we will see shortly, has been voting on exactly this split.',
+    },
+  ],
+
+  51: [
+    {
+      kind: 'p',
+      text:
+        'Scatter all 67 names on growth against multiple and the market’s actual opinion emerges: most of the universe sits below 25% growth and below 8x forward revenue. The right edge is thin — the tape pays double-digit multiples only where usage growth is on file — and above 30% growth sits almost nobody, and what is there is work and state, not apps.',
     },
     {
       kind: 'p',
       text:
-        'Read the three layer rows and a division of labor appears. Work earns today — 23% growth, the richest multiple of the three, 26% cash conversion. State compounds for decades — the slowest to show the wave, and the hardest to displace once it has. Apps grow slowest, convert least distinctively, and sit on the layer infinite software actively erodes. The tape, we will see shortly, has been voting on exactly this split.',
+        'The names are withheld deliberately: the point of the exhibit is the shape, not the tickers. A market that pays this steeply for the thin right edge, and this little for everything else, has already decided what it values. It just hasn’t connected that preference to the agent wave that feeds it.',
     },
   ],
 
@@ -161,6 +177,14 @@ export const part3: Record<number, Block[]> = {
     },
   ],
 
+  56: [
+    {
+      kind: 'p',
+      text:
+        'The next three exhibits photograph one wave at three depths, in the order the accounting requires. First, commitment: deferred revenue is money customers have signed for but not yet consumed, which makes it the earliest public trace of demand — it moves one to three quarters before the income statement does. The state layer’s deferred growth dipped, turned, and re-accelerated to the low twenties; work holds mid-teens; apps drift along at twelve to fifteen, the profile of renewals without expansion.',
+    },
+  ],
+
   57: [
     {
       kind: 'p',
@@ -170,7 +194,15 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Apps are at zero, and structurally must be — you cannot bill above a floor that doesn’t exist. The commitment side completes the picture: customers are pre-buying more consumption at each renewal, then exceeding even that. Contracted floors rising while the overage above them widens is what demand outrunning planning looks like, written in accounting.',
+        'Apps are at zero, and structurally must be — you cannot bill above a floor that doesn’t exist. Contracted floors rising while the overage above them widens is what demand outrunning planning looks like, written in accounting.',
+    },
+  ],
+
+  58: [
+    {
+      kind: 'p',
+      text:
+        'Revenue is the last of the three photographs, because recognized revenue is where the wave arrives after the contracts are signed and the meters have run. The meter layers are accelerating into the twenties while apps fade toward the mid-teens — a quiet three-to-seven-point spread that compounds violently over a decade. Anyone waiting for the income statement to confirm the thesis will be the last to see it; the two exhibits above showed the same wave a year earlier.',
     },
   ],
 
@@ -197,6 +229,22 @@ export const part3: Record<number, Block[]> = {
       kind: 'p',
       text:
         'Nothing is priced for agents; consensus forward numbers carry zero of them. The state layer is the cleanest illustration: growth turned up from 13% to 20% while the multiple did not move, leaving it at roughly 0.26x its growth rate — half the cohort’s ~0.5x. The work layer de-rated while growing steadily, its audit mandate still priced as a maintenance product rather than a meter. A market that has repriced every AI narrative from chips to power utilities has, so far, declined to reprice the layer that bills the work.',
+    },
+  ],
+
+  62: [
+    {
+      kind: 'p',
+      text:
+        'Zoom into the state layer and the anomaly sharpens into a single picture: two lines that are supposed to move together, moving apart. The growth line climbs steadily through the period; the multiple rides a small 2024 hill and comes down the other side, ending below where it started. Every point of growth the layer added was answered with a flat-to-lower price on that growth.',
+    },
+  ],
+
+  63: [
+    {
+      kind: 'p',
+      text:
+        'The work layer tells the mirror-image story: growth that never wavered — a steady band in the low twenties for three years — against a multiple that peaked above 12x and has been marked down ever since. This is the layer with the audit mandate, the 26% cash margins, and the strategic acquirers circling, priced as if its best quarters are behind it. One of the two lines in this picture is wrong about the future; the filings keep siding with the growth line.',
     },
   ],
 

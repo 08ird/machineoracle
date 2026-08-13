@@ -55,7 +55,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. Cohort deferred revenue accelerated from +19% to +32% year over year in five quarters — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths.',
+        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full tape back to 2022 shows the round trip honestly: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths — and the first re-acceleration this cohort has printed since the derate.',
     },
     {
       kind: 'p',
