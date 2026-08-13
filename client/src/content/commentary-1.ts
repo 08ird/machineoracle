@@ -162,7 +162,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'When production costs collapse, value doesn’t disappear — it moves. What deflates to zero is everything the agent can regenerate on demand: code, tests, documentation, integration glue, one-off tools, and ultimately the custom applications themselves, contested by an infinite knife-fight of entrants whose product can be re-summoned by any customer in an afternoon. What stays metered forever is everything the agent must consume to act: compute cycles and runtime, state and memory, delivery and network, identity, audit and billing rails — billed per unit of use, scaling with the population of software rather than the price of writing it.',
+        'When production costs collapse, value doesn’t disappear — it moves. What deflates to zero is everything the agent can regenerate on demand: code, tests, documentation, integration glue, one-off tools, and ultimately the custom applications themselves, contested by an infinite knife-fight of entrants whose product can be re-summoned by any customer in an afternoon. What stays metered forever is what no agent can regenerate: the doing of the work, the keeping of its state, and the accounting for what was done. Those three activities — executing, remembering, answering — are billed per unit of use, and they scale with the population of software rather than the price of writing it. Part 03 gives them a name: the backend.',
     },
     {
       kind: 'p',
@@ -175,12 +175,17 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Three numbers close the part. Production got ~4,000x cheaper, so making software stopped being the scarce thing. The machine work-week is 168 hours against our forty, so labor stopped being the scarce thing. What remains scarce — what became more scarce, precisely because everything above it multiplied — is the five-layer stack of rails that all of it runs on.',
+        'Three numbers close the part. Production got ~4,000x cheaper, so making software stopped being the scarce thing. The machine work-week is 168 hours against our forty, so labor stopped being the scarce thing. What remains scarce — what became more scarce, precisely because everything above it multiplied — is the stack of rails that all of it runs on: five layers, with compute at the bottom, intelligence above it, then the state it keeps, the work it runs, and the outcomes it delivers.',
     },
     {
       kind: 'p',
       text:
-        'Infinite software is the era. Part 02 counts the wave it unleashes — first in tokens, the unit everyone watches, and then in the infrastructure events that actually get billed, the unit almost nobody does.',
+        'Hold on to the shape of that stack, because the layers do not benefit equally. The bottom is capital-heavy and already priced; the top is where the knife-fight of this part plays out. The two in the middle — the layer that meters the work and the layer that keeps the state — sell the three things no agent can regenerate, and they are where this series will argue the money settles.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Infinite software is the era. Part 02 counts the wave it unleashes — first in tokens, the unit everyone watches, and then in the infrastructure events that actually get billed, the unit almost nobody does. Part 03 follows those events into the stack, layer by layer, and to the two that collect on all of it.',
     },
   ],
 };

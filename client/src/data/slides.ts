@@ -461,8 +461,12 @@ export const SLIDES: Slide[] = [
         },
         {
           head: 'Metered forever',
-          items: ['Compute cycles & runtime', 'State, memory & context', 'Delivery & network', 'Identity, audit & billing rails'],
-          foot: 'Billed per unit of use — scaling with the software population',
+          items: [
+            'Execute — runs, steps, compute-seconds',
+            'Remember — reads, writes, queries, storage',
+            'Answer for it — logs, identities, audit trails',
+          ],
+          foot: 'Billed per unit of use, scaling with the software population — the three activities Part 03 names the backend',
           tone: 'warm',
         },
       ],
@@ -479,7 +483,7 @@ export const SLIDES: Slide[] = [
       items: [
         { value: '~4,000x', label: 'cheaper to make software', sub: 'production broke free of human hands' },
         { value: '168 hrs', label: 'machine duty cycle per week', sub: 'against ~40 human attention-hours' },
-        { value: '5 layers', label: 'meter the running of it', sub: 'making deflates to zero; running is metered forever' },
+        { value: '2 of 5', label: 'layers collect the royalty', sub: 'a five-layer stack runs it all; the money settles where work is metered and state is kept' },
       ],
     },
   },
