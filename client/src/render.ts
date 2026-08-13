@@ -261,7 +261,10 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     // Geometry in a fixed viewBox; the SVG then scales to its container.
     const W = 660;
     const H = 300;
-    const pad = { t: 22, r: 92, b: 34, l: 46 };
+    // Right padding sized to the longest series name so end-of-line labels
+    // never spill past the drawing area.
+    const longestName = Math.max(0, ...b.series.map((s) => s.name.length));
+    const pad = { t: 22, r: Math.min(150, Math.max(70, longestName * 6.2 + 16)), b: 34, l: 46 };
     const flat = b.series.flatMap((s) => s.values).filter((v): v is number => v != null && v > 0);
     const max = Math.max(...flat);
     const min = Math.min(...flat);
@@ -299,7 +302,13 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       svg.append(t);
     });
 
-    b.series.forEach((s, si) => {
+    // Value and name labels are collected first, then placed with collision
+    // avoidance — series that end near the same value would otherwise print
+    // their labels on top of each other.
+    const vlabels: { x: number; y: number; text: string }[] = [];
+    const nlabels: { x: number; y: number; text: string; muted: boolean }[] = [];
+
+    b.series.forEach((s) => {
       const pts = s.values
         .map((v, i) => (v == null ? null : { x: xOf(i), y: yOf(v), i, v }))
         .filter((p): p is { x: number; y: number; i: number; v: number } => p != null);
@@ -314,23 +323,41 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       for (const p of pts) {
         svg.append(ns('circle', { cx: String(p.x), cy: String(p.y), r: '3.2', class: `chart__dot${s.tone === 'muted' ? ' is-muted' : ''}` }));
         const disp = s.display?.[p.i];
-        if (disp) {
-          const t = ns('text', { x: String(p.x), y: String(p.y - 10), class: 'chart__vlab' });
-          t.textContent = disp;
-          svg.append(t);
-        }
+        if (disp) vlabels.push({ x: p.x, y: p.y - 10, text: disp });
       }
 
-      // Series name at the right end of its last point.
       const last = pts[pts.length - 1];
-      const name = ns('text', {
-        x: String(last.x + 8),
-        y: String(last.y + 4 + (si === 0 ? 0 : 0)),
-        class: `chart__slab${s.tone === 'muted' ? ' is-muted' : ''}`,
-      });
-      name.textContent = s.name;
-      svg.append(name);
+      nlabels.push({ x: last.x + 8, y: last.y + 4, text: s.name, muted: s.tone === 'muted' });
     });
+
+    // Same-x value labels that would stack: flip later ones below their point.
+    for (let i = 0; i < vlabels.length; i++) {
+      for (let j = 0; j < i; j++) {
+        if (Math.abs(vlabels[i].x - vlabels[j].x) < 10 && Math.abs(vlabels[i].y - vlabels[j].y) < 13) {
+          vlabels[i].y += 30; // from y−10 above the point to y+20 below it
+        }
+      }
+    }
+    for (const l of vlabels) {
+      const t = ns('text', { x: String(l.x), y: String(l.y), class: 'chart__vlab' });
+      t.textContent = l.text;
+      svg.append(t);
+    }
+
+    // Series names: nudge apart vertically when their line-ends coincide.
+    nlabels.sort((a, b2) => a.y - b2.y);
+    for (let i = 1; i < nlabels.length; i++) {
+      if (nlabels[i].y - nlabels[i - 1].y < 14) nlabels[i].y = nlabels[i - 1].y + 14;
+    }
+    for (const l of nlabels) {
+      const t = ns('text', {
+        x: String(l.x),
+        y: String(Math.min(l.y, H - pad.b - 4)),
+        class: `chart__slab${l.muted ? ' is-muted' : ''}`,
+      });
+      t.textContent = l.text;
+      svg.append(t);
+    }
 
     // Event annotations pinned to the first series' points.
     if (b.marks) {

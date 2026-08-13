@@ -872,6 +872,10 @@ blockquote cite {
   .bar {
     grid-template-columns: 1fr;
   }
+  /* Keep the longest bar's value label inside the track on narrow screens. */
+  .bar__fill {
+    max-width: calc(100% - 4.5rem);
+  }
 }
 
 /* ── Exhibit: line chart ────────────────────────────────────────────────── */
@@ -1154,7 +1158,6 @@ tbody tr.is-hl th {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ink-3);
-  white-space: nowrap;
 }
 
 /* ── Exhibit: columns ───────────────────────────────────────────────────── */
@@ -1261,8 +1264,8 @@ tbody tr.is-hl th {
 }
 .tl__item--here {
   background: var(--accent-pale);
-  margin: 0 -0.5rem;
   padding: 0.5rem;
+  border-radius: 6px;
 }
 .tl__when {
   font-family: var(--sans);

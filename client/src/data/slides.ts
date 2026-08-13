@@ -1259,7 +1259,7 @@ export const SLIDES: Slide[] = [
       x: ["Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
       series: [
         { name: 'Deferred revenue y/y', values: [19, 23, 26, 29, 32], display: ['+19%', null, null, null, '+32%'] },
-        { name: 'Revenue y/y', values: [25, 26, 28, 30, 32], display: ['25%', null, null, null, '32%'], tone: 'muted' },
+        { name: 'Revenue y/y', values: [25, 26, 28, 30, 32], display: ['25%', null, null, null, null], tone: 'muted' },
         { name: 'Overage share', values: [11, 13, 15, 17, 19], display: ['11%', null, null, null, '19%'], dashed: true },
       ],
     },
