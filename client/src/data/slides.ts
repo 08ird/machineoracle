@@ -1233,9 +1233,9 @@ export const SLIDES: Slide[] = [
         title: 'The new TAM',
         sub: 'share of the ~$35T knowledge-work wage pool delegated, at a 10–20¢ take rate',
         tiers: [
-          { share: '1% delegated', value: '$35–70B/yr', note: '≈ a third of the old TAM, added — consistent with our 2029 wave case', size: 1 },
           { share: '5% delegated', value: '$175–350B/yr', note: '≈ 1–2x the entire old TAM, every year', size: 5 },
-          { share: '10% delegated', value: '$350–700B/yr', note: '≈ 2–4x the old TAM, every year', size: 10 },
+          { share: '15% delegated', value: '$525B–1.05T/yr', note: '≈ 3–5x the old TAM, every year', size: 15 },
+          { share: '25% delegated', value: '$875B–1.75T/yr', note: '≈ 5–9x the old TAM — software re-denominated as labor', size: 25 },
         ],
       },
     },

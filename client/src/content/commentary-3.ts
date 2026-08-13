@@ -131,7 +131,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The arithmetic in the exhibit deliberately uses small numbers. One percent of task-value delegated by 2029. Ten to twenty cents billed per human-dollar of work delivered. Even at those fractions, machine-labor billings land at $35–70 billion a year — roughly a third of today’s entire enterprise-software market, added on top of it. The old TAM is a line item inside the new one. Delegation share, not software budgets, sets the ceiling on the royalty.',
+        'The arithmetic is simple: the share of task-value the world delegates, times ten to twenty cents billed per human-dollar of work delivered. Our 2029 wave case corresponds to roughly 1% delegated — $35–70 billion a year, a third of today’s enterprise-software market added on top of it. The exhibit shows what the same arithmetic does as delegation compounds through the 2030s. At 5%, machine-labor billings match or double the entire old TAM, every year. At 15%, they are several old TAMs a year. At 25% — a quarter of knowledge work delegated — the new pond runs five to nine times the market software occupies today. The old TAM is a line item inside the new one, and delegation share, not software budgets, sets the ceiling on the royalty.',
     },
   ],
 
