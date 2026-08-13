@@ -236,11 +236,30 @@ function sectionNode(deck: Deck, s: Slide, figNo: number | null): HTMLElement | 
   const cap = el('figcaption', 'figure__cap');
   if (figNo != null) cap.append(el('b', undefined, `Figure ${figNo}. `));
   cap.append(document.createTextNode(s.kicker ?? s.title ?? ''));
-  inner.append(cap, renderExhibit(s.body));
+  inner.append(cap);
+
+  // The exhibit is the deck's own slide, rendered from the deck of record.
+  // Companion slides from a cited range stack beneath the primary.
+  for (const id of [s.id, ...(s.extras ?? [])]) {
+    inner.append(slideImg(id, s.kicker ?? s.title ?? `Exhibit — slide ${id}`));
+  }
+
   if (s.footnote) inner.append(el('p', 'figure__src', s.footnote));
   fig.append(inner);
   frag.append(fig);
   return frag;
+}
+
+/** An exhibit image from the deck of record, lazy-loaded at 16:9. */
+function slideImg(id: number, alt: string): HTMLElement {
+  const img = el('img', 'figure__slide');
+  img.src = `slides/s${String(id).padStart(2, '0')}.png`;
+  img.alt = alt;
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  img.width = 1560;
+  img.height = 878;
+  return img;
 }
 
 // ── Deck: chapter page ──────────────────────────────────────────────────────

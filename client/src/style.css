@@ -729,6 +729,20 @@ blockquote cite {
   margin: 1rem 0 0;
 }
 
+/* Deck-of-record exhibit images. The deck is light-background art, so it keeps
+   a white plate in dark mode rather than being inverted. */
+.figure__slide {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.figure__slide + .figure__slide {
+  margin-top: 0.9rem;
+}
+
 /*
  * Wave-quote callout: the deck's Gates-memo slide, as a band that bleeds to
  * the sheet edges with the brand wave art along its base. The artwork has a

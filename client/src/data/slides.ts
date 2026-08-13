@@ -65,6 +65,11 @@ export interface Slide {
   body: Body;
   takeaway?: { icon?: string; text: string };
   footnote?: string;
+  /**
+   * Companion deck slides shown in the same figure — used where the written
+   * piece cites a range ("Exhibits — slides 43–45") but reads as one section.
+   */
+  extras?: number[];
 }
 
 export const PARTS: { n: Part; title: string; sub: string; start: number }[] = [
@@ -759,6 +764,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 34,
+    extras: [35],
     part: 2,
     kicker: 'Growth index, 2026 = 1 (log scale) — billable events vs. tokens',
     title: 'The wave lands on the meters: events grow ~190x',
@@ -854,6 +860,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 40,
+    extras: [54],
     part: 3,
     kicker: 'Revenue = events × price × capture',
     title: 'Conversion is the question',
@@ -951,6 +958,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 43,
+    extras: [44, 45],
     part: 3,
     kicker: 'BVP Nasdaq Emerging Cloud Index plus four extensions',
     title: 'The universe: 67 public companies',
@@ -1004,6 +1012,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 48,
+    extras: [49],
     part: 3,
     kicker: 'Machine labor prices against wages, not software budgets',
     title: 'The biggest pond',
@@ -1024,6 +1033,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 50,
+    extras: [51, 52],
     part: 3,
     kicker: 'On consensus, at August 11, 2026 marks',
     title: 'What the layers earn — and what they cost',
@@ -1095,6 +1105,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 57,
+    extras: [56, 58],
     part: 3,
     kicker: 'Usage billed above committed floors, as a share of revenue',
     title: 'You cannot bill above a floor that doesn’t exist',
@@ -1123,6 +1134,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 59,
+    extras: [60],
     part: 3,
     kicker: 'Equal-weighted total return by layer, since ChatGPT (Nov 2022)',
     title: 'The tape has already voted',
@@ -1144,6 +1156,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 61,
+    extras: [62, 63],
     part: 3,
     kicker: 'Three years of multiples, realized-forward basis',
     title: 'Nobody has re-rated for agents — at any layer',
@@ -1203,6 +1216,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 66,
+    extras: [67],
     part: 3,
     kicker: 'Scored on this section’s evidence',
     title: 'State vs. work: eight rounds, and two clocks',
@@ -1324,6 +1338,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 74,
+    extras: [75],
     part: 4,
     kicker: 'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last',
     title: 'The cohort on the tape',
@@ -1542,6 +1557,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 84,
+    extras: [85],
     part: 4,
     kicker: 'Six tripwires, written before they’re needed',
     title: 'How you’ll know if we’re wrong',
