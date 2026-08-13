@@ -42,6 +42,20 @@ export const part1: Record<number, Block[]> = {
     },
   ],
 
+  // Site-original exhibit: the phrase "infinite software", drawn.
+  5: [
+    {
+      kind: 'p',
+      text:
+        'Before the argument, the picture. For seventy years, software was a product: a few million applications, each expensive enough to demand a team, a budget, and a roadmap, each built for the average of many users and sold to all of them. That is the left panel — a short shelf of heavy objects, and it is the entire software industry as every market map has ever drawn it.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The right panel is the era this part describes. When production is nearly free, software takes the shape of the problems people actually have — small, specific, personal, and numberless. A dashboard for one meeting. A tool for one week. An integration for one customer. None of it appears in an app store, none of it justifies a roadmap, and none of it needs to: it is summoned, used, and discarded like a document. What every piece keeps in common is invisible at this scale, and it is the subject of this entire series — each one runs, stores, authenticates, and logs on infrastructure it rents by the unit.',
+    },
+  ],
+
   9: [
     {
       kind: 'p',

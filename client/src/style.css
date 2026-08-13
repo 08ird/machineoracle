@@ -2281,6 +2281,47 @@ tbody tr.is-hl th {
   margin-top: 0.2rem;
 }
 
+/* ── Contrast (site-original): product vs. document software ───────────── */
+
+.contrast__head {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  fill: var(--ink-3);
+}
+.contrast__head.is-accent {
+  fill: var(--accent);
+}
+.contrast__block {
+  fill: var(--bg-2);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.contrast__blocklab {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--ink-2);
+}
+.contrast__bit {
+  fill: var(--accent);
+}
+.contrast__bit.is-muted {
+  fill: var(--ink-4);
+}
+.contrast__cap {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  fill: var(--ink-4);
+}
+.contrast__rule {
+  stroke: var(--rule);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
 /* ── Print ──────────────────────────────────────────────────────────────── */
 
 @media print {

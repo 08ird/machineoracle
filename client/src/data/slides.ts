@@ -135,6 +135,13 @@ export type Body =
       groups: { head: string; rows: { name: string; share: string; level?: string; basis: string }[] }[];
     }
   | {
+      // Site-original: scarce software (a few products) against infinite
+      // software (a field of disposable, single-task pieces).
+      kind: 'contrast';
+      left: { head: string; items: string[]; caption: string };
+      right: { head: string; caption: string; count?: number };
+    }
+  | {
       // Two series on independent axes (deck 62/63/76): multiple vs. growth.
       kind: 'dualline';
       x: string[];
@@ -261,6 +268,30 @@ export const SLIDES: Slide[] = [
     },
     takeaway: { icon: '🚀', text: 'Every prior wave sold tools. This one sells labor.' },
     footnote: 'Skycatcher illustrative framework. Company references informational only.',
+  },
+  {
+    // Site-original exhibit (no deck slide): what "infinite software" means.
+    id: 5,
+    part: 1,
+    kicker: 'Illustrative — the software population, before and after production left human hands',
+    title: 'What infinite software looks like',
+    body: {
+      kind: 'contrast',
+      left: {
+        head: 'Software as a product',
+        items: ['ERP', 'CRM', 'Email', 'BI', 'HR', 'Docs'],
+        caption: '~5M applications · built by teams, for everyone',
+      },
+      right: {
+        head: 'Software as a document',
+        caption: 'uncounted · one user, one task, one afternoon',
+      },
+    },
+    takeaway: {
+      icon: '✨',
+      text: 'Software stops being a product you buy and becomes a document you write — and every piece of it rents the rails.',
+    },
+    footnote: 'Illustrative, not counted — the right panel is the point, not a census.',
   },
   {
     id: 9,

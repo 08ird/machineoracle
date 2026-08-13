@@ -762,6 +762,59 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     return w;
   },
 
+  // ── Site-original: what infinite software looks like ─────────────────────
+  contrast(b) {
+    const w = el('div', 'chart');
+    const W = 660;
+    const H = 320;
+    const mid = 318;
+    const s = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart__svg', role: 'img' }) as SVGSVGElement;
+    s.setAttribute('aria-label', `${b.left.head} against ${b.right.head}`);
+
+    // Left: a handful of monolithic products in a tidy grid.
+    s.append(svgText(20, 26, b.left.head, 'contrast__head', 'start'));
+    const cols = 2;
+    const bw = 118;
+    const bh = 52;
+    b.left.items.forEach((name, i) => {
+      const x = 24 + (i % cols) * (bw + 14);
+      const y = 46 + Math.floor(i / cols) * (bh + 14);
+      s.append(svg('rect', { x: String(x), y: String(y), width: String(bw), height: String(bh), rx: '5', class: 'contrast__block' }));
+      s.append(svgText(x + bw / 2, y + bh / 2 + 4, name, 'contrast__blocklab', 'middle'));
+    });
+    s.append(svgText(20, H - 18, b.left.caption, 'contrast__cap', 'start'));
+
+    s.append(svg('line', { x1: String(mid), y1: '18', x2: String(mid), y2: String(H - 36), class: 'contrast__rule' }));
+
+    // Right: a dense field of tiny, disposable pieces. Deterministic LCG so
+    // the scatter is stable across renders.
+    s.append(svgText(mid + 22, 26, b.right.head, 'contrast__head is-accent', 'start'));
+    let seed = 41;
+    const rand = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
+    const n = b.right.count ?? 260;
+    for (let i = 0; i < n; i++) {
+      const x = mid + 22 + rand() * (W - mid - 44);
+      const y = 44 + rand() * (H - 108);
+      const size = 2.5 + rand() * 4.5;
+      const muted = rand() < 0.3;
+      s.append(
+        svg('rect', {
+          x: x.toFixed(1),
+          y: y.toFixed(1),
+          width: size.toFixed(1),
+          height: size.toFixed(1),
+          rx: '1',
+          class: `contrast__bit${muted ? ' is-muted' : ''}`,
+          opacity: (0.35 + rand() * 0.65).toFixed(2),
+        })
+      );
+    }
+    s.append(svgText(mid + 22, H - 18, b.right.caption, 'contrast__cap', 'start'));
+
+    w.append(s);
+    return w;
+  },
+
   // ── Deck 62/63/76: two series on independent axes ─────────────────────────
   dualline(b) {
     const w = el('div', 'chart');
