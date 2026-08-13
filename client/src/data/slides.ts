@@ -1759,7 +1759,7 @@ export const SLIDES: Slide[] = [
     extras: [67],
     part: 3,
     kicker: 'Head-to-head on measured evidence — every row from the exhibits in this part',
-    title: 'State vs. work: eight rounds, scored on the tape',
+    title: 'State vs. work: seven rounds, scored on the tape',
     body: {
       kind: 'bout',
       heads: ['L2 · State', 'L3 · Work'],
@@ -1770,13 +1770,12 @@ export const SLIDES: Slide[] = [
         { round: 'Margin trajectory', a: '+6 pts in a year — inflecting', b: 'flat at a high plateau', winner: 'a' },
         { round: 'Commitment', a: '+22% backlog y/y — fastest in the universe', b: '+16%', winner: 'a' },
         { round: 'Overage purity', a: '14→24% of revenue — purest meters', b: '9→16%, diluted by subscriptions', winner: 'a' },
-        { round: 'Already repriced?', a: '+28% since Jan ’22 — least paid', b: '+46% — partly paid', winner: 'a' },
         { round: 'Scarcity / M&A bid', a: 'state assets trade at 5–8x takeouts', b: 'strategics pay 7–28x for work meters', winner: 'b' },
       ],
       score:
-        'Score: state 5, work 3 — but the rounds aren’t equally weighted, and three of state’s five are about what hasn’t been paid yet.',
+        'Score: state 4, work 3 — but the rounds aren’t equally weighted: the ledger’s wins are structural, the toll road’s are already in the cash.',
     },
-    takeaway: { icon: '🥊', text: 'State wins on moat and price; work wins on conversion and bid.' },
+    takeaway: { icon: '🥊', text: 'State wins on moat and commitment; work wins on conversion and bid.' },
   },
   {
     id: 68,

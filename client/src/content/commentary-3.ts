@@ -289,7 +289,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Eight rounds, each scored from an exhibit in this part, and the card reads state 5, work 3 — with the caveat printed under the card: three of state’s five rounds are about what hasn’t been paid yet. The resolution is not a winner but two clocks. The toll road bills the next three years: usage revenue recognizes as agents act, at 26% cash margins, with acquirers circling. The ledger compounds the decade: gravity accumulates with every write, and never rewinds.',
+        'Seven rounds, each scored from an exhibit in this part, and the card reads state 4, work 3 — close on purpose, because the layers are good at different things. The resolution is not a winner but two clocks. The toll road bills the next three years: usage revenue recognizes as agents act, at 26% cash margins, with acquirers circling. The ledger compounds the decade: gravity accumulates with every write, and never rewinds.',
     },
     {
       kind: 'p',
