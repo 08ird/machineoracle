@@ -592,7 +592,7 @@ export const SLIDES: Slide[] = [
     },
     takeaway: {
       icon: '✅',
-      text: 'Our 2026 global estimate (~100Q) needs about six Googles; every dated print sits on or above the path.',
+      text: 'Every dated platform print has landed on or above the path — the newest by the widest margin yet.',
     },
   },
   {
@@ -663,10 +663,6 @@ export const SLIDES: Slide[] = [
           label: 'hyperscaler capex guidance, with 10-GW-class campuses announced on three continents',
         },
       ],
-    },
-    takeaway: {
-      icon: '⚡',
-      text: 'A build of this size only clears its cost of capital if token demand compounds roughly like our curve.',
     },
   },
   {
@@ -1409,11 +1405,6 @@ export const SLIDES: Slide[] = [
         },
       ],
     },
-    takeaway: {
-      icon: '⚠️',
-      text:
-        'The one world the thesis does not cover: machine labor migrating off public rails entirely — sealed labs, national projects. That risk is on the bear-case ledger, with the rest.',
-    },
   },
   {
     id: 82,
@@ -1542,10 +1533,6 @@ export const SLIDES: Slide[] = [
         { n: 'Compute', head: 'Captures cycles, not annuities', desc: '' },
       ],
     },
-    takeaway: {
-      icon: '🏛️',
-      text: 'The layers that rewrite every year compete; the layers that accumulate compound.',
-    },
   },
   {
     id: 88,
@@ -1565,7 +1552,6 @@ export const SLIDES: Slide[] = [
         { head: 'The new moats are proprietary state and earned trust', desc: 'When anyone can summon software, code stops being an advantage.' },
       ],
     },
-    takeaway: { icon: '🏢', text: 'Every one of these changes routes through the meters.' },
   },
   {
     id: 90,

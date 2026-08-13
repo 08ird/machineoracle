@@ -1,4 +1,4 @@
-/** Part 03 — A Royalty on Machine Labor. */
+/** Part 03 — A Royalty on Machine Labor. Expanded narrative with dated sources. */
 
 import type { Block } from './types';
 
@@ -8,12 +8,17 @@ export const part3: Record<number, Block[]> = {
       kind: 'p',
       lead: true,
       text:
-        'The invoice line for machine labor already exists, and that is a more important fact than any forecast in this document. Seven vendors have shipped a machine billable unit between 2023 and 2026 — all dated, all public.',
+        'Part 02 ended with a forecast. This part starts with an invoice. The single most underappreciated fact in this market is that machine labor already has a price sheet: seven vendors have shipped a machine billable unit between 2023 and 2026 — all dated, all public, all checkable against their own pricing pages.',
     },
     {
       kind: 'p',
       text:
-        'Four flavours emerge — outcomes, actions, sessions, metered compute — and the variety matters less than the fact of it. The unit of account for machine work is being standardized in public, vendor by vendor. When an industry invents a unit of account, the market has arrived; nobody prices a thing that isn’t selling.',
+        'The sequence tells its own story. Intercom priced the outcome first — 99 cents per resolved support ticket, in 2023, when the industry was still debating whether chatbots worked. Cognition priced the agent’s time. Salesforce is the most instructive: it launched Agentforce at $2 per conversation in October 2024, discovered within months what the market would actually bear, and re-priced to ten cents per action — a 95% cut that is not weakness but price discovery, the exact process by which every new commodity finds its unit. Cloudflare priced machine reading itself. And in April 2026, ServiceNow — a seat company if there ever was one — rebuilt its entire catalog into AI-native tiers that run on consumption pools, with large agentic actions drawing 150 “assists” against 25 for small ones, and overage billed on top.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Four flavours emerge — outcomes, actions, sessions, metered compute — and the variety matters less than the fact of it. The unit of account for machine work is being standardized in public, vendor by vendor, the way the kilowatt-hour was standardized a century ago. When an industry invents a unit of account, the market has arrived; nobody prices a thing that isn’t selling.',
     },
   ],
 
@@ -21,16 +26,17 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Revenue is events times price times capture. The wave guarantees the first term — roughly 190x by 2029. Prices fall 30 to 40% a year, which we model. Capture is the fight, and our elasticity research puts it at 0.5 to 0.7.',
+        'Revenue is events times price times capture. The wave guarantees the first term — roughly 190x by 2029. Prices fall 30 to 40% a year, which we model rather than resist. Capture is the fight, and our elasticity research puts it at 0.5 to 0.7: for every doubling of usage, revenue grows 50 to 70%.',
     },
     {
       kind: 'p',
       text:
-        'Measured attach in the filings today reads 0.2 to 0.3, well below the 20-to-40-per-thousand-tokens we described. That is a lag, not a leak. Committed contracts burn first, so surge usage draws down prepaid credits and appears in backlog one to three quarters before revenue. Where usage caps bind, more than 75% of buyers keep paying at list. And mix carries the model: premium event classes — security, governed queries, CI — gain share as agents graduate to production.',
+        'Measured attach in the filings today reads 0.2 to 0.3, well below the 20-to-40-per-thousand-tokens we described. That is a lag, not a leak, and the mechanics say why. Committed contracts burn first, so surge usage draws down prepaid credits and appears in backlog one to three quarters before it appears in revenue. Pilots meter lightly while production meters everything — and the pilot phase is exactly where the enterprise world still stands: MIT’s widely-cited 2025 study found roughly 95% of enterprise generative-AI pilots had produced no measurable P&L impact. Read as a verdict on AI, that number ended a hype cycle; read as a description of where workloads sit on the graduation curve, it is a schedule of future metering. Where usage caps already bind, more than 75% of buyers keep paying at list.',
     },
     {
       kind: 'p',
-      text: 'Underwriting a royalty on machine labor is underwriting capture. That is what this part prices, meter by meter.',
+      text:
+        'Underwriting a royalty on machine labor is underwriting capture. That is what this part prices, meter by meter.',
     },
   ],
 
@@ -43,7 +49,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Layer 0 is capital-heavy and already priced. Layer 1 is competitive and deflating, and has no public pure play in any case. The key layers are the ones that meter work and accumulate state.',
+        'Layer 0 is capital-heavy and already priced: the market needs no help noticing Nvidia. Layer 1 — the models — creates the most value and keeps the least: it is competitive, deflating by design (the 50x price collapse of Part 02 is its business model), and has no public pure play in any case. Layer 4 is where agents deliver outcomes, and Part 01 explained why its packaged products deflate. The key layers are the two in the middle: the ones that meter work as it happens and accumulate state as it compounds. Everything an agent does passes through both.',
     },
   ],
 
@@ -55,11 +61,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The backend is what agents run on: three unavoidable activities — execute, remember, and answer for it. Twenty-five companies. The worksite is where agents do the work: forty-two companies whose rails get paid per action, whose records convert or compress, and whose seats are the other side of the trade.',
+        'The backend is what agents run on. Strip any agent task to its skeleton and three activities remain, none optional: it must execute (runs, steps, compute-seconds), it must remember (reads, writes, queries, storage), and it must answer for itself (logs, identities, audit trails). That last one is not a technical nicety. When Air Canada’s chatbot invented a refund policy in 2024, a tribunal ruled the airline owned its software’s promises — the company was answerable for what its agent said. When a coding agent at Replit deleted a production database during a code freeze in 2025, the postmortem questions were exactly the backend’s product list: what did it do, what state did it touch, and what does the audit trail say? Twenty-five public companies sell those three activities.',
     },
     {
       kind: 'p',
-      text: 'The royalty is collected in the backend. Winners on the worksite are tracked, but the cohort is not picked there.',
+      text:
+        'The worksite is where agents do the work: forty-two companies whose rails get paid per action, whose records convert or compress, and whose seats are the other side of the trade. The royalty is collected in the backend. Winners on the worksite are tracked, but the cohort is not picked there — a distinction that matters because the worksite is where the knife-fight of Part 01 happens, and the backend is where it gets billed.',
     },
   ],
 
@@ -67,12 +74,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The universe is the BVP Nasdaq Emerging Cloud Index plus four extensions — 67 names, with DigitalOcean reclassified to layer 0. The median cloud business trades at about 4.1x forward revenue and grows about 20%; only about eleven names are usage-billed at all.',
+        'To keep ourselves honest about what “the market” means, the universe is defined mechanically: the BVP Nasdaq Emerging Cloud Index plus four extensions — 67 public companies, with DigitalOcean reclassified to layer 0. The median cloud business trades at about 4.1x forward revenue and grows about 20%. Only about eleven of the 67 are usage-billed at all — a first hint of how rare the meter model still is inside “cloud software”.',
     },
     {
       kind: 'p',
       text:
-        'Bucketed on the master frame, that is a 25-name backend and a 42-name worksite. The full roster is published — classification, not holdings — with the action rails marked as per-action worksite meters.',
+        'Bucketed on the master frame, that is a 25-name backend and a 42-name worksite. The full roster is published — classification, not holdings — because a screen you cannot replicate is a story, and this piece is trying not to tell stories.',
     },
   ],
 
@@ -80,7 +87,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'A reader who follows this space will notice the most interesting meters are missing from the public universe. They are being built in private, and every one of them is a future entrant — on IPO, and on one 10-K.',
+        'A reader who follows this space will notice the most interesting meters are missing from the public universe. They are being built in private, at speeds that make the public comps look sleepy: the agent-era runtime and tooling companies — Cursor, Lovable, Replit, Vercel, Temporal, Modal — include some of the fastest revenue ramps in software history, with the leaders reaching hundreds of millions of run-rate revenue within a year or two of launch.',
+    },
+    {
+      kind: 'p',
+      text:
+        'For this research program they matter twice. They are evidence — private usage-billed infrastructure growing at triple digits is the wave landing exactly where the thesis says it lands. And they are the pipeline: every name on the exhibit is a future universe entrant, on IPO and one 10-K. The frontier labs themselves — the layer-1 engines — cannot be bought at all, which is worth sitting with: the public market is offered the meters or nothing.',
     },
   ],
 
@@ -88,12 +100,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The backend fishes in two ponds. State is a $161B pond growing 18% a year on Gartner’s DBMS forecast — the game there is winning share of something already enormous. Work is a smaller $25–30B pond growing 12 to 14%, the metered core of observability and SIEM.',
+        'The backend fishes in two ponds. State is a $161 billion pond growing 18% a year on Gartner’s DBMS forecast — the game there is winning share of something already enormous, and the agent era adds a current to swim with. Work is a smaller $25–30 billion pond growing 12 to 14% — the metered core of observability and SIEM.',
     },
     {
       kind: 'p',
       text:
-        'But the wave is digging a new pond beside it: agent runtime, roughly $1–2B today and growing over 100% a year, which our event forecasts put above $10B by 2029. And behind both sits roughly $240B of security budget, almost none of it usage-billed yet. That is the conversion prize.',
+        'But the wave is digging a new pond beside it: agent runtime, roughly $1–2 billion today and growing over 100% a year, which our event forecasts put above $10 billion by 2029. And behind both sits roughly $240 billion of annual security budget, almost none of it usage-billed yet — a conversion prize that grows with every agent an enterprise deploys, because the thing security budgets exist to watch is about to multiply a hundredfold.',
     },
   ],
 
@@ -101,12 +113,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Software TAMs measure the old pond. Machine labor ultimately prices against something far larger: the roughly $35 trillion global knowledge-work wage pool.',
+        'Software TAMs measure the old pond. Machine labor ultimately prices against something far larger: the roughly $35 trillion the world pays every year for knowledge work. This is Part 01’s tools-versus-labor distinction arriving on the income statement — a tool is worth a fraction of the worker who uses it; work is worth the wage it replaces.',
     },
     {
       kind: 'p',
       text:
-        'The old TAM is a line item inside the new one. Delegation share, not software budgets, sets the ceiling on the royalty.',
+        'The arithmetic in the exhibit deliberately uses small numbers. One percent of task-value delegated by 2029. Ten to twenty cents billed per human-dollar of work delivered. Even at those fractions, machine-labor billings land at $35–70 billion a year — roughly a third of today’s entire enterprise-software market, added on top of it. The old TAM is a line item inside the new one. Delegation share, not software budgets, sets the ceiling on the royalty.',
     },
   ],
 
@@ -114,21 +126,25 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Scatter all 67 names and the pattern holds: most of the universe sits below 25% growth and below 8x forward revenue. The right edge is thin, and above the rule-of-40 line at 30%-plus growth sits almost nobody — and what is there is work and state, not apps.',
+        'Scatter all 67 names on growth against multiple and the market’s actual opinion emerges: most of the universe sits below 25% growth and below 8x forward revenue. The right edge is thin, and above the rule-of-40 line at 30%-plus growth sits almost nobody — and what is there is work and state, not apps.',
     },
-    { kind: 'p', text: 'Work earns today; state compounds for decades.' },
+    {
+      kind: 'p',
+      text:
+        'Read the three layer rows and a division of labor appears. Work earns today — 23% growth, the richest multiple of the three, 26% cash conversion. State compounds for decades — the slowest to show the wave, and the hardest to displace once it has. Apps grow slowest, convert least distinctively, and sit on the layer infinite software actively erodes. The tape, we will see shortly, has been voting on exactly this split.',
+    },
   ],
 
   53: [
     {
       kind: 'p',
       text:
-        'The two backend layers run different business models, and conflating them is the most common analytical error we see in this space.',
+        'The two backend layers run different business models, and conflating them is the most common analytical error we see in this space. State is the ledger: it meters reads, writes, queries, storage — the memory of machine labor. Its moat is data gravity, the oldest force in enterprise software: moving a production database is painful enough that companies carry them across decades and acquisitions. Its revenue arrives slowly and leaves almost never. Work is the toll road: it bills runs, steps, traces, and scans as they happen, which makes it first to feel the wave — and its moat is the audit mandate. You cannot self-audit; the watcher must be independent of the watched. One day in July 2024, when a single bad update from the watching layer grounded airlines and hospitals worldwide, the world learned how deep that layer sits in everything — infrastructure that critical does not get ripped out; it gets renewed.',
     },
     {
       kind: 'p',
       text:
-        'They also fail differently. Open, portable state formats would break the ledger case; model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty.',
+        'They also fail differently, and honesty requires naming the failure that is already visible. Open, portable state formats would break the ledger case — and the open-table-format movement is not hypothetical; the ledger vendors themselves have been pushed to embrace it, which chips the lock-in even as it defends the workload. Model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty — and both are wired to public metrics on the tripwire list in Part 04.',
     },
   ],
 
@@ -136,12 +152,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Retention is where a usage business tells the truth about itself. Usage-billed meter names run a median NDR climbing from about 112 to 117 over six quarters. Seat-priced apps sit at about 101, flat.',
+        'Retention is where a usage business tells the truth about itself, because it is the one line that cannot be marketed: it is simply what last year’s customers paid this year. Usage-billed meter names run a median NDR climbing from about 112 to 117 over six quarters. Seat-priced apps sit at about 101, flat — customers renew the chairs and nothing else.',
     },
     {
       kind: 'p',
       text:
-        'The reason is structural rather than commercial: a seat is bought once and renewed, while a meter is billed every time an agent acts — from a customer who has already signed, with no salesperson involved in the increment. This is what a royalty looks like before anyone calls it one.',
+        'The reason is structural rather than commercial. A seat is bought once and renewed annually, so a seat vendor’s growth requires selling something new to someone. A meter is billed every time an agent acts — from a customer who has already signed, with no salesperson involved in the increment. When a customer’s agents work harder, the meter’s revenue rises by itself. This is what a royalty looks like before anyone calls it one, and the six-quarter climb is the agent era arriving in the one metric that cannot lie.',
     },
   ],
 
@@ -149,12 +165,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'If you want the purest read on agent usage available from outside a company, it is overage: usage billed above committed floors, at list price. State meters went from 14% to 24% of revenue over six quarters; work meters from 9% to 16%.',
+        'If you want the purest read on agent usage available from outside a company, it is overage: usage billed above committed floors, at list price. Nobody budgets for overage; it is what happens when workloads outrun the contract that was negotiated for them. State meters went from 14% to 24% of revenue over six quarters; work meters from 9% to 16%.',
     },
     {
       kind: 'p',
       text:
-        'Apps are at zero, and structurally must be — you cannot bill above a floor that doesn’t exist. Commitment tells the same story one step earlier: deferred revenue growth is accelerating fastest exactly where usage is metered.',
+        'Apps are at zero, and structurally must be — you cannot bill above a floor that doesn’t exist. The commitment side completes the picture: customers are pre-buying more consumption at each renewal, then exceeding even that. Contracted floors rising while the overage above them widens is what demand outrunning planning looks like, written in accounting.',
     },
   ],
 
@@ -162,12 +178,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Before any of our analysis, the tape has already voted — at the layer level, with no selection involved and no judgement about individual names.',
+        'Before any of our analysis, the tape has already voted — at the layer level, with no selection involved and no judgement about individual names. Since ChatGPT, equal-weighted: state +177%, work +175%, apps +55%. A three-to-one spread in under four years, produced by nothing more than which layer of the stack a company sits in.',
     },
     {
       kind: 'p',
       text:
-        'The deeper a layer derated in 2022, the harder it rebounded, and work leads the full period. The market pays the layers that meter machine labor, not the seats it replaces.',
+        'The full period adds the honest wrinkle: from January 2022 — which includes the great derate — work sits at 146, state at 128, and apps at 91, still underwater after four and a half years. The deeper a layer derated, the harder it rebounded. The market pays the layers that meter machine labor, not the seats it replaces — it has just never said so out loud.',
     },
   ],
 
@@ -175,12 +191,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Here is the anomaly this entire piece is built around. Three years of multiples, on a realized-forward basis, show all three layers grinding sideways-to-down — through the biggest software demand shock ever recorded.',
+        'Here is the anomaly this entire piece is built around. Three years of multiples, on a realized-forward basis, show all three layers grinding sideways-to-down — through the biggest software demand shock ever recorded. The returns of the previous exhibit were earned by earnings growth dragging flat multiples along, not by anyone re-rating anything.',
     },
     {
       kind: 'p',
       text:
-        'Nothing is priced for agents. Consensus forward numbers carry zero of them. The state layer is the cleanest illustration: growth turned up from 13% to 20% while the multiple did not move, leaving it at roughly 0.26x its growth rate — half the cohort’s ~0.5x.',
+        'Nothing is priced for agents; consensus forward numbers carry zero of them. The state layer is the cleanest illustration: growth turned up from 13% to 20% while the multiple did not move, leaving it at roughly 0.26x its growth rate — half the cohort’s ~0.5x. The work layer de-rated while growing steadily, its audit mandate still priced as a maintenance product rather than a meter. A market that has repriced every AI narrative from chips to power utilities has, so far, declined to reprice the layer that bills the work.',
     },
   ],
 
@@ -188,21 +204,25 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'And the businesses are not merely growing; they are converting. Work converts at 26% of revenue to free cash flow, apps at 22%, and state just inflected from 14% to 21% — six points in a single year.',
+        'And the businesses are not merely growing; they are converting. Work turns 26% of revenue into free cash flow, apps 22%, and state just inflected from 14% to 21% — six points of margin in a single year, the operating leverage of usage models arriving on schedule as they scale past their fixed costs.',
     },
-    { kind: 'p', text: 'Falling multiples, rising cash. That divergence is the anomaly Part 04 examines.' },
+    {
+      kind: 'p',
+      text:
+        'Hold the last three exhibits together: multiples flat to falling, cash margins rising, growth turning up. Each of the three can be individually explained away; the combination is the definition of an unexamined asset. That divergence is the anomaly Part 04 examines.',
+    },
   ],
 
   65: [
     {
       kind: 'p',
       text:
-        'One more market check, from the buyers with the most information: strategic acquirers keep paying for meters, and paying above where the layers trade.',
+        'One more market check, from the buyers with the most information: strategic acquirers keep paying for meters, and paying above where the layers trade. Microsoft took GitHub at roughly 28x revenue in 2018 — the price of the world’s code ledger. Cisco paid $28 billion for Splunk, the machine-data meter. IBM took HashiCorp; Salesforce took Informatica; 2026 brought an $11.3 billion takeout of Confluent, the event-streaming layer, and a pending ~$25 billion offer for CyberArk — identity, the answer-for-itself layer — the largest of its kind yet.',
     },
     {
       kind: 'p',
       text:
-        'That sets a floor of sorts under the public names — made by buyers who have done the diligence the public market has not.',
+        'That sets a floor of sorts under the public names — made by buyers who have done the diligence the public market has not. There is an irony worth noticing: the same corporate-development teams whose companies’ consensus estimates carry zero agents keep paying meter multiples for meter assets. The analysts’ models and the acquirers’ models disagree; only one of them writes checks.',
     },
   ],
 
@@ -210,7 +230,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Scored on this section’s evidence, the two backend layers split the honours — and the resolution is not a winner but two horizons.',
+        'Scored on this section’s evidence, the two backend layers split the honours — state wins durability, commitment, and overage purity; work wins wave beta, cash today, and the strategic bid. The resolution is not a winner but two clocks. The toll road bills the next three years: usage revenue recognizes as agents act, at 26% cash margins, with acquirers circling. The ledger compounds the decade: gravity accumulates with every write, and never rewinds.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Each clock carries its own pre-registered falsifier — open state formats for the decade case, runtime absorption for the three-year case — and Part 04 wires both to public metrics. Different moats, different risks, independent failure modes: one royalty.',
     },
   ],
 
@@ -218,7 +243,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The royalty is measured and growing. Part 04 defines the cohort that bills it, states the valuation framework, and commits the whole program to public grading.',
+        'The royalty, measured: retention of ~117 against ~101, overage share climbing from 14% to 24%, and the meter layers at 5–7x forward revenue with real cash margins — multiples that assume the fade while the filings print the turn. Part 01 named the era; Part 02 counted the wave; this part located who bills it and showed the receipts.',
+    },
+    {
+      kind: 'p',
+      text:
+        'What remains is what a research program owes its readers: name the instrument precisely, state what it is worth under explicit assumptions, put dates on the predictions, and stand somewhere findable to be graded. That is Part 04 — where this piece stops describing a wave and starts keeping score of one.',
     },
   ],
 };
