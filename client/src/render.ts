@@ -349,7 +349,7 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     // avoidance — series that end near the same value would otherwise print
     // their labels on top of each other.
     const vlabels: { x: number; y: number; text: string }[] = [];
-    const nlabels: { x: number; y: number; text: string; muted: boolean }[] = [];
+    const nlabels: { x: number; y: number; text: string; muted: boolean; ink?: boolean }[] = [];
 
     b.series.forEach((s) => {
       const pts = s.values
@@ -377,7 +377,7 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       }
 
       const last = pts[pts.length - 1];
-      nlabels.push({ x: last.x + 8, y: last.y + 4, text: s.name, muted: s.tone === 'muted' || s.tone === 'ink' });
+      nlabels.push({ x: last.x + 8, y: last.y + 4, text: s.name, muted: s.tone === 'muted', ink: s.tone === 'ink' });
     });
 
     // Same-x value labels that would stack: flip later ones below their point.
@@ -415,7 +415,7 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       const t = ns('text', {
         x: String(l.x),
         y: String(Math.min(l.y, H - pad.b - 4)),
-        class: `chart__slab${l.muted ? ' is-muted' : ''}`,
+        class: `chart__slab${l.muted ? ' is-muted' : ''}${l.ink ? ' is-ink' : ''}`,
       });
       t.textContent = l.text;
       svg.append(t);
@@ -459,7 +459,7 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       s.values.forEach((v, i) => {
         const cell = el('div', 'grouped__cell');
         const colwrap = el('div', 'grouped__colwrap');
-        const col = el('div', `grouped__bar${s.tone === 'muted' ? ' is-muted' : ''}`);
+        const col = el('div', `grouped__bar${s.tone === 'muted' ? ' is-muted' : ''}${s.tone === 'ink' ? ' is-ink' : ''}`);
         col.style.height = v == null ? '0' : `${Math.max(4, (v / max) * 100)}%`;
         colwrap.append(col);
         cell.append(el('div', 'grouped__v', s.display[i] ?? ''), colwrap, el('div', 'grouped__x', b.x[i]));

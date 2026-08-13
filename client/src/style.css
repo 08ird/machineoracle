@@ -937,6 +937,9 @@ blockquote cite {
 .chart__slab.is-muted {
   fill: var(--ink-4);
 }
+.chart__slab.is-ink {
+  fill: var(--ink-2);
+}
 .chart__tick {
   stroke: var(--ink-4);
   stroke-width: 1;
@@ -954,6 +957,9 @@ blockquote cite {
   display: grid;
   gap: 1.5rem;
 }
+.grouped__series {
+  min-width: 0;
+}
 .grouped__name {
   font-family: var(--sans);
   font-size: 0.7rem;
@@ -967,6 +973,16 @@ blockquote cite {
   display: flex;
   gap: 0.4rem;
   align-items: flex-end;
+}
+/* Many-quarter tracks scroll in place on narrow screens. */
+@media (max-width: 44rem) {
+  .grouped__track {
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+  .grouped__cell {
+    min-width: 1.9rem;
+  }
 }
 .grouped__cell {
   flex: 1 1 0;
@@ -989,6 +1005,9 @@ blockquote cite {
 }
 .grouped__bar.is-muted {
   background: var(--rule);
+}
+.grouped__bar.is-ink {
+  background: var(--ink-2);
 }
 .grouped__v {
   font-family: var(--display);

@@ -49,7 +49,7 @@ export type Body =
       kind: 'grouped';
       axis?: string;
       x: string[];
-      series: { name: string; values: (number | null)[]; display: (string | null)[]; tone?: 'accent' | 'muted' }[];
+      series: { name: string; values: (number | null)[]; display: (string | null)[]; tone?: 'accent' | 'muted' | 'ink' }[];
     }
   | {
       kind: 'decompose';
@@ -1433,30 +1433,31 @@ export const SLIDES: Slide[] = [
     kicker: 'Median net dollar retention by layer, quarterly since 2022',
     title: 'A seat is bought once. A meter is billed every time an agent acts.',
     body: {
-      kind: 'line',
-      axis: 'Median net dollar retention, %',
+      kind: 'grouped',
+      axis: 'Median net dollar retention, %, quarterly',
       x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
       series: [
         {
           name: 'L2 · State',
           values: [132, 130, 127, 124, 120, 117, 114, 112, 110, 109, 109, 110, 112, 113, 114, 115, 116, 117],
-          display: ['132', null, null, null, null, null, null, null, null, '109', null, null, null, null, null, null, null, '117'],
+          display: ['132', null, '127', null, '120', null, '114', null, '110', '109', '109', '110', '112', '113', '114', '115', '116', '117'],
         },
         {
           name: 'L3 · Work',
           values: [122, 121, 119, 117, 115, 113, 112, 111, 110, 110, 110, 111, 111, 112, 113, 114, 115, 115],
-          display: ['122', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '115'],
+          display: ['122', null, '119', null, '115', null, '112', null, '110', '110', '110', '111', '111', '112', '113', '114', '115', '115'],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
           values: [112, 110, 108, 106, 105, 104, 103, 102, 102, 101, 101, 101, 101, 101, 101, 101, 101, 101],
-          display: ['112', null, null, null, null, null, null, null, null, null, null, null, null, '101', null, null, null, null],
+          display: ['112', null, '108', null, '105', null, '103', null, '102', '101', null, null, null, null, null, null, null, '101'],
           tone: 'muted',
         },
       ],
     },
-    footnote: 'Layer medians from company disclosures; quarterly, approximate. Retention above 100 means the installed base grows without new customers.',
+    footnote:
+      'Layer medians from company disclosures; quarterly, approximate. Retention above 100 means the installed base grows without new customers. The state and work troughs bottom in early 2024 and have climbed every quarter since.',
   },
   {
     id: 56,
@@ -1471,18 +1472,18 @@ export const SLIDES: Slide[] = [
         {
           name: 'L2 · State',
           values: [35, 32, 28, 25, 22, 19, 17, 15, 14, 13, 12, 13, 14, 15, 11, 16, 22, 22],
-          display: ['35%', null, null, null, null, null, null, null, null, null, null, null, null, null, '11%', null, null, '22%'],
+          display: ['35%', null, null, null, '22%', null, null, null, '14%', null, null, null, '14%', null, '11%', null, null, '22%'],
         },
         {
           name: 'L3 · Work',
           values: [30, 28, 26, 24, 22, 20, 19, 18, 17, 16, 15, 16, 17, 18, 20, 14, 12, 16],
-          display: ['30%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '16%'],
+          display: ['30%', null, '26%', null, null, null, '19%', null, null, null, '15%', null, null, '18%', null, null, null, '16%'],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
           values: [24, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 13, 13, 13, 13, 12, 15, 14],
-          display: ['24%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '14%'],
+          display: ['24%', null, null, '20%', null, null, null, null, null, '14%', null, null, null, null, null, null, null, '14%'],
           tone: 'muted',
         },
       ],
@@ -1503,12 +1504,12 @@ export const SLIDES: Slide[] = [
         {
           name: 'L2 · State',
           values: [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 16, 18, 20, 22, 24],
-          display: ['8%', null, null, null, null, null, null, null, null, null, null, null, '14%', null, null, null, null, '24%'],
+          display: ['8%', null, null, null, '10%', null, null, null, '12%', null, null, null, '14%', null, '18%', null, null, '24%'],
         },
         {
           name: 'L3 · Work',
           values: [5, 5.3, 5.6, 6, 6.3, 6.6, 7, 7.4, 7.8, 8.2, 8.6, 8.8, 9, 10, 11.5, 13, 14.5, 16],
-          display: ['5%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '16%'],
+          display: ['5%', null, null, '6%', null, null, '7%', null, null, null, null, null, '9%', null, null, '13%', null, '16%'],
           tone: 'ink',
         },
         {
@@ -1534,18 +1535,18 @@ export const SLIDES: Slide[] = [
         {
           name: 'L3 · Work',
           values: [34, 32, 30, 28, 26, 25, 24, 23, 22, 21, 20, 20, 20, 20, 21, 21, 23, 23],
-          display: ['34%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '23%'],
+          display: ['34%', null, null, null, '26%', null, null, null, '22%', null, null, null, '20%', null, null, null, null, '23%'],
         },
         {
           name: 'L2 · State',
           values: [38, 35, 32, 29, 26, 23, 21, 19, 18, 17, 16, 16, 16, 19, 19, 17, 20, 18],
-          display: ['38%', null, null, null, null, null, null, null, null, null, null, null, '16%', null, null, null, null, '18%'],
+          display: ['38%', null, '32%', null, null, null, '21%', null, null, null, '16%', null, null, null, '19%', null, null, '18%'],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
           values: [30, 29, 28, 26, 25, 23, 22, 21, 20, 19, 19, 18, 18, 17, 16, 16, 15, 16],
-          display: ['30%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '16%'],
+          display: ['30%', null, null, '26%', null, null, null, null, null, '19%', null, null, null, null, null, null, null, '16%'],
           tone: 'muted',
         },
       ],
@@ -1569,18 +1570,18 @@ export const SLIDES: Slide[] = [
         {
           name: 'L3 · Work',
           values: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 24, 25, 25, 26, 26],
-          display: ['12%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '26%'],
+          display: ['12%', null, null, null, '16%', null, null, null, '20%', null, null, null, '24%', null, null, null, null, '26%'],
         },
         {
           name: 'L2 · State',
           values: [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 19, 21],
-          display: ['0%', null, null, null, null, null, null, null, null, null, null, null, null, '14%', null, null, null, '21%'],
+          display: ['0%', null, '2%', null, null, null, '7%', null, null, null, '11%', null, null, '14%', null, null, null, '21%'],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
           values: [14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 21, 22, 22],
-          display: ['14%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+          display: ['14%', null, null, '16%', null, null, null, null, null, '19%', null, null, null, null, null, null, null, null],
           tone: 'muted',
         },
       ],
@@ -1621,18 +1622,18 @@ export const SLIDES: Slide[] = [
         {
           name: 'L3 · Work',
           values: [0, -15, -32, -40, -45, -50, -42, -30, -18, -5, 5, 12, 20, 18, 25, 32, 38, 42, 46],
-          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '+46%'],
+          display: [null, null, null, null, null, null, null, null, null, null, '+5%', null, null, null, '+25%', null, null, null, '+46%'],
         },
         {
           name: 'L2 · State',
           values: [0, -18, -36, -45, -52, -55, -48, -38, -28, -18, -10, -4, 4, 0, 8, 16, 22, 25, 28],
-          display: [null, null, null, null, null, '−55%', null, null, null, null, null, null, null, null, null, null, null, null, '+28%'],
+          display: [null, null, null, null, null, '−55%', null, null, null, null, null, null, '+4%', null, null, null, null, null, '+28%'],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
           values: [0, -20, -38, -48, -53, -57, -52, -45, -38, -32, -28, -25, -20, -24, -20, -16, -12, -10, -9],
-          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '−9%'],
+          display: [null, null, null, null, null, null, null, null, '−38%', null, null, null, null, null, null, null, null, null, '−9%'],
           tone: 'muted',
         },
       ],
@@ -1659,18 +1660,18 @@ export const SLIDES: Slide[] = [
         {
           name: 'L3 · Work',
           values: [17, 13.5, 11, 10, 9.5, 9.8, 10.0, 10.4, 10.8, 10.2, 10.6, 11.2, 11.8, 10.8, 9.6, 8.8, 8.2, 7.6, 6.7],
-          display: ['17x', null, null, null, null, null, null, null, null, null, null, null, '11.8x', null, null, null, null, null, '6.7x'],
+          display: ['17x', null, null, null, null, null, '10x', null, null, null, null, null, '11.8x', null, null, null, '8.2x', null, '6.7x'],
         },
         {
           name: 'L2 · State',
           values: [12, 9.5, 8, 7.2, 6.8, 6.9, 7.0, 7.2, 6.8, 6.5, 6.9, 7.3, 7.5, 7.0, 6.6, 6.3, 6.8, 6.6, 6.5],
-          display: ['12x', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+          display: ['12x', null, null, null, '6.8x', null, null, null, null, '6.5x', null, null, null, null, '6.6x', null, null, null, null],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
           values: [14, 11, 9.5, 8.8, 8.5, 8.4, 8.2, 7.8, 7.2, 6.6, 6.0, 5.6, 5.2, 4.8, 4.4, 4.0, 3.7, 3.5, 3.3],
-          display: ['14x', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '3.3x'],
+          display: ['14x', null, '9.5x', null, null, null, null, null, '7.2x', null, null, null, '5.2x', null, null, null, null, null, '3.3x'],
           tone: 'muted',
         },
       ],
@@ -1689,12 +1690,12 @@ export const SLIDES: Slide[] = [
       left: {
         name: 'EV / forward revenue',
         values: [11, 9, 7.8, 7, 6.5, 6.3, 6.1, 6.4, 6.6, 6.3, 6.7, 7.2, 7.5, 6.9, 6.4, 6.0, 5.8, 5.5, 5.2],
-        display: ['11x', null, null, null, null, null, '6.1x', null, null, null, null, null, '7.5x', null, null, null, null, null, '5.2x'],
+        display: ['11x', null, '7.8x', null, null, null, '6.1x', null, null, '6.3x', null, null, '7.5x', null, '6.4x', null, '5.8x', null, '5.2x'],
       },
       right: {
         name: 'Revenue growth y/y (bars)',
         values: [26, 24, 22, 20, 18, 15, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18.5, 19.5, 20],
-        display: ['26%', null, null, null, null, null, '13%', null, null, null, null, null, null, null, null, null, null, null, '20%'],
+        display: ['26%', null, null, '20%', null, null, '13%', null, null, null, '15%', null, null, null, '17%', null, null, null, '20%'],
       },
     },
     takeaway: {
@@ -1714,12 +1715,12 @@ export const SLIDES: Slide[] = [
       left: {
         name: 'EV / forward revenue',
         values: [19, 15, 12.5, 11.2, 10.8, 10.6, 10.5, 10.9, 11.3, 10.7, 11.1, 11.6, 12.1, 11.0, 9.8, 9.0, 8.4, 7.8, 7.2],
-        display: ['19x', null, null, null, null, null, null, null, null, null, null, null, '12.1x', null, null, null, null, null, '7.2x'],
+        display: ['19x', null, '12.5x', null, null, null, '10.5x', null, null, '10.7x', null, null, '12.1x', null, '9.8x', null, '8.4x', null, '7.2x'],
       },
       right: {
         name: 'Revenue growth y/y (bars)',
         values: [32, 30, 28, 27, 26, 25.5, 25, 24.5, 24, 23.5, 23, 23, 22.5, 22, 22, 21.5, 22, 22, 22],
-        display: ['32%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '22%'],
+        display: ['32%', null, null, '27%', null, null, '25%', null, null, null, '23%', null, null, null, '22%', null, null, null, '22%'],
       },
     },
     takeaway: {
