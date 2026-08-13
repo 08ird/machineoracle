@@ -142,6 +142,13 @@ export type Body =
       right: { head: string; caption: string; count?: number };
     }
   | {
+      // Token demand → rented rails → billable events (deck 34).
+      kind: 'convert';
+      from: { head: string; value: string; sub: string; tag: string };
+      via: { head: string; rows: { verb: string; desc: string }[] };
+      to: { head: string; value: string; sub: string; tag: string };
+    }
+  | {
       // Two series on independent axes (deck 62/63/76): multiple vs. growth.
       kind: 'dualline';
       x: string[];
@@ -727,12 +734,12 @@ export const SLIDES: Slide[] = [
     id: 29,
     part: 2,
     kicker: 'Two independent maps of the same wave',
-    title: 'Their OOMs, our meters',
+    title: 'Their orders of magnitude, our meters',
     body: {
       kind: 'table',
       head: ['', 'Situational Awareness', 'Machine Oracle'],
       rows: [
-        ['Core driver', 'Supply-side — effective compute ~1 OOM/yr', 'Demand-side — measured elasticity'],
+        ['Core driver', 'Supply-side — effective compute up ~10x a year', 'Demand-side — measured elasticity'],
         ['Unit', 'Capability per token', 'Raw tokens, capability held constant'],
         ['Adoption path', 'Drop-in remote workers by 2027', '22% of ~2B users by 2029'],
         ['Ceiling', 'The wage pool', 'Measured elasticity and capture'],
@@ -763,17 +770,42 @@ export const SLIDES: Slide[] = [
     },
   },
   {
+    // Site-original exhibit (no deck slide): the capex commitment, drawn.
+    id: 6,
+    part: 2,
+    kicker: 'Combined capital expenditure, four largest hyperscalers — Microsoft, Alphabet, Amazon, Meta',
+    title: 'The commitment, in dollars',
+    body: {
+      kind: 'bars',
+      axis: 'Capex per calendar year, $B',
+      items: [
+        { label: '2022', sub: 'the cloud steady state', value: 147, display: '~$150B', tone: 'muted' },
+        { label: '2023', sub: 'ChatGPT year one — capex flat', value: 152, display: '~$150B', tone: 'muted' },
+        { label: '2024', sub: 'the buildout begins', value: 228, display: '~$230B', tone: 'muted' },
+        { label: '2025', sub: 'measured', value: 410, display: '$410B' },
+        { label: '2026', sub: 'company guidance', value: 700, display: '~$700B', tone: 'accent' },
+        { label: '2027', sub: 'the announced trajectory', value: 1000, display: '~$1T', tone: 'accent' },
+      ],
+    },
+    takeaway: {
+      icon: '🏗️',
+      text: 'Flat for a decade, then roughly 7x in four years — a bet of record scale, placed by the best-informed buyers of compute on earth.',
+    },
+    footnote:
+      'Company disclosures; 2026 is guidance, 2027 the announced trajectory rather than guidance. Calendar years, approximate.',
+  },
+  {
     id: 31,
     part: 2,
     kicker: 'Their map, our meters — shown, not underwritten',
-    title: 'The SA case: ~6,000Q',
+    title: 'The Situational Awareness case: ~6,000Q',
     body: {
       kind: 'bars',
       axis: '2029 tokens / year',
       items: [
         { label: 'Street floor', sub: '×2.2/yr', value: 1100, display: '~1,100Q', tone: 'muted' },
         { label: 'Our wave case', sub: '×3.4/yr — underwritten', value: 4000, display: '~4,000Q', tone: 'accent' },
-        { label: 'SA case', sub: 'adoption below the physical ceiling', value: 6000, display: '~6,000Q' },
+        { label: 'Situational Awareness case', sub: 'adoption below the physical ceiling', value: 6000, display: '~6,000Q' },
         { label: 'Physical ceiling', sub: '~10x power × 3x FLOPs × 2.5x perf/watt', value: 7500, display: '~7,500Q', tone: 'warn' },
       ],
     },
@@ -818,10 +850,41 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 34,
-    extras: [35],
+    part: 2,
+    kicker: 'First-order explosion in tokens; second-order explosion in metered events',
+    title: 'The wave doesn’t stop at tokens — it lands on the meters',
+    body: {
+      kind: 'convert',
+      from: {
+        head: 'Token demand',
+        value: '~40x',
+        sub: 'to four quintillion tokens a year by 2029',
+        tag: 'the labs’ story',
+      },
+      via: {
+        head: 'Every action lands on rented rails',
+        rows: [
+          { verb: 'Executes', desc: 'runtime, compute & edge' },
+          { verb: 'Remembers', desc: 'data, state & memory' },
+          { verb: 'Answers for it', desc: 'identity, audit, logs & traces' },
+        ],
+      },
+      to: {
+        head: 'Billable infra events',
+        value: '~190x',
+        sub: '0.3Q → ~57Q by 2029 — the wave amplifies as it lands',
+        tag: 'the meters’ story',
+      },
+    },
+    takeaway: { icon: '🌊', text: 'Events compound faster than tokens.' },
+    footnote:
+      'Attach of 20–40 billable events per 1,000 agentic tokens, per the conversion model; ~190x = 0.3Q → ~57Q billable-weighted events by 2029. Illustrative.',
+  },
+  {
+    id: 35,
     part: 2,
     kicker: 'Growth index, 2026 = 1 (log scale) — billable events vs. tokens',
-    title: 'The wave lands on the meters: events grow ~190x',
+    title: 'The amplification, drawn',
     body: {
       kind: 'line',
       axis: 'Growth index, 2026 = 1 · log scale',
@@ -833,31 +896,6 @@ export const SLIDES: Slide[] = [
       ],
     },
     footnote: 'Skycatcher conversion model.',
-  },
-  {
-    id: 36,
-    part: 2,
-    kicker: 'Remove any one leg; the call still stands',
-    title: 'Five independent legs under one call',
-    body: {
-      kind: 'steps',
-      items: [
-        { n: 'History', head: '2,000x in four years', desc: 'Through two corrections and a panic.' },
-        { n: 'Precedent', head: 'Bandwidth, storage, mobile data', desc: 'Three decades, zero exceptions.' },
-        { n: 'The prints', head: 'Every dated platform disclosure', desc: 'On or above our path.' },
-        {
-          n: 'The suppliers',
-          head: '~$700B a year of committed capex',
-          desc: 'Only clears its hurdle on our demand curve.',
-        },
-        {
-          n: 'Our own meter',
-          head: 'Sky1 runs agents in production',
-          desc: 'Counts tokens per task directly — measured, not modeled.',
-        },
-      ],
-    },
-    takeaway: { icon: '🧱', text: '40x is the central case, not the hope.' },
   },
   {
     id: 37,
@@ -915,23 +953,22 @@ export const SLIDES: Slide[] = [
     kicker: 'Revenue = events × price × capture',
     title: 'Conversion is the question',
     body: {
-      kind: 'flow',
-      items: [
-        { head: 'Events  ~190x by 2029', desc: 'guaranteed by the wave' },
-        { head: 'Price  −30–40% a year', desc: 'the deflation we model' },
-        { head: 'Capture  0.5–0.7', desc: 'our elasticity research — the fight' },
-      ],
-      out: [
+      kind: 'decompose',
+      factors: [
+        { value: '~190x', label: 'billable events by 2029', note: 'guaranteed by the wave', from: '0.3Q', to: '~57Q' },
+        { value: '−30–40%', label: 'price, per year', note: 'the deflation we model, not resist', from: 'list today', to: '÷4–5x by 2029' },
         {
-          value: '0.2–0.3',
-          label: 'measured attach in the filings today — a lag, not a leak: committed contracts burn first, and the surge hits backlog one to three quarters before revenue',
-        },
-        {
-          value: '>75%',
-          label: 'of buyers keep paying at list price where usage caps bind',
+          value: '0.5–0.7',
+          label: 'capture — the fight',
+          note: 'each doubling of usage grows revenue 50–70%',
+          from: 'attach 0.2–0.3 today',
+          to: 'a lag, not a leak',
         },
       ],
+      result: { value: 'The royalty', label: 'revenue on machine labor', note: 'checked against filings for the rest of this part' },
     },
+    footnote:
+      'Attach today reflects committed contracts burning first — the surge hits backlog one to three quarters before revenue. Where usage caps bind, more than 75% of buyers keep paying at list.',
   },
   {
     id: 41,
@@ -1850,7 +1887,7 @@ export const SLIDES: Slide[] = [
         {
           n: '4',
           head: 'Retention math re-accelerates before new logos do',
-          desc: 'Meters’ NDR is ~117 and rising; at 130+, the installed base alone compounds >30%. Snowflake ran ~170 through the last step function.',
+          desc: 'Meters’ net dollar retention is ~117 and rising; at 130-plus, the installed base alone compounds above 30%. Snowflake ran ~170 through the last step function.',
         },
         { n: '5', head: 'The wave’s transmission is direct', desc: '40x tokens → ~190x billable events land on exactly these meters.' },
       ],
@@ -1905,7 +1942,7 @@ export const SLIDES: Slide[] = [
     takeaway: {
       icon: '🎚️',
       text:
-        'The wave lands at ~45% (~$42B). What selects it is written down: commitment >40%, overage >25%, NDR >130. Above it sits the SA case.',
+        'The wave lands at ~45% (~$42B). What selects it is written down: commitment above 40%, overage above 25%, retention above 130. Above it sits the Situational Awareness case.',
     },
     footnote: 'Scenarios, not forecasts. Skycatcher model; the fade is consensus.',
   },

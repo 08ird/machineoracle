@@ -85,10 +85,31 @@ export function footer(): HTMLElement {
 
 // ── Blocks ──────────────────────────────────────────────────────────────────
 
+/**
+ * Paragraph text supports one piece of markup: markdown-style links,
+ * `[text](https://…)`. Built with text nodes, never innerHTML.
+ */
+function paragraph(cls: string | undefined, text: string): HTMLElement {
+  const p = el('p', cls);
+  const re = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
+  let last = 0;
+  for (const m of text.matchAll(re)) {
+    p.append(document.createTextNode(text.slice(last, m.index)));
+    const a = el('a', undefined, m[1]);
+    a.href = m[2];
+    a.target = '_blank';
+    a.rel = 'noopener';
+    p.append(a);
+    last = m.index + m[0].length;
+  }
+  p.append(document.createTextNode(text.slice(last)));
+  return p;
+}
+
 function renderBlock(b: Block): HTMLElement {
   switch (b.kind) {
     case 'p':
-      return el('p', b.lead ? 'lead' : undefined, b.text);
+      return paragraph(b.lead ? 'lead' : undefined, b.text);
     case 'h2':
       return el('h2', undefined, b.text);
     case 'h3':

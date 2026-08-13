@@ -140,7 +140,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'We grade ourselves in public, so it is only fair to grade someone else the same way. In June 2024, Leopold Aschenbrenner published Situational Awareness — the essay this site’s epigraph borrows its “straight lines” discipline from — and it made concrete forecasts that can now be scored with 2026 data: chatbots becoming agents, $100-billion-class clusters, a national scramble for power, test-time compute unlocking long-horizon work.',
+        'We grade ourselves in public, so it is only fair to grade someone else the same way. In June 2024, Leopold Aschenbrenner published [Situational Awareness](https://situational-awareness.ai) — the essay this site’s epigraph borrows its “straight lines” discipline from — and it made concrete forecasts that can now be scored with 2026 data: chatbots becoming agents, $100-billion-class clusters, a national scramble for power, test-time compute unlocking long-horizon work.',
     },
     {
       kind: 'p',
@@ -153,7 +153,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'It is worth setting the two maps side by side, because they differ in method and agree in direction. Situational Awareness reasons from supply: effective compute compounding roughly an order of magnitude a year, capability per token rising, drop-in remote workers arriving as a consequence. We reason from demand: measured elasticity, capability deliberately held constant, adoption counted in users and intensity rather than IQ. Their ceiling is the wage pool; ours is what the elasticity data will bear.',
+        'It is worth setting the two maps side by side, because they differ in method and agree in direction. Situational Awareness counts in orders of magnitude — factors of ten, the “OOMs” of its title chapter — and reasons from supply: effective compute compounding roughly one order of magnitude a year, capability per token rising, drop-in remote workers arriving as a consequence. We reason from demand: measured elasticity, capability deliberately held constant, adoption counted in users and intensity rather than IQ. Their ceiling is the wage pool; ours is what the elasticity data will bear.',
     },
     {
       kind: 'p',
@@ -175,16 +175,30 @@ export const part2: Record<number, Block[]> = {
     },
   ],
 
-  31: [
+  // Site-original exhibit: the hyperscaler capex commitment, drawn.
+  6: [
     {
       kind: 'p',
       text:
-        'Run the same meters on Situational Awareness assumptions, bounded by physics. If the announced build fully lands — roughly 10x inference power by 2029, times ~3x FLOPs-per-token, times ~2.5x performance-per-watt — the physical ceiling is about 75x today’s tokens, or ~7,500Q. The SA case adopts below that ceiling: always-on share above 30%, intensity of 60 to 100 million tokens a day, landing near 6,000Q.',
+        'The commitment deserves to be seen rather than summarized. For a decade, the four largest hyperscalers spent a steady ~$150 billion a year building the cloud — and the number barely moved through ChatGPT’s first year, because you cannot re-plan a datacenter fleet in a quarter. Then the re-planning landed: capex half again higher in 2024, $410 billion in 2025, roughly $700 billion guided for 2026, and a trillion a year on the announced trajectory for 2027.',
     },
     {
       kind: 'p',
       text:
-        'Through the same event math and capture that Part 03 develops, that world pays the cohort roughly $55–70 billion of 2029 revenue against about $42 billion in our wave. We underwrite 40x. The SA case is what the same meters earn if their map is right — shown, not underwritten, and the reason “too conservative” is a live criticism of this piece from one direction while “too aggressive” arrives from the other. We take that as a sign the number is placed honestly.',
+        'Read the shape, not just the level. A step-function this violent, from operators this disciplined, is not enthusiasm — it is a capacity plan against a demand forecast they can see and we cannot: their own order books. Nothing in this piece asks you to trust our curve over theirs; it only notes that the two curves agree.',
+    },
+  ],
+
+  31: [
+    {
+      kind: 'p',
+      text:
+        'Run the same meters on Situational Awareness assumptions, bounded by physics. If the announced build fully lands — roughly 10x inference power by 2029, times ~3x FLOPs-per-token, times ~2.5x performance-per-watt — the physical ceiling is about 75x today’s tokens, or ~7,500Q. The Situational Awareness case adopts below that ceiling: always-on share above 30%, intensity of 60 to 100 million tokens a day, landing near 6,000Q.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Through the same event math and capture that Part 03 develops, that world pays the cohort roughly $55–70 billion of 2029 revenue against about $42 billion in our wave. We underwrite 40x. The Situational Awareness case is what the same meters earn if their map is right — shown, not underwritten, and the reason “too conservative” is a live criticism of this piece from one direction while “too aggressive” arrives from the other. We take that as a sign the number is placed honestly.',
     },
   ],
 
@@ -223,8 +237,11 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Token demand of ~40x is the labs’ story, and it is the one being told everywhere. But every action lands on rented rails — it executes, it leaves state behind, and it must answer for itself — so billable infrastructure events compound faster than the tokens that cause them: about 190x by our model, from 0.3Q to roughly 57Q by 2029.',
+        'Token demand of ~40x is the labs’ story, and it is the one being told everywhere. But every action lands on rented rails — it executes, it leaves state behind, and it must answer for itself — so billable infrastructure events compound faster than the tokens that cause them: about 190x by our model, from 0.3Q to roughly 57Q by 2029. The exhibit is the whole conversion in one picture: tokens on the left are what the labs sell; the three activities in the middle are what every agent action must rent; the events on the right are what the meters bill. The wave amplifies as it lands.',
     },
+  ],
+
+  35: [
     {
       kind: 'p',
       text:
@@ -232,19 +249,11 @@ export const part2: Record<number, Block[]> = {
     },
   ],
 
-  36: [
-    {
-      kind: 'p',
-      text:
-        'A single-support forecast is a guess with a chart. Ours rests on five independent legs, and removing any one of them leaves the call standing. History: 2,000x in four years, through everything the market threw at it. Precedent: bandwidth, storage, and mobile data ran the same curve for three decades without an exception. The prints: every dated platform disclosure has landed on or above the path, the latest by the widest margin yet. The suppliers: three-quarters of a trillion dollars a year of committed capex that only makes sense on this demand curve. And our own meter: Sky1 runs agents in production and counts tokens per task directly — the one leg that is measured rather than sourced.',
-    },
-  ],
-
   37: [
     {
       kind: 'p',
       text:
-        'Three numbers close the part: ~40x tokens, ~75% of them doing rather than asking, ~190x billable events landing on the rails. Part 01 said the software population explodes; this part counted the explosion. What it has not yet shown is the only thing an investor of any kind should care about — whether anyone actually gets paid. That is Part 03: the companies already billing machine labor by the unit, and the evidence, line by line, in their filings.',
+        'Three numbers close the part: ~40x tokens, ~75% of them doing rather than asking, ~190x billable events landing on the rails. None of the three stands on a single support — the history, the precedents, the platform prints, the suppliers’ capex, and our own production telemetry all point the same way, and removing any one of them leaves the call standing. Part 01 said the software population explodes; this part counted the explosion. What it has not yet shown is the only thing an investor of any kind should care about — whether anyone actually gets paid. That is Part 03: the companies already billing machine labor by the unit, and the evidence, line by line, in their filings.',
     },
   ],
 };

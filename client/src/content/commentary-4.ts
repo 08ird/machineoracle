@@ -73,7 +73,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The retention math is the quiet one worth understanding. At the cohort’s ~117 and rising, the installed base alone compounds double digits before a single new customer signs. If agent workloads push NDR past 130, the installed base compounds above 30% by itself. That is not a hypothetical ceiling: Snowflake ran retention near 170 through the last platform shift, when cloud data workloads were the new S-curve. Meters have done this before, on a smaller wave.',
+        'The retention math is the quiet one worth understanding. At the cohort’s ~117 and rising, the installed base alone compounds double digits before a single new customer signs. If agent workloads push net dollar retention past 130, the installed base compounds above 30% by itself. That is not a hypothetical ceiling: Snowflake ran retention near 170 through the last platform shift, when cloud data workloads were the new S-curve. Meters have done this before, on a smaller wave.',
     },
   ],
 
@@ -99,7 +99,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Partial conversion is the world where the wave arrives but leaks: event volumes on the street-floor token path, capture below our measured band — $25–33 billion. The wave is the ~4,000Q case run through four deliberate haircuts — falling unit prices, discounted commitments, measured capture, compute-heavier margins — landing near $42 billion. And the selectors that decide between these worlds are written down in advance: commitment above 40%, overage above 25%, NDR above 130. Watch three numbers each quarter and you will know which world you are in years before the sell side re-models it.',
+        'Partial conversion is the world where the wave arrives but leaks: event volumes on the street-floor token path, capture below our measured band — $25–33 billion. The wave is the ~4,000Q case run through four deliberate haircuts — falling unit prices, discounted commitments, measured capture, compute-heavier margins — landing near $42 billion. And the selectors that decide between these worlds are written down in advance: commitment above 40%, overage above 25%, net dollar retention above 130. Watch three numbers each quarter and you will know which world you are in years before the sell side re-models it.',
     },
   ],
 

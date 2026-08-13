@@ -815,6 +815,38 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     return w;
   },
 
+  // ── Deck 34: token demand converts to billable events ─────────────────────
+  convert(b) {
+    const w = el('div', 'convert');
+
+    const card = (c: { head: string; value: string; sub: string; tag: string }, accent: boolean) => {
+      const d = el('div', `convert__card${accent ? ' convert__card--accent' : ''}`);
+      d.append(
+        el('div', 'convert__head', c.head),
+        el('div', 'convert__value', c.value),
+        el('div', 'convert__sub', c.sub),
+        el('div', 'convert__tag', c.tag)
+      );
+      return d;
+    };
+
+    w.append(card(b.from, false));
+    w.append(el('div', 'convert__arrow', '→'));
+
+    const via = el('div', 'convert__via');
+    via.append(el('div', 'convert__head', b.via.head));
+    for (const r of b.via.rows) {
+      const row = el('div', 'convert__row');
+      row.append(el('span', 'convert__verb', r.verb), el('span', 'convert__desc', r.desc));
+      via.append(row);
+    }
+    w.append(via);
+
+    w.append(el('div', 'convert__arrow', '→'));
+    w.append(card(b.to, true));
+    return w;
+  },
+
   // ── Deck 62/63/76: two series on independent axes ─────────────────────────
   dualline(b) {
     const w = el('div', 'chart');
