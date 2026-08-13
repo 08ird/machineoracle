@@ -143,19 +143,6 @@ export const part1: Record<number, Block[]> = {
     },
   ],
 
-  16: [
-    {
-      kind: 'p',
-      text:
-        'We have a precedent, close enough to be uncomfortable. In the four years after the tidal-wave memo — May 1995 to May 1999, all of it before the mania began — the NASDAQ roughly tripled. Intel returned about 6x and Microsoft about 7x. The best of them was Cisco, at about 13x — a company that sold nothing to consumers, ran no websites, and owned no content. It sold the plumbing that every website, good or bad, had to run through.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The detail worth carrying forward: those returns were earned while the argument was still live. Netscape went public eleven weeks after the memo; the crowd spent the next three years debating whether the internet was a fad, a toy, or a bubble. The rails did not need the debate to resolve. Every position in the argument — bull, bear, and bored — generated traffic, and the traffic was billed.',
-    },
-  ],
-
   17: [
     {
       kind: 'p',

@@ -376,23 +376,6 @@ export const SLIDES: Slide[] = [
     takeaway: { icon: '💡', text: 'The value moves to the metered column.' },
   },
   {
-    id: 16,
-    part: 1,
-    kicker: 'Total return, four years following the tidal wave memo (May 1995 – May 1999)',
-    title: 'Last time, the rails got paid first',
-    body: {
-      kind: 'bars',
-      items: [
-        { label: 'NASDAQ', value: 3, display: '~3x', tone: 'muted' },
-        { label: 'Intel', value: 6, display: '~6x' },
-        { label: 'Microsoft', value: 7, display: '~7x' },
-        { label: 'Cisco', value: 13, display: '~13x', tone: 'accent' },
-      ],
-    },
-    takeaway: { icon: '🧠', text: 'All before the mania began. The crowd debated; the rails compounded.' },
-    footnote: 'Approximate total-return multiples from public market data, May 1995–May 1999. Past performance is not indicative of future results.',
-  },
-  {
     id: 17,
     part: 1,
     kicker: 'Part 01 recap',
