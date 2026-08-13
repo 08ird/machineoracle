@@ -18,7 +18,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The honest caveats: tokenizers differ across labs, so cross-platform counts are not perfectly commensurable, and the disclosure anchors are sparse. The uncertainty is in the second digit; the phenomenon is in the exponent.',
+        'Two caveats: tokenizers differ across labs, so cross-platform counts are not perfectly commensurable, and the disclosure anchors are sparse. The uncertainty is in the second digit; the phenomenon is in the exponent.',
     },
   ],
 
@@ -88,7 +88,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'This is the assumption that matters most in the entire piece, and we would rather name it plainly than bury it. Today roughly 85% of tokens are “ask” — a person waiting at a chat box — and about 15% are “doing”: work delegated to software that no longer waits for prompts. Our 2029 case requires doing to reach about 75%. If the delegation ladder stalls, our numbers do not happen, whatever else goes right.',
+        'This is the assumption that matters most in the entire piece. Today roughly 85% of tokens are “ask” — a person waiting at a chat box — and about 15% are “doing”: work delegated to software that no longer waits for prompts. Our 2029 case requires doing to reach about 75%. If the delegation ladder stalls, our numbers do not happen, whatever else goes right.',
     },
     {
       kind: 'p',
@@ -106,7 +106,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'It sounds aggressive until you look at what it assumes about growth. The trailing four years ran at about ×7 a year. We are underwriting a deceleration by half — a wave that is visibly losing speed — and still arrive at nearly four times the street’s floor of ~1,100Q. The floor is not a bear case we invented to look balanced: it is what you get applying unit elasticity to the announced price path, the street’s own arithmetic run honestly. The distance between those two lines is the entire debate.',
+        'It sounds aggressive until you look at what it assumes about growth. The trailing four years ran at about ×7 a year. We are underwriting a deceleration by half — a wave that is visibly losing speed — and still arrive at nearly four times the street’s floor of ~1,100Q. The floor is not a bear case we invented to look balanced: it is what you get applying unit elasticity to the announced price path — the street’s own arithmetic. The distance between those two lines is the entire debate.',
     },
   ],
 
@@ -119,7 +119,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Being explicit about what we do not know: the widest error bars sit on the middle factor. Adoption curves for delegation inside enterprises are young, and the honest range around 22% is wide in both directions. That is why the floor case shares the same users and the same intensity band — the whole disagreement compresses into how many people let the software work while they sleep.',
+        'The widest error bars sit on the middle factor. Adoption curves for delegation inside enterprises are young, and the range around 22% is wide in both directions. That is why the floor case shares the same users and the same intensity band — the whole disagreement compresses into how many people let the software work while they sleep.',
     },
   ],
 
@@ -198,7 +198,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Through the same event math and capture that Part 03 develops, that world pays the cohort roughly $55–70 billion of 2029 revenue against about $42 billion in our wave. We underwrite 40x. The Situational Awareness case is what the same meters earn if their map is right — shown, not underwritten, and the reason “too conservative” is a live criticism of this piece from one direction while “too aggressive” arrives from the other. We take that as a sign the number is placed honestly.',
+        'Through the same event math and capture that Part 03 develops, that world pays the cohort roughly $55–70 billion of 2029 revenue against about $42 billion in our wave. We underwrite 40x. The Situational Awareness case is what the same meters earn if their map is right — shown, not underwritten, and the reason “too conservative” is a live criticism of this piece from one direction while “too aggressive” arrives from the other. Criticism from both directions is a sign the number is placed about right.',
     },
   ],
 

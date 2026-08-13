@@ -78,7 +78,7 @@ export const conclusion: Conclusion = {
         {
           kind: 'p',
           text:
-            'The economics above are the measurable part of a larger change, and it would be dishonest to end without describing it — because the larger change is the reason to care. Start with the cost of trying. When an experiment costs a quarter and a team, organizations attempt only the experiments they can defend in a planning meeting; the great silent tax on the modern economy is every idea that died in prioritization. When an experiment costs an afternoon, that tax is repealed. Most of the era’s growth, we suspect, comes from work that was never attempted — the long tail of things worth doing that were never worth staffing.',
+            'The economics above are the measurable part of a larger change — and the larger change is the reason to care. Start with the cost of trying. When an experiment costs a quarter and a team, organizations attempt only the experiments they can defend in a planning meeting; the great silent tax on the modern economy is every idea that died in prioritization. When an experiment costs an afternoon, that tax is repealed. Most of the era’s growth, we suspect, comes from work that was never attempted — the long tail of things worth doing that were never worth staffing.',
         },
         {
           kind: 'p',
@@ -88,7 +88,7 @@ export const conclusion: Conclusion = {
         {
           kind: 'p',
           text:
-            'The honesty clause: displacement precedes redeployment, and the transition is measured in careers, not quarters. Every prior wave eventually created more work than it destroyed, and every prior wave hurt real people in the interim. Both halves of that sentence are true, and a research program has no business publishing only one of them.',
+            'Displacement precedes redeployment, and the transition is measured in careers, not quarters. Every prior wave eventually created more work than it destroyed, and every prior wave hurt real people in the interim. Both halves of that sentence are true, and a research program has no business publishing only one of them.',
         },
       ],
     },
@@ -108,7 +108,7 @@ export const conclusion: Conclusion = {
         {
           kind: 'p',
           text:
-            'Abundance of software will feel like literacy did. For seventy years software was written by a priesthood for everyone else. When writing stopped being a scribal profession, civilization did not simply produce more documents — it reorganized around the written word: law that could be looked up, science that could be replicated, agreements that outlived the people who made them. A billion people who can summon software will reorganize work in ways no forecast in this piece captures, and we mean that as a statement of humility, not of hype. Honesty requires the other side too: substitution displaces before it redeploys, and the distribution of these gains is a political question, not a technical one.',
+            'Abundance of software will feel like literacy did. For seventy years software was written by a priesthood for everyone else. When writing stopped being a scribal profession, civilization did not simply produce more documents — it reorganized around the written word: law that could be looked up, science that could be replicated, agreements that outlived the people who made them. A billion people who can summon software will reorganize work in ways no forecast in this piece captures — a statement of humility, not of hype. The other side is also true: substitution displaces before it redeploys, and the distribution of these gains is a political question, not a technical one.',
         },
         {
           kind: 'p',

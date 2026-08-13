@@ -16,7 +16,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Applied to the 25-name backend, the rule admits three companies: Snowflake, MongoDB, and Datadog. We want to be precise about why the mechanical framing matters, because it is the difference between research and salesmanship. A stock pick asks you to trust the picker; a rule asks you to check the filing. The rule could have been applied in 2022 from public pricing pages alone — no foresight required, no story about management vision, no judgement calls that conveniently favor the author. The thesis is stated as an instrument anyone can replicate, because claims that cannot be replicated cannot be graded, and Part 04 exists to be graded.',
+        'Applied to the 25-name backend, the rule admits three companies: Snowflake, MongoDB, and Datadog. The mechanical framing is the difference between research and salesmanship: a stock pick asks you to trust the picker; a rule asks you to check the filing. The rule could have been applied in 2022 from public pricing pages alone — no foresight required, no story about management vision, no judgement calls that conveniently favor the author. The thesis is stated as an instrument anyone can replicate, because claims that cannot be replicated cannot be graded, and Part 04 exists to be graded.',
     },
     {
       kind: 'p',
@@ -55,12 +55,12 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full tape back to 2022 shows the round trip honestly: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths — and the first re-acceleration this cohort has printed since the derate.',
+        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full tape back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths — and the first re-acceleration this cohort has printed since the derate.',
     },
     {
       kind: 'p',
       text:
-        'And the rule alone beats the layers: +218% since ChatGPT against +177% for state, +175% for work, and +55% for apps. One mechanical filter — usage-billed or not — separates +218% from +55%. The honest cut is that the cohort also absorbed the deepest 2022 derate, at −60%, and from January 2022 it is +18%, behind both layers on the full period. We show that cut deliberately: consumption is higher-beta in both directions, and a reader deciding whether to take this seriously deserves to see the round trip, not the flattering half.',
+        'And the rule alone beats the layers: +218% since ChatGPT against +177% for state, +175% for work, and +55% for apps. One mechanical filter — usage-billed or not — separates +218% from +55%. The other side of the cut: the cohort also absorbed the deepest 2022 derate, at −60%, and from January 2022 it is +18%, behind both layers on the full period. We show that deliberately — consumption is higher-beta in both directions, and the round trip matters more than the flattering half.',
     },
   ],
 
@@ -133,7 +133,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The honest edge of the map: the one world the thesis does not cover is machine labor migrating off public rails entirely — sealed labs, national projects, work that never touches a rentable meter. We flag it because a thesis that covers every world is a faith, and this is not that. It sits on the bear-case ledger with the rest.',
+        'The edge of the map: the one world the thesis does not cover is machine labor migrating off public rails entirely — sealed labs, national projects, work that never touches a rentable meter. We flag it because a thesis that covers every world is a faith, and this is not that. It sits on the bear-case ledger with the rest.',
     },
   ],
 

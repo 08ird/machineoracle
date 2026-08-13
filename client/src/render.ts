@@ -589,11 +589,16 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       s.append(svgText(cx + r * 0.2, base - 2 * r + 16, `${b.backdrop.label} · ${b.backdrop.value}`, 'ponds__backlab', 'middle'));
     }
 
-    // Ponds left→right with their centers spread across the width.
-    const slots = b.ponds.length;
+    // Ponds left→right, the whole group centered: each pond's footprint is
+    // its circle (plus dashed ring, where present), with a fixed gap between.
+    const gap = 70;
+    const halves = b.ponds.map((p) => rOf(p.size) + (p.ring ? 26 : 0));
+    const total = halves.reduce((sum, h) => sum + 2 * h, 0) + gap * (b.ponds.length - 1);
+    let cursor = (W - total) / 2;
     b.ponds.forEach((p, i) => {
       const r = rOf(p.size);
-      const cx = (W / (slots + 1)) * (i + 1) + (i === 0 ? -30 : 40);
+      const cx = cursor + halves[i];
+      cursor += 2 * halves[i] + gap;
       const cy = base - r;
       if (p.ring) {
         const rr = r + 26;

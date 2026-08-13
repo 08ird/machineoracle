@@ -106,7 +106,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Three consequences follow, and they multiply. The human bottleneck is removed, so attention-hours no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred workstreams from one instruction. And the duty cycle changes: forty human attention-hours become 168 machine-hours a week. One analyst helping you becomes a thousand analysts working around the clock. We would add the honest qualifier the vendors won’t: reliability and supervision still bind, failures are real, and Part 03 will meet a famous one. The direction, though, is not in dispute — and the direction is what the meters bill.',
+        'Three consequences follow, and they multiply. The human bottleneck is removed, so attention-hours no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred workstreams from one instruction. And the duty cycle changes: forty human attention-hours become 168 machine-hours a week. One analyst helping you becomes a thousand analysts working around the clock. One qualifier: reliability and supervision still bind, failures are real, and Part 03 will meet a famous one. The direction, though, is not in dispute — and the direction is what the meters bill.',
     },
   ],
 
