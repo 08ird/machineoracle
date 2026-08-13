@@ -1,123 +1,186 @@
-/** Part II — The Token Tidal Wave. */
+/** Part 02 — The Token Tidal Wave. */
 
 import type { Block } from './types';
 
 export const part2: Record<number, Block[]> = {
-  13: [
+  19: [
     {
       kind: 'p',
       lead: true,
       text:
-        'Before any forecast, the record. Global token consumption went from 0.05 quadrillion a year in 2022 to roughly 100 quadrillion in 2026. That is about 2,000x in four years, and it arrived in an orderly sequence: 10x, then 10x, then 5x, then 4x.',
+        'Before any forecast, the record. Global token consumption ran 0.05 quadrillion in 2022, 0.5Q in 2023, 5Q in 2024, 25Q in 2025, and roughly 100Q in 2026 — a ~2,000x expansion in four years.',
     },
     {
       kind: 'p',
       text:
-        'Note what that line ran through. Two market corrections and one full-scale AI panic, complete with declarations that the buildout was a bubble and the models had hit a wall. Demand never blinked. Not once did the curve bend to accommodate the narrative.',
-    },
-    {
-      kind: 'p',
-      text:
-        'These are aggregated platform disclosures, not a survey and not our imagination. The honest caveats: tokenizers differ across labs, so cross-platform token counts are not perfectly commensurable, and the disclosure anchors are sparse — a “100 trillion a quarter” here, a “quadrillion a month” there — so the series carries error bars of tens of percent. None of that matters to the argument. The uncertainty is in the second digit; the phenomenon is in the exponent.',
+        'Note what that line ran through: two market corrections and one full-scale AI panic, complete with declarations that the buildout was a bubble and the models had hit a wall. Demand never blinked. The honest caveats: tokenizers differ across labs, so cross-platform counts are not perfectly commensurable, and the disclosure anchors are sparse. The uncertainty is in the second digit; the phenomenon is in the exponent.',
     },
   ],
 
-  14: [
+  20: [
     {
       kind: 'p',
       text:
-        'The institutional model of this market assumes that falling prices compress revenue. It is the reflex of anyone who has watched a hardware cycle. Applied here it produces the fade case that dominates every sell-side model, and it has been wrong for four consecutive years.',
+        'The institutional model of this market assumes falling prices compress revenue. It is the reflex of anyone who has watched a hardware cycle, it produces the fade case that dominates every sell-side model, and it has been wrong for four consecutive years.',
     },
     {
       kind: 'p',
       text:
-        'What actually happened: frontier price per million tokens fell about 50x, from roughly $20 to $0.40. Volume rose about 2,000x. Every 10x reduction in price has purchased 15 to 20x more demand — a measured elasticity of about 1.6, sustained across the entire period.',
+        'What actually happened: over the same window, frontier token prices fell about 50x while volume rose about 2,000x. The measured slope is ~1.2–1.3 — every 10x price decline bought 15 to 20x more demand. This is the single most important measured fact in the piece: the demand curve for machine cognition is elastic above one.',
     },
     {
       kind: 'p',
       text:
-        'We checked the obvious objection, which is that buyers were purchasing capability rather than responding to price — the confound would be that each year’s tokens simply do more. So we ran the same measurement against constant-capability tiers: models held at a fixed benchmark level whose prices fell as newer tiers arrived above them. The slope holds. Cheaper tokens do not shrink this market. They enlarge it, and they enlarge it faster than they cut it.',
-    },
-    {
-      kind: 'p',
-      text:
-        'A note on terms, because we use two elasticities in this document and they are not the same number. The 1.6 here is demand elasticity — tokens bought per unit of price cut. The 0.5 to 0.7 in Parts IV and V is monetization elasticity — revenue captured per unit of usage growth, after discounts and commitments. The first says the wave builds; the second, deliberately conservative, says how much of it the meters keep.',
+        'We checked the obvious objection, which is that buyers were purchasing capability rather than responding to price. Measured against constant-capability tiers — models held at a fixed benchmark level whose prices fell as newer tiers arrived above them — the slope holds.',
     },
   ],
 
-  15: [
+  21: [
     {
       kind: 'p',
       text:
-        'The reason we think this continues is that the heaviest users of tokens barely exist yet.',
+        'This is not the first time the price of a compute input has collapsed, and the pattern has never once reversed. Internet transit fell from $1,200 to under $1 per Mbps between 1998 and 2010 while traffic grew 60 to 100% a year, and carrier and CDN revenue grew through the entire collapse. Storage fell about 30% a year for three decades and industry revenue compounded anyway. Mobile data fell about 40% a year in the smartphone era while usage per user grew roughly 100x in a decade, and data revenue rose as voice died.',
     },
     {
       kind: 'p',
-      text:
-        'Of roughly a billion weekly AI users, about 2.5% run agents today. That alone is 40x of headroom in penetration. But penetration is the smaller half of the arithmetic. A casual chat user consumes on the order of 10,000 tokens a day. An always-on agent consumes 5 to 25 million — a difference of 500 to 2,500x for the same human being.',
-    },
-    {
-      kind: 'p',
-      text:
-        'And the clock is different. A person gives you about forty attention-hours a week. An agent runs one hundred and sixty-eight. The same customer becomes worth orders of magnitude more the day their software stops waiting to be prompted.',
+      text: 'Every time compute’s inputs got 10x cheaper, spend grew anyway. Tokens are running the same curve, faster.',
     },
   ],
 
-  16: [
+  22: [
     {
       kind: 'p',
       text:
-        'This is the assumption that matters most in the entire piece, and we would rather name it plainly than bury it. Tokens are shifting from asking to doing.',
+        'The sharpest technical objection to this thesis is efficiency: if models get better at the same task, tokens per task fall, and work decouples from consumption. Four forces push that way, and the call survives all of them — because each one cuts the price per task, and cheaper tasks are the mechanism of the wave rather than its enemy.',
     },
     {
       kind: 'p',
       text:
-        'Today roughly 85% of tokens are spent on chat and 15% on delegated work. Our case requires that ratio to invert to something like 25/75 by 2029. If the delegation ladder stalls, our numbers do not happen.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The evidence that it is not stalling is already public. About 77% of one major lab’s API traffic already classifies as automation rather than conversation. Coding’s share of routed model traffic went from 11% to over 50% in a single year. Enterprise API tokens at the leading lab rose 150% in five months. Our case needs a doing-share of 60% or better; anything above that beats consensus outright.',
+        'We hold this answer with less confidence than the rest of the document, which is why tokens-per-task in our own production stack is a leading indicator we watch directly — the filings cannot give it to us.',
     },
   ],
 
-  17: [
+  23: [
     {
       kind: 'p',
       text:
-        'So here is our call, stated as a number that can be graded against us: roughly 2,700 quadrillion tokens a year by 2029. From today’s 100 quadrillion, that is 27x.',
+        'The reason we think this continues is that the heaviest users of tokens barely exist yet. Only about 2.5% of roughly a billion weekly AI users run agents today — 40x of headroom in penetration alone.',
     },
     {
       kind: 'p',
       text:
-        'It sounds aggressive until you look at what it assumes about growth. Our case runs at about 3x a year. The trailing four years ran at about 7x a year. We are underwriting a deceleration of more than half, and we still arrive at a number two and a half times the street’s floor of roughly 1,100 quadrillion.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The floor is not a bear case invented to look balanced. It is what you get by applying unit elasticity to the announced price path — the street’s own arithmetic, run honestly. The distance between the two lines is the entire opportunity.',
+        'Intensity is the larger half of the arithmetic. Casual chat consumes about 10,000 tokens per user-day; an always-on agent consumes 5 to 25 million — a difference of 500 to 2,500x for the same human being. And the clock is different: a person gives you about forty attention-hours a week, an agent 168.',
     },
   ],
 
-  18: [
+  24: [
     {
       kind: 'p',
       text:
-        'The 27x is not a curve we drew and then justified. It is three assumptions multiplied, each of which can be argued with separately.',
+        'This is the assumption that matters most in the entire piece, and we would rather name it plainly than bury it. Today roughly 85% of tokens are “ask” — chat — and about 15% are “doing”: delegate and automate. Our 2029 case puts doing at about 75%.',
     },
     {
       kind: 'p',
       text:
-        'Weekly AI users roughly double, from about 1 billion to about 2 billion. The share running always-on agents goes from 2.5% to about 15%, a factor of six. And each agent-day consumes somewhere in the observed band of 10 to 25 million tokens. Two billion users, times fifteen percent, times twenty-five million tokens a day, times three hundred and sixty-five days, is approximately 2,700 quadrillion.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Notice that the floor and the wave share the same users and the same penetration. At 10 million tokens a day you get the street’s 1,100 quadrillion. At 25 million you get our 2,700. The entire debate between us and consensus is a debate about intensity — how hard a delegated agent works — and that is a question the filings will settle within four quarters.',
+        'The evidence that the ladder is already climbing is public: 77% of a major lab’s API traffic classifies as automation; coding’s share of routed model traffic went from 11% to over 50% in a single year; enterprise API tokens at the leading lab grew 150% in five months. Our case needs a doing-share of 60% or better, and anything above that already beats consensus.',
     },
   ],
 
-  19: [
+  25: [
+    {
+      kind: 'p',
+      text:
+        'So here is our call, stated as a number that can be graded against us: roughly 4,000 quadrillion tokens a year by 2029. From about 100Q in 2026, that is 40x, compounding ×3.4 a year.',
+    },
+    {
+      kind: 'p',
+      text:
+        'It sounds aggressive until you look at what it assumes about growth. The trailing four years ran at about ×7 a year. We are underwriting a deceleration by half and still arrive at nearly four times the street’s floor of ~1,100Q — which is not a bear case we invented, but what you get applying unit elasticity to the announced price path.',
+    },
+  ],
+
+  26: [
+    {
+      kind: 'p',
+      text:
+        'The 40x is not a curve we drew and then justified. It is three assumptions multiplied, each of which can be argued with separately — and the debate between us and consensus is entirely about the middle two.',
+    },
+  ],
+
+  27: [
+    {
+      kind: 'p',
+      text:
+        'A forecast that cannot be checked between now and its horizon is not worth much. Ours can: the platforms publish token counts, and every dated disclosure so far sits on or above our path.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Our 2026 global estimate of about 100Q needs roughly six Googles. Alphabet alone was at a ~16Q annual run-rate as of its third-quarter 2025 disclosure.',
+    },
+  ],
+
+  28: [
+    {
+      kind: 'p',
+      text:
+        'We grade ourselves in public, so it is only fair to grade someone else the same way. Aschenbrenner’s Situational Awareness, published June 2024, made forecasts we can now score with 2026 data.',
+    },
+    {
+      kind: 'p',
+      text:
+        'An independent forecast drawn two years ago, graded against today’s prints: the wave keeps arriving on schedule, whoever draws the curve. Note that his central claim — AGI by 2027 — is not ours, and nothing in this piece requires it.',
+    },
+  ],
+
+  29: [
+    {
+      kind: 'p',
+      text:
+        'It is worth setting the two maps side by side, because they differ in method and agree in direction. Their core driver is supply-side: effective compute compounding roughly an order of magnitude a year. Ours is demand-side: measured elasticity. Their unit is capability per token; ours is raw tokens with capability deliberately held constant.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The maps multiply rather than compete. Where they disagree is upside to the meters, not risk — which is why we underwrite the lower number.',
+    },
+  ],
+
+  30: [
+    {
+      kind: 'p',
+      text:
+        'The obvious physical objection is supply: can compute actually deliver 40x more tokens? The arithmetic is less demanding than it sounds, because two efficiency terms sit between token demand and power draw.',
+    },
+    {
+      kind: 'p',
+      text:
+        'And the capital has already been committed. A build of this size only clears its cost of capital if token demand compounds roughly like our curve — which means the suppliers have underwritten our demand forecast with their own balance sheets.',
+    },
+  ],
+
+  31: [
+    {
+      kind: 'p',
+      text:
+        'Run the same meters on Situational Awareness assumptions, bounded by power. If the announced build fully lands — roughly 10x inference power by 2029, times ~3x FLOPs-per-token, times ~2.5x performance-per-watt — the physical ceiling is about 75x, or ~7,500Q. The SA case adopts below that ceiling: always-on share above 30%, intensity of 60 to 100M tokens a day, landing near 6,000Q.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Through the same event math and capture, that pays the cohort roughly $55–70B of 2029 revenue against about $42B in our wave. We underwrite 40x; the SA case is what the same meters earn if their map is right. Shown, not underwritten.',
+    },
+  ],
+
+  32: [
+    {
+      kind: 'p',
+      text:
+        'A build approaching a trillion dollars a year invites the question of whether anything like it has happened before. It has, three times — and in each case the metered owners of the new rails collected the era’s royalties, whether or not the first wave of operators survived.',
+    },
+  ],
+
+  33: [
     {
       kind: 'p',
       text:
@@ -126,66 +189,36 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Take a single delegated task — “fix the failing build.” The agent thinks, consuming perhaps 200,000 tokens of planning, reading, and reasoning. Then the agent works, and working means API calls, database reads and writes, test runs, builds, traces, and logs. One multi-step coding task can generate more than 100,000 metered events.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Two numbers here need to be squared, because a careful reader will divide one by the other. The 100,000-plus figure counts raw metered events — every log line, trace span, and cache read the task touches. Most of those are bundled or priced near zero. When we weight events by what actually bills, the same task nets out to 20 to 40 billable-weighted events per thousand agentic tokens, and that is the conservative number every downstream forecast in this document uses. Machine labor does not arrive as a token invoice. It arrives as an invoice on somebody else’s rails.',
+        'Two numbers here need to be squared, because a careful reader will divide one by the other. The 100,000-plus figure counts raw metered events — every log line, trace span, and cache read the task touches; most are bundled or priced near zero. Weighted by what actually bills, the same task nets out to 20 to 40 billable events per thousand agentic tokens, and that conservative number is what every downstream forecast in this document uses.',
     },
   ],
 
-  20: [
+  34: [
     {
       kind: 'p',
       text:
-        'This is the second-order effect that consensus has not modelled at all, because consensus is still reading this as a story about the labs.',
+        'Token demand of ~40x is the labs’ story. Every action, though, lands on rented rails — it runs, it stores, it is secured, it is observed — so billable infrastructure events compound faster: about 190x, from 0.3Q to roughly 57Q by 2029.',
     },
     {
       kind: 'p',
       text:
-        'Token demand grows about 27x, past two quintillion tokens a year by 2029. That is the labs’ story and it is the one being told. But every action an agent takes lands on rented rails — something that runs it, something that stores its state and memory, something that secures its identity and audits its supply chain, something that observes its logs and traces.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Run the attach rate through those four layers and billable infrastructure events grow about 130x, from roughly 0.3 quadrillion to about 39 quadrillion. The wave does not dissipate as it lands. It amplifies.',
+        'Events outgrow tokens in every single year of the forecast, because two things deepen simultaneously: the agentic share of tokens, and the number of billable events each agentic token drags behind it. For the labs this is a token story; for the meters it is an event story. We would rather own the event.',
     },
   ],
 
-  21: [
+  36: [
     {
       kind: 'p',
       text:
-        'The amplification is not a one-off step; it compounds annually, and it compounds faster than the thing causing it.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Indexed to 2026, infrastructure events run 6x by 2027, 25x by 2028, and 130x by 2029 — between four and six times a year. Tokens over the same period run 3x, 9x, and 27x. Events outgrow tokens in every single year of the forecast, because two things deepen simultaneously: the agentic share of tokens, and the number of billable events each agentic token drags behind it.',
-    },
-    {
-      kind: 'p',
-      text:
-        'For the labs this is a token story. For the meters it is an event story. We would rather own the event.',
+        'A single-support forecast is a guess with a chart. Ours rests on five independent legs, and removing any one of them leaves the call standing.',
     },
   ],
 
-  22: [
+  37: [
     {
       kind: 'p',
       text:
-        'Three numbers carry this part, and each is graded quarterly against public filings through Sky1.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Tokens 27x by 2029 — 3x a year against a 7x history, which makes our call a slowdown rather than a stretch. About 75% of tokens doing rather than asking, where anything above 60% already beats consensus. And roughly 130x billable infrastructure events, because the wave amplifies as it lands on the meters.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The middle number is the one to argue with. It is the most important assumption in the machine labor thesis, and everything downstream of it — revenue, margin, multiple — is a consequence rather than a separate bet. What Part III does is show that the consequences have already started appearing in the filings.',
+        'Three numbers carry this part. Part 03 has to prove the harder half: who actually collects the bill.',
     },
   ],
 };

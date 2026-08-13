@@ -1,9 +1,7 @@
 /**
- * The home-page hook — the short scene-setting essay above the table of
- * contents, in the reference site's structure: a handful of unheaded
- * paragraphs that end on a transition line into the chapters.
- *
- * DRAFT in Skycatcher voice; the claims are the deck's own.
+ * The home-page hook — the prologue from content/00-how-to-read-this.md:
+ * the memo, the internet clock, the method. Ends on the transition into the
+ * table of contents.
  */
 
 import type { Article } from './types';
@@ -18,17 +16,13 @@ export const letter: Article = {
     {
       kind: 'p',
       lead: true,
-      text: 'You can see the future first in the usage logs.',
+      text:
+        'In 1995, the internet changed software distribution. In 2026, AI agents are changing software production — creating a tidal wave of demand for the infrastructure that runs, stores, secures, observes, and meters all software.',
     },
     {
       kind: 'p',
       text:
-        'When machines write software, the cost of producing it collapses toward zero and the quantity of it explodes. But software that exists has to run somewhere. It has to store state, prove identity, get delivered, get observed, and get billed. Production is becoming free; operation never will be. So the money moves — off the thing being made, onto the meters the made thing runs through. Those meters are owned by a small number of public companies that already disclose their usage every ninety days. Every prior computing wave sold tools that made people more productive; this one sells the labor itself, and the addressable market is not the software budget but the labor budget.',
-    },
-    {
-      kind: 'p',
-      text:
-        'This has happened before — and the last time, someone named it while it was still deniable. In May 1995, with the street debating whether the whole thing was a fad, Bill Gates sent Microsoft an internal memo:',
+        'Thirty-one years ago, someone named the last wave while it was still deniable. In May 1995, with the street debating whether the whole thing was a fad, Bill Gates sent Microsoft an internal memo:',
     },
     {
       kind: 'wavequote',
@@ -39,21 +33,30 @@ export const letter: Article = {
     {
       kind: 'p',
       text:
-        'The memo marked the moment an incumbent recognized a paradigm shift. Gates could not have named Google, the smartphone, or SaaS, and he did not need to — the framing was right about magnitude even where the details were fuzzy, and it timestamps the beginning of a roughly thirty-year value-creation wave. Nearly every trillion-dollar company built since traces to it.',
+        'The memo marked the moment an incumbent recognized a paradigm shift. It was right about the magnitude even where the details were fuzzy, and it timestamps the start of a roughly thirty-year value-creation wave.',
+    },
+    { kind: 'h2', text: 'By the internet clock, it is 1996' },
+    {
+      kind: 'p',
+      text:
+        'Set the two waves on the same clock. The internet: 1995, the memo names the discontinuity; 1996–98, the rails get built and paid while the street debates “fad”; 1999–2000, the mania — 65–100x multiples, then 60–85% compression; 2001 onward, the rails’ owners collect the era’s fortunes.',
     },
     {
       kind: 'p',
       text:
-        'Everyone is now talking about AI agents, but the street has never modeled them — every sell-side estimate for the companies in this document is a fade. Meanwhile the filings have already turned: retention is compounding again, contracted backlog is growing at twice the rate of revenue, and machine labor has acquired its own invoice line at seven vendors. By the internet clock it is 1996 — after the memo, before the mania. Early enough to matter, late enough to have receipts.',
+        'The token wave: November 2022, ChatGPT — the Netscape moment, from roughly zero; 2026, the debate, with multiples still at fade levels. You are here. Then 2027–28, agent GAAP disclosures make agent demand visible in filings; and 2029 onward, the meters collect the era’s royalty — with every call in this piece graded.',
+    },
+    { kind: 'h2', text: 'How to read this: straight lines, graded in public' },
+    {
+      kind: 'p',
+      text:
+        'Before any of the arguments, the method behind every number here. We measure the slopes: every forecast extrapolates a measured trend — token volumes, price curves, attach rates, filings — never a narrative. We pre-register the calls: predictions carry deadlines, kill conditions are written before they are needed, and grading criteria are fixed at publication. And we separate the bases: measured, estimated, and modeled figures are labeled as such on every exhibit, and the fade case is always shown next to the wave.',
     },
     {
       kind: 'p',
       text:
-        'Our claims are falsifiable and dated: roughly 27x token demand by 2029, the share of tokens doing work rising from fifteen percent to sixty or more, and the resulting infrastructure events growing faster than the tokens that cause them. Each carries a kill condition written in advance, keyed to public filings, and graded quarterly on this site.',
+        'As Leopold Aschenbrenner put it, the forecast “just requires believing in straight lines on a graph.” We hold ourselves to the disciplined version: measured lines, dated predictions, public grades. Trend extrapolation, with consequences — every claim in this piece is checkable, and most carry a date.',
     },
-    {
-      kind: 'p',
-      text: 'Here is what we see.',
-    },
+    { kind: 'p', text: 'Here is what we see.' },
   ],
 };

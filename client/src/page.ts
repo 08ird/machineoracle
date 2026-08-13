@@ -62,7 +62,11 @@ export function masthead(activeSlug: string, activeChapter?: number): HTMLElemen
     nav.append(a);
   }
 
-  // The reference site's move: the whole series as a downloadable PDF.
+  // The live companion, then the deck of record.
+  const tracker = el('a', undefined, 'Tracker');
+  tracker.href = 'tracker.html';
+  nav.append(tracker);
+
   const pdf = el('a', undefined, 'Full thesis as PDF');
   pdf.href = 'infinite-software.pdf';
   nav.append(pdf);
@@ -370,7 +374,13 @@ function renderHome(letter: Article): HTMLElement {
   note.append(allLink, document.createTextNode(' and as a '));
   const pdfLink = el('a', undefined, 'PDF');
   pdfLink.href = 'infinite-software.pdf';
-  note.append(pdfLink, document.createTextNode('.'));
+  note.append(
+    pdfLink,
+    document.createTextNode('. Every claim that cites the tape, the ladder, or the ledger is graded live in the ')
+  );
+  const trackerLink = el('a', undefined, 'tracker');
+  trackerLink.href = 'tracker.html';
+  note.append(trackerLink, document.createTextNode('.'));
   toc.append(note);
 
   const addEntry = (link: string, title: string, blurb?: string, tag?: string) => {

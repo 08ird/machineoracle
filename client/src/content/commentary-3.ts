@@ -1,119 +1,224 @@
-/** Part III — The Receipts. */
+/** Part 03 — A Royalty on Machine Labor. */
 
 import type { Block } from './types';
 
 export const part3: Record<number, Block[]> = {
-  24: [
+  39: [
     {
       kind: 'p',
       lead: true,
       text:
-        'Machine labor now has an invoice line, and that is a more important fact than any forecast in this document. Between 2023 and 2026, seven vendors shipped a machine billable unit — a price on work an agent performs rather than on a human seat. All of them dated. All of them public.',
+        'The invoice line for machine labor already exists, and that is a more important fact than any forecast in this document. Seven vendors have shipped a machine billable unit between 2023 and 2026 — all dated, all public.',
     },
     {
       kind: 'p',
       text:
-        'Intercom priced the outcome first, at 99 cents per resolution in 2023. Cognition priced the agent’s time, roughly $2 per agent compute unit — fifteen minutes of work. Zendesk took $1.50 per automated resolution in August 2024. Salesforce went to a dime an action in October 2024, down from $2 a conversation, and has since disclosed 3.8 billion agentic work units. Cloudflare priced machine reading itself with Pay Per Crawl in July 2025. Microsoft metered Copilot Credits at a cent apiece through Azure in September 2025. ServiceNow shipped assists per agentic action in April 2026.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Four flavours emerge — outcomes, actions, sessions, metered compute — and the variety matters less than the fact of it. When an industry invents a unit of account, the market has arrived. Nobody prices a thing that isn’t selling.',
+        'Four flavours emerge — outcomes, actions, sessions, metered compute — and the variety matters less than the fact of it. The unit of account for machine work is being standardized in public, vendor by vendor. When an industry invents a unit of account, the market has arrived; nobody prices a thing that isn’t selling.',
     },
   ],
 
-  25: [
+  40: [
     {
       kind: 'p',
       text:
-        'Retention is where a usage business tells the truth about itself, and the tape has turned.',
+        'Revenue is events times price times capture. The wave guarantees the first term — roughly 190x by 2029. Prices fall 30 to 40% a year, which we model. Capture is the fight, and our elasticity research puts it at 0.5 to 0.7.',
     },
     {
       kind: 'p',
       text:
-        'Aggregate net dollar retention across our five public meters has risen for six consecutive quarters: 113% in the first quarter of 2025, then 113, 114, 115, 117, and 120% by the second quarter of 2026. Six quarters up, without interruption.',
+        'Measured attach in the filings today reads 0.2 to 0.3, well below the 20-to-40-per-thousand-tokens we described. That is a lag, not a leak. Committed contracts burn first, so surge usage draws down prepaid credits and appears in backlog one to three quarters before revenue. Where usage caps bind, more than 75% of buyers keep paying at list. And mix carries the model: premium event classes — security, governed queries, CI — gain share as agents graduate to production.',
     },
     {
       kind: 'p',
-      text:
-        'The reason is structural rather than commercial. Seat-based software retains at roughly 101% — you grow by selling more chairs. Consumption platforms retain at 120 to 125%. AI agent products are retaining at roughly 132%. Every task an agent runs meters more revenue from a customer who has already signed, with no salesperson involved in the increment. This is what a royalty looks like before anyone calls it one.',
-    },
-  ],
-
-  26: [
-    {
-      kind: 'p',
-      text:
-        'Retention tells you what happened. Contracted backlog tells you what is about to.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Aggregate remaining performance obligations across the five meters went from $10.1 billion in the first quarter of 2025 to $19 billion in the second quarter of 2026 — roughly +50% year on year against revenue growth of about +23%. Read the sequential prints rather than the annual: +13%, +11%, +13%, +15%, +16%. The growth rate is itself accelerating.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Under committed-usage contracts, backlog leads revenue by one to three quarters. Customers are signing for consumption they have not yet drawn down. The demand is already contracted; it simply has not been recognised.',
+      text: 'Underwriting a royalty on machine labor is underwriting capture. That is what this section prices, meter by meter.',
     },
   ],
 
-  27: [
+  41: [
     {
       kind: 'p',
       text:
-        'If you want the purest read on agent usage available from outside a company, it is overage — usage billed above committed floors, at list price.',
+        'Hardware computes, models reason, infrastructure remembers, runtimes coordinate, applications deliver. Five layers, and they are not equally investable.',
     },
     {
       kind: 'p',
       text:
-        'We estimate it went from $0.55 billion a quarter in the first quarter of 2025 to $1.17 billion in the second quarter of 2026, with sequential growth of +13%, +15%, +17%, +18%, +19%. As a share of aggregate revenue it moved from roughly 14% to roughly 24% in six quarters, and it gets faster every quarter.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Overage is spending nobody budgeted. It is what happens when a workload outruns its own contract, and where limits are enforced, more than 75% of customers who hit them keep paying anyway. This is our own estimate built from on-demand revenue, consumption-versus-capacity timing, and credit disclosures — the softest number in this section, and we flag it as such.',
+        'We avoid layer 0, where the economics are capital-heavy and already priced, and layer 1, where competition hands the gains to customers and there is no public pure play in any case. The key layers meter work and accumulate state.',
     },
   ],
 
-  28: [
+  42: [
     {
       kind: 'p',
-      text:
-        'Here is the pattern that decides when this thesis pays, and it is not the pattern most investors expect. The market does not pay the meters when they ship an agent. It pays them when the filing names it.',
+      text: 'Everything that follows rests on one distinction.',
     },
     {
       kind: 'p',
       text:
-        'Take the same companies at two different moments. When there was an AI story in the deck and nothing in the filings — Snowflake, JFrog, Cloudflare, quarters earlier — the result was dead money for months, and in one case a 48% drawdown. The proof was public the entire time. The tape did not move.',
+        'The backend is what agents run on: three unavoidable activities — execute, remember, and answer for it. Twenty-five companies, and every unit of machine labor passes through them, most of it billed by the unit. The worksite is where agents do the work: forty-two companies whose rails get paid per action, whose records convert or compress, and whose seats are the other side of the trade.',
     },
     {
       kind: 'p',
-      text:
-        'When agent usage appeared in the filings, backlog and retention confirmed conversion, and guidance was raised on agent products specifically, the same names re-priced roughly +27% on average across seven marked events, overnight or within the print week. Disclosure is the trigger. Everything before disclosure is preparation.',
+      text: 'The royalty is collected in the backend. Winners on the worksite are tracked, but the cohort is not picked there.',
     },
   ],
 
-  29: [
+  43: [
     {
       kind: 'p',
       text:
-        'Snowflake is the cleanest illustration we have, and we would rather show one case in full than seven in summary.',
+        'The universe is the BVP Nasdaq Emerging Cloud Index plus four extensions — 67 names, with DigitalOcean reclassified to layer 0. The median cloud business trades at about 4.1x forward revenue and grows about 20%; only about eleven names are usage-billed at all.',
     },
     {
       kind: 'p',
       text:
-        'The stock peaked at about $271 in November 2025 and then fell for twenty-two weeks to a trough near $135 in early April 2026 — a drawdown of roughly 50%. The company shipped its CoCo agent in February 2026, in the middle of that decline, and the tape did not react at all.',
+        'Bucketed on the master frame, that is a 25-name backend and a 42-name worksite. The full roster is published — classification, not holdings — with the action rails marked as per-action worksite meters.',
+    },
+  ],
+
+  46: [
+    {
+      kind: 'p',
+      text:
+        'A reader who follows this space will notice the most interesting meters are missing from the public universe. They are being built in private, and every one of them is a future entrant — on IPO, and on one 10-K.',
+    },
+  ],
+
+  47: [
+    {
+      kind: 'p',
+      text:
+        'The backend fishes in two ponds. State is a $161B pond growing 18% a year on Gartner’s DBMS forecast — the game there is winning share of something already enormous. Work is a smaller $25–30B pond growing 12 to 14%, the metered core of observability and SIEM.',
     },
     {
       kind: 'p',
       text:
-        'Then on 27 May 2026 the CFO named CoCo as the largest single driver of a raised full-year forecast. The stock gained about 36% overnight and 47% over that week, from $178 to $261. By late July it was back to $268, roughly double the April trough.',
+        'But the wave is digging a new pond beside it: agent runtime, roughly $1–2B today and growing over 100% a year, which our event forecasts put above $10B by 2029. And behind both sits roughly $240B of security budget, almost none of it usage-billed yet. That is the conversion prize.',
+    },
+  ],
+
+  48: [
+    {
+      kind: 'p',
+      text:
+        'Software TAMs measure the old pond. Machine labor ultimately prices against something far larger: the roughly $35 trillion global knowledge-work wage pool.',
     },
     {
       kind: 'p',
       text:
-        'Nothing about the business changed on 27 May. The only thing that changed was that the filing said out loud what the product had been doing since February — about sixteen weeks earlier. That gap between truth and price is the window this entire thesis is designed to stand inside.',
+        'The old TAM is a line item inside the new one. Delegation share, not software budgets, sets the ceiling on the royalty — and at 5% delegation the new pond is one to two times the entire old TAM, every year.',
+    },
+  ],
+
+  50: [
+    {
+      kind: 'p',
+      text:
+        'Scatter all 67 names and the pattern holds: most of the universe sits below 25% growth and below 8x forward revenue. The right edge is thin, and above the rule-of-40 line at 30%-plus growth sits almost nobody — and what is there is work and state, not apps.',
+    },
+    { kind: 'p', text: 'Work earns today; state compounds for decades.' },
+  ],
+
+  53: [
+    {
+      kind: 'p',
+      text:
+        'The two backend layers run different business models, and conflating them is the most common analytical error we see in this space.',
+    },
+    {
+      kind: 'p',
+      text:
+        'They also fail differently, which is why we hold both. Open, portable state formats would break the ledger case; model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty.',
+    },
+  ],
+
+  55: [
+    {
+      kind: 'p',
+      text:
+        'Retention is where a usage business tells the truth about itself. Usage-billed meter names run a median NDR climbing from about 112 to 117 over six quarters. Seat-priced apps sit at about 101, flat.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The reason is structural rather than commercial: a seat is bought once and renewed, while a meter is billed every time an agent acts — from a customer who has already signed, with no salesperson involved in the increment. This is what a royalty looks like before anyone calls it one.',
+    },
+  ],
+
+  57: [
+    {
+      kind: 'p',
+      text:
+        'If you want the purest read on agent usage available from outside a company, it is overage: usage billed above committed floors, at list price. State meters went from 14% to 24% of revenue over six quarters; work meters from 9% to 16%.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Apps are at zero, and structurally must be — you cannot bill above a floor that doesn’t exist. Commitment tells the same story one step earlier: deferred revenue growth is accelerating fastest exactly where usage is metered.',
+    },
+  ],
+
+  59: [
+    {
+      kind: 'p',
+      text:
+        'Before any of our analysis, the tape has already voted — at the layer level, with no selection involved and no judgement about individual names.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The deeper a layer derated in 2022, the harder it rebounded, and work leads the full period. The market pays the layers that meter machine labor, not the seats it replaces.',
+    },
+  ],
+
+  61: [
+    {
+      kind: 'p',
+      text:
+        'Here is the anomaly this entire piece is built around. Three years of multiples, on a realized-forward basis, show all three layers grinding sideways-to-down — through the biggest software demand shock ever recorded.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Nothing is priced for agents. Consensus forward numbers carry zero of them. The state layer is the cleanest illustration: growth turned up from 13% to 20% while the multiple did not move, leaving it at roughly 0.26x its growth rate — half the cohort’s ~0.5x.',
+    },
+  ],
+
+  64: [
+    {
+      kind: 'p',
+      text:
+        'And the businesses are not merely growing; they are converting. Work converts at 26% of revenue to free cash flow, apps at 22%, and state just inflected from 14% to 21% — six points in a single year.',
+    },
+    { kind: 'p', text: 'Falling multiples, rising cash. That divergence is the anomaly Part 04 examines.' },
+  ],
+
+  65: [
+    {
+      kind: 'p',
+      text:
+        'One more market check, from the buyers with the most information: strategic acquirers keep paying for meters, and paying above where the layers trade.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Scaled meters clear roughly 7 to 10x revenue in a sale. That is a floor of sorts under the public names — set by people who have done diligence the public market has not.',
+    },
+  ],
+
+  66: [
+    {
+      kind: 'p',
+      text:
+        'Scored on this section’s evidence, the two backend layers split the honours — and the resolution is not a winner but two horizons.',
+    },
+  ],
+
+  68: [
+    {
+      kind: 'p',
+      text:
+        'The royalty is measured and growing. Part 04 defines the cohort that bills it, states the valuation framework, and commits the whole program to public grading.',
     },
   ],
 };

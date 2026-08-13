@@ -5,8 +5,8 @@
  *   1. Write a file exporting a `Piece` (an Article of blocks, or a Deck of slides).
  *   2. Import it below and add it to PIECES.
  *
- * The nav, the home-page index, and routing all read from this array, so there
- * is no second place to update.
+ * The nav, the home-page contents, and routing all read from this array, so
+ * there is no second place to update.
  */
 
 import { SLIDES } from '../data/slides';
@@ -15,10 +15,8 @@ import { part1 } from './commentary-1';
 import { part2 } from './commentary-2';
 import { part3 } from './commentary-3';
 import { part4 } from './commentary-4';
-import { back, front, part5 } from './commentary-5';
 import { conclusion } from './conclusion';
 import { letter } from './letter';
-import { tracker } from './tracker';
 import type { Piece } from './types';
 
 const infiniteSoftware: Piece = {
@@ -26,26 +24,13 @@ const infiniteSoftware: Piece = {
   kind: 'deck',
   navLabel: 'Infinite Software',
   title: 'Infinite Software',
-  kicker: 'The thesis',
-  subtitle: 'Machine labor makes software unlimited. The rails it runs on are not.',
-  date: 'July 16, 2026',
-  blurb:
-    'The full argument in five parts: the era, the token tidal wave, the receipts already in the filings, the portfolio that owns the meters, and how we grade ourselves.',
-  intro: [
-    {
-      kind: 'p',
-      lead: true,
-      text:
-        'In 1995 the internet changed how software was distributed. In 2026 AI agents are changing how software is produced — creating a tidal wave of demand for the infrastructure that runs, stores, secures, observes, and meters all software.',
-    },
-    {
-      kind: 'note',
-      text:
-        'Presented July 16, 2026. Figures are Skycatcher estimates compiled from public filings and platform disclosures; see the disclosures at the end.',
-    },
-  ],
+  kicker: 'Skycatcher research',
+  subtitle:
+    'Machine labor is being billed today. Its billings compound with the token wave — and the companies that collect the royalty are priced as if neither were true.',
+  date: 'August 11, 2026',
+  blurb: 'The full argument in four parts: the era, the wave, the royalty, and the mispricing.',
   slides: SLIDES,
-  commentary: { ...front, ...part1, ...part2, ...part3, ...part4, ...part5, ...back },
+  commentary: { ...part1, ...part2, ...part3, ...part4 },
   epigraphs: {
     1: { text: 'The Internet is a tidal wave. It changes the rules.', cite: 'Bill Gates · May 1995' },
     2: {
@@ -53,20 +38,18 @@ const infiniteSoftware: Piece = {
       cite: 'W. S. Jevons · 1865',
     },
     3: { text: 'Nobody prices a thing that isn’t selling.', cite: 'Skycatcher' },
-    4: { text: 'Own the meters; collect the royalty.', cite: 'Skycatcher' },
-    5: { text: 'Courageous action: to do what no one has done, and prove it in the real world.', cite: 'Leonardo da Vinci' },
+    4: { text: 'Courageous action: to do what no one has done, and prove it in the real world.', cite: 'Leonardo da Vinci' },
   },
   conclusion,
   chapterBlurbs: {
-    1: 'Every prior computing wave sold tools; this one sells labor, and the market is the labor budget. The cost of a unit of software work just fell ~4,000x in a single step. Production deflates to zero while operation is metered forever — so the money moves to the rails. The last time production costs collapsed, the rails returned 6–13x before the mania began.',
-    2: 'Tokens grew ~2,000x in four years, and every 10x price drop bought 15–20x more demand — a measured slope of 1.6 that held through two corrections and one full-scale panic. The heaviest users barely exist yet: 2.5% of a billion weekly users run agents, and an always-on agent is worth 500–2,500x the tokens of a chat user. Our call is ~2,700Q tokens by 2029 — 27x, underwriting a deceleration by half — with billable infrastructure events growing ~130x as the wave lands on the meters.',
-    3: 'Not a futurist document. Seven vendors shipped a billable unit of machine work between 2023 and 2026, all dated, all public. Aggregate retention has risen six straight quarters to 120%; contracted backlog compounds at +50% against +23% revenue; overage has gone from 14% to 24% of revenue. And the market pays on disclosure day, not ship day — Snowflake fell 50% while the proof compounded, then repriced +36% overnight when the CFO named it.',
-    4: 'The portfolio that follows: layers 2–5 of the stack — the runtime, memory, build, and audit meters — admitted by a checklist written before we owned a share. The growth has never been offered cheaper: 7.5x EV/revenue, 21x forward earnings, 0.4x growth-adjusted, $14B of net cash. Four honest haircuts still leave $44B of 2029 revenue against the street’s $23B, and the measured attach rate is a lag, not a leak.',
-    5: 'The belief chain — tokens to agentic events to meter revenue — crosses two falsifiable bridges, and history pays 35–53x for re-accelerated growth where we underwrite 40x. Eight of nine priced paths beat today; our case is ~5x over four years. Then the conclusion: the three bets, the strongest case against us — token efficiency, self-hosting, vertical integration — the dated kill conditions, and the timing math: twelve prints between here and 2029, and why waiting for proof means paying retail for it.',
+    1: 'Software has always been rationed by developer scarcity — ~30M developers, $100+ an hour, 18-month backlogs. Agents ended the ration: the cost of a unit of software work fell ~4,000x in a single step, and 51% of committed code is now AI-written. Software becomes summonable, and the maker population goes from 30M to a billion. Making software deflates toward zero; running it stays metered forever. Last time production costs collapsed, the rails returned 6–13x before the mania began.',
+    2: 'Tokens grew ~2,000x in four years, and every 10x price drop bought 15–20x more demand — a measured slope of 1.2–1.3, through two corrections and one full-scale panic. Bandwidth, storage, and mobile data all ran the same curve. The heaviest users barely exist yet: 2.5% of a billion weekly users run agents, at 500–2,500x the intensity of chat. Our call is ~4,000Q tokens by 2029 — 40x, and still a deceleration by half — with billable infrastructure events amplifying ~190x as the wave lands on the rails.',
+    3: 'Seven vendors have shipped a billable unit of machine work, all dated, all public. The five-layer stack splits into a 25-name backend — what agents run on — and a 42-name worksite. The evidence sits in the filings: meter retention ~117 against ~101 for seats, overage from 14% to 24% of revenue, deferred revenue accelerating, and the tape already paying state +177% and work +175% against apps at +55% since ChatGPT. Yet no layer has re-rated: consensus forward numbers carry zero agents.',
+    4: 'One rule — majority of revenue recognized from measured consumption — admits three backend companies: Snowflake, MongoDB, Datadog. ~$250B of enterprise value, ~33% blended growth, ~16x forward revenue, +218% since ChatGPT with no selection. Three growth worlds from ~$11.3B of revenue, eight dated predictions, five calls for the 2030s, and six tripwires written before they are needed. The whole program is graded quarterly, in public.',
   },
 };
 
-export const PIECES: Piece[] = [letter, infiniteSoftware, tracker, about];
+export const PIECES: Piece[] = [letter, infiniteSoftware, about];
 
 export const HOME = letter;
 
@@ -77,5 +60,5 @@ export function findPiece(slug: string): Piece | undefined {
   return PIECES.find((p) => p.slug === slug);
 }
 
-/** Pieces that appear in the home-page index (everything but the letter itself). */
+/** Pieces that appear in the home-page contents (everything but the letter). */
 export const INDEXED = PIECES.filter((p) => p.slug !== '');

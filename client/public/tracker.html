@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Machine Oracle — Skycatcher</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root{--navy:#1A2233;--blue:#2777EF;--cyan:#29C2F1;--darkb:#1B3F8F;--cytx:#0B8BB5;--gray:#5A6478;--faint:#8A97B0;--line:#D5DCE8;--card:#F5F8FC;--tint:#EAF1FE;--lgray:#C9D2E0;--grow:#9AA6BC;--pos:#0E9F6E;--neg:#D14343;--bg:#FDFEFF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",-apple-system,Helvetica,Arial,sans-serif;color:var(--navy);background:var(--bg);font-size:14px;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px}
+h1{font-family:Georgia,Cambria,serif;font-size:34px;font-weight:700;letter-spacing:-.3px}
+.eyebrow{font-size:10.5px;letter-spacing:2.2px;color:var(--blue);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.tag{font-size:15px;color:var(--gray);margin-top:6px}
+.tag b{color:var(--navy)}
+.asof{font-size:11.5px;color:var(--faint);margin-top:10px;display:flex;align-items:center;gap:8px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--lgray)}
+.dot.live{background:var(--pos)}
+.sec{margin-top:40px}
+.sechead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--navy);padding-bottom:8px;margin-bottom:6px}
+.secnum{font-family:Georgia,serif;font-size:15px;color:var(--blue);font-weight:700}
+.sechead h2{font-family:Georgia,Cambria,serif;font-size:21px;font-weight:700}
+.seccap{font-size:10.5px;letter-spacing:1.6px;color:var(--faint);text-transform:uppercase;margin:8px 0 16px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.card.tint{background:var(--tint);border-color:#BFD5F7}
+.card h3{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--cytx);margin-bottom:10px;font-weight:700}
+.card h3.blue{color:var(--blue)}.card h3.navy{color:var(--navy)}
+.big{font-family:Georgia,serif;font-size:30px;font-weight:700;line-height:1.05}
+.sub{font-size:11.5px;color:var(--faint);margin-top:4px}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+.chartbox{position:relative;height:230px;margin-top:6px}
+.chartbox.tall{height:280px}.chartbox.short{height:170px}
+.note{font-size:10.5px;color:var(--faint);margin-top:10px;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);font-weight:600}
+td{padding:7px 8px;border-bottom:1px solid #EDF1F7;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.8px;padding:2px 8px;border-radius:9px}
+.pill.in{background:var(--blue);color:#fff}
+.pill.conv{background:var(--tint);color:var(--blue);border:1px solid #BFD5F7}
+.pill.sub{background:#F0F2F6;color:var(--faint)}
+.pill.rail{background:#E8F7FD;color:var(--cytx);border:1px solid #BEE7F5}
+.pill.pend{background:#FFF6E5;color:#B7791F;border:1px solid #F3DFB5}
+.ubar{position:relative;background:#EDF1F7;border-radius:4px;height:12px;width:150px;display:inline-block;vertical-align:middle}
+.ubar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--blue)}
+.ubar em{position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:var(--navy);opacity:.55}
+.mono{font-variant-numeric:tabular-nums}
+.selrow{display:flex;align-items:center;gap:10px;margin:10px 0}
+.selrow .lab{width:120px;font-size:11.5px;color:var(--gray);font-weight:600}
+.selbar{position:relative;flex:1;height:14px;background:#EDF1F7;border-radius:7px}
+.selbar i{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--blue)}
+.selbar em{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--navy)}
+.selrow .val{width:110px;font-size:11.5px;color:var(--navy);font-weight:700;text-align:right}
+.kicker{margin-top:16px;border:1.5px dashed var(--blue);border-radius:24px;padding:9px 20px;text-align:center;font-size:12.5px;color:var(--gray)}
+.kicker b{color:var(--blue)}
+.foot{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:10px;color:var(--faint);line-height:1.6}
+.ledgeritem{display:grid;grid-template-columns:86px 1fr auto;gap:12px;align-items:center;padding:9px 4px;border-bottom:1px solid #EDF1F7}
+.ledgeritem:last-child{border-bottom:none}
+.ledgeritem .when{font-size:10.5px;font-weight:700;color:var(--blue);letter-spacing:.6px}
+.ledgeritem .what b{display:block;font-size:12.5px}
+.ledgeritem .what span{font-size:11px;color:var(--faint)}
+.killitem{padding:10px 12px;background:var(--card);border:1px solid var(--line);border-radius:8px}
+.killitem b{display:block;font-size:10.5px;letter-spacing:1.2px;color:var(--neg);text-transform:uppercase;margin-bottom:4px}
+.killitem span{font-size:11.5px;color:var(--gray)}
+.statline{display:flex;flex-wrap:wrap;gap:0 26px;margin-top:6px}
+.statline div{padding:8px 0}
+.statline .k{font-size:10px;letter-spacing:1.1px;color:var(--faint);text-transform:uppercase}
+.statline .v{font-family:Georgia,serif;font-size:21px;font-weight:700}
+.worlds{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:900px){.worlds{grid-template-columns:1fr}}
+.world{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff}
+.world.hot{border-color:var(--blue);background:var(--tint)}
+.world .wn{font-size:10.5px;letter-spacing:1.4px;font-weight:700;text-transform:uppercase;color:var(--faint)}
+.world.hot .wn{color:var(--blue)}
+.world .wc{font-family:Georgia,serif;font-size:20px;font-weight:700;margin:4px 0 2px}
+.world .wr{font-size:12px;color:var(--gray)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Skycatcher Research · Live Instrument · Est. Aug 11, 2026</div>
+<h1>Machine Oracle</h1>
+<div class="tag">The deck is the hypothesis. <b>This tracker is the experiment.</b> A pre-registered cohort, a quarterly tape, a 25-name ladder, and a graded ledger — maintained in public.</div>
+<div class="asof"><span class="dot" id="livedot"></span><span id="asof">Marks as of inception — Aug 11, 2026. Refreshing live quotes…</span></div>
+
+<!-- ============ 01 THE INDICES ============ -->
+<div class="sec">
+  <div class="sechead"><span class="secnum">01</span><h2>The indices</h2></div>
+  <div class="seccap">Hypothetical research aggregations · equal-weighted · inception Aug 11, 2026 = 100 · live marks, no back-fill, no retouching</div>
+  <div class="grid g3">
+    <div class="card tint"><h3 class="blue">Machine labor cohort (3)</h3><div class="big mono" id="ix-c">100.0</div><div class="sub" id="ix-c-d">Snowflake · MongoDB · Datadog — since inception</div></div>
+    <div class="card"><h3>L2 · State (6)</h3><div class="big mono" id="ix-l2">100.0</div><div class="sub" id="ix-l2-d">the state meters — since inception</div></div>
+    <div class="card"><h3 class="navy">L3 · Work (19)</h3><div class="big mono" id="ix-l3">100.0</div><div class="sub" id="ix-l3-d">the work meters — since inception</div></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3 class="navy">Context — total return since ChatGPT (Nov '22 → Aug 11, 2026), computed offline</h3>
+    <div class="chartbox short"><canvas id="chHist"></canvas></div>
+    <div class="note">Equal-weighted, rebalanced each December, EMCLOUD-classified names; the cohort's +218% is mechanical — one rule, no selection, no hindsight. History shown for context only: the live indices above accrue from inception.</div>
+  </div>
+</div>
+
+<!-- ============ 02 THE COHORT ============ -->
+<div class="sec">
+  <div class="sechead"><span class="secnum">02</span><h2>The machine labor cohort</h2></div>
+  <div class="seccap">One rule — majority of revenue recognized from measured consumption — applied to the 25-name backend · re-verified quarterly</div>
+  <div class="grid g3" id="cohorttiles"></div>
+  <div class="card" style="margin-top:14px"><h3 class="blue">Blended, Aug 11, 2026</h3>
+    <div class="statline">
+      <div><div class="k">Enterprise value</div><div class="v">~$250B</div></div>
+      <div><div class="k">Fwd revenue</div><div class="v">~$15B</div></div>
+      <div><div class="k">Growth</div><div class="v">~33%</div></div>
+      <div><div class="k">EV / NTM rev</div><div class="v">~16x</div></div>
+      <div><div class="k">FCF margin</div><div class="v">~25%</div></div>
+      <div><div class="k">Rule of X</div><div class="v">~100</div></div>
+      <div><div class="k">Overage share</div><div class="v">11→19%</div></div>
+      <div><div class="k">Since ChatGPT</div><div class="v">+218%</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 03 THE TAPE ============ -->
+<div class="sec">
+  <div class="sechead"><span class="secnum">03</span><h2>The tape</h2></div>
+  <div class="seccap">Commitment, overage, retention and revenue growth — re-measured every filing season · quarters to Jun 2026</div>
+  <div class="grid g3">
+    <div class="card"><h3 class="blue">Commitment — deferred revenue y/y · measured</h3><div class="chartbox short"><canvas id="chCmt"></canvas></div></div>
+    <div class="card"><h3 class="blue">Overage — share billed above floors · estimated</h3><div class="chartbox short"><canvas id="chOvg"></canvas></div><div class="note">$0.25B → $0.59B billed per quarter, at list.</div></div>
+    <div class="card"><h3 class="blue">Revenue growth — recognized, y/y · measured</h3><div class="chartbox short"><canvas id="chRev"></canvas></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3 class="navy">Retention — meters vs. apps (median NDR)</h3><div class="chartbox short"><canvas id="chNdr"></canvas></div><div class="note">~117 and rising vs ~101 and flat — a seat is renewed once; a meter is billed every time an agent acts.</div></div>
+    <div class="card"><h3 class="navy">World selectors — what picks the growth world</h3>
+      <div class="selrow"><span class="lab">Commitment y/y</span><div class="selbar"><i style="width:64%"></i><em style="left:80%"></em></div><span class="val">32% → 40% wave</span></div>
+      <div class="selrow"><span class="lab">Overage share</span><div class="selbar"><i style="width:57%"></i><em style="left:75%"></em></div><span class="val">19% → 25% wave</span></div>
+      <div class="selrow"><span class="lab">Meter NDR</span><div class="selbar"><i style="width:57%"></i><em style="left:83%"></em></div><span class="val">117 → 130 wave</span></div>
+      <div class="note">The three selectors from the growth-worlds framework: cross the marks and the tape itself selects the ~35–50% CAGR band; stall and the evidence selects partial conversion.</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3 class="navy">The backend layers, quarterly — state (L2) · work (L3) · apps (L4)</h3>
+    <div class="grid g3" style="margin-top:4px">
+      <div><div class="seccap" style="margin:0 0 4px">Commitment y/y</div><div class="chartbox short"><canvas id="chLCmt"></canvas></div></div>
+      <div><div class="seccap" style="margin:0 0 4px">Overage share</div><div class="chartbox short"><canvas id="chLOvg"></canvas></div></div>
+      <div><div class="seccap" style="margin:0 0 4px">Revenue growth y/y</div><div class="chartbox short"><canvas id="chLRev"></canvas></div></div>
+    </div>
+    <div class="note">Median by layer from filings (commitment, revenue) and Skycatcher estimates (overage). Apps have no overage line — you cannot bill above a floor that doesn't exist.</div>
+  </div>
+</div>
+
+<!-- ============ 04 VALUATION ============ -->
+<div class="sec">
+  <div class="sechead"><span class="secnum">04</span><h2>Valuation — the framework, not a target</h2></div>
+  <div class="seccap">Multiples shown against the growth that carries them · growth-adjusted ~0.4–0.5x through peak, trough and today</div>
+  <div class="card"><h3 class="blue">Machine labor cohort — EV / next-4Q revenue and revenue growth, Q4 2020 → today</h3>
+    <div class="chartbox tall"><canvas id="chCohVal"></canvas></div>
+    <div class="note">Growth-adjusted, the whole way: 2021 peak 42x ÷ ~80% ≈ 0.5x · trough 10x ÷ ~25% ≈ 0.4x · today 16.5x ÷ ~32% ≈ 0.5x. The multiple has always tracked growth — which is why value is framed in growth ranges, not point multiples. Hollow point = consensus NTM at latest marks.</div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3>L2 · State — multiple vs growth</h3><div class="chartbox"><canvas id="chL2Val"></canvas></div><div class="note">Growth turned up (13→20%), the multiple didn't — ~0.26x growth-adjusted, half the cohort's.</div></div>
+    <div class="card"><h3 class="navy">L3 · Work — multiple vs growth</h3><div class="chartbox"><canvas id="chL3Val"></canvas></div><div class="note">Steady ~20%+ growth, a de-rating multiple — ~0.31x growth-adjusted. The audit mandate is not yet priced as a meter.</div></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3 class="navy">What the tape pays for growth — the 67-name universe, in regimes</h3><div class="chartbox"><canvas id="chReg"></canvas></div><div class="note">Median EV/NTM revenue by consensus growth band. The multiple is a step-function, not a slope: past ~30% growth the tape triples what it pays. Which band a name occupies is the only multiple question that matters.</div></div>
+    <div class="card"><h3 class="navy">Three growth worlds — 2029 cohort revenue as CAGR ranges</h3>
+      <div class="worlds" style="margin-top:8px">
+        <div class="world"><div class="wn">The fade</div><div class="wc">~20–25%</div><div class="wr">2029: $21–25B — every sell-side model today; what the price carries</div></div>
+        <div class="world"><div class="wn">Partial conversion</div><div class="wc">~25–35%</div><div class="wr">2029: $25–33B — street-floor tokens, capture leaks</div></div>
+        <div class="world hot"><div class="wn">The wave</div><div class="wc">~35–50%</div><div class="wr">2029: $33–47B — the ~4,000Q case through the four haircuts</div></div>
+      </div>
+      <div class="note">Scenarios, not forecasts — from ~$11.3B LTM. The selectors above pick the world; the tape gets graded either way.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 05 THE LADDER ============ -->
+<div class="sec">
+  <div class="sechead"><span class="secnum">05</span><h2>The ladder</h2></div>
+  <div class="seccap">All 25 backend names against the 50% consumption line · re-scored quarterly · admissions, exits and conversions logged with reasons</div>
+  <div class="card"><table id="ladder">
+    <thead><tr><th>Company</th><th>Layer</th><th>Usage-linked share · 50% line marked</th><th>Status</th><th>What moves it</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div class="note" id="sublist"></div></div>
+</div>
+
+<!-- ============ 06 THE LEDGER ============ -->
+<div class="sec">
+  <div class="sechead"><span class="secnum">06</span><h2>The ledger</h2></div>
+  <div class="seccap">Eight dated predictions, graded on schedule · misses published with the same prominence as hits · criteria fixed at publication</div>
+  <div class="grid g2">
+    <div class="card"><h3 class="blue">Dated predictions</h3><div id="ledger"></div></div>
+    <div class="card"><h3 style="color:var(--neg)">Kill &amp; flip conditions — written before they're needed</h3>
+      <div class="grid g2" style="gap:10px;margin-top:4px" id="kills"></div>
+      <div class="note">Six tripwires, each measurable in public data, each mapped to an action. If the ledger fills with misses, the thesis shrinks — in public.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 07 RAILS & WATCH ============ -->
+<div class="sec">
+  <div class="sechead"><span class="secnum">07</span><h2>Worksite rails &amp; the watch</h2></div>
+  <div class="seccap">Pass the billing test, sit outside the backend — tracked, not constituents</div>
+  <div class="card"><table id="rails"><thead><tr><th>Name</th><th>Usage share</th><th>Move</th><th>Note</th></tr></thead><tbody></tbody></table></div>
+</div>
+
+<div class="kicker"><b>Follow the grading live</b> — every mark, re-score and quarterly grade publishes here. The deck is the hypothesis; the tracker is the experiment.</div>
+
+<div class="foot">
+Research prototype for discussion. The machine labor cohort is a mechanical research screen (backend companies whose revenue is majority-billed on measured consumption), not an index fund, portfolio, or recommendation. Indices are hypothetical, rules-based, equal-weighted aggregations of public securities (inception Aug 11, 2026 = 100); they reflect no fees or actual accounts and are not investable products or advice. Scenario outputs (growth worlds, token cases) are not forecasts. Commitment, overage, retention, margin and multiple figures are compiled from company filings and consensus estimates (FMP) and are approximate and unaudited; figures marked estimated or modeled derive from Skycatcher models. Quotes via Financial Modeling Prep; historical closes via Alpha Vantage. Past performance is not indicative of future results. Skycatcher and its clients may hold positions in companies shown. All marks property of their owners.
+</div>
+</div>
+
+<script>
+/* ---------- inception marks (Aug 11, 2026) ---------- */
+const MARK={SNOW:335.47,MDB:438.11,DDOG:248.42,TWLO:257.665,FSLY:28.89,BAND:53.115,
+ ESTC:76.59,NTNX:64.29,AMPL:12.735,OKTA:150.2978,GTLB:42.14,FROG:86.93,TEAM:153.92,DT:49.605,
+ CRWD:221.67,S:22.41,ZS:178.56,PANW:383.1925,RBRK:97.105,TENB:37.8117,QLYS:188.555,SAIL:18.855,
+ CLBT:16.1201,NET:310.53,AKAM:117.66,PD:11.74,NTSK:15.435};
+const CT=["SNOW","MDB","DDOG"];
+const L2T=["SNOW","MDB","ESTC","NTNX","FSLY","AMPL"];
+const L3T=["DDOG","NET","OKTA","GTLB","FROG","TEAM","DT","CRWD","S","ZS","PANW","RBRK","TENB","QLYS","SAIL","CLBT","AKAM","PD","NTSK"];
+let px={...MARK};
+
+/* ---------- cohort ---------- */
+const COHORT=[
+ {n:"Snowflake",t:"SNOW",l:"L2 · analytical state",g:"+33% y/y",f:"~23% FCF",u:"~95%",ub:"product revenue recognized as credits are consumed (10-K)",m:"Agents query governed data to reason — thinking, metered."},
+ {n:"MongoDB",t:"MDB",l:"L2 · operational state",g:"+25% y/y",f:"~23% FCF",u:"73%",ub:"Atlas share of FY26 revenue, recognized on usage",m:"The read → reason → act → write loop terminates in billable writes."},
+ {n:"Datadog",t:"DDOG",l:"L3 · observability",g:"+36% y/y",f:"~29% FCF",u:"structural",ub:"committed amounts drawn down by measured units + on-demand",m:"Every agent step emits logs, traces and metrics — machine activity is the product."}];
+
+/* ---------- tape (quarters to Jun 2026) ---------- */
+const Q5=["Q2'25","Q3'25","Q4'25","Q1'26","Q2'26"];
+const Q6=["Q1'25","Q2'25","Q3'25","Q4'25","Q1'26","Q2'26"];
+const CMT=[19.1,22.2,22.5,29.5,32.1];
+const OVG=[11,12.5,14,15.5,17.5,19];
+const REVG=[25.1,24.6,28.1,28.4,29.2,32.2];
+const NDRm=[112,113,114,115,116,117], NDRa=[101,101,101,101,101,101];
+const LCmt={l2:[15.0,11.3,15.6,22.0,22.1],l3:[19.3,20.4,14.1,12.4,16.9],l4:[13.0,13.3,12.5,15.3,13.6]};
+const LOvg={l2:[14,16,18,20,22,24],l3:[9,10,11.5,13,14.5,16],l4:[0,0,0,0,0,0]};
+const LRev={l2:[16.2,18.9,19.4,16.8,20.3,18.3],l3:[19.5,20.1,21.3,20.6,22.7,23.1],l4:[17.6,17.1,15.8,16.0,15.1,15.9]};
+
+/* ---------- valuation series ---------- */
+const VQ=["Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26","Q2'26","Aug'26"];
+const VM=[39.2,39.2,31.6,34.2,41.7,32.1,19.6,16.5,13.8,13.2,13.4,15.7,14.1,15.8,13.6,10.5,10.7,10.7,9.8,null,null,null,null,16.5];
+const VG=[null,63.6,69.9,74.0,81.9,80.9,73.0,66.9,53.2,41.3,34.8,33.0,29.2,28.8,28.2,23.8,25.8,24.6,25.6,28.7,26.5,30.0,32.4,null];
+const LQ=["Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26","Q2'26","Aug'26"];
+const L2M=[6.1,6.4,7.5,7.6,7.5,6.1,6.7,5.9,6.1,null,null,null,null,5.2];
+const L2G=[null,null,null,null,16.9,12.8,15.6,15.8,16.0,19.2,15.9,18.3,19.8,null];
+const L3M=[10.6,9.7,12.2,10.9,9.0,8.9,10.6,9.6,8.8,null,null,null,null,7.2];
+const L3G=[null,null,null,null,25.8,22.4,23.0,19.4,19.9,21.3,20.2,21.5,22.3,null];
+
+/* ---------- ladder ---------- */
+const LAD=[
+ ["Snowflake","L2",95,"IN","stays on quarterly re-verification"],
+ ["MongoDB","L2",73,"IN","Atlas share still rising"],
+ ["Datadog","L3",-1,"IN","committed drawdown — usage moves revenue in-quarter"],
+ ["Fastly","L2",58,"CONVERTING","a disclosed percentage admits it — one filing away"],
+ ["Elastic","L2",47,"CONVERTING","Elastic Cloud crossing 50% admits it — +2pts/yr"],
+ ["Akamai","L3",43,"CONVERTING","compute growth against delivery + security subscriptions"],
+ ["Cloudflare","L3",25,"CONVERTING","Workers, R2, Pay-Per-Crawl scaling inside a subscription base"],
+ ["Dynatrace","L3",-2,"CONVERTING","DPS consumption commitments scaling through the base"],
+ ["CrowdStrike","L3",-2,"CONVERTING","Falcon Flex drawdown adoption"],
+ ["Palo Alto","L3",-2,"CONVERTING","flex credits spreading across the platform"],
+ ["GitLab","L3",-2,"CONVERTING","CI compute minutes — small share today"],
+ ["JFrog","L3",-2,"CONVERTING","usage tiers and data-transfer billing"]];
+const SUBS="Nutanix · Amplitude · Okta · Atlassian · SentinelOne · Zscaler · Rubrik · Tenable · Qualys · SailPoint · Cellebrite · PagerDuty · Netskope";
+
+/* ---------- ledger + kills ---------- */
+const LED=[
+ ["Q4 '26","A platform prints ≥2Q tokens / month","the wave stays on curve (from 1.3Q, Oct '25)"],
+ ["Q2 '27","Cohort overage share ≥25% of revenue","conversion keeps compounding (from ~19%)"],
+ ["MID '27","Meters' median NDR ≥120 while apps ≤103","agents pay meters, not seats — the gap widens"],
+ ["EVERY QTR","Cohort backlog growth ≥ revenue growth","commitment keeps leading recognition"],
+ ["END '27","≥15 major vendors ship billable agent SKUs","the invoice line spreads (from 7 today)"],
+ ["4 QTRS","Consensus 2029 cohort revenue revised up ≥10%","the modeled deceleration starts to break"],
+ ["18 MOS","A meter takeout at ≥8x EV / revenue","the strategic bid persists under the floor"],
+ ["BY 2028","Cohort FCF margin ≥28%","the drop-through shows up in cash"]];
+const KILLS=[
+ ["Tokens","growth below 2x/yr for two consecutive years — the wave premise fails"],
+ ["Overage","share falls two consecutive quarters — conversion is breaking"],
+ ["Retention","meter-vs-app NDR gap narrows below ~8 points — the royalty leaks"],
+ ["Elasticity","usage→revenue below 0.3 for a year — capture is collapsing"],
+ ["State","production state migrates to open, portable formats at scale"],
+ ["Work","agent-execution revenue at the model labs exceeds the cohort's"]];
+const RAILS=[
+ ["Twilio","TWLO","~70–75%","usage-billed action rail — passes the billing test, sits on the worksite"],
+ ["Bandwidth","BAND","~65–75%","CPaaS usage + surcharges — worksite meter, outside the backend"],
+ ["Fastly","FSLY","~58% est","confidence-bar watch — structurally usage-billed; bundle mix undisclosed"]];
+
+/* ---------- render static ---------- */
+const $=id=>document.getElementById(id);
+$("cohorttiles").innerHTML=COHORT.map(c=>`<div class="card"><h3 class="blue">${c.n} <span style="color:var(--faint);font-weight:600">· ${c.t}</span></h3>
+  <div style="font-size:11px;color:var(--cytx);font-weight:700;letter-spacing:.6px">${c.l.toUpperCase()}</div>
+  <div style="margin:6px 0 2px;font-family:Georgia,serif;font-size:19px;font-weight:700">${c.g} · ${c.f}</div>
+  <div class="sub"><b>Usage-linked: ${c.u}</b> — ${c.ub}</div>
+  <div class="sub" style="margin-top:6px;color:var(--gray)">${c.m}</div>
+  <div class="sub mono" style="margin-top:8px" id="px-${c.t}">mark $${MARK[c.t].toFixed(2)}</div></div>`).join("");
+$("ladder").querySelector("tbody").innerHTML=LAD.map(([n,l,u,st,mv])=>{
+  const bar=u>=0?`<span class="ubar"><i style="width:${Math.min(u,100)}%"></i><em></em></span> <span class="mono" style="font-size:11px">${u}%</span>`:(u===-1?`<span style="font-size:11px;color:var(--gray)">structural — drawdown model</span>`:`<span style="font-size:11px;color:var(--faint)">emerging</span>`);
+  const cls=st==="IN"?"in":"conv";
+  return `<tr><td><b>${n}</b></td><td>${l}</td><td>${bar}</td><td><span class="pill ${cls}">${st}</span></td><td style="font-size:11.5px;color:var(--gray)">${mv}</td></tr>`}).join("");
+$("sublist").innerHTML=`<b>Subscription today (13):</b> ${SUBS} — no material usage line yet; every per-agent or per-action SKU shipped is an upgrade event on this board.`;
+$("ledger").innerHTML=LED.map(([w,t,s])=>`<div class="ledgeritem"><span class="when">${w}</span><span class="what"><b>${t}</b><span>${s}</span></span><span class="pill pend">PENDING</span></div>`).join("");
+$("kills").innerHTML=KILLS.map(([k,t])=>`<div class="killitem"><b>${k}</b><span>${t}</span></div>`).join("");
+$("rails").querySelector("tbody").innerHTML=RAILS.map(([n,t,u,note])=>`<tr><td><b>${n}</b> <span style="color:var(--faint)">· ${t}</span></td><td class="mono">${u}</td><td class="mono" id="mv-${t}">—</td><td style="font-size:11.5px;color:var(--gray)">${note}</td></tr>`).join("");
+
+/* ---------- charts ---------- */
+const C={blue:"#2777EF",cyan:"#29C2F1",darkb:"#1B3F8F",lgray:"#C9D2E0",grow:"#9AA6BC",navy:"#1A2233",faint:"#8A97B0"};
+Chart.defaults.font.family='"Segoe UI",-apple-system,Helvetica,Arial,sans-serif';
+Chart.defaults.font.size=10.5;
+Chart.defaults.color="#8A97B0";
+const gridOpt={color:"#EDF1F7"};
+/* inline value-label plugin */
+const VALS={id:"vals",afterDatasetsDraw(chart,args,opts){
+  if(!opts||!opts.on)return;
+  const ctx=chart.ctx;ctx.save();
+  ctx.font='600 '+(opts.size||9.5)+'px "Segoe UI",Helvetica,Arial,sans-serif';
+  chart.data.datasets.forEach((ds,di)=>{
+    const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
+    const keys=opts.keys&&opts.keys[di];
+    ds.data.forEach((v,i)=>{
+      if(v==null)return;
+      if(keys&&!keys.includes(i))return;
+      const el=meta.data[i];if(!el)return;
+      const f=(opts.fmts&&opts.fmts[di])||(x=>x);
+      ctx.fillStyle=(opts.colors&&opts.colors[di])||"#5A6478";
+      if(opts.horiz){ctx.textAlign="left";ctx.fillText(f(v),el.x+5,el.y+3.5);}
+      else{ctx.textAlign="center";ctx.fillText(f(v),el.x,el.y-6);}
+    });
+  });
+  ctx.restore();
+}};
+Chart.register(VALS);
+const nfmt=v=>Number.isInteger(v)?v:v.toFixed(1);
+const pad={padding:{top:14,right:10}};
+function hollowLast(color,data){
+  const last=data.length-1;
+  return {pointBackgroundColor:d=>d.dataIndex===last?"#fff":color,
+          pointBorderColor:color,
+          pointRadius:d=>d.dataIndex===last?5:(d.raw==null?0:2.6),
+          pointBorderWidth:d=>d.dataIndex===last?2.5:1.5};
+}
+function dualAxis(id,labels,mult,grow,mcolor,ymax,gmax,mkeys,gkeys){
+  const lcol=mcolor===C.cyan?"#0B8BB5":mcolor;
+  new Chart($(id),{type:"line",data:{labels,datasets:[
+    {label:"EV / next-4Q revenue (left)",data:mult,borderColor:mcolor,backgroundColor:mcolor,borderWidth:2.2,tension:.25,spanGaps:true,yAxisID:"y",...hollowLast(mcolor,mult)},
+    {label:"revenue growth y/y (right)",data:grow,borderColor:C.grow,backgroundColor:C.grow,borderWidth:1.8,tension:.25,spanGaps:true,yAxisID:"y2",pointRadius:d=>d.raw==null?0:2.2}]},
+   options:{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},layout:pad,
+    plugins:{legend:{labels:{boxWidth:8,boxHeight:8,usePointStyle:true}},
+      vals:{on:true,keys:{0:mkeys,1:gkeys},fmts:[v=>nfmt(v)+"x",v=>Math.round(v)+"%"],colors:[lcol,"#8A97B0"]}},
+    scales:{y:{position:"left",min:0,max:ymax,grid:gridOpt,ticks:{callback:v=>v+"x"}},
+            y2:{position:"right",min:0,max:gmax,grid:{display:false},ticks:{callback:v=>v+"%"}},
+            x:{grid:{display:false},ticks:{maxTicksLimit:8}}}}});
+}
+dualAxis("chCohVal",VQ,VM,VG,C.blue,48,90,[0,4,10,18,23],[4,12,22]);
+dualAxis("chL2Val",LQ,L2M,L2G,C.cyan,10,32,[0,3,8,13],[4,12]);
+dualAxis("chL3Val",LQ,L3M,L3G,C.darkb,15,32,[0,2,8,13],[4,12]);
+function bars(id,labels,data,color,max){
+  new Chart($(id),{type:"bar",data:{labels,datasets:[{data,backgroundColor:color,borderRadius:3,maxBarThickness:34}]},
+   options:{responsive:true,maintainAspectRatio:false,layout:pad,
+    plugins:{legend:{display:false},vals:{on:true,fmts:[v=>nfmt(v)+"%"],colors:["#1A2233"]}},
+    scales:{y:{min:0,max,grid:gridOpt,ticks:{callback:v=>v+"%"}},x:{grid:{display:false}}}}});
+}
+bars("chCmt",Q5,CMT,C.blue,38);
+bars("chOvg",Q6,OVG,C.blue,24);
+bars("chRev",Q6,REVG,C.blue,38);
+new Chart($("chNdr"),{type:"line",data:{labels:Q6,datasets:[
+  {label:"meters (L2+L3, usage-billed)",data:NDRm,borderColor:C.blue,backgroundColor:C.blue,borderWidth:2.2,tension:.25,pointRadius:2.6},
+  {label:"apps (seat-priced)",data:NDRa,borderColor:C.lgray,backgroundColor:C.lgray,borderWidth:2,tension:.25,pointRadius:2.6}]},
+ options:{responsive:true,maintainAspectRatio:false,layout:pad,
+  plugins:{legend:{labels:{boxWidth:8,boxHeight:8,usePointStyle:true}},
+    vals:{on:true,keys:{1:[5]},fmts:[v=>v,v=>v],colors:[C.blue,"#8A97B0"]}},
+  scales:{y:{min:95,max:125,grid:gridOpt},x:{grid:{display:false}}}}});
+function layerBars(id,labels,D,max){
+  new Chart($(id),{type:"bar",data:{labels,datasets:[
+    {label:"L2",data:D.l2,backgroundColor:C.cyan,borderRadius:2,maxBarThickness:14},
+    {label:"L3",data:D.l3,backgroundColor:C.darkb,borderRadius:2,maxBarThickness:14},
+    {label:"L4",data:D.l4,backgroundColor:C.lgray,borderRadius:2,maxBarThickness:14}]},
+   options:{responsive:true,maintainAspectRatio:false,layout:pad,
+    plugins:{legend:{labels:{boxWidth:8,boxHeight:8,usePointStyle:true}},
+      vals:{on:true,size:8,fmts:[v=>Math.round(v),v=>Math.round(v),v=>Math.round(v)],colors:["#0B8BB5",C.darkb,"#8A97B0"]}},
+    scales:{y:{min:0,max,grid:gridOpt,ticks:{callback:v=>v+"%"}},x:{grid:{display:false}}}}});
+}
+layerBars("chLCmt",Q5,LCmt,26);
+layerBars("chLOvg",Q6,LOvg,26);
+layerBars("chLRev",Q6,LRev,26);
+new Chart($("chHist"),{type:"bar",data:{labels:["Machine labor cohort (3)","L2 · State","L3 · Work","L4 · Apps"],
+  datasets:[{data:[218,177,175,55],backgroundColor:[C.blue,C.cyan,C.darkb,C.lgray],borderRadius:4,maxBarThickness:46}]},
+ options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,layout:pad,
+  plugins:{legend:{display:false},vals:{on:true,horiz:true,size:10,fmts:[v=>"+"+v+"%"],colors:["#1A2233"]}},
+  scales:{x:{min:0,max:245,grid:gridOpt,ticks:{callback:v=>"+"+v+"%"}},y:{grid:{display:false},ticks:{color:"#1A2233",font:{size:11.5}}}}}});
+new Chart($("chReg"),{type:"bar",data:{labels:["<10% · 9 names","10–20% · 28","20–30% · 21","30%+ · 9"],
+  datasets:[{data:[3.1,3.8,4.9,15.1],backgroundColor:[C.lgray,C.lgray,C.grow,C.blue],borderRadius:4,maxBarThickness:60}]},
+ options:{responsive:true,maintainAspectRatio:false,layout:pad,
+  plugins:{legend:{display:false},vals:{on:true,size:10.5,fmts:[v=>nfmt(v)+"x"],colors:["#1A2233"]}},
+  scales:{y:{min:0,max:17,grid:gridOpt,ticks:{callback:v=>v+"x"}},x:{grid:{display:false},ticks:{color:"#1A2233"}}}}});
+
+/* ---------- live quotes ---------- */
+function level(ts){return ts.reduce((s,t)=>s+px[t]/MARK[t],0)/ts.length*100}
+function paint(live){
+  const f=(x)=>x.toFixed(1);
+  const sets=[["ix-c",CT],["ix-l2",L2T],["ix-l3",L3T]];
+  for(const [id,ts] of sets){
+    const v=level(ts);$(id).textContent=f(v);
+    const d=v-100;const el=$(id+"-d");
+    el.innerHTML=`<span class="${d>=0?'pos':'neg'}">${d>=0?"+":""}${f(d)}% since inception</span> · Aug 11, 2026 = 100`;
+  }
+  for(const c of COHORT){const d=(px[c.t]/MARK[c.t]-1)*100;$("px-"+c.t).innerHTML=`$${px[c.t].toFixed(2)} <span class="${d>=0?'pos':'neg'}">(${d>=0?"+":""}${d.toFixed(1)}% since inception)</span>`;}
+  for(const t of ["TWLO","BAND","FSLY"]){const d=(px[t]/MARK[t]-1)*100;const el=$("mv-"+t);if(el)el.innerHTML=`<span class="${d>=0?'pos':'neg'}">${d>=0?"+":""}${d.toFixed(1)}%</span>`;}
+  if(live){$("livedot").classList.add("live");$("asof").textContent="Live marks via FMP · indices accrue from inception, Aug 11, 2026 = 100 · fundamentals: filings to Jun 2026, refreshed each filing season";}
+}
+paint(false);
+(async()=>{
+  try{
+    const r=await window.cowork.callMcpTool("mcp__f6d3a915-97fa-499f-9307-b6471944fb83__quote",{endpoint:"batch-quote-short",symbols:Object.keys(MARK)});
+    if(r.isError)throw new Error("quote tool error");
+    let data=r.structuredContent;
+    if(!data&&r.content&&r.content[0])data=JSON.parse(r.content[0].text);
+    if(Array.isArray(data)){
+      for(const q of data){if(q.symbol&&MARK[q.symbol]&&q.price)px[q.symbol]=q.price;}
+      paint(true);
+      console.log("machine-oracle: live quotes applied",data.length);
+    }else{console.warn("machine-oracle: unexpected quote payload",JSON.stringify(data).slice(0,200));}
+  }catch(e){
+    $("asof").textContent="Marks as of inception — Aug 11, 2026 (live refresh unavailable).";
+    console.warn("machine-oracle: quote refresh failed",e&&e.message);
+  }
+})();
+</script>
+</body>
+</html>

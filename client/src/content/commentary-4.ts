@@ -1,142 +1,183 @@
-/** Part IV — A Royalty on Machine Labor. */
+/**
+ * Part 04 — Machine Oracle. Includes the definitions section, the conclusion,
+ * and the coda, which have no exhibit of their own and are rendered as written
+ * sections by the deck's `conclusion` sequence.
+ */
 
 import type { Block } from './types';
 
 export const part4: Record<number, Block[]> = {
-  31: [
+  70: [
     {
       kind: 'p',
       lead: true,
       text:
-        'If infinite software runs on metered rails, the only question left is which rail to own. We divide the stack into six layers and we invest in four of them.',
+        'The rule: a company enters the cohort when the majority of its revenue is recognized from measured consumption — billed per unit used, or drawn down against commitments. No picks, no weights, no hindsight. Anyone applying it gets the same names.',
     },
     {
       kind: 'p',
       text:
-        'We avoid layer one, agentic applications and workflows, because that is the knife fight — the place where production costs approach zero and entrants arrive without end. We avoid layer six, the cloud and compute substrate, because it is GPU-gated and its economics are set by supply we do not control.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Layers two through five are the investable sweet spot: the tool rails of API, MCP, identity and auth; context, data, analytics and memory; build and verify, meaning repos, CI/CD, evals and tests; and observe, govern and secure — traces, policy, cost. These are the runtime meter, the memory meter, the build meter, and the audit meter. They are the least dependent on GPU availability and the most directly tied to software volume, compliance, and enterprise trust.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The fair question is why not simply own the obvious expressions of this wave — NVIDIA, the hyperscalers, the labs. Our answer is that those trades are either crowded or unavailable. NVIDIA is priced for the buildout by everyone who can read a headline; it is the consensus expression, and consensus is in the price. The hyperscalers own layer six, but at three trillion dollars of market value the agent effect is a rounding error on the multiple. The labs are private, and their layer is the one where competition gives the gains to customers — the price war that drives our entire demand curve is their margin. The meters are where the same wave lands un-modeled, in liquid public companies small enough for it to matter. That is the definition of the gap we hunt.',
+        'Applied to the 25-name backend, the rule admits three companies: Snowflake, MongoDB, and Datadog. It could have been applied in 2022 from public pricing pages alone. That is the point — the thesis is stated as an instrument anyone can replicate, not a portfolio only we can explain.',
     },
   ],
 
-  32: [
+  71: [
     {
       kind: 'p',
       text:
-        'We wrote the admission checklist before we owned a share, which is the only time such a list is worth writing.',
+        'Every constituent is shown its work, and so is everyone who stays out. Just as important as who is in: Fastly is structurally usage-billed but discloses no percentage, which puts it below the confidence bar and onto the converter watchlist. Cloudflare’s 10-K says revenue is primarily subscription. Elastic’s cloud share sits at 46 to 48%, below majority. Twilio and Bandwidth pass the billing test but sit on the worksite, not the backend.',
     },
     {
       kind: 'p',
-      text:
-        'A usage-priced core, meaning revenue that meters machine actions rather than human seats. Agent cohorts disclosed in the filings, not in the deck — usage we can audit every quarter. Growing retention and accelerating backlog, so the tape confirms conversion rather than mere adoption. Fortress economics: software gross margins, net cash, Rule of 40. And every link in the chain checkable, from adoption through usage through conversion through auditability.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Where a link cannot be checked, the position takes starter weight and nothing more. Each grade maps to a pre-written weight action we execute inside the quarter, which removes the discretion at exactly the moment discretion becomes expensive.',
+      text: 'The rule survives contact with the filings; backend names that fail it stay out, however much we like the story.',
     },
   ],
 
-  33: [
+  73: [
     {
       kind: 'p',
       text:
-        'And now the part that makes this a trade rather than an observation. This growth is being offered at the cheapest price it has ever carried.',
-    },
-    {
-      kind: 'p',
-      text:
-        'As of July 2026 the five meters trade at 7.5x EV to revenue — a quarter of their 2021 peak. About 21x forward earnings, which is simply the software tape. Roughly 0.4x growth-adjusted, the cheapest on record for this group. They hold $14 billion of combined net cash, so none of them depends on financing the buildout. And aggregate gross margin sits at 73%, held intact straight through the agent transition.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Re-accelerating revenue at trough-regime multiples, while backlog and overages compound underneath. We have not been offered this combination before in this group, and we do not expect to be offered it again once the disclosures land.',
+        'Three names are across the majority-consumption line. Nine are converting toward it, each with a measurable distance to the threshold. Thirteen are subscription today — and every per-agent or per-action SKU any of them ships is an upgrade event on this board.',
     },
   ],
 
-  34: [
+  74: [
     {
       kind: 'p',
       text:
-        'It is worth being precise about how this de-rating happened, because it did not happen for the reason a value investor would normally hope.',
+        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. Cohort deferred revenue accelerated from +19% to +32% year over year in five quarters. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59B a quarter. Recognized revenue growth followed, 25% to 32%.',
     },
     {
       kind: 'p',
       text:
-        'EV to next-twelve-months revenue went 30x in FY21, then 12x, 10x, 9x, 8x, and 7.5x by July 2026. Forward earnings multiples compressed from 50x in FY24 to 30x in FY25 to 21x today. FY21 through FY23 carry no meaningful earnings multiple because the group was pre-profitability.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Meanwhile the businesses improved on every axis. Operating margin went from −6% to +18%. Retention returned to 120%. The multiple compressed while the fundamentals compounded, which is a description of sentiment rather than of value.',
+        'And the rule alone beats the layers: +218% since ChatGPT against +177% for state, +175% for work, and +55% for apps. One mechanical filter — usage-billed or not — separates +218% from +55%. The honest cut is that the cohort also absorbed the deepest 2022 derate, at −60%, and from January 2022 it is +18%, behind both layers on the full period. The tape pays consumption over seats, mechanically, on both sides of the derate.',
     },
   ],
 
-  35: [
+  81: [
     {
       kind: 'p',
       text:
-        'We built our revenue case by taking four honest haircuts, because a number nobody can attack is a number nobody believes.',
-    },
-    {
-      kind: 'list',
-      ordered: true,
-      items: [
-        'Unit prices fall 30 to 50% a year, and all of it is given back to customers.',
-        'Revenue is booked on discounted multi-year commitments rather than at list price.',
-        'Usage converts to revenue at the measured elasticity of 0.5 to 0.7, not at unity.',
-        'Agent revenue is compute-heavier than seat revenue, and we carry that margin cost.',
-      ],
-    },
-    {
-      kind: 'p',
-      text:
-        'After all four, aggregate 2029 revenue for the five meters is about $44 billion against the street’s $23 billion, with a floor case of $34 billion. That is roughly a 41% compound growth rate from $15.9 billion today. The $21 billion annual wedge between the wave and the fade is the entire trade.',
+        'The natural objection to a 33%-growth cohort is that growth decays. We think it accelerates from here, and the mechanisms are individually measurable in filings rather than a matter of conviction.',
     },
   ],
 
-  36: [
+  76: [
     {
       kind: 'p',
       text:
-        'Revenue is the easier half of the argument. The margin machine underneath it is what turns a good revenue outcome into a re-rating.',
+        'Before any scenario, the discipline: we do not set price targets, and the cohort’s multiple has always tracked its growth rate rather than sentiment. Growth-adjusted, the multiple has sat near 0.4–0.5x through a 42x peak, a 10x trough, and today’s 16.5x.',
     },
+    { kind: 'p', text: 'That is why we frame value in growth ranges, not point multiples.' },
+  ],
+
+  77: [
     {
       kind: 'p',
       text:
-        'Indexed to FY21 revenue of 100: revenue is 260 today and about 720 in our 2029 case. Gross margin holds at 72 to 74% throughout. Operating profit goes from −6 to 47 to roughly 280, and operating margin from −6% to 18% to something like 35 to 40%. Profit grows roughly 6x from here.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The important word is “built.” Twenty-four points of operating leverage were assembled before the wave arrived, during the years the multiple was compressing. Incremental drop-through of about 50% is not our assumption — it is what the filings already measure, in a range of 45 to 55%.',
+        'From about $11.3B of LTM revenue, here is 2029 framed as three-and-a-half-year CAGR ranges. The fade is consensus — growth exits the decade in the high teens and agents never become a revenue line; that is what today’s price carries. Partial conversion has event volumes arriving on the street-floor token path while capture leaks. The wave is the ~4,000Q case run through four haircuts: falling unit prices, discounted commitments, measured capture, and compute-heavier margin.',
     },
   ],
 
-  37: [
+  78: [
     {
       kind: 'p',
       text:
-        'The obvious objection to all of this is that today’s measured attach rate is only 0.2 to 0.3 events per token, well below the 20 to 40 we described. We think that measurement is a lag, not a leak, and the mechanics say why.',
+        'Revenue is the easier half. The cash bridge is what turns a good revenue outcome into a re-rating, and usage revenue drops through at software economics.',
+    },
+  ],
+
+  79: [
+    {
+      kind: 'p',
+      text:
+        'One more piece of market structure decides how much any of this is worth: across the 67-name universe, the multiple is a step-function rather than a slope.',
     },
     {
       kind: 'p',
       text:
-        'Committed contracts burn first, so surge usage draws down prepaid credits and appears in backlog rather than revenue — one to two quarters. Overage only bills above the floors, and then at list — another one to two quarters. Pilots meter lightly while production meters everything, because audit, security, and observability attach only when a workload graduates — two to three quarters. And teams optimise before they let agents run, so efficiency arrives before scale — one to two quarters.',
+        'Past roughly 30% growth, the tape triples what it pays. Which band a name occupies is the only multiple question that matters — and the three growth worlds map directly onto those bands.',
+    },
+  ],
+
+  80: [
+    {
+      kind: 'p',
+      text:
+        'A fair question at this point is how much of this depends on AI capability continuing to improve. Less than you would expect: the meters work across the timeline distribution.',
+    },
+  ],
+
+  82: [
+    {
+      kind: 'p',
+      text:
+        'This is a research program, so the calls are dated, falsifiable, and graded in public — with misses published as prominently as hits.',
+    },
+  ],
+
+  83: [
+    {
+      kind: 'p',
+      text:
+        'And five bolder ones, on a longer clock. Direction is the claim; timing is the error bar.',
+    },
+  ],
+
+  84: [
+    {
+      kind: 'p',
+      text:
+        'Six tripwires, written before they are needed. Each is measurable in public data, and each is mapped to an action.',
     },
     {
       kind: 'p',
       text:
-        'Each of those lags closes on a disclosure date. The attach rate we can measure today is the entry price, not the ceiling. The lag is the opportunity.',
+        'The strongest case against us, stated at full strength: attach is an engineering artifact; vendors cannibalize themselves; Jevons proves the wave but not the royalty; the historical precedents cut against vendor margins; the hyperscalers bundle it away with first-party services; and the endgame nationalizes off public rails. Against each we hold a measured counter — overage at list accelerating, more than 75% still paying at enforced limits, premium mix gaining share, our own production telemetry in Sky1, a decade of compounding through first-party bundles, and enterprise workloads staying on rented rails in every prior mobilization. The thesis doesn’t need protection from this argument; it needs to be worth beating it.',
+    },
+  ],
+
+  86: [
+    {
+      kind: 'p',
+      text:
+        'A screen with three names invites the question of what happens when the wave arrives. The answer is that the cohort is designed to grow, from three directions at once — and the rule itself never moves.',
+    },
+  ],
+
+  87: [
+    {
+      kind: 'p',
+      text:
+        'Where does this settle? Our view of the 2030s, layer by layer — and it is a claim about which parts of the stack accumulate rather than which vendors win.',
+    },
+  ],
+
+  88: [
+    {
+      kind: 'p',
+      text:
+        'The firm changes shape too. Revenue decouples from headcount, and the consequences run all the way to the income statement.',
+    },
+  ],
+
+  90: [
+    {
+      kind: 'p',
+      text:
+        'What we publish, every quarter — so the program can be checked rather than believed.',
+    },
+  ],
+
+  91: [
+    {
+      kind: 'p',
+      text: 'The argument, assembled.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Consensus prices the fade; the growth worlds above it are the debate, and the ledger will grade every claim. Every statement in this piece is dated, sourced, or falsifiable — and the grading continues quarterly.',
     },
   ],
 };
