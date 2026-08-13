@@ -19,7 +19,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The reading discipline for everything that follows is laid out in the introduction — measured slopes, dated calls, public grades — and it starts paying its way immediately: nothing in this part asks for belief, only for checking. First, the era.',
+        'The discipline for everything that follows is simple: measured slopes, dated calls, public grades — nothing in this part asks for belief, only for checking. First, the era.',
     },
   ],
 

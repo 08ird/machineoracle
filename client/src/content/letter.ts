@@ -1,7 +1,7 @@
 /**
- * The home-page hook — the prologue from content/00-how-to-read-this.md:
- * the memo, the internet clock, the method. Ends on the transition into the
- * table of contents.
+ * The home-page hook — the memo, the internet clock, and the decade ahead:
+ * the big ideas Part 04 exists to be remembered for. Ends on the transition
+ * into the table of contents.
  */
 
 import type { Article } from './types';
@@ -46,16 +46,21 @@ export const letter: Article = {
       text:
         'The token wave: November 2022, ChatGPT — the Netscape moment, from roughly zero; 2026, the debate, with multiples still at fade levels. You are here. Then 2027–28, agent GAAP disclosures make agent demand visible in filings; and 2029 onward, the meters collect the era’s royalty — with every call in this piece graded.',
     },
-    { kind: 'h2', text: 'How to read this: straight lines, graded in public' },
+    { kind: 'h2', text: 'The decade ahead: the era of infinite software' },
     {
       kind: 'p',
       text:
-        'Before any of the arguments, the method behind every number here. We measure the slopes: every forecast extrapolates a measured trend — token volumes, price curves, attach rates, filings — never a narrative. We pre-register the calls: predictions carry deadlines, kill conditions are written before they are needed, and grading criteria are fixed at publication. And we separate the bases: measured, estimated, and modeled figures are labeled as such on every exhibit, and the fade case is always shown next to the wave.',
+        'If the clock is right about where we stand, it is worth saying plainly what we believe the next decade is — because the final part of this series exists to be remembered for it. Software production has left human hands. When describing software is making software, a billion people become makers; software becomes as abundant as documents — summoned for one task, discarded without regret; and every piece of it runs on rented, metered rails. That is the era this series names infinite software.',
     },
     {
       kind: 'p',
       text:
-        'As Leopold Aschenbrenner put it, the forecast “just requires believing in straight lines on a graph.” We hold ourselves to the disciplined version: measured lines, dated predictions, public grades. Trend extrapolation, with consequences — every claim in this piece is checkable, and most carry a date.',
+        'Inside it sits the idea we most want to be remembered for: machine labor — work performed by AI agents and billed by the unit, not the seat. It is not a metaphor; it is already on invoices. Its arrival moves the denominator from software budgets to labor budgets, reshapes the firm around revenue per employee rather than headcount, and settles the era’s economics on the small set of companies that meter what every agent must do — execute, remember, and answer for itself. Every industrial era eventually sorted this way: the engines commoditized; the rails and ledgers endured.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Those are the big ideas to hold as you read — the era, the labor, the royalty on it. The four parts build them in order, and Part 04 turns them into an instrument: definitions coined, predictions dated, a cohort re-scored quarterly, every call graded in public. This site exists to timestamp that call — that machine labor is the tidal wave of the coming decade — before the consensus arrives, and to keep score afterward, either way.',
     },
     { kind: 'p', text: 'Here is what we see.' },
   ],
