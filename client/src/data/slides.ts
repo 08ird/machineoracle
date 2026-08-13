@@ -608,11 +608,12 @@ export const SLIDES: Slide[] = [
     body: {
       kind: 'split',
       groups: [
-        { head: 'Today', parts: [{ pct: 85, label: 'Ask (chat)' }, { pct: 15, label: 'Doing (delegate + automate)' }] },
-        { head: '2029 — our case', parts: [{ pct: 25, label: 'Ask (chat)' }, { pct: 75, label: 'Doing (delegate + automate)' }] },
+        { head: 'Today', parts: [{ pct: 85, label: 'Ask' }, { pct: 15, label: 'Doing' }] },
+        { head: '2029 — our case', parts: [{ pct: 25, label: 'Ask' }, { pct: 75, label: 'Doing' }] },
       ],
     },
-    footnote: 'Lab and marketplace traffic disclosures, 2025–26. Above 60% doing-share already beats consensus.',
+    footnote:
+      'Ask = conversational chat; doing = tokens spent delegating and automating. Lab and marketplace traffic disclosures, 2025–26. Above 60% doing-share already beats consensus.',
   },
   {
     id: 25,
@@ -684,21 +685,36 @@ export const SLIDES: Slide[] = [
     body: {
       kind: 'steps',
       items: [
-        { n: 'Landing', head: 'Chatbots become agents', desc: 'Seven vendors now sell agent work by the unit.', meta: 'landing' },
         {
-          n: 'Landed',
+          n: '1',
           head: 'AI investment scales toward $100B+ clusters',
-          desc: '10-GW-class campuses announced; hyperscaler capex above $0.5T a year.',
+          desc: '10-GW-class campuses announced; hyperscaler capex above $0.5T a year and guided higher.',
           meta: 'landed',
         },
-        { n: 'Landed', head: 'A scramble for power', desc: 'Grid interconnects are the binding constraint.', meta: 'landed' },
         {
-          n: 'Landing',
-          head: 'Test-time compute unlocks long-horizon work',
-          desc: 'Agent tasks measure 5–25M tokens/day against ~10K for chat.',
+          n: '2',
+          head: 'A scramble for power',
+          desc: 'Grid interconnects are the binding constraint; a nuclear plant restarted to feed one campus.',
+          meta: 'landed',
+        },
+        {
+          n: '3',
+          head: 'Chatbots become agents',
+          desc: 'Seven vendors now sell agent work by the unit; coding traffic went majority-agent in a year.',
           meta: 'landing',
         },
-        { n: 'Open', head: '“AGI by 2027 is strikingly plausible”', desc: 'Not our claim, and not required.', meta: 'open' },
+        {
+          n: '4',
+          head: 'Test-time compute unlocks long-horizon work',
+          desc: 'Agent tasks measure 5–25M tokens a day against ~10K for chat.',
+          meta: 'landing',
+        },
+        {
+          n: '5',
+          head: '“AGI by 2027 is strikingly plausible”',
+          desc: 'Not our claim, and not required by anything in this piece.',
+          meta: 'open',
+        },
       ],
     },
     takeaway: {
@@ -831,7 +847,7 @@ export const SLIDES: Slide[] = [
         { n: 'The prints', head: 'Every dated platform disclosure', desc: 'On or above our path.' },
         {
           n: 'The suppliers',
-          head: 'Half a trillion a year of committed capex',
+          head: '~$700B a year of committed capex',
           desc: 'Only clears its hurdle on our demand curve.',
         },
         {

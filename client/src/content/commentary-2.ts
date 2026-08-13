@@ -223,7 +223,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Token demand of ~40x is the labs’ story, and it is the one being told everywhere. But every action lands on rented rails — it runs, it stores, it is secured, it is observed — so billable infrastructure events compound faster than the tokens that cause them: about 190x by our model, from 0.3Q to roughly 57Q by 2029.',
+        'Token demand of ~40x is the labs’ story, and it is the one being told everywhere. But every action lands on rented rails — it executes, it leaves state behind, and it must answer for itself — so billable infrastructure events compound faster than the tokens that cause them: about 190x by our model, from 0.3Q to roughly 57Q by 2029.',
     },
     {
       kind: 'p',

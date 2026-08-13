@@ -1241,6 +1241,14 @@ tbody tr.is-hl th {
 .step__meta[data-meta='own'] {
   color: var(--accent);
 }
+.step__meta[data-meta='landed'] {
+  color: var(--accent);
+  font-weight: 700;
+}
+.step__meta[data-meta='landing'] {
+  color: var(--ink-2);
+  font-weight: 700;
+}
 
 .tl {
   display: grid;
@@ -1397,8 +1405,9 @@ tbody tr.is-hl th {
   padding: 0.2rem;
   min-width: 0;
   font-family: var(--sans);
-  font-size: 0.7rem;
-  color: var(--ink-3);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--ink);
 }
 .split__seg:last-child {
   background: var(--accent);
@@ -1406,7 +1415,7 @@ tbody tr.is-hl th {
 }
 .split__pct {
   font-family: var(--display);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.1;
   color: inherit;
