@@ -1641,6 +1641,16 @@ tbody tr.is-hl th {
   gap: 0.4rem;
   margin-top: 0.75rem;
 }
+.lstack__axis {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  text-align: right;
+  margin-bottom: 0.1rem;
+}
 .lstack__row {
   display: flex;
   align-items: center;
@@ -1749,11 +1759,6 @@ tbody tr.is-hl th {
   border-radius: 4px;
   padding: 0.16rem 0.45rem;
   white-space: nowrap;
-}
-.roster__chip--rail {
-  background: var(--accent-pale);
-  border-color: var(--accent);
-  color: var(--ink);
 }
 .roster__note {
   font-family: var(--sans);

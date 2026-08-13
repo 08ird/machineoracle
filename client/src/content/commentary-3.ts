@@ -49,7 +49,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Layer 0 is capital-heavy and already priced: the market needs no help noticing Nvidia. Layer 1 — the models — creates the most value and keeps the least: it is competitive, deflating by design (the 50x price collapse of Part 02 is its business model), and has no public pure play in any case. Layer 4 is where agents deliver outcomes, and Part 01 explained why its packaged products deflate. The key layers are the two in the middle: the ones that meter work as it happens and accumulate state as it compounds. Everything an agent does passes through both.',
+        'The first thing to notice is how unevenly the public market is distributed across them. Sixty-seven public companies make up the investable universe of this part, and the exhibit counts them layer by layer: forty-two sit at the top, where agents deliver outcomes; nineteen meter the work; six keep the state; and the bottom two layers offer almost nothing to buy — the models have no public pure play, and compute sits outside the universe entirely. The pyramid is widest exactly where Part 01 said the knife-fight happens, and thinnest where the royalty is collected.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Layer 0 is capital-heavy and already priced: the market needs no help noticing Nvidia. Layer 1 — the models — creates the most value and keeps the least: it is competitive, deflating by design (the 50x price collapse of Part 02 is its business model). Layer 4 is where agents deliver outcomes, and Part 01 explained why its packaged products deflate. The key layers are the two in the middle: the ones that meter work as it happens and accumulate state as it compounds. Everything an agent does passes through both.',
     },
   ],
 
@@ -74,12 +79,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'To keep ourselves honest about what “the market” means, the universe is defined mechanically: the BVP Nasdaq Emerging Cloud Index plus four extensions — 67 public companies, with DigitalOcean reclassified to layer 0. The median cloud business trades at about 4.1x forward revenue and grows about 20%. Only about eleven of the 67 are usage-billed at all — a first hint of how rare the meter model still is inside “cloud software”.',
+        'To keep ourselves honest about what “the market” means, the universe is fixed in advance: 67 public cloud-software companies, screened by what they sell rather than what they are called, with DigitalOcean reclassified to layer 0 because it sells compute. The median name in it trades at about 4.1x forward revenue and grows about 20% — and only about eleven of the 67 are usage-billed at all, a first hint of how rare the meter model still is inside “cloud software”.',
     },
     {
       kind: 'p',
       text:
-        'Bucketed on the master frame, that is a 25-name backend and a 42-name worksite. The full roster is published — classification, not holdings — because a screen you cannot replicate is a story, and this piece is trying not to tell stories.',
+        'Bucketed on the one cut that matters, that is a 25-name public backend and a 42-name public worksite. And rather than ask you to take the buckets on faith, the next exhibit publishes every name in them — because a screen you cannot replicate is a story, and this piece is trying not to tell stories.',
     },
   ],
 
@@ -87,7 +92,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'And here it is, name by name — six state meters, nineteen work meters, forty-two worksite names, with the two action rails marked. Publishing the roster costs us nothing and buys the one thing a research program cannot fake: any reader can re-run the classification, disagree with a bucket, and tell us so. The exhibit is the audit trail for everything the next ten sections claim.',
+        'Here it is, name by name: six state meters, nineteen work meters, forty-two worksite names, with the two action rails marked where they sit. Publishing the roster costs us nothing and buys the one thing a research program cannot fake — any reader can re-run the classification, disagree with a bucket, and tell us so. The exhibit is the audit trail for everything the rest of this part claims.',
     },
   ],
 
@@ -95,12 +100,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'A reader who follows this space will notice the most interesting meters are missing from the public universe. They are being built in private, at speeds that make the public comps look sleepy: the agent-era runtime and tooling companies — Cursor, Lovable, Replit, Vercel, Temporal, Modal — include some of the fastest revenue ramps in software history, with the leaders reaching hundreds of millions of run-rate revenue within a year or two of launch.',
+        'A reader who follows this space will notice the most interesting meters are missing from the public universe. They are being built in private, at speeds that make the public comps look sleepy — and the milestones are specific. Cursor set the record for the fastest software company to $100 million of annual recurring revenue, then ran past half a billion within two years of launch. Lovable took the same $100 million mark in about eight months — the fastest ramp Europe has produced. Replit grew revenue roughly tenfold in under a year as agent-built apps arrived. On the state side, Databricks crossed a $100 billion private valuation on a revenue run-rate near $4 billion — a usage-billed data platform larger than most of the public universe it is not yet part of.',
     },
     {
       kind: 'p',
       text:
-        'For this research program they matter twice. They are evidence — private usage-billed infrastructure growing at triple digits is the wave landing exactly where the thesis says it lands. And they are the pipeline: every name on the exhibit is a future universe entrant, on IPO and one 10-K. The frontier labs themselves — the layer-1 engines — cannot be bought at all, which is worth sitting with: the public market is offered the meters or nothing.',
+        'For this research program they matter twice. They are evidence — private usage-billed infrastructure compounding at triple digits is the wave landing exactly where the thesis says it lands. And they are the pipeline: every name on the exhibit is a future universe entrant, on IPO and one 10-K. The frontier labs are private too, which is worth sitting with — for now, the public market is offered the meters or nothing.',
     },
   ],
 

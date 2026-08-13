@@ -515,6 +515,7 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
   // ── Deck 44: the five-layer stack with universe counts ────────────────────
   layerstack(b) {
     const w = el('div', 'lstack');
+    w.append(el('div', 'lstack__axis', 'Public companies in the universe'));
     for (const l of b.layers) {
       const row = el('div', `lstack__row lstack__row--${l.tone}`);
       row.append(el('div', 'lstack__n', l.n));

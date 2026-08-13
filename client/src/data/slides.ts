@@ -967,8 +967,7 @@ export const SLIDES: Slide[] = [
       ],
       result: { value: 'The royalty', label: 'revenue on machine labor', note: 'checked against filings for the rest of this part' },
     },
-    footnote:
-      'Attach today reflects committed contracts burning first — the surge hits backlog one to three quarters before revenue. Where usage caps bind, more than 75% of buyers keep paying at list.',
+    footnote: 'Attach today reflects committed contracts burning first — the surge hits backlog one to three quarters before revenue.',
   },
   {
     id: 41,
@@ -1030,7 +1029,7 @@ export const SLIDES: Slide[] = [
       panels: [
         {
           head: 'The backend',
-          sub: 'what agents run on — 25 companies',
+          sub: 'what agents run on — 25 public companies',
           verbs: [
             { verb: 'Execute', desc: 'Runs, steps, compute-seconds — the work itself' },
             { verb: 'Remember', desc: 'Reads, writes, queries, storage — the state it leaves' },
@@ -1041,7 +1040,7 @@ export const SLIDES: Slide[] = [
         },
         {
           head: 'The worksite',
-          sub: 'where agents do the work — 42 companies',
+          sub: 'where agents do the work — 42 public companies',
           verbs: [
             { verb: 'Act', desc: 'Messages, calls, payments — the action rails' },
             { verb: 'Read & write the record', desc: 'The systems agents work in' },
@@ -1061,7 +1060,7 @@ export const SLIDES: Slide[] = [
     id: 43,
     extras: [44],
     part: 3,
-    kicker: 'BVP Nasdaq Emerging Cloud Index plus four extensions',
+    kicker: 'Every name public, every bucket published — the map this part is scored against',
     title: 'The universe: 67 public companies',
     body: {
       kind: 'stats',
@@ -1167,7 +1166,7 @@ export const SLIDES: Slide[] = [
           ],
         },
       ],
-      note: '† Action rails — worksite names that pass the billing test but sit where agents act, not where they run.',
+      note: '† Action rails — worksite names that pass the billing test but sit where agents act, not where they run. Classification only; no name is emphasized.',
     },
     footnote: 'Skycatcher classification, August 2026. A research classification, not holdings or recommendations.',
   },
@@ -1180,15 +1179,15 @@ export const SLIDES: Slide[] = [
       kind: 'columns',
       cols: [
         {
-          head: 'Runtime',
+          head: 'L3 · Runtime',
           items: ['Temporal', 'Vercel', 'Modal', 'E2B', 'Browserbase', 'LangChain', 'Replit', 'Cursor', 'Lovable'],
         },
-        { head: 'Control', items: ['Grafana', 'Snyk', 'Vanta', 'Braintrust'] },
+        { head: 'L3 · Control plane', items: ['Grafana', 'Snyk', 'Vanta', 'Braintrust'] },
         {
-          head: 'State',
+          head: 'L2 · State',
           items: ['Databricks', 'ClickHouse', 'Redis', 'Supabase', 'Pinecone', 'Neo4j', 'SpacetimeDB'],
         },
-        { head: 'Layer 1 — cannot be bought at all', items: ['OpenAI', 'Anthropic', 'xAI', 'Mistral'], tone: 'cold' },
+        { head: 'L1 · Models', items: ['OpenAI', 'Anthropic', 'xAI', 'Mistral'] },
       ],
     },
   },
