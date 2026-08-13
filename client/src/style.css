@@ -2080,6 +2080,126 @@ tbody tr.is-hl th {
 .chart__vlab.is-muted {
   fill: var(--ink-3);
 }
+.chart__vline {
+  stroke: var(--ink-3);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.dual__bar {
+  fill: var(--ink-4);
+  opacity: 0.22;
+}
+
+/* ── Bout (deck 66): head-to-head scorecard ─────────────────────────────── */
+
+.bout {
+  margin-top: 0.75rem;
+  font-family: var(--sans);
+}
+.bout__row {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr) minmax(0, 1fr) 4.2rem;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  border-top: 1px solid var(--rule-2);
+}
+.bout__row--head {
+  border-top: 0;
+  padding-bottom: 0.2rem;
+}
+.bout__head {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.bout__head--a {
+  color: var(--accent);
+}
+.bout__round {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.bout__cell {
+  font-size: 0.76rem;
+  color: var(--ink-3);
+}
+.bout__cell.is-win {
+  color: var(--ink);
+  font-weight: 600;
+}
+.bout__chip {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 999px;
+  padding: 0.16rem 0.3rem;
+  color: #fff;
+}
+.bout__chip--a {
+  background: var(--accent);
+}
+.bout__chip--b {
+  background: var(--ink-2);
+}
+.bout__score {
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 2px solid var(--rule);
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--ink-3);
+}
+@media (max-width: 44rem) {
+  .bout__row {
+    grid-template-columns: 1fr 4rem;
+    grid-template-areas:
+      'round chip'
+      'a a'
+      'b b';
+    row-gap: 0.25rem;
+  }
+  .bout__round {
+    grid-area: round;
+  }
+  .bout__chip {
+    grid-area: chip;
+  }
+  .bout__cell:nth-child(2) {
+    grid-area: a;
+  }
+  .bout__cell:nth-child(3) {
+    grid-area: b;
+  }
+  .bout__row--head {
+    display: none;
+  }
+  .bout__cell::before {
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-right: 0.4rem;
+  }
+  .bout__cell:nth-child(2)::before {
+    content: 'STATE ·';
+    color: var(--accent);
+  }
+  .bout__cell:nth-child(3)::before {
+    content: 'WORK ·';
+    color: var(--ink-2);
+  }
+}
+.step__meta[data-meta='L2 · state'],
+.step__meta[data-meta='L3 · work'] {
+  color: var(--accent);
+  font-weight: 700;
+}
 
 /* ── Ladder (deck 73) ──────────────────────────────────────────────────── */
 

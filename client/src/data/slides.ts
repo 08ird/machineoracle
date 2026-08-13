@@ -42,6 +42,8 @@ export type Body =
         tone?: 'accent' | 'muted' | 'warn' | 'ink';
       }[];
       marks?: { at: number; text: string; below?: boolean; lift?: number }[];
+      /** Dotted vertical event line (e.g. the ChatGPT moment). */
+      vline?: { at: number; label: string };
     }
   | {
       kind: 'grouped';
@@ -154,7 +156,16 @@ export type Body =
       x: string[];
       left: { name: string; values: (number | null)[]; display?: (string | null)[]; hollowLast?: boolean };
       right: { name: string; values: (number | null)[]; display?: (string | null)[] };
+      /** Render the right series as muted bars behind the left line. */
+      rightBars?: boolean;
       marks?: { at: number; text: string; below?: boolean; on?: 'left' | 'right'; lift?: number }[];
+    }
+  | {
+      // Head-to-head scorecard (deck 66): rounds, evidence, winner chips.
+      kind: 'bout';
+      heads: [string, string];
+      rows: { round: string; a: string; b: string; winner: 'a' | 'b' }[];
+      score: string;
     };
 
 export interface Slide {
@@ -970,6 +981,50 @@ export const SLIDES: Slide[] = [
     footnote: 'Attach today reflects committed contracts burning first — the surge hits backlog one to three quarters before revenue.',
   },
   {
+    // Site-original exhibit (no deck slide): the royalty from the agent's side.
+    id: 16,
+    part: 3,
+    kicker: 'Illustrative — one delegated task, and every meter it touches',
+    title: 'Follow one agent through its work',
+    body: {
+      kind: 'steps',
+      items: [
+        {
+          n: '1',
+          head: 'It plans',
+          desc: 'Reads the goal, breaks it into steps — tokens, priced by the labs.',
+          meta: 'L1',
+        },
+        {
+          n: '2',
+          head: 'It acts',
+          desc: 'Runs code, calls tools, executes step after step — every run and compute-second metered.',
+          meta: 'L3 · work',
+        },
+        {
+          n: '3',
+          head: 'It touches state',
+          desc: 'Reads and writes the operational database — every query and byte of storage billed.',
+          meta: 'L2 · state',
+        },
+        {
+          n: '4',
+          head: 'It is watched',
+          desc: 'Logs, traces, identity checks, the audit trail — the answering-for-itself, metered again.',
+          meta: 'L3 · work',
+        },
+        {
+          n: '5',
+          head: 'It delivers',
+          desc: 'The outcome lands in the systems of record, out on the worksite.',
+          meta: 'L4',
+        },
+      ],
+    },
+    takeaway: { icon: '🤖', text: 'One task, five layers touched — and the royalty collects in the middle two.' },
+    footnote: 'Skycatcher illustrative framework.',
+  },
+  {
     id: 41,
     part: 3,
     kicker: 'Hardware computes → models reason → infrastructure remembers → runtimes coordinate → applications deliver',
@@ -1246,23 +1301,6 @@ export const SLIDES: Slide[] = [
     },
   },
   {
-    id: 50,
-    extras: [52],
-    part: 3,
-    kicker: 'On consensus, at August 11, 2026 marks',
-    title: 'What the layers earn — and what they cost',
-    body: {
-      kind: 'table',
-      head: ['Layer', 'Growth', 'EV / forward revenue', 'FCF conversion'],
-      rows: [
-        ['Work', '23%', '7.2x', '26%'],
-        ['State', '20%', '5.2x', '21%'],
-        ['Apps', '17%', '4.0x', '22%'],
-      ],
-      highlight: 0,
-    },
-  },
-  {
     id: 51,
     part: 3,
     kicker: 'All 67 names, NTM growth against EV / NTM revenue, August 11, 2026 marks',
@@ -1350,11 +1388,7 @@ export const SLIDES: Slide[] = [
         { x: 14, y: 4.9, tone: 'muted' },
         { x: 18, y: 3.6, tone: 'muted' },
       ],
-      notes: [
-        { x: 38, y: 33, text: 'the right edge is thin — double-digit multiples', anchor: 'end' },
-        { x: 38, y: 31, text: 'only where usage growth is on file', anchor: 'end' },
-        { x: 3, y: 11.5, text: 'most of the universe: <25% growth, <8x', anchor: 'start' },
-      ],
+      notes: [{ x: 3, y: 11.5, text: 'most of the universe: <25% growth, <8x', anchor: 'start' }],
     },
     footnote:
       'Names withheld by design; positions approximate from August 11, 2026 marks. Axes clipped at 62% growth and 34x.',
@@ -1396,94 +1430,172 @@ export const SLIDES: Slide[] = [
   {
     id: 55,
     part: 3,
-    kicker: 'Median net dollar retention — usage-billed meters vs. seat-priced apps',
+    kicker: 'Median net dollar retention by layer, quarterly since 2022',
     title: 'A seat is bought once. A meter is billed every time an agent acts.',
     body: {
       kind: 'line',
-      axis: 'Median NDR, %',
-      x: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
+      axis: 'Median net dollar retention, %',
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
       series: [
-        { name: 'Meters', values: [112, 113, 114, 115, 116, 117], display: ['112', null, null, null, null, '117'] },
-        { name: 'Apps', values: [101, 101, 101, 101, 101, 101], display: ['101', null, null, null, null, '101'], tone: 'muted' },
+        {
+          name: 'L2 · State',
+          values: [132, 130, 127, 124, 120, 117, 114, 112, 110, 109, 109, 110, 112, 113, 114, 115, 116, 117],
+          display: ['132', null, null, null, null, null, null, null, null, '109', null, null, null, null, null, null, null, '117'],
+        },
+        {
+          name: 'L3 · Work',
+          values: [122, 121, 119, 117, 115, 113, 112, 111, 110, 110, 110, 111, 111, 112, 113, 114, 115, 115],
+          display: ['122', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '115'],
+          tone: 'ink',
+        },
+        {
+          name: 'L4 · Apps',
+          values: [112, 110, 108, 106, 105, 104, 103, 102, 102, 101, 101, 101, 101, 101, 101, 101, 101, 101],
+          display: ['112', null, null, null, null, null, null, null, null, null, null, null, null, '101', null, null, null, null],
+          tone: 'muted',
+        },
       ],
     },
+    footnote: 'Layer medians from company disclosures; quarterly, approximate. Retention above 100 means the installed base grows without new customers.',
   },
   {
     id: 56,
     part: 3,
-    kicker: 'Deferred revenue, median y/y by layer — measured from filings',
+    kicker: 'Deferred revenue, median y/y by layer, quarterly since 2022 — measured from filings',
     title: 'Commitment: the wave signs before it bills',
     body: {
-      kind: 'grouped',
-      axis: 'Deferred revenue, median y/y, five quarters',
-      x: ["Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
+      kind: 'line',
+      axis: 'Deferred revenue, median y/y, %',
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
       series: [
-        { name: 'State', values: [15, 11, 16, 22, 22], display: ['15%', null, null, null, '22%'] },
-        { name: 'Work', values: [18, 20, 14, 12, 16], display: ['18%', null, null, null, '16%'], tone: 'muted' },
-        { name: 'Apps', values: [13, 13, 12, 15, 14], display: ['13%', null, null, null, '14%'], tone: 'muted' },
+        {
+          name: 'L2 · State',
+          values: [35, 32, 28, 25, 22, 19, 17, 15, 14, 13, 12, 13, 14, 15, 11, 16, 22, 22],
+          display: ['35%', null, null, null, null, null, null, null, null, null, null, null, null, null, '11%', null, null, '22%'],
+        },
+        {
+          name: 'L3 · Work',
+          values: [30, 28, 26, 24, 22, 20, 19, 18, 17, 16, 15, 16, 17, 18, 20, 14, 12, 16],
+          display: ['30%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '16%'],
+          tone: 'ink',
+        },
+        {
+          name: 'L4 · Apps',
+          values: [24, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 13, 13, 13, 13, 12, 15, 14],
+          display: ['24%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '14%'],
+          tone: 'muted',
+        },
       ],
     },
     takeaway: { icon: '✍️', text: 'State commitments re-accelerated to +22% and are still climbing — the pre-buying shows up here first.' },
+    footnote: 'Layer medians computed from filings; quarterly, approximate before 2025.',
   },
   {
     id: 57,
     part: 3,
-    kicker: 'Usage billed above committed floors, as a share of revenue',
+    kicker: 'Usage billed above committed floors, as a share of revenue, quarterly since 2022',
     title: 'You cannot bill above a floor that doesn’t exist',
     body: {
-      kind: 'grouped',
-      axis: 'Overage share of revenue, six quarters',
-      x: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
+      kind: 'line',
+      axis: 'Overage share of revenue, %',
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
       series: [
         {
-          name: 'State',
-          values: [14, 16, 18, 20, 22, 24],
-          display: ['14%', null, null, null, null, '24%'],
+          name: 'L2 · State',
+          values: [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 16, 18, 20, 22, 24],
+          display: ['8%', null, null, null, null, null, null, null, null, null, null, null, '14%', null, null, null, null, '24%'],
         },
         {
-          name: 'Work',
-          values: [9, 10, 11.5, 13, 14.5, 16],
-          display: ['9%', null, null, null, null, '16%'],
-          tone: 'muted',
+          name: 'L3 · Work',
+          values: [5, 5.3, 5.6, 6, 6.3, 6.6, 7, 7.4, 7.8, 8.2, 8.6, 8.8, 9, 10, 11.5, 13, 14.5, 16],
+          display: ['5%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '16%'],
+          tone: 'ink',
         },
         {
-          name: 'Apps',
-          values: [0, 0, 0, 0, 0, 0],
-          display: ['0%', null, null, null, null, '0%'],
+          name: 'L4 · Apps',
+          values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          display: ['0%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0%'],
           tone: 'muted',
         },
       ],
     },
+    footnote: 'Skycatcher estimates from pricing structures and disclosures; quarterly, approximate before 2025.',
   },
   {
     id: 58,
     part: 3,
-    kicker: 'Recognized revenue, median y/y by layer — measured from filings',
+    kicker: 'Recognized revenue, median y/y by layer, quarterly since 2022 — measured from filings',
     title: 'Revenue: the meters pull away from the seats',
     body: {
-      kind: 'grouped',
-      axis: 'Revenue growth, median y/y, six quarters',
-      x: ["Q1'25", "Q2'25", "Q3'25", "Q4'25", "Q1'26", "Q2'26"],
+      kind: 'line',
+      axis: 'Revenue growth, median y/y, %',
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
       series: [
-        { name: 'Work', values: [20, 20, 21, 21, 23, 23], display: ['20%', null, null, null, null, '23%'] },
-        { name: 'State', values: [16, 19, 19, 17, 20, 18], display: ['16%', null, null, null, null, '18%'], tone: 'muted' },
-        { name: 'Apps', values: [18, 17, 16, 16, 15, 16], display: ['18%', null, null, null, null, '16%'], tone: 'muted' },
+        {
+          name: 'L3 · Work',
+          values: [34, 32, 30, 28, 26, 25, 24, 23, 22, 21, 20, 20, 20, 20, 21, 21, 23, 23],
+          display: ['34%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '23%'],
+        },
+        {
+          name: 'L2 · State',
+          values: [38, 35, 32, 29, 26, 23, 21, 19, 18, 17, 16, 16, 16, 19, 19, 17, 20, 18],
+          display: ['38%', null, null, null, null, null, null, null, null, null, null, null, '16%', null, null, null, null, '18%'],
+          tone: 'ink',
+        },
+        {
+          name: 'L4 · Apps',
+          values: [30, 29, 28, 26, 25, 23, 22, 21, 20, 19, 19, 18, 18, 17, 16, 16, 15, 16],
+          display: ['30%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '16%'],
+          tone: 'muted',
+        },
       ],
     },
     takeaway: {
       icon: '📈',
       text: 'Both meter layers are accelerating while apps fade — the same split, now on the income statement.',
     },
+    footnote: 'Layer medians computed from filings; quarterly, approximate before 2025.',
+  },
+  {
+    id: 64,
+    part: 3,
+    kicker: 'Median trailing free-cash-flow margins by layer, quarterly since 2022',
+    title: 'The cash machines turned on',
+    body: {
+      kind: 'line',
+      axis: 'Free-cash-flow margin, median, %',
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
+      series: [
+        {
+          name: 'L3 · Work',
+          values: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 24, 25, 25, 26, 26],
+          display: ['12%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '26%'],
+        },
+        {
+          name: 'L2 · State',
+          values: [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 19, 21],
+          display: ['0%', null, null, null, null, null, null, null, null, null, null, null, null, '14%', null, null, null, '21%'],
+          tone: 'ink',
+        },
+        {
+          name: 'L4 · Apps',
+          values: [14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 21, 22, 22],
+          display: ['14%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+          tone: 'muted',
+        },
+      ],
+    },
+    footnote: 'Layer medians from filings; trailing-twelve-month basis, approximate before 2025.',
   },
   {
     id: 59,
     extras: [60],
     part: 3,
-    kicker: 'Equal-weighted total return by layer, January 2022 = 100',
+    kicker: 'Equal-weighted total return by layer since January 2022',
     title: 'The tape has already voted',
     body: {
       kind: 'line',
-      axis: 'Indexed total return, January 2022 = 100',
+      axis: 'Total return since January 2022, %',
       x: [
         'Jan ’22',
         '',
@@ -1508,23 +1620,23 @@ export const SLIDES: Slide[] = [
       series: [
         {
           name: 'L3 · Work',
-          values: [100, 85, 68, 60, 55, 50, 58, 70, 82, 95, 105, 112, 120, 118, 125, 132, 138, 142, 146],
-          display: ['100', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '146'],
+          values: [0, -15, -32, -40, -45, -50, -42, -30, -18, -5, 5, 12, 20, 18, 25, 32, 38, 42, 46],
+          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '+46%'],
         },
         {
           name: 'L2 · State',
-          values: [100, 82, 64, 55, 48, 45, 52, 62, 72, 82, 90, 96, 104, 100, 108, 116, 122, 125, 128],
-          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '128'],
+          values: [0, -18, -36, -45, -52, -55, -48, -38, -28, -18, -10, -4, 4, 0, 8, 16, 22, 25, 28],
+          display: [null, null, null, null, null, '−55%', null, null, null, null, null, null, null, null, null, null, null, null, '+28%'],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
-          values: [100, 80, 62, 52, 47, 43, 48, 55, 62, 68, 72, 75, 80, 76, 80, 84, 88, 90, 91],
-          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '91'],
+          values: [0, -20, -38, -48, -53, -57, -52, -45, -38, -32, -28, -25, -20, -24, -20, -16, -12, -10, -9],
+          display: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '−9%'],
           tone: 'muted',
         },
       ],
-      marks: [{ at: 3, text: 'ChatGPT — Nov ’22', below: true, lift: 28 }],
+      vline: { at: 3, label: 'ChatGPT — Nov ’22' },
     },
     takeaway: {
       icon: '🗳️',
@@ -1537,28 +1649,28 @@ export const SLIDES: Slide[] = [
   {
     id: 61,
     part: 3,
-    kicker: 'EV / forward revenue by layer, quarterly — last point is consensus NTM',
+    kicker: 'EV / forward revenue by layer, quarterly since 2022 — last point is consensus NTM',
     title: 'Nobody has re-rated for agents — at any layer',
     body: {
       kind: 'line',
-      axis: 'EV / forward revenue, Jul 2023 → Jul 2026',
-      x: ['Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Jul ’26'],
+      axis: 'EV / forward revenue, Jan 2022 → Jul 2026',
+      x: ['Jan ’22', '', 'Jul ’22', '', 'Jan ’23', '', 'Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Jul ’26'],
       series: [
         {
           name: 'L3 · Work',
-          values: [10.0, 10.4, 10.8, 10.2, 10.6, 11.2, 11.8, 10.8, 9.6, 8.8, 8.2, 7.6, 6.7],
-          display: ['10.0x', null, null, null, null, null, '11.8x', null, null, null, null, null, '6.7x'],
+          values: [17, 13.5, 11, 10, 9.5, 9.8, 10.0, 10.4, 10.8, 10.2, 10.6, 11.2, 11.8, 10.8, 9.6, 8.8, 8.2, 7.6, 6.7],
+          display: ['17x', null, null, null, null, null, null, null, null, null, null, null, '11.8x', null, null, null, null, null, '6.7x'],
         },
         {
           name: 'L2 · State',
-          values: [7.0, 7.2, 6.8, 6.5, 6.9, 7.3, 7.5, 7.0, 6.6, 6.3, 6.8, 6.6, 6.5],
-          display: ['7.0x', null, null, null, null, null, null, null, null, null, null, null, null],
+          values: [12, 9.5, 8, 7.2, 6.8, 6.9, 7.0, 7.2, 6.8, 6.5, 6.9, 7.3, 7.5, 7.0, 6.6, 6.3, 6.8, 6.6, 6.5],
+          display: ['12x', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
-          values: [8.2, 7.8, 7.2, 6.6, 6.0, 5.6, 5.2, 4.8, 4.4, 4.0, 3.7, 3.5, 3.3],
-          display: ['8.2x', null, null, null, null, null, null, null, null, null, null, null, '3.3x'],
+          values: [14, 11, 9.5, 8.8, 8.5, 8.4, 8.2, 7.8, 7.2, 6.6, 6.0, 5.6, 5.2, 4.8, 4.4, 4.0, 3.7, 3.5, 3.3],
+          display: ['14x', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '3.3x'],
           tone: 'muted',
         },
       ],
@@ -1568,20 +1680,21 @@ export const SLIDES: Slide[] = [
   {
     id: 62,
     part: 3,
-    kicker: 'State layer: multiple against growth, quarterly since mid-2023',
+    kicker: 'State layer: multiple (line) against revenue growth (bars), quarterly since 2022',
     title: 'State: growth turned up, the multiple didn’t',
     body: {
       kind: 'dualline',
-      x: ['Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Today'],
+      rightBars: true,
+      x: ['Jan ’22', '', 'Jul ’22', '', 'Jan ’23', '', 'Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Today'],
       left: {
         name: 'EV / forward revenue',
-        values: [6.1, 6.4, 6.6, 6.3, 6.7, 7.2, 7.5, 6.9, 6.4, 6.0, 5.8, 5.5, 5.2],
-        display: ['6.1x', null, null, null, null, null, '7.5x', null, null, null, null, null, '5.2x'],
+        values: [11, 9, 7.8, 7, 6.5, 6.3, 6.1, 6.4, 6.6, 6.3, 6.7, 7.2, 7.5, 6.9, 6.4, 6.0, 5.8, 5.5, 5.2],
+        display: ['11x', null, null, null, null, null, '6.1x', null, null, null, null, null, '7.5x', null, null, null, null, null, '5.2x'],
       },
       right: {
-        name: 'Revenue growth y/y (right)',
-        values: [13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18.5, 19.5, 20],
-        display: ['13%', null, null, null, null, null, null, null, null, null, null, null, '20%'],
+        name: 'Revenue growth y/y (bars)',
+        values: [26, 24, 22, 20, 18, 15, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18.5, 19.5, 20],
+        display: ['26%', null, null, null, null, null, '13%', null, null, null, null, null, null, null, null, null, null, null, '20%'],
       },
     },
     takeaway: {
@@ -1592,20 +1705,21 @@ export const SLIDES: Slide[] = [
   {
     id: 63,
     part: 3,
-    kicker: 'Work layer: multiple against growth, quarterly since mid-2023',
+    kicker: 'Work layer: multiple (line) against revenue growth (bars), quarterly since 2022',
     title: 'Work: de-rated while growing steadily',
     body: {
       kind: 'dualline',
-      x: ['Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Today'],
+      rightBars: true,
+      x: ['Jan ’22', '', 'Jul ’22', '', 'Jan ’23', '', 'Jul ’23', '', 'Jan ’24', '', 'Jul ’24', '', 'Jan ’25', '', 'Jul ’25', '', 'Jan ’26', '', 'Today'],
       left: {
         name: 'EV / forward revenue',
-        values: [10.5, 10.9, 11.3, 10.7, 11.1, 11.6, 12.1, 11.0, 9.8, 9.0, 8.4, 7.8, 7.2],
-        display: ['10.5x', null, null, null, null, null, '12.1x', null, null, null, null, null, '7.2x'],
+        values: [19, 15, 12.5, 11.2, 10.8, 10.6, 10.5, 10.9, 11.3, 10.7, 11.1, 11.6, 12.1, 11.0, 9.8, 9.0, 8.4, 7.8, 7.2],
+        display: ['19x', null, null, null, null, null, null, null, null, null, null, null, '12.1x', null, null, null, null, null, '7.2x'],
       },
       right: {
-        name: 'Revenue growth y/y (right)',
-        values: [25, 24.5, 24, 23.5, 23, 23, 22.5, 22, 22, 21.5, 22, 22, 22],
-        display: ['25%', null, null, null, null, null, null, null, null, null, null, null, '22%'],
+        name: 'Revenue growth y/y (bars)',
+        values: [32, 30, 28, 27, 26, 25.5, 25, 24.5, 24, 23.5, 23, 23, 22.5, 22, 22, 21.5, 22, 22, 22],
+        display: ['32%', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '22%'],
       },
     },
     takeaway: {
@@ -1614,71 +1728,54 @@ export const SLIDES: Slide[] = [
     },
   },
   {
-    id: 64,
-    part: 3,
-    kicker: 'Median LTM free-cash-flow margins',
-    title: 'The cash machines turned on',
-    body: {
-      kind: 'bars',
-      axis: 'FCF margin',
-      items: [
-        { label: 'Work', value: 26, display: '26%', tone: 'accent' },
-        { label: 'Apps', value: 22, display: '22%', tone: 'muted' },
-        { label: 'State', sub: 'inflected from 14% — six points in a year', value: 21, display: '21%' },
-      ],
-    },
-  },
-  {
     id: 65,
     part: 3,
-    kicker: 'Meter M&A, 2018 → 2026',
+    kicker: 'Meter M&A, 2018 → 2026 — layer, growth into the deal, and the price paid',
     title: 'The meters keep getting bought',
     body: {
-      kind: 'bars',
-      axis: 'EV / revenue paid',
-      items: [
-        { label: 'GitHub', sub: '2018', value: 28, display: '~28x', tone: 'muted' },
-        { label: 'HashiCorp', value: 10, display: '~10x' },
-        { label: 'Confluent', sub: '$11.3B, 2026', value: 8, display: '~8x', tone: 'accent' },
-        { label: 'Splunk', sub: '$28B', value: 7, display: '~7x' },
-        { label: 'New Relic', value: 6.5, display: '~6.5x' },
-        { label: 'Informatica', value: 4.8, display: '~4.8x', tone: 'muted' },
+      kind: 'table',
+      head: ['Company', 'Layer', 'Growth into the deal', 'Price', 'EV / revenue'],
+      rows: [
+        ['GitHub (2018)', 'L3 · Work', '~40%', '$7.5B', '~28x'],
+        ['HashiCorp (2024)', 'L3 · Work', '~25%', '$6.4B', '~10x'],
+        ['Confluent (2026)', 'L2 · State', '~25%', '$11.3B', '~8x'],
+        ['Splunk (2024)', 'L3 · Work', '~15%', '$28B', '~7x'],
+        ['New Relic (2023)', 'L3 · Work', '~10%', '$6.5B', '~6.5x'],
+        ['Informatica (2025)', 'L2 · State', '~5%', '$8B', '~4.8x'],
+        ['CyberArk (pending)', 'L3 · Work', '~30%', '~$25B', '~22x'],
+        ['Average paid', '', '', '', '~12x'],
       ],
+      highlight: 7,
     },
     takeaway: {
       icon: '🤝',
-      text:
-        'Scaled meters clear ~7–10x revenue in a sale — above where the layers trade after the derate. Pending: Palo Alto → CyberArk at ~$25B, the largest identity takeout yet.',
+      text: 'The faster the meter was growing into the deal, the more the acquirer paid.',
     },
+    footnote: 'Growth is the approximate revenue growth rate in the years before each deal. Multiples approximate, on revenue at announcement.',
   },
   {
     id: 66,
     extras: [67],
     part: 3,
-    kicker: 'Scored on this section’s evidence',
-    title: 'State vs. work: eight rounds, and two clocks',
+    kicker: 'Head-to-head on measured evidence — every row from the exhibits in this part',
+    title: 'State vs. work: eight rounds, scored on the tape',
     body: {
-      kind: 'columns',
-      cols: [
-        {
-          head: 'State wins',
-          items: ['Moat durability', 'Margin trajectory', 'Commitment', 'Overage purity', 'Least repriced'],
-          foot: 'The ledger compounds the decade — gravity accumulates with every write and never rewinds',
-          tone: 'warm',
-        },
-        {
-          head: 'Work wins',
-          items: ['Wave beta', 'Cash today', 'The strategic bid'],
-          foot: 'The toll road bills the next three years — usage recognizes as agents act, at 26% FCF',
-          tone: 'warm',
-        },
+      kind: 'bout',
+      heads: ['L2 · State', 'L3 · Work'],
+      rows: [
+        { round: 'Moat durability', a: 'gravity compounds with every write', b: 'mandate is strong — but runtimes can be rebuilt', winner: 'a' },
+        { round: 'Wave beta', a: 'bills after state accumulates', b: 'bills the work as it happens — first paid', winner: 'b' },
+        { round: 'Cash today', a: '19–21% FCF, still investing', b: '26% FCF, converting now', winner: 'b' },
+        { round: 'Margin trajectory', a: '+6 pts in a year — inflecting', b: 'flat at a high plateau', winner: 'a' },
+        { round: 'Commitment', a: '+22% backlog y/y — fastest in the universe', b: '+16%', winner: 'a' },
+        { round: 'Overage purity', a: '14→24% of revenue — purest meters', b: '9→16%, diluted by subscriptions', winner: 'a' },
+        { round: 'Already repriced?', a: '+28% since Jan ’22 — least paid', b: '+46% — partly paid', winner: 'a' },
+        { round: 'Scarcity / M&A bid', a: 'state assets trade at 5–8x takeouts', b: 'strategics pay 7–28x for work meters', winner: 'b' },
       ],
+      score:
+        'Score: state 5, work 3 — but the rounds aren’t equally weighted, and three of state’s five are about what hasn’t been paid yet.',
     },
-    takeaway: {
-      icon: '⏱️',
-      text:
-        'Each clock has a pre-registered falsifier: open, portable state formats break the decade case; runtime absorption by the model labs breaks the three-year case.',
-    },
+    takeaway: { icon: '🥊', text: 'State wins on moat and price; work wins on conversion and bid.' },
   },
   {
     id: 68,

@@ -50,6 +50,7 @@ export const WIDE: ReadonlySet<Body['kind']> = new Set([
   'roster',
   'ladder',
   'tam',
+  'bout',
 ]);
 
 function svg(tag: string, attrs: Record<string, string> = {}): SVGElement {
@@ -288,15 +289,17 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     // never spill past the drawing area.
     const longestName = Math.max(0, ...b.series.map((s) => s.name.length));
     const pad = { t: 22, r: Math.min(150, Math.max(70, longestName * 6.2 + 16)), b: 34, l: 46 };
-    const flat = b.series.flatMap((s) => s.values).filter((v): v is number => v != null && v > 0);
+    const flat = b.series.flatMap((s) => s.values).filter((v): v is number => v != null && (!b.log || v > 0));
     const max = Math.max(...flat);
     const min = Math.min(...flat);
     // Narrow-band series (retention rates) zoom to their range; wide ones keep
-    // a zero-ish baseline so magnitudes stay honest.
+    // a zero-ish baseline so magnitudes stay honest. Series that cross zero
+    // (returns) pad both ends instead.
     const span = max - min;
-    const zoomed = !b.log && span / max < 0.2;
-    const lo = b.log ? Math.log10(min) - 0.25 : zoomed ? min - span * 0.9 : 0;
-    const hi = b.log ? Math.log10(max) + 0.12 : zoomed ? max + span * 0.5 : max * 1.1;
+    const hasNeg = min < 0;
+    const zoomed = !b.log && !hasNeg && span / max < 0.2;
+    const lo = b.log ? Math.log10(min) - 0.25 : hasNeg ? min - span * 0.12 : zoomed ? min - span * 0.9 : 0;
+    const hi = b.log ? Math.log10(max) + 0.12 : hasNeg ? max + span * 0.12 : zoomed ? max + span * 0.5 : max * 1.1;
     const yOf = (v: number) => {
       const t = ((b.log ? Math.log10(v) : v) - lo) / (hi - lo);
       return H - pad.b - t * (H - pad.t - pad.b);
@@ -318,12 +321,29 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
 
     // Baseline and category ticks.
     svg.append(ns('line', { x1: String(pad.l), y1: String(H - pad.b), x2: String(W - pad.r), y2: String(H - pad.b), class: 'chart__axis' }));
+    // Zero gridline for series that cross it.
+    if (lo < 0 && hi > 0 && !b.log) {
+      svg.append(ns('line', { x1: String(pad.l), y1: yOf(0).toFixed(1), x2: String(W - pad.r), y2: yOf(0).toFixed(1), class: 'chart__grid' }));
+      const zt = ns('text', { x: String(pad.l - 6), y: String(yOf(0) + 4), class: 'chart__xlab', 'text-anchor': 'end' });
+      zt.textContent = '0%';
+      svg.append(zt);
+    }
     b.x.forEach((label, i) => {
       if (!label) return; // Empty label = point without a tick.
       const t = ns('text', { x: String(xOf(i)), y: String(H - pad.b + 18), class: 'chart__xlab' });
       t.textContent = label;
       svg.append(t);
     });
+
+    // Dotted vertical event line.
+    if (b.vline) {
+      const vx = xOf(b.vline.at);
+      svg.append(ns('line', { x1: vx.toFixed(1), y1: String(pad.t), x2: vx.toFixed(1), y2: String(H - pad.b), class: 'chart__vline' }));
+      const anchor = b.vline.at > b.x.length * 0.6 ? 'end' : 'start';
+      const t = ns('text', { x: (vx + (anchor === 'start' ? 6 : -6)).toFixed(1), y: String(pad.t + 8), class: 'chart__mark', 'text-anchor': anchor });
+      t.textContent = b.vline.label;
+      svg.append(t);
+    }
 
     // Value and name labels are collected first, then placed with collision
     // avoidance — series that end near the same value would otherwise print
@@ -919,8 +939,32 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
         s.append(svgText(last.x - vHalf, Math.max(pad.t + 8, last.y - 12), series.name, 'chart__slab', 'end'));
       }
     };
-    draw(b.right, yR, true);
-    draw(b.left, yL, false);
+    if (b.rightBars) {
+      // Right series as muted bars behind the line, scaled from the baseline.
+      const vals = b.right.values.filter((v): v is number => v != null);
+      const rMax = Math.max(...vals);
+      const yBar = (v: number) => H - pad.b - (v / (rMax * 1.35)) * (H - pad.t - pad.b);
+      const bw = ((W - pad.l - pad.r) / b.x.length) * 0.55;
+      b.right.values.forEach((v, i) => {
+        if (v == null) return;
+        s.append(
+          svg('rect', {
+            x: (xOf(i) - bw / 2).toFixed(1),
+            y: yBar(v).toFixed(1),
+            width: bw.toFixed(1),
+            height: (H - pad.b - yBar(v)).toFixed(1),
+            class: 'dual__bar',
+          })
+        );
+        const disp = b.right.display?.[i];
+        if (disp) s.append(svgText(xOf(i), yBar(v) - 6, disp, 'chart__vlab is-muted'));
+      });
+      s.append(svgText(W - pad.r, pad.t + 6, b.right.name, 'chart__slab is-muted', 'end'));
+      draw(b.left, yL, false);
+    } else {
+      draw(b.right, yR, true);
+      draw(b.left, yL, false);
+    }
 
     // Where the two series converge, their value labels can land on each
     // other — push the muted one down until clear (staying above the axis).
@@ -951,6 +995,24 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     }
 
     w.append(s);
+    return w;
+  },
+
+  // ── Deck 66: head-to-head scorecard ────────────────────────────────────────
+  bout(b) {
+    const w = el('div', 'bout');
+    const head = el('div', 'bout__row bout__row--head');
+    head.append(el('div', 'bout__round', ''), el('div', 'bout__head bout__head--a', b.heads[0]), el('div', 'bout__head', b.heads[1]), el('div', ''));
+    w.append(head);
+    for (const r of b.rows) {
+      const row = el('div', 'bout__row');
+      row.append(el('div', 'bout__round', r.round));
+      row.append(el('div', `bout__cell${r.winner === 'a' ? ' is-win' : ''}`, r.a));
+      row.append(el('div', `bout__cell${r.winner === 'b' ? ' is-win' : ''}`, r.b));
+      row.append(el('div', `bout__chip bout__chip--${r.winner}`, r.winner === 'a' ? b.heads[0].split('·').pop()!.trim() : b.heads[1].split('·').pop()!.trim()));
+      w.append(row);
+    }
+    w.append(el('div', 'bout__score', b.score));
     return w;
   },
 };

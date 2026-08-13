@@ -40,6 +40,20 @@ export const part3: Record<number, Block[]> = {
     },
   ],
 
+  // Site-original exhibit: the royalty, from the agent's side.
+  16: [
+    {
+      kind: 'p',
+      text:
+        'Before the taxonomy, watch it happen. Give one agent one job — close the books, fix the build, reconcile the ledger — and follow what it touches. It plans in tokens. It acts in runs and compute-seconds. It reads and writes state. It is logged, traced, and identity-checked the entire time. And it hands the finished work back to the systems people already use. Every one of those touches lands on someone’s meter, and none of them is optional — an agent that cannot execute, remember, or answer for itself cannot be trusted with the job at all.',
+    },
+    {
+      kind: 'p',
+      text:
+        'That is the royalty on machine labor, seen from the inside: not a fee anyone decided to charge, but the sum of what working software must rent to work. The rest of this part maps who collects it.',
+    },
+  ],
+
   41: [
     {
       kind: 'p',
@@ -135,24 +149,16 @@ export const part3: Record<number, Block[]> = {
     },
   ],
 
-  50: [
-    {
-      kind: 'p',
-      text:
-        'Read the three layer rows and a division of labor appears. Work earns today — 23% growth, the richest multiple of the three, 26% cash conversion. State compounds for decades — the slowest to show the wave, and the hardest to displace once it has. Apps grow slowest, convert least distinctively, and sit on the layer infinite software actively erodes. The tape, we will see shortly, has been voting on exactly this split.',
-    },
-  ],
-
   51: [
     {
       kind: 'p',
       text:
-        'Scatter all 67 names on growth against multiple and the market’s actual opinion emerges: most of the universe sits below 25% growth and below 8x forward revenue. The right edge is thin — the tape pays double-digit multiples only where usage growth is on file — and above 30% growth sits almost nobody, and what is there is work and state, not apps.',
+        'Scatter all 67 names on growth against multiple and the universe separates into two populations. The grey mass — the worksite apps — clusters below 25% growth and below 8x forward revenue. The backend layers sit apart: the blue and dark dots of work and state hold the high-growth, high-multiple territory almost alone. L2 and L3 are not a better version of the same business as L4; the market already prices them as a different category.',
     },
     {
       kind: 'p',
       text:
-        'The names are withheld deliberately: the point of the exhibit is the shape, not the tickers. A market that pays this steeply for the thin right edge, and this little for everything else, has already decided what it values. It just hasn’t connected that preference to the agent wave that feeds it.',
+        'The names are withheld deliberately: the point of the exhibit is the shape, not the tickers. A market that pays this much for the backend and this little for everything else has already decided what it values. It just hasn’t connected that preference to the agent wave that feeds it.',
     },
   ],
 
@@ -173,7 +179,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Retention is where a usage business tells the truth about itself, because it is the one line that cannot be marketed: it is simply what last year’s customers paid this year. Usage-billed meter names run a median NDR climbing from about 112 to 117 over six quarters. Seat-priced apps sit at about 101, flat — customers renew the chairs and nothing else.',
+        'Retention is where a usage business tells the truth about itself, because it is the one line that cannot be marketed: it is simply what last year’s customers paid this year. The full window since 2022 shows the shape. All three layers compressed through the optimization cycle of 2022–24 — and then they split. State and work turned up, climbing back to 117 and 115; apps settled at 101 and stayed there — customers renewing the chairs and nothing else.',
     },
     {
       kind: 'p',
@@ -215,12 +221,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Before any of our analysis, the tape has already voted — at the layer level, with no selection involved and no judgement about individual names. Since ChatGPT, equal-weighted: state +177%, work +175%, apps +55%. A three-to-one spread in under four years, produced by nothing more than which layer of the stack a company sits in.',
+        'The tape has already voted — at the layer level, with no selection involved and no judgement about individual names. Since the ChatGPT line on the chart, equal-weighted: state +177%, work +175%, apps +55%. A three-to-one spread in under four years, produced by nothing more than which layer of the stack a company sits in.',
     },
     {
       kind: 'p',
       text:
-        'The full period adds a caveat: from January 2022 — which includes the great derate — work sits at 146, state at 128, and apps at 91, still underwater after four and a half years. The deeper a layer derated, the harder it rebounded. The market pays the layers that meter machine labor, not the seats it replaces — it has just never said so out loud.',
+        'The full period adds a caveat: from January 2022 — which includes the great derate — work is +46%, state +28%, and apps −9%, still underwater after four and a half years. The deeper a layer derated, the harder it rebounded. The market pays the layers that meter machine labor, not the seats it replaces — it has just never said so out loud.',
     },
   ],
 
@@ -228,7 +234,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Here is the anomaly this entire piece is built around. Three years of multiples, on a realized-forward basis, show all three layers grinding sideways-to-down — through the biggest software demand shock ever recorded. The returns of the previous exhibit were earned by earnings growth dragging flat multiples along, not by anyone re-rating anything.',
+        'Here is the anomaly this entire piece is built around. Four and a half years of multiples, on a realized-forward basis, show all three layers derating in 2022 and then grinding sideways-to-down — through the biggest software demand shock ever recorded. The returns of the previous exhibit were earned by earnings growth dragging flat multiples along, not by anyone re-rating anything.',
     },
     {
       kind: 'p',
@@ -257,12 +263,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'And the businesses are not merely growing; they are converting. Work turns 26% of revenue into free cash flow, apps 22%, and state just inflected from 14% to 21% — six points of margin in a single year, the operating leverage of usage models arriving on schedule as they scale past their fixed costs.',
+        'And the businesses are not merely growing; they are converting. Work turns 26% of revenue into free cash flow, apps 22%, and state has climbed from roughly breakeven in 2022 to 21% — including six points in the last year alone, the operating leverage of usage models arriving as they scale past their fixed costs.',
     },
     {
       kind: 'p',
       text:
-        'Hold the last three exhibits together: multiples flat to falling, cash margins rising, growth turning up. Each of the three can be individually explained away; the combination is the definition of an unexamined asset. That divergence is the anomaly Part 04 examines.',
+        'Hold the last four exhibits together: commitments re-accelerating, overage widening, revenue turning up, margins expanding. Growth and margins improving at the same time is the rarest combination in software. What the market has paid for it so far is the next question — the tape first, then the multiple.',
     },
   ],
 
@@ -270,7 +276,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'One more market check, from the buyers with the most information: strategic acquirers keep paying for meters, and paying above where the layers trade. Microsoft took GitHub at roughly 28x revenue in 2018 — the price of the world’s code ledger. Cisco paid $28 billion for Splunk, the machine-data meter. IBM took HashiCorp; Salesforce took Informatica; 2026 brought an $11.3 billion takeout of Confluent, the event-streaming layer, and a pending ~$25 billion offer for CyberArk — identity, the answer-for-itself layer — the largest of its kind yet.',
+        'One more market check, from the buyers with the most information: strategic acquirers keep paying for meters, and the table shows the pattern in one read. Every acquired name sits on the backend — work meters mostly, two state meters — and the price paid tracks how fast the meter was growing into the deal: GitHub at ~40% growth commanded ~28x; Informatica at ~5% went for under 5x; the pending CyberArk offer, at ~30% growth, is priced near 22x. The average across the set is roughly 12x revenue — about double where the public layers trade today.',
     },
     {
       kind: 'p',
@@ -283,7 +289,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Scored on this section’s evidence, the two backend layers split the honours — state wins durability, commitment, and overage purity; work wins wave beta, cash today, and the strategic bid. The resolution is not a winner but two clocks. The toll road bills the next three years: usage revenue recognizes as agents act, at 26% cash margins, with acquirers circling. The ledger compounds the decade: gravity accumulates with every write, and never rewinds.',
+        'Eight rounds, each scored from an exhibit in this part, and the card reads state 5, work 3 — with the caveat printed under the card: three of state’s five rounds are about what hasn’t been paid yet. The resolution is not a winner but two clocks. The toll road bills the next three years: usage revenue recognizes as agents act, at 26% cash margins, with acquirers circling. The ledger compounds the decade: gravity accumulates with every write, and never rewinds.',
     },
     {
       kind: 'p',
