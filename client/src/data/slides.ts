@@ -1065,7 +1065,7 @@ export const SLIDES: Slide[] = [
     body: {
       kind: 'stats',
       items: [
-        { value: '67', label: 'names in the universe', sub: 'DigitalOcean reclassified to L0' },
+        { value: '67', label: 'names in the universe', sub: 'screened by what they sell' },
         { value: '~4.1x', label: 'median forward revenue multiple', sub: 'at ~20% median growth' },
         { value: '~11', label: 'names are usage-billed', sub: 'out of 67' },
         { value: '25 / 42', label: 'backend / worksite split', sub: 'classification, not holdings — the full roster is published' },

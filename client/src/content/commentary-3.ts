@@ -79,12 +79,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'To keep ourselves honest about what “the market” means, the universe is fixed in advance: 67 public cloud-software companies, screened by what they sell rather than what they are called, with DigitalOcean reclassified to layer 0 because it sells compute. The median name in it trades at about 4.1x forward revenue and grows about 20% — and only about eleven of the 67 are usage-billed at all, a first hint of how rare the meter model still is inside “cloud software”.',
+        'The universe is fixed in advance: 67 public cloud-software companies, screened by what they sell rather than what they are called. The median name trades at about 4.1x forward revenue and grows about 20%. Only about eleven of the 67 are usage-billed — a first hint of how rare the meter model still is inside “cloud software”.',
     },
     {
       kind: 'p',
       text:
-        'Bucketed on the one cut that matters, that is a 25-name public backend and a 42-name public worksite. And rather than ask you to take the buckets on faith, the next exhibit publishes every name in them — because a screen you cannot replicate is a story, and this piece is trying not to tell stories.',
+        'Split on the backend–worksite cut, that is 25 public backend names and 42 public worksite names. The next exhibit publishes all 67, so the classification can be checked rather than taken on faith.',
     },
   ],
 
@@ -92,7 +92,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Here it is, name by name: six state meters, nineteen work meters, forty-two worksite names, with the two action rails marked where they sit. Publishing the roster costs us nothing and buys the one thing a research program cannot fake — any reader can re-run the classification, disagree with a bucket, and tell us so. The exhibit is the audit trail for everything the rest of this part claims.',
+        'Here it is, name by name: six state meters, nineteen work meters, forty-two worksite names, with the two action rails marked. Any reader can re-run the classification, disagree with a bucket, and tell us so. The roster is the audit trail for the rest of this part.',
     },
   ],
 
@@ -105,7 +105,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'For this research program they matter twice. They are evidence — private usage-billed infrastructure compounding at triple digits is the wave landing exactly where the thesis says it lands. And they are the pipeline: every name on the exhibit is a future universe entrant, on IPO and one 10-K. The frontier labs are private too, which is worth sitting with — for now, the public market is offered the meters or nothing.',
+        'For this research program they matter twice. They are evidence — private usage-billed infrastructure compounding at triple digits is the wave landing exactly where the thesis says it lands. And they are the pipeline: every name on the exhibit is a future universe entrant, on IPO and one 10-K. The frontier labs are private too — for now, the public market is offered the meters or nothing.',
     },
   ],
 
@@ -165,7 +165,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'They also fail differently, and honesty requires naming the failure that is already visible. Open, portable state formats would break the ledger case — and the open-table-format movement is not hypothetical; the ledger vendors themselves have been pushed to embrace it, which chips the lock-in even as it defends the workload. Model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty — and both are wired to public metrics on the tripwire list in Part 04.',
+        'They also fail differently, and one failure mode is already visible. Open, portable state formats would break the ledger case — and the open-table-format movement is not hypothetical; the ledger vendors themselves have been pushed to embrace it, which chips the lock-in even as it defends the workload. Model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty — and both are wired to public metrics on the tripwire list in Part 04.',
     },
   ],
 
@@ -220,7 +220,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The full period adds the honest wrinkle: from January 2022 — which includes the great derate — work sits at 146, state at 128, and apps at 91, still underwater after four and a half years. The deeper a layer derated, the harder it rebounded. The market pays the layers that meter machine labor, not the seats it replaces — it has just never said so out loud.',
+        'The full period adds a caveat: from January 2022 — which includes the great derate — work sits at 146, state at 128, and apps at 91, still underwater after four and a half years. The deeper a layer derated, the harder it rebounded. The market pays the layers that meter machine labor, not the seats it replaces — it has just never said so out loud.',
     },
   ],
 
@@ -275,7 +275,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'That sets a floor of sorts under the public names — made by buyers who have done the diligence the public market has not. There is an irony worth noticing: the same corporate-development teams whose companies’ consensus estimates carry zero agents keep paying meter multiples for meter assets. The analysts’ models and the acquirers’ models disagree; only one of them writes checks.',
+        'That sets a floor of sorts under the public names — made by buyers who have done the diligence the public market has not. The same corporate-development teams whose companies’ consensus estimates carry zero agents keep paying meter multiples for meter assets. The analysts’ models and the acquirers’ models disagree; only one of them writes checks.',
     },
   ],
 
