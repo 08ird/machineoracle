@@ -1198,7 +1198,6 @@ export const SLIDES: Slide[] = [
     title: 'Two ponds: one giant, one being dug deeper',
     body: {
       kind: 'ponds',
-      backdrop: { label: 'Security budget behind both', value: '~$240B', size: 240 },
       ponds: [
         { label: 'L2 · State', value: '$161B', sub: '+18% a year', size: 161, tone: 'accent' },
         {
