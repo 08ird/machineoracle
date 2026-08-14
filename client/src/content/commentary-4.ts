@@ -149,7 +149,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'And five bolder ones, on a longer clock — direction is the claim, timing is the error bar. They trace one arc: machine labor becomes a reported cost line, then a $100 billion meter exists, then the billings pass a trillion dollars, then the toll roads out-earn the engines, then the allocators arrive and machine labor becomes an asset class — carrying a deliberate weight in portfolios the way energy once did. Every prior industrial input followed this path from novelty to line item to sector. The dates will be wrong; the sequence, we think, will not be.',
+        'And five bolder calls, on a longer clock — direction is the claim, timing is the error bar. Each one carries a number to grade it from. The largest meter today bills about $4.5 billion a year, so the first $100 billion meter is a twenty-fold from here — roughly a decade of wave-case growth. The trillion-dollar call is measured the plain way: the summed annual revenue of the 25 public backend names, roughly $60 billion today, needs about a 17x, and this site re-sums it quarterly. The out-earning call compares that same public backend revenue with what the frontier labs — OpenAI, Anthropic, xAI, Mistral — bill for tokens: roughly three dollars of lab revenue for every dollar the cohort meters today, a ratio we track until it inverts, the way it did for engines and rails. Every prior industrial input followed this path from novelty to line item to sector. The dates will be wrong; the sequence, we think, will not be.',
     },
   ],
 
@@ -209,7 +209,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'What we publish, every quarter — so the program can be checked rather than believed. The indices mark from inception, August 11, 2026 = 100, live, with no back-fill and no retouching. The tape re-measures commitment, overage, retention, and growth every filing season — the three selectors that pick the growth world. The ladder re-scores all twenty-five backend names against the line. The ledger grades the eight predictions on schedule.',
+        'What we publish, every quarter — so the program can be checked rather than believed. The indices mark from inception, August 11, 2026 = 100, live, with no back-fill and no retouching. The tape re-measures commitment, overage, retention, and growth every filing season — the selectors that pick the growth world. The ladder re-scores all twenty-five backend names against the line. The ledger grades the predictions on schedule. All of it runs in the [Machine Oracle tracker](tracker.html), which updates from filings rather than from us.',
     },
     {
       kind: 'p',

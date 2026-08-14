@@ -34,6 +34,8 @@ export type Body =
       axis?: string;
       x: string[];
       log?: boolean;
+      /** Force the zoomed narrow-band scale even when the range is wide-ish. */
+      zoom?: boolean;
       series: {
         name: string;
         values: (number | null)[];
@@ -1433,25 +1435,26 @@ export const SLIDES: Slide[] = [
     kicker: 'Median net dollar retention by layer, quarterly since 2022',
     title: 'A seat is bought once. A meter is billed every time an agent acts.',
     body: {
-      kind: 'grouped',
-      axis: 'Median net dollar retention, %, quarterly',
-      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
+      kind: 'line',
+      zoom: true,
+      axis: 'Median net dollar retention, %',
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', '', "Q2'26"],
       series: [
         {
           name: 'L2 · State',
           values: [132, 130, 127, 124, 120, 117, 114, 112, 110, 109, 109, 110, 112, 113, 114, 115, 116, 117],
-          display: ['132', null, '127', null, '120', null, '114', null, '110', '109', '109', '110', '112', '113', '114', '115', '116', '117'],
+          display: ['132', null, null, null, '120', null, null, null, null, '109', null, null, '112', null, '114', null, null, '117'],
         },
         {
           name: 'L3 · Work',
           values: [122, 121, 119, 117, 115, 113, 112, 111, 110, 110, 110, 111, 111, 112, 113, 114, 115, 115],
-          display: ['122', null, '119', null, '115', null, '112', null, '110', '110', '110', '111', '111', '112', '113', '114', '115', '115'],
+          display: ['122', null, '119', null, null, null, '112', null, null, null, '110', null, null, '112', null, null, null, null],
           tone: 'ink',
         },
         {
           name: 'L4 · Apps',
           values: [112, 110, 108, 106, 105, 104, 103, 102, 102, 101, 101, 101, 101, 101, 101, 101, 101, 101],
-          display: ['112', null, '108', null, '105', null, '103', null, '102', '101', null, null, null, null, null, null, null, '101'],
+          display: ['112', null, null, '106', null, null, null, '102', null, null, null, '101', null, null, null, null, null, '101'],
           tone: 'muted',
         },
       ],
@@ -1806,17 +1809,31 @@ export const SLIDES: Slide[] = [
   {
     id: 70,
     part: 4,
-    kicker: 'One rule, applied to the 25-name backend',
+    kicker: 'One rule, applied to the 25-name public backend',
     title: 'Three companies',
     body: {
-      kind: 'stats',
+      kind: 'grid3',
       items: [
-        { value: '~$250B', label: 'combined enterprise value', sub: 'Snowflake · MongoDB · Datadog' },
-        { value: '~$15B', label: 'forward revenue', sub: 'at ~33% blended growth' },
-        { value: '~16x', label: 'forward revenue', sub: 'with ~25% free-cash-flow margins' },
-        { value: '~100', label: 'Rule of X', sub: 'growth plus margin' },
-        { value: '+218%', label: 'since ChatGPT', sub: 'equal-weighted, ahead of both source layers, no selection' },
+        {
+          eyebrow: 'L2 · State',
+          title: 'Snowflake',
+          desc: 'The cloud data platform — the ledger where enterprise state accumulates, sold as consumption credits.',
+        },
+        {
+          eyebrow: 'L2 · State',
+          title: 'MongoDB',
+          desc: 'The operational database of the application era — Atlas turned it into a metered cloud service, in public.',
+        },
+        {
+          eyebrow: 'L3 · Work',
+          title: 'Datadog',
+          desc: 'The watching layer — observability and security billed by the events, hosts, and traces it ingests.',
+        },
       ],
+    },
+    takeaway: {
+      icon: '🎯',
+      text: 'Together: ~$250B of enterprise value, ~$15B of forward revenue at ~33% blended growth, ~16x — and +218% since ChatGPT, no selection involved.',
     },
     footnote: 'At August 11, 2026 marks. A mechanical research screen, not a portfolio or recommendation.',
   },
@@ -2110,16 +2127,17 @@ export const SLIDES: Slide[] = [
     kicker: 'The Oracle ledger — dated, falsifiable, graded in public',
     title: 'Eight predictions',
     body: {
-      kind: 'steps',
-      items: [
-        { n: 'Q4 2026', head: 'A platform prints ≥2Q tokens a month', desc: 'From 1.3Q, October 2025.' },
-        { n: 'Q2 2027', head: 'Cohort overage share reaches ≥25% of revenue', desc: 'From ~19%.' },
-        { n: 'Mid-2027', head: 'Meters’ median NDR ≥120 while apps’ ≤103', desc: '' },
-        { n: 'Every quarter', head: 'Cohort backlog growth ≥ revenue growth', desc: '' },
-        { n: 'End-2027', head: '≥15 major vendors ship billable agent SKUs', desc: 'From 7 today.' },
-        { n: '4 quarters', head: 'Consensus 2029 cohort revenue revised up ≥10%', desc: '' },
-        { n: '18 months', head: 'A meter takeout at ≥8x EV/revenue', desc: '' },
-        { n: 'By 2028', head: 'Cohort FCF margin ≥28%', desc: '' },
+      kind: 'table',
+      head: ['By when', 'The call', 'From today'],
+      rows: [
+        ['Q4 2026', 'A platform prints ≥2Q tokens a month', '1.3Q, Oct 2025'],
+        ['Q2 2027', 'Cohort overage reaches ≥25% of revenue', '~19%'],
+        ['Mid-2027', 'Meter retention ≥120 while apps ≤103', '~117 vs ~101'],
+        ['End-2027', '≥15 major vendors ship billable agent SKUs', '7'],
+        ['Mid-2027', 'Consensus 2029 cohort revenue revised up ≥10%', 'carries the fade'],
+        ['Early 2028', 'A meter takeout at ≥8x EV / revenue', 'average paid ~12x'],
+        ['By 2028', 'Cohort free-cash-flow margin ≥28%', '~25%'],
+        ['Every quarter', 'Cohort backlog growth ≥ revenue growth', 'holding'],
       ],
     },
     takeaway: { icon: '📒', text: 'If the ledger fills with misses, the thesis shrinks with it. That’s the deal.' },
@@ -2135,22 +2153,22 @@ export const SLIDES: Slide[] = [
         {
           n: 'By 2030',
           head: 'Machine labor becomes a reported line item',
-          desc: 'A major public company discloses agent-labor spend as a distinct cost line. “Agent GAAP” completes, and comparability begins.',
+          desc: 'A major public company discloses agent-labor spend as a distinct cost line. “Agent GAAP” completes, and comparability begins. Today: zero companies report it.',
         },
         {
           n: 'By 2031',
           head: 'The first $100B-revenue meter',
-          desc: 'A usage-billed infrastructure company crosses $100B in annual revenue — a scale no consumption software business has reached.',
+          desc: 'A usage-billed infrastructure company crosses $100B a year. The largest meter today bills ~$4.5B — a ~20x from here, roughly a decade of wave-case growth.',
         },
         {
           n: 'By 2032',
-          head: 'Machine labor bills over $1T a year',
-          desc: 'Delegation passes ~5% of knowledge work; annual billings exceed today’s entire enterprise software market.',
+          head: 'The public backend stack bills $1T a year',
+          desc: 'Measured as the summed revenue of the 25 public backend names and their future entrants: ~$60B a year today, so a ~17x — re-summed quarterly on this site.',
         },
         {
           n: 'By 2033',
           head: 'The meters out-earn the models',
-          desc: 'Aggregate free cash flow of public metered infrastructure exceeds that of the frontier labs. The toll roads out-earn the engines.',
+          desc: 'Public backend revenue against frontier-lab token revenue (OpenAI, Anthropic, xAI, Mistral — ~$30–35B combined today). The cohort meters ~$1 for every ~$3 the labs bill; the call is that the ratio inverts, as it did for engines and rails.',
         },
         {
           n: 'By 2035',
@@ -2257,29 +2275,33 @@ export const SLIDES: Slide[] = [
     kicker: 'What we publish, every quarter',
     title: 'The program in practice',
     body: {
-      kind: 'columns',
-      cols: [
+      kind: 'grid3',
+      items: [
         {
-          head: 'The indices',
-          items: ['Machine labor cohort and backend layers', 'Inception August 11, 2026 = 100', 'Live marks, no back-fill, no retouching'],
+          eyebrow: 'The indices',
+          title: 'Cohort = 100',
+          desc: 'Machine labor cohort and backend layers, marked live from inception (August 11, 2026 = 100). No back-fill, no retouching.',
         },
         {
-          head: 'The tape',
-          items: ['Commitment, overage, retention, revenue growth', 'Re-measured every filing season', 'The three selectors that pick the growth world'],
+          eyebrow: 'The tape',
+          title: 'Four selectors',
+          desc: 'Commitment, overage, retention, and revenue growth, re-measured every filing season — the numbers that pick the growth world.',
         },
         {
-          head: 'The ladder',
-          items: ['All 25 backend names re-scored against the 50% line', 'Admissions, exits, conversions', 'Logged with reasons'],
+          eyebrow: 'The ladder',
+          title: '25 names, one line',
+          desc: 'Every backend name re-scored against the 50% consumption line each quarter; admissions, exits, and conversions logged with reasons.',
         },
         {
-          head: 'The ledger',
-          items: ['The eight dated predictions graded on schedule', 'Misses published with the same prominence as hits'],
+          eyebrow: 'The ledger',
+          title: 'Graded on schedule',
+          desc: 'The eight dated predictions and the five long calls — including the meters-vs-models revenue ratio — with misses published as prominently as hits.',
         },
       ],
     },
     takeaway: {
       icon: '📡',
-      text: 'Follow the grading live — every mark, re-score, and quarterly grade publishes in the Machine Oracle tracker.',
+      text: 'Every mark, re-score, and quarterly grade publishes live in the tracker.',
     },
   },
   {

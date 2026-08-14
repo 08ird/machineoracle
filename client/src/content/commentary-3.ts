@@ -184,7 +184,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The reason is structural rather than commercial. A seat is bought once and renewed annually, so a seat vendor’s growth requires selling something new to someone. A meter is billed every time an agent acts — from a customer who has already signed, with no salesperson involved in the increment. When a customer’s agents work harder, the meter’s revenue rises by itself. This is what a royalty looks like before anyone calls it one, and the six-quarter climb is the agent era arriving in the one metric that cannot lie.',
+        'The reason is structural rather than commercial. A seat is bought once and renewed annually, so a seat vendor’s growth requires selling something new to someone. A meter is billed every time an agent acts — from a customer who has already signed, with no salesperson involved in the increment. When a customer’s agents work harder, the meter’s revenue rises by itself. This is what a royalty looks like before anyone calls it one, and the climb since early 2024 is the agent era arriving in the one metric that cannot lie.',
     },
   ],
 

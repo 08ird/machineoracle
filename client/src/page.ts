@@ -91,14 +91,18 @@ export function footer(): HTMLElement {
  */
 function paragraph(cls: string | undefined, text: string): HTMLElement {
   const p = el('p', cls);
-  const re = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
+  // External https links open a new tab; relative paths ('tracker.html',
+  // '#/about') stay in this one.
+  const re = /\[([^\]]+)\]\((https?:\/\/[^)\s]+|[\w#./-][^)\s]*)\)/g;
   let last = 0;
   for (const m of text.matchAll(re)) {
     p.append(document.createTextNode(text.slice(last, m.index)));
     const a = el('a', undefined, m[1]);
     a.href = m[2];
-    a.target = '_blank';
-    a.rel = 'noopener';
+    if (/^https?:\/\//.test(m[2])) {
+      a.target = '_blank';
+      a.rel = 'noopener';
+    }
     p.append(a);
     last = m.index + m[0].length;
   }

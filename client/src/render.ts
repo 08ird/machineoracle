@@ -297,7 +297,7 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     // (returns) pad both ends instead.
     const span = max - min;
     const hasNeg = min < 0;
-    const zoomed = !b.log && !hasNeg && span / max < 0.2;
+    const zoomed = !b.log && !hasNeg && (b.zoom || span / max < 0.2);
     const lo = b.log ? Math.log10(min) - 0.25 : hasNeg ? min - span * 0.12 : zoomed ? min - span * 0.9 : 0;
     const hi = b.log ? Math.log10(max) + 0.12 : hasNeg ? max + span * 0.12 : zoomed ? max + span * 0.5 : max * 1.1;
     const yOf = (v: number) => {
