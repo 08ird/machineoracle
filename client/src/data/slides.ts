@@ -1470,7 +1470,7 @@ export const SLIDES: Slide[] = [
     body: {
       kind: 'line',
       axis: 'Deferred revenue, median y/y, %',
-      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', '', "Q2'26"],
       series: [
         {
           name: 'L2 · State',
@@ -1502,7 +1502,7 @@ export const SLIDES: Slide[] = [
     body: {
       kind: 'line',
       axis: 'Overage share of revenue, %',
-      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', '', "Q2'26"],
       series: [
         {
           name: 'L2 · State',
@@ -1533,7 +1533,7 @@ export const SLIDES: Slide[] = [
     body: {
       kind: 'line',
       axis: 'Revenue growth, median y/y, %',
-      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', '', "Q2'26"],
       series: [
         {
           name: 'L3 · Work',
@@ -1568,7 +1568,7 @@ export const SLIDES: Slide[] = [
     body: {
       kind: 'line',
       axis: 'Free-cash-flow margin, median, %',
-      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', "Q1'26", "Q2'26"],
+      x: ["Q1'22", '', '', '', "Q1'23", '', '', '', "Q1'24", '', '', '', "Q1'25", '', '', '', '', "Q2'26"],
       series: [
         {
           name: 'L3 · Work',

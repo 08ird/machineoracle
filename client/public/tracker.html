@@ -284,9 +284,12 @@ const VALS={id:"vals",afterDatasetsDraw(chart,args,opts){
       if(keys&&!keys.includes(i))return;
       const el=meta.data[i];if(!el)return;
       const f=(opts.fmts&&opts.fmts[di])||(x=>x);
+      const tx=opts.horiz?el.x+5:el.x, ty=opts.horiz?el.y+3.5:el.y-6;
+      ctx.textAlign=opts.horiz?"left":"center";
+      ctx.strokeStyle="rgba(253,253,253,.92)";ctx.lineWidth=3;ctx.lineJoin="round";
+      ctx.strokeText(f(v),tx,ty);
       ctx.fillStyle=(opts.colors&&opts.colors[di])||C.label;
-      if(opts.horiz){ctx.textAlign="left";ctx.fillText(f(v),el.x+5,el.y+3.5);}
-      else{ctx.textAlign="center";ctx.fillText(f(v),el.x,el.y-6);}
+      ctx.fillText(f(v),tx,ty);
     });
   });
   ctx.restore();
@@ -301,7 +304,7 @@ const line=(label,data,color,width)=>({label,data,borderColor:color,backgroundCo
 const LAUNCHLINE={id:"launchline",afterDatasetsDraw(chart){
   const meta=chart.getDatasetMeta(0);
   const ctx=chart.ctx,area=chart.chartArea;
-  const mark=(at,l1,l2,side)=>{
+  const mark=(at,l1,l2,side,vpos)=>{
     const el=meta.data[at];if(!el)return;
     ctx.save();
     ctx.strokeStyle="#63666d";ctx.lineWidth=1;ctx.setLineDash([3,4]);
@@ -310,12 +313,14 @@ const LAUNCHLINE={id:"launchline",afterDatasetsDraw(chart){
     ctx.font='600 10px -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif';
     ctx.textAlign=side;
     const dx=side==="right"?-6:6;
-    ctx.fillStyle="#17181a";ctx.fillText(l1,el.x+dx,area.top+12);
-    ctx.fillStyle="#8b8e95";ctx.fillText(l2,el.x+dx,area.top+25);
+    const y1=vpos==="bottom"?area.bottom-24:area.top+12;
+    const y2=vpos==="bottom"?area.bottom-11:area.top+25;
+    ctx.fillStyle="#17181a";ctx.fillText(l1,el.x+dx,y1);
+    ctx.fillStyle="#8b8e95";ctx.fillText(l2,el.x+dx,y2);
     ctx.restore();
   };
-  mark(CHATGPT_AT,"ChatGPT","Nov ’22","left");
-  mark(LAUNCH_AT,"Machine Oracle launches","live marks begin →","right");
+  mark(CHATGPT_AT,"ChatGPT","Nov ’22","left","top");
+  mark(LAUNCH_AT,"Machine Oracle launches","live marks begin →","right","bottom");
 }};
 const dashedHistory={segment:{borderDash:c=>c.p1DataIndex<=LAUNCH_AT?[5,4]:undefined}};
 new Chart($("chIdx"),{type:"line",data:{labels:[...IDXQ],datasets:[

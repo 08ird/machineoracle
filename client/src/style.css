@@ -2109,6 +2109,15 @@ tbody tr.is-hl th {
 .chart__vlab.is-muted {
   fill: var(--ink-3);
 }
+/* Halo so labels stay legible when they sit over a line. */
+.chart__vlab,
+.chart__slab,
+.chart__mark {
+  paint-order: stroke;
+  stroke: var(--bg-2);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
 .chart__vline {
   stroke: var(--ink-3);
   stroke-width: 1;
