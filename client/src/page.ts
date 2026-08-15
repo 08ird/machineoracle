@@ -64,7 +64,8 @@ export function masthead(activeSlug: string, activeChapter?: number): HTMLElemen
 
   // The live companion, then the deck of record.
   const tracker = el('a', undefined, 'Tracker');
-  tracker.href = 'tracker.html';
+  tracker.href = '#/tracker';
+  if (activeSlug === 'tracker') tracker.setAttribute('aria-current', 'page');
   nav.append(tracker);
 
   const pdf = el('a', undefined, 'Full thesis as PDF');
@@ -410,7 +411,7 @@ function renderHome(letter: Article): HTMLElement {
     document.createTextNode('. Every claim that cites the tape, the ladder, or the ledger is graded live in the ')
   );
   const trackerLink = el('a', undefined, 'tracker');
-  trackerLink.href = 'tracker.html';
+  trackerLink.href = '#/tracker';
   note.append(trackerLink, document.createTextNode('.'));
   toc.append(note);
 

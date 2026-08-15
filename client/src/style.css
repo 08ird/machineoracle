@@ -1519,6 +1519,16 @@ tbody tr.is-hl th {
   font-size: 0.75rem;
 }
 
+/* ── Tracker (embedded live instrument) ─────────────────────────────────── */
+
+.trackerframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: #fdfeff;
+  min-height: 60vh;
+}
+
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 
 .foot {

@@ -209,7 +209,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'What we publish, every quarter — so the program can be checked rather than believed. The indices mark from inception, August 11, 2026 = 100, live, with no back-fill and no retouching. The tape re-measures commitment, overage, retention, and growth every filing season — the selectors that pick the growth world. The ladder re-scores all twenty-five backend names against the line. The ledger grades the predictions on schedule. All of it runs in the [Machine Oracle tracker](tracker.html), which updates from filings rather than from us.',
+        'What we publish, every quarter — so the program can be checked rather than believed. The indices mark from inception, August 11, 2026 = 100, live, with no back-fill and no retouching. The tape re-measures commitment, overage, retention, and growth every filing season — the selectors that pick the growth world. The ladder re-scores all twenty-five backend names against the line. The ledger grades the predictions on schedule. All of it runs in the [Machine Oracle tracker](#/tracker), which updates from filings rather than from us.',
     },
     {
       kind: 'p',

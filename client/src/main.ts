@@ -29,6 +29,29 @@ function parseHash(): { slug: string; chapter?: number } {
 function route(scrollToTop = true) {
   const { slug, chapter } = parseHash();
 
+  // The tracker keeps its own page (the user's file, served verbatim) but is
+  // shown inside the site chrome: masthead above, the instrument below.
+  if (slug === 'tracker') {
+    const frame = document.createElement('iframe');
+    frame.className = 'trackerframe';
+    frame.src = 'tracker.html';
+    frame.title = 'Machine Oracle tracker';
+    // Same-origin: size the frame to its content so the page scrolls as one.
+    frame.addEventListener('load', () => {
+      const doc = frame.contentDocument;
+      if (!doc) return;
+      const fit = () => {
+        frame.style.height = `${Math.max(doc.documentElement.scrollHeight, 600)}px`;
+      };
+      fit();
+      new ResizeObserver(fit).observe(doc.documentElement);
+    });
+    app.replaceChildren(masthead('tracker'), frame, footer());
+    document.title = 'Tracker — Machine Oracle';
+    if (scrollToTop) scrollTo({ top: 0, behavior: 'auto' });
+    return;
+  }
+
   // The full thesis on one page, mainly for reading straight through or
   // printing to PDF.
   if (slug === 'all') {
