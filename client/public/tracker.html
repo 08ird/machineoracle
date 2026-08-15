@@ -74,7 +74,7 @@ td{padding:7px 8px;border-bottom:1px solid var(--rule2);vertical-align:middle;co
   <div class="seccap">Hypothetical research aggregations · equal-weighted · inception Aug 11, 2026 = 100 · live marks, no back-fill, no retouching</div>
   <div class="card">
     <div class="chartbox tall"><canvas id="chIdx"></canvas></div>
-    <div class="note">Context, computed offline: since ChatGPT (Nov ’22) the same rules return cohort +218%, state +177%, work +175% against apps +55%. The live lines above accrue from inception only.</div>
+    <div class="note">History to launch (dashed) is computed offline on the same rules and indexed so launch = 100 — it includes the 2022 derate and the recovery. Live marks (solid) accrue to the right of the line, no back-fill. Since ChatGPT the same rules return cohort +218%, state +177%, work +175%.</div>
   </div>
 </div>
 
@@ -137,13 +137,6 @@ td{padding:7px 8px;border-bottom:1px solid var(--rule2);vertical-align:middle;co
   </div>
 </div>
 
-<!-- ============ 07 RAILS ============ -->
-<div class="sec">
-  <div class="sechead"><span class="secnum">07</span><h2>Worksite rails &amp; the watch</h2></div>
-  <div class="seccap">Pass the billing test, sit outside the backend — tracked, not constituents</div>
-  <div class="card"><table id="rails"><thead><tr><th>Name</th><th>Usage share</th><th>Move</th><th>Note</th></tr></thead><tbody></tbody></table></div>
-</div>
-
 <div class="kicker"><b>Follow the grading live</b> — every mark, re-score and quarterly grade publishes here. The thesis is the hypothesis; the tracker is the experiment.</div>
 
 <div class="foot">
@@ -162,9 +155,15 @@ const L2T=["SNOW","MDB","ESTC","NTNX","FSLY","AMPL"];
 const L3T=["DDOG","NET","OKTA","GTLB","FROG","TEAM","DT","CRWD","S","ZS","PANW","RBRK","TENB","QLYS","SAIL","CLBT","AKAM","PD","NTSK"];
 let px={...MARK};
 
-/* Index history: one row per published mark. Append a row each mark date;
-   the live quote fetch adds today's point on top. */
-const IDXHIST=[{d:"Aug 11",c:100,l2:100,l3:100}];
+/* Index history: quarterly since Jan 2022, computed offline on the same
+   rules and rebased so official launch (Aug 11, 2026) = 100. Everything
+   after LAUNCH_AT is a live mark; the quote fetch appends today's point. */
+const IDXQ=["Jan'22","","Jul'22","","Jan'23","","Jul'23","","Jan'24","","Jul'24","","Jan'25","","Jul'25","","Jan'26","","Aug'26"];
+const IDXHIST={
+ c:[84.7,63.6,46.6,33.9,31.4,33.9,40.7,49.2,59.3,69.5,78.0,84.7,89.0,84.7,89.8,93.2,95.8,98.3,100.0],
+ l2:[78.1,64.1,50.0,43.0,37.5,35.2,40.6,48.4,56.2,64.1,70.3,75.0,81.2,78.1,84.4,90.6,95.3,97.7,100.0],
+ l3:[68.5,58.2,46.6,41.1,37.7,34.2,39.7,47.9,56.2,65.1,71.9,76.7,82.2,80.8,85.6,90.4,94.5,97.3,100.0]};
+const LAUNCH_AT=IDXQ.length-1;
 
 /* ---------- cohort tiles ---------- */
 const COHORT=[
@@ -226,10 +225,6 @@ const KILLS=[
  ["Elasticity","usage→revenue below 0.3 for a year — capture is collapsing"],
  ["State","production state migrates to open, portable formats at scale"],
  ["Work","agent-execution revenue at the model labs exceeds the cohort's"]];
-const RAILS=[
- ["Twilio","TWLO","~70–75%","usage-billed action rail — passes the billing test, sits on the worksite"],
- ["Bandwidth","BAND","~65–75%","CPaaS usage + surcharges — worksite meter, outside the backend"],
- ["Fastly","FSLY","~58% est","confidence-bar watch — structurally usage-billed; bundle mix undisclosed"]];
 
 /* ---------- render static ---------- */
 const $=id=>document.getElementById(id);
@@ -246,7 +241,6 @@ $("ladder").querySelector("tbody").innerHTML=LAD.map(([n,l,u,st,mv])=>{
 $("sublist").innerHTML=`<b>Subscription today (13):</b> ${SUBS} — no material usage line yet; every per-agent or per-action SKU shipped is an upgrade event on this board.`;
 $("ledger").innerHTML=LED.map(([w,t,s])=>`<div class="ledgeritem"><span class="when">${w}</span><span class="what"><b>${t}</b><span>${s}</span></span><span class="pill pend">PENDING</span></div>`).join("");
 $("kills").innerHTML=KILLS.map(([k,t])=>`<div class="killitem"><b>${k}</b><span>${t}</span></div>`).join("");
-$("rails").querySelector("tbody").innerHTML=RAILS.map(([n,t,u,note])=>`<tr><td><b>${n}</b> <span style="color:var(--ink4)">· ${t}</span></td><td class="mono">${u}</td><td class="mono" id="mv-${t}">—</td><td style="font-size:11.5px;color:var(--ink3)">${note}</td></tr>`).join("");
 
 /* ---------- charts (site palette: cohort accent, state ink, work light blue) ---------- */
 const C={cohort:"#1b5fd0",state:"#33353a",work:"#7aa8f5",muted:"#c9cbce",label:"#63666d"};
@@ -279,15 +273,33 @@ const nfmt=v=>Number.isInteger(v)?v:v.toFixed(1);
 const pad={padding:{top:14,right:10}};
 const line=(label,data,color,width)=>({label,data,borderColor:color,backgroundColor:color,borderWidth:width||2.2,tension:.25,spanGaps:true,pointRadius:d=>d.raw==null?0:2.4});
 
-/* 01 — the indices: one chart, three lines, accruing from inception */
-new Chart($("chIdx"),{type:"line",data:{labels:IDXHIST.map(r=>r.d),datasets:[
-  line("Machine labor cohort (3)",IDXHIST.map(r=>r.c),C.cohort,2.6),
-  line("L2 · State (6)",IDXHIST.map(r=>r.l2),C.state),
-  line("L3 · Work (19)",IDXHIST.map(r=>r.l3),C.work)]},
+/* 01 — the indices: history since 2022 (dashed), live from launch (solid),
+   with a marker line where the live tracker begins. */
+const LAUNCHLINE={id:"launchline",afterDatasetsDraw(chart){
+  const meta=chart.getDatasetMeta(0);
+  const el=meta.data[LAUNCH_AT];if(!el)return;
+  const ctx=chart.ctx,area=chart.chartArea;
+  ctx.save();
+  ctx.strokeStyle="#63666d";ctx.lineWidth=1;ctx.setLineDash([3,4]);
+  ctx.beginPath();ctx.moveTo(el.x,area.top);ctx.lineTo(el.x,area.bottom);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.font='600 10px -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif';
+  ctx.fillStyle="#17181a";ctx.textAlign="right";
+  ctx.fillText("Machine Oracle launches",el.x-6,area.top+12);
+  ctx.fillStyle="#8b8e95";
+  ctx.fillText("live marks begin →",el.x-6,area.top+25);
+  ctx.restore();
+}};
+const dashedHistory={segment:{borderDash:c=>c.p1DataIndex<=LAUNCH_AT?[5,4]:undefined}};
+new Chart($("chIdx"),{type:"line",data:{labels:[...IDXQ],datasets:[
+  {...line("Machine labor cohort (3)",[...IDXHIST.c],C.cohort,2.6),...dashedHistory},
+  {...line("L2 · State (6)",[...IDXHIST.l2],C.state,1.8),...dashedHistory},
+  {...line("L3 · Work (19)",[...IDXHIST.l3],C.work,1.8),...dashedHistory}]},
  options:{responsive:true,maintainAspectRatio:false,layout:pad,interaction:{mode:"index",intersect:false},
   plugins:{legend:{labels:{boxWidth:8,boxHeight:8,usePointStyle:true}},
-    vals:{on:true,fmts:[v=>v.toFixed(1),v=>v.toFixed(1),v=>v.toFixed(1)],colors:[C.cohort,C.state,C.label]}},
-  scales:{y:{grid:gridOpt,suggestedMin:96,suggestedMax:104},x:{grid:{display:false}}}}});
+    vals:{on:true,keys:{0:[4,LAUNCH_AT],1:[],2:[]},fmts:[v=>v.toFixed(1),v=>v.toFixed(1),v=>v.toFixed(1)],colors:[C.cohort,C.state,C.label]}},
+  scales:{y:{min:25,max:112,grid:gridOpt},x:{grid:{display:false},ticks:{maxTicksLimit:7}}}},
+ plugins:[LAUNCHLINE]});
 const idxChart=Chart.getChart($("chIdx"));
 
 /* 03 — the tape: commitment + overage, cohort/L2/L3 together */
@@ -340,7 +352,6 @@ function level(ts){return ts.reduce((s,t)=>s+px[t]/MARK[t],0)/ts.length*100}
 function paint(live){
   const f=(x)=>x.toFixed(1);
   for(const c of COHORT){const d=(px[c.t]/MARK[c.t]-1)*100;$("px-"+c.t).innerHTML=`$${px[c.t].toFixed(2)} <span class="${d>=0?'pos':'neg'}">(${d>=0?"+":""}${d.toFixed(1)}% since inception)</span>`;}
-  for(const t of ["TWLO","BAND","FSLY"]){const d=(px[t]/MARK[t]-1)*100;const el=$("mv-"+t);if(el)el.innerHTML=`<span class="${d>=0?'pos':'neg'}">${d>=0?"+":""}${d.toFixed(1)}%</span>`;}
   if(live){
     /* append today's live point to the index chart */
     const ch=idxChart;
