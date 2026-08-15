@@ -71,10 +71,10 @@ td{padding:7px 8px;border-bottom:1px solid var(--rule2);vertical-align:middle;co
 <!-- ============ 01 THE INDICES ============ -->
 <div class="sec">
   <div class="sechead"><span class="secnum">01</span><h2>The indices</h2></div>
-  <div class="seccap">Hypothetical research aggregations · equal-weighted · inception Aug 11, 2026 = 100 · live marks, no back-fill, no retouching</div>
+  <div class="seccap">Hypothetical research aggregations · equal-weighted · indexed to Jan 1, 2022 = 100 · live from Aug 11, 2026 · no back-fill, no retouching</div>
   <div class="card">
     <div class="chartbox tall"><canvas id="chIdx"></canvas></div>
-    <div class="note">History to launch (dashed) is computed offline on the same rules and indexed so launch = 100 — it includes the 2022 derate and the recovery. Live marks (solid) accrue to the right of the line, no back-fill. Since ChatGPT the same rules return cohort +218%, state +177%, work +175%.</div>
+    <div class="note">History to launch (dashed) is computed offline on the same rules, indexed to January 1, 2022 = 100 — the 2022 derate, the ChatGPT moment, and the recovery. Live marks (solid) chain off the launch level to the right of the line and update daily after the close; no back-fill. Since ChatGPT the same rules return cohort +218%, state +177%, work +175%.</div>
   </div>
 </div>
 
@@ -103,9 +103,13 @@ td{padding:7px 8px;border-bottom:1px solid var(--rule2);vertical-align:middle;co
     <div class="chartbox tall"><canvas id="chCohVal"></canvas></div>
     <div class="note">42x at the 2021 peak, ~10x at the trough, 16.5x today — three regimes that priced almost identically per point of growth.</div>
   </div>
-  <div class="grid g2" style="margin-top:12px">
-    <div class="card"><h3>L2 · State — multiple (line) vs growth (bars)</h3><div class="chartbox"><canvas id="chL2Val"></canvas></div><div class="note">Growth turned up while the multiple round-tripped below its start — ~0.26x growth-adjusted.</div></div>
-    <div class="card"><h3>L3 · Work — multiple (line) vs growth (bars)</h3><div class="chartbox"><canvas id="chL3Val"></canvas></div><div class="note">Steady low-twenties growth against a de-rating multiple — ~0.31x growth-adjusted.</div></div>
+  <div class="card" style="margin-top:12px"><h3 class="blue">L2 · State — multiple (line) vs growth (bars) · Q1 2022 → today</h3>
+    <div class="chartbox tall"><canvas id="chL2Val"></canvas></div>
+    <div class="note">Growth turned up while the multiple round-tripped below its start — ~0.26x growth-adjusted.</div>
+  </div>
+  <div class="card" style="margin-top:12px"><h3 class="blue">L3 · Work — multiple (line) vs growth (bars) · Q1 2022 → today</h3>
+    <div class="chartbox tall"><canvas id="chL3Val"></canvas></div>
+    <div class="note">Steady low-twenties growth against a de-rating multiple — ~0.31x growth-adjusted.</div>
   </div>
 </div>
 
@@ -122,18 +126,17 @@ td{padding:7px 8px;border-bottom:1px solid var(--rule2);vertical-align:middle;co
 <!-- ============ 06 THE LEDGER ============ -->
 <div class="sec">
   <div class="sechead"><span class="secnum">06</span><h2>The ledger</h2></div>
-  <div class="seccap">Eight dated predictions, graded on schedule · misses published with the same prominence as hits · criteria fixed at publication</div>
+  <div class="seccap">Dated predictions and the long calls, graded on schedule · misses published with the same prominence as hits · criteria fixed at publication</div>
   <div class="grid g2">
     <div class="card"><h3 class="blue">Dated predictions</h3><div id="ledger"></div></div>
-    <div>
-      <div class="card"><h3 class="blue">Meters vs. models — tracked until it inverts</h3>
-        <div class="ratio"><span class="big">~$1 : $3</span><span class="sub">cohort revenue per dollar of frontier-lab token revenue (OpenAI, Anthropic, xAI, Mistral — ~$30–35B combined)</span></div>
-        <div class="note">The labs cut unit prices 30–40% a year by design; the meters’ events per token rise as workloads reach production. The long call: the ratio crosses 1. Re-summed quarterly.</div>
-      </div>
-      <div class="card" style="margin-top:12px"><h3>Tripwires — written before they’re needed</h3>
-        <div class="grid g2" style="gap:10px;margin-top:4px" id="kills"></div>
-      </div>
-    </div>
+    <div class="card"><h3 class="blue">The long calls — the 2030s</h3><div id="longcalls"></div></div>
+  </div>
+  <div class="card" style="margin-top:12px"><h3 class="blue">Meters vs. models — cohort revenue per dollar of frontier-lab revenue · tracked until it re-crosses 1</h3>
+    <div class="chartbox short"><canvas id="chRatio"></canvas></div>
+    <div class="note">Modeled: cohort revenue (Snowflake + MongoDB + Datadog, calendar-year) against estimated frontier-lab revenue (OpenAI, Anthropic, xAI, Mistral — public reporting, approximate). The meters out-earned the labs ~17:1 in 2022; the labs crossed parity in 2024 and bill ~$3 per $1 the cohort meters today. The long call is the re-crossing. Re-summed quarterly.</div>
+  </div>
+  <div class="card" style="margin-top:12px"><h3>The watchlist — per-name triggers, checked every filing season</h3>
+    <table id="watch"><thead><tr><th>Name</th><th>Layer</th><th>What we watch</th><th>Trigger → action</th></tr></thead><tbody></tbody></table>
   </div>
 </div>
 
@@ -155,15 +158,16 @@ const L2T=["SNOW","MDB","ESTC","NTNX","FSLY","AMPL"];
 const L3T=["DDOG","NET","OKTA","GTLB","FROG","TEAM","DT","CRWD","S","ZS","PANW","RBRK","TENB","QLYS","SAIL","CLBT","AKAM","PD","NTSK"];
 let px={...MARK};
 
-/* Index history: quarterly since Jan 2022, computed offline on the same
-   rules and rebased so official launch (Aug 11, 2026) = 100. Everything
-   after LAUNCH_AT is a live mark; the quote fetch appends today's point. */
+/* Index history: quarterly since Jan 1, 2022 = 100, computed offline on
+   the same rules. Everything after LAUNCH_AT is a live mark; the quote
+   fetch appends today's point, chained off the launch level. */
 const IDXQ=["Jan'22","","Jul'22","","Jan'23","","Jul'23","","Jan'24","","Jul'24","","Jan'25","","Jul'25","","Jan'26","","Aug'26"];
 const IDXHIST={
- c:[84.7,63.6,46.6,33.9,31.4,33.9,40.7,49.2,59.3,69.5,78.0,84.7,89.0,84.7,89.8,93.2,95.8,98.3,100.0],
- l2:[78.1,64.1,50.0,43.0,37.5,35.2,40.6,48.4,56.2,64.1,70.3,75.0,81.2,78.1,84.4,90.6,95.3,97.7,100.0],
- l3:[68.5,58.2,46.6,41.1,37.7,34.2,39.7,47.9,56.2,65.1,71.9,76.7,82.2,80.8,85.6,90.4,94.5,97.3,100.0]};
+ c:[100,75,55,40,37,40,48,58,70,82,92,100,105,100,106,110,113,116,118],
+ l2:[100,82,64,55,48,45,52,62,72,82,90,96,104,100,108,116,122,125,128],
+ l3:[100,85,68,60,55,50,58,70,82,95,105,112,120,118,125,132,138,142,146]};
 const LAUNCH_AT=IDXQ.length-1;
+const CHATGPT_AT=3;
 
 /* ---------- cohort tiles ---------- */
 const COHORT=[
@@ -218,13 +222,27 @@ const LED=[
  ["EARLY '28","A meter takeout at ≥8x EV / revenue","average paid ~12x"],
  ["BY 2028","Cohort FCF margin ≥28%","~25% today"],
  ["EVERY QTR","Cohort backlog growth ≥ revenue growth","holding"]];
-const KILLS=[
- ["Tokens","growth below 2x/yr for two consecutive years — the wave premise fails"],
- ["Overage","share falls two consecutive quarters — conversion is breaking"],
- ["Retention","meter-vs-app retention gap narrows below ~8 points — the royalty leaks"],
- ["Elasticity","usage→revenue below 0.3 for a year — capture is collapsing"],
- ["State","production state migrates to open, portable formats at scale"],
- ["Work","agent-execution revenue at the model labs exceeds the cohort's"]];
+const LONG=[
+ ["BY 2030","Machine labor becomes a reported cost line","zero companies report it today"],
+ ["BY 2036","The first $100B-revenue meter","largest meter bills ~$4.5B — a ~20x from here"],
+ ["BY 2038","The public backend stack bills $1T a year","~$60B today — a ~17x, re-summed quarterly"],
+ ["BY 2038","The meters out-earn the models","cohort meters ~$1 per ~$3 the labs bill"],
+ ["BY 2040","Machine labor becomes an asset class","no index provider carries one today"]];
+const RATIOQ=["2022","2023","2024","2025","today"];
+const RATIO=[16.7,3.3,1.6,0.6,0.34];
+const WATCH=[
+ ["Snowflake","L2","Consumption share of product revenue (10-K note); retention","share <90% or retention <115 → admission re-check"],
+ ["MongoDB","L2","Atlas share of revenue, quarterly","<65% → exit watch · >80% → thesis confirming"],
+ ["Datadog","L3","Backlog growth vs revenue growth","backlog below revenue growth two straight quarters → tripwire"],
+ ["Fastly","L2","First disclosed usage percentage","a disclosed ≥50% admits it — one filing away"],
+ ["Elastic","L2","Elastic Cloud share (~47%, +2pts/yr)","crossing 50% admits it"],
+ ["Akamai","L3","Compute growth against delivery + security","compute reaching half of revenue admits it"],
+ ["Cloudflare","L3","Workers / R2 / Pay-Per-Crawl disclosures","any usage split ≥50% → re-score"],
+ ["Dynatrace","L3","DPS consumption share of ARR","majority DPS → admission review"],
+ ["CrowdStrike","L3","Falcon Flex drawdown balances","per-action SKUs at scale → ladder move"],
+ ["Palo Alto","L3","Flex-credit disclosures","usage majority → admission review"],
+ ["GitLab · JFrog","L3","Usage lines — CI minutes, data transfer","material usage share (>10%) → ladder move"],
+ ["The subscription 13","—","Any per-agent or per-action SKU","every SKU shipped is an upgrade event on this board"]];
 
 /* ---------- render static ---------- */
 const $=id=>document.getElementById(id);
@@ -240,7 +258,8 @@ $("ladder").querySelector("tbody").innerHTML=LAD.map(([n,l,u,st,mv])=>{
   return `<tr><td><b>${n}</b></td><td>${l}</td><td>${bar}</td><td><span class="pill ${cls}">${st}</span></td><td style="font-size:11.5px;color:var(--ink3)">${mv}</td></tr>`}).join("");
 $("sublist").innerHTML=`<b>Subscription today (13):</b> ${SUBS} — no material usage line yet; every per-agent or per-action SKU shipped is an upgrade event on this board.`;
 $("ledger").innerHTML=LED.map(([w,t,s])=>`<div class="ledgeritem"><span class="when">${w}</span><span class="what"><b>${t}</b><span>${s}</span></span><span class="pill pend">PENDING</span></div>`).join("");
-$("kills").innerHTML=KILLS.map(([k,t])=>`<div class="killitem"><b>${k}</b><span>${t}</span></div>`).join("");
+$("longcalls").innerHTML=LONG.map(([w,t,s])=>`<div class="ledgeritem"><span class="when">${w}</span><span class="what"><b>${t}</b><span>${s}</span></span><span class="pill pend">PENDING</span></div>`).join("");
+$("watch").querySelector("tbody").innerHTML=WATCH.map(([n,l,w,tr])=>`<tr><td><b>${n}</b></td><td>${l}</td><td style="font-size:12px;color:var(--ink3)">${w}</td><td style="font-size:12px;color:var(--ink2)">${tr}</td></tr>`).join("");
 
 /* ---------- charts (site palette: cohort accent, state ink, work light blue) ---------- */
 const C={cohort:"#1b5fd0",state:"#33353a",work:"#7aa8f5",muted:"#c9cbce",label:"#63666d"};
@@ -277,18 +296,22 @@ const line=(label,data,color,width)=>({label,data,borderColor:color,backgroundCo
    with a marker line where the live tracker begins. */
 const LAUNCHLINE={id:"launchline",afterDatasetsDraw(chart){
   const meta=chart.getDatasetMeta(0);
-  const el=meta.data[LAUNCH_AT];if(!el)return;
   const ctx=chart.ctx,area=chart.chartArea;
-  ctx.save();
-  ctx.strokeStyle="#63666d";ctx.lineWidth=1;ctx.setLineDash([3,4]);
-  ctx.beginPath();ctx.moveTo(el.x,area.top);ctx.lineTo(el.x,area.bottom);ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.font='600 10px -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif';
-  ctx.fillStyle="#17181a";ctx.textAlign="right";
-  ctx.fillText("Machine Oracle launches",el.x-6,area.top+12);
-  ctx.fillStyle="#8b8e95";
-  ctx.fillText("live marks begin →",el.x-6,area.top+25);
-  ctx.restore();
+  const mark=(at,l1,l2,side)=>{
+    const el=meta.data[at];if(!el)return;
+    ctx.save();
+    ctx.strokeStyle="#63666d";ctx.lineWidth=1;ctx.setLineDash([3,4]);
+    ctx.beginPath();ctx.moveTo(el.x,area.top);ctx.lineTo(el.x,area.bottom);ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.font='600 10px -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif';
+    ctx.textAlign=side;
+    const dx=side==="right"?-6:6;
+    ctx.fillStyle="#17181a";ctx.fillText(l1,el.x+dx,area.top+12);
+    ctx.fillStyle="#8b8e95";ctx.fillText(l2,el.x+dx,area.top+25);
+    ctx.restore();
+  };
+  mark(CHATGPT_AT,"ChatGPT","Nov ’22","left");
+  mark(LAUNCH_AT,"Machine Oracle launches","live marks begin →","right");
 }};
 const dashedHistory={segment:{borderDash:c=>c.p1DataIndex<=LAUNCH_AT?[5,4]:undefined}};
 new Chart($("chIdx"),{type:"line",data:{labels:[...IDXQ],datasets:[
@@ -297,8 +320,8 @@ new Chart($("chIdx"),{type:"line",data:{labels:[...IDXQ],datasets:[
   {...line("L3 · Work (19)",[...IDXHIST.l3],C.work,1.8),...dashedHistory}]},
  options:{responsive:true,maintainAspectRatio:false,layout:pad,interaction:{mode:"index",intersect:false},
   plugins:{legend:{labels:{boxWidth:8,boxHeight:8,usePointStyle:true}},
-    vals:{on:true,keys:{0:[4,LAUNCH_AT],1:[],2:[]},fmts:[v=>v.toFixed(1),v=>v.toFixed(1),v=>v.toFixed(1)],colors:[C.cohort,C.state,C.label]}},
-  scales:{y:{min:25,max:112,grid:gridOpt},x:{grid:{display:false},ticks:{maxTicksLimit:7}}}},
+    vals:{on:true,keys:{0:[0,4,LAUNCH_AT],1:[LAUNCH_AT],2:[LAUNCH_AT]},fmts:[nfmt,nfmt,nfmt],colors:[C.cohort,C.state,C.label]}},
+  scales:{y:{min:25,max:160,grid:gridOpt},x:{grid:{display:false},ticks:{maxTicksLimit:7}}}},
  plugins:[LAUNCHLINE]});
 const idxChart=Chart.getChart($("chIdx"));
 
@@ -347,6 +370,16 @@ function layerVal(id,mult,grow,mkeys,gkeys,ymax,gmax){
 layerVal("chL2Val",L2M,L2G,[0,6,12,18],[0,6,18],13,45);
 layerVal("chL3Val",L3M,L3G,[0,6,12,18],[0,6,18],21,45);
 
+/* 06 — meters vs models: modeled ratio, log scale, parity marked */
+new Chart($("chRatio"),{type:"line",data:{labels:RATIOQ,datasets:[
+  {...line("Cohort $ per lab $ (modeled)",RATIO,C.cohort,2.4)},
+  {label:"parity",data:RATIOQ.map(()=>1),borderColor:"#8b8e95",borderDash:[4,4],borderWidth:1.2,pointRadius:0}]},
+ options:{responsive:true,maintainAspectRatio:false,layout:pad,interaction:{mode:"index",intersect:false},
+  plugins:{legend:{labels:{boxWidth:8,boxHeight:8,usePointStyle:true,filter:i=>i.text!=="parity"}},
+    vals:{on:true,keys:{0:[0,2,4],1:[]},fmts:[v=>v+"x",v=>v],colors:[C.cohort]}},
+  scales:{y:{type:"logarithmic",min:0.2,max:25,grid:gridOpt,ticks:{callback:v=>[0.25,1,3,10,20].includes(v)?v+"x":null}},
+          x:{grid:{display:false}}}}});
+
 /* ---------- live quotes ---------- */
 function level(ts){return ts.reduce((s,t)=>s+px[t]/MARK[t],0)/ts.length*100}
 function paint(live){
@@ -355,11 +388,11 @@ function paint(live){
   if(live){
     /* append today's live point to the index chart */
     const ch=idxChart;
-    if(ch&&ch.data.labels[ch.data.labels.length-1]!=="today"){
-      ch.data.labels.push("today");
-      ch.data.datasets[0].data.push(level(CT));
-      ch.data.datasets[1].data.push(level(L2T));
-      ch.data.datasets[2].data.push(level(L3T));
+    if(ch&&ch.data.labels[ch.data.labels.length-1]!=="live"){
+      ch.data.labels.push("live");
+      ch.data.datasets[0].data.push(IDXHIST.c[LAUNCH_AT]*level(CT)/100);
+      ch.data.datasets[1].data.push(IDXHIST.l2[LAUNCH_AT]*level(L2T)/100);
+      ch.data.datasets[2].data.push(IDXHIST.l3[LAUNCH_AT]*level(L3T)/100);
       ch.update();
     }
     $("livedot").classList.add("live");
@@ -367,6 +400,24 @@ function paint(live){
   }
 }
 paint(false);
+
+/* Daily marks: appended by a scheduled workflow into indices.json
+   (levels stored inception = 100; chained off the launch level here). */
+fetch("indices.json").then(r=>r.ok?r.json():null).then(j=>{
+  if(!j||!Array.isArray(j.points)||!j.points.length)return;
+  const ch=idxChart;
+  for(const p of j.points){
+    const lab=new Date(p.d+"T00:00:00Z").toLocaleDateString("en-US",{month:"short",day:"numeric",timeZone:"UTC"});
+    if(ch.data.labels.includes(lab))continue;
+    ch.data.labels.push(lab);
+    ch.data.datasets[0].data.push(+(IDXHIST.c[LAUNCH_AT]*p.c/100).toFixed(2));
+    ch.data.datasets[1].data.push(+(IDXHIST.l2[LAUNCH_AT]*p.l2/100).toFixed(2));
+    ch.data.datasets[2].data.push(+(IDXHIST.l3[LAUNCH_AT]*p.l3/100).toFixed(2));
+  }
+  ch.update();
+  $("asof").textContent="Daily marks through "+j.updated+" · indexed to Jan 1, 2022 = 100 · live from Aug 11, 2026";
+}).catch(()=>{});
+
 (async()=>{
   try{
     const r=await window.cowork.callMcpTool("mcp__f6d3a915-97fa-499f-9307-b6471944fb83__quote",{endpoint:"batch-quote-short",symbols:Object.keys(MARK)});

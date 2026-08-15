@@ -1,0 +1,51 @@
+name: Update index marks
+
+# Weekdays after the US close (21:30 UTC ≈ 4:30–5:30pm ET year-round).
+on:
+  schedule:
+    - cron: '30 21 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: index-marks
+  cancel-in-progress: false
+
+jobs:
+  mark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Compute today's marks
+        run: node scripts/update-indices.mjs
+        env:
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet client/public/indices.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name "index-marks[bot]"
+            git config user.email "actions@github.com"
+            git add client/public/indices.json
+            git commit -m "Daily index mark $(date -u +%F)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Pushes from GITHUB_TOKEN don't trigger the Pages workflow, so kick it.
+      - name: Deploy site
+        if: steps.commit.outputs.changed == 'true'
+        run: gh workflow run deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}

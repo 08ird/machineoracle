@@ -2156,19 +2156,19 @@ export const SLIDES: Slide[] = [
           desc: 'A major public company discloses agent-labor spend as a distinct cost line. “Agent GAAP” completes, and comparability begins. Today: zero companies report it.',
         },
         {
-          n: 'Mid-2030s',
+          n: 'By 2036',
           head: 'The first $100B-revenue meter',
-          desc: 'A usage-billed infrastructure company crosses $100B a year. The largest meter today bills ~$4.5B — a ~20x that takes about nine years at wave-case growth and twelve at 30%. The date brackets; the destination doesn’t.',
+          desc: 'A usage-billed infrastructure company crosses $100B a year. The largest meter today bills ~$4.5B — a ~20x that takes about nine years at wave-case growth and twelve at 30%. The date splits the difference; the destination doesn’t move.',
         },
         {
-          n: 'Late 2030s',
+          n: 'By 2038',
           head: 'The public backend stack bills $1T a year',
           desc: 'Measured as the summed revenue of the 25 public backend names and their future entrants: ~$60B a year today. A ~17x needs 25–30% compounded for over a decade — re-summed quarterly on this site.',
         },
         {
-          n: 'Late 2030s',
+          n: 'By 2038',
           head: 'The meters out-earn the models',
-          desc: 'Cohort revenue against frontier-lab token revenue (OpenAI, Anthropic, xAI, Mistral — ~$30–35B combined today, ~$3 billed per $1 the cohort meters). The labs cut their unit price 30–40% a year by design; the meters’ events per token rise as workloads reach production. The crossover, not the calendar, is the claim — tracked quarterly.',
+          desc: 'Cohort revenue against frontier-lab token revenue (OpenAI, Anthropic, xAI, Mistral). The meters out-earned the labs ~17:1 in 2022; the labs crossed parity in 2024 and bill ~$3 per $1 the cohort meters today. The labs cut unit prices 30–40% a year by design while the meters’ events per token rise — the call is the re-crossing, tracked quarterly.',
         },
         {
           n: 'By 2040',
