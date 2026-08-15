@@ -13,7 +13,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The sequence tells its own story. Intercom priced the outcome first — 99 cents per resolved support ticket, in 2023, when the industry was still debating whether chatbots worked. Cognition priced the agent’s time. Salesforce is the most instructive: it launched Agentforce at $2 per conversation in October 2024, discovered within months what the market would actually bear, and re-priced to ten cents per action — a 95% cut that is not weakness but price discovery, the exact process by which every new commodity finds its unit. Cloudflare priced machine reading itself. And in April 2026, ServiceNow — a seat company if there ever was one — rebuilt its entire catalog into AI-native tiers that run on consumption pools, with large agentic actions drawing 150 “assists” against 25 for small ones, and overage billed on top.',
+        'Intercom priced the outcome first — 99 cents per resolved support ticket, in 2023, when the industry was still debating whether chatbots worked. Cognition priced the agent’s time. Salesforce is the most instructive: it launched Agentforce at $2 per conversation in October 2024, discovered within months what the market would actually bear, and re-priced to ten cents per action — a 95% cut that is not weakness but price discovery, the exact process by which every new commodity finds its unit. Cloudflare priced machine reading itself. And in April 2026, ServiceNow — a seat company if there ever was one — rebuilt its entire catalog into AI-native tiers that run on consumption pools, with large agentic actions drawing 150 “assists” against 25 for small ones, and overage billed on top.',
     },
     {
       kind: 'p',
@@ -31,7 +31,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Measured attach in the filings today reads 0.2 to 0.3, well below the 20-to-40-per-thousand-tokens we described. That is a lag, not a leak, and the mechanics say why. Committed contracts burn first, so surge usage draws down prepaid credits and appears in backlog one to three quarters before it appears in revenue. Pilots meter lightly while production meters everything — and the pilot phase is exactly where the enterprise world still stands: MIT’s widely-cited 2025 study found roughly 95% of enterprise generative-AI pilots had produced no measurable P&L impact. Read as a verdict on AI, that number ended a hype cycle; read as a description of where workloads sit on the graduation curve, it is a schedule of future metering. Where usage caps already bind, more than 75% of buyers keep paying at list.',
+        'Measured attach in the filings today reads 0.2 to 0.3, well below the 20-to-40-per-thousand-tokens we described. That is a lag, not a leak, and the mechanics say why. Committed contracts burn first, so surge usage draws down prepaid credits and appears in commitment one to three quarters before it appears in revenue. Pilots meter lightly while production meters everything — and the pilot phase is exactly where the enterprise world still stands: MIT’s widely-cited 2025 study found roughly 95% of enterprise generative-AI pilots had produced no measurable P&L impact. Read as a verdict on AI, that number ended a hype cycle; read as a description of where workloads sit on the graduation curve, it is a schedule of future metering. Where usage caps already bind, more than 75% of buyers keep paying at list.',
     },
     {
       kind: 'p',

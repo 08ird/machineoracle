@@ -980,7 +980,7 @@ export const SLIDES: Slide[] = [
       ],
       result: { value: 'The royalty', label: 'revenue on machine labor', note: 'checked against filings for the rest of this part' },
     },
-    footnote: 'Attach today reflects committed contracts burning first — the surge hits backlog one to three quarters before revenue.',
+    footnote: 'Attach today reflects committed contracts burning first — the surge reaches commitment one to three quarters before revenue.',
   },
   {
     // Site-original exhibit (no deck slide): the royalty from the agent's side.
@@ -1771,7 +1771,7 @@ export const SLIDES: Slide[] = [
         { round: 'Wave beta', a: 'bills after state accumulates', b: 'bills the work as it happens — first paid', winner: 'b' },
         { round: 'Cash today', a: '19–21% FCF, still investing', b: '26% FCF, converting now', winner: 'b' },
         { round: 'Margin trajectory', a: '+6 pts in a year — inflecting', b: 'flat at a high plateau', winner: 'a' },
-        { round: 'Commitment', a: '+22% backlog y/y — fastest in the universe', b: '+16%', winner: 'a' },
+        { round: 'Commitment', a: '+22% deferred-revenue growth — fastest in the universe', b: '+16%', winner: 'a' },
         { round: 'Overage purity', a: '14→24% of revenue — purest meters', b: '9→16%, diluted by subscriptions', winner: 'a' },
         { round: 'Scarcity / M&A bid', a: 'state assets trade at 5–8x takeouts', b: 'strategics pay 7–28x for work meters', winner: 'b' },
       ],
@@ -2137,7 +2137,7 @@ export const SLIDES: Slide[] = [
         ['Mid-2027', 'Consensus 2029 cohort revenue revised up ≥10%', 'carries the fade'],
         ['Early 2028', 'A meter takeout at ≥8x EV / revenue', 'average paid ~12x'],
         ['By 2028', 'Cohort free-cash-flow margin ≥28%', '~25%'],
-        ['Every quarter', 'Cohort backlog growth ≥ revenue growth', 'holding'],
+        ['Every quarter', 'Cohort commitment growth ≥ revenue growth', 'holding'],
       ],
     },
     takeaway: { icon: '📒', text: 'If the ledger fills with misses, the thesis shrinks with it. That’s the deal.' },

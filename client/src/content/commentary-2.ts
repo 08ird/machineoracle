@@ -13,7 +13,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Note what that line ran through: two market corrections and one full-scale AI panic, complete with declarations that the buildout was a bubble and the models had hit a wall. The DeepSeek weekend of January 2025 knocked half a trillion dollars off Nvidia in a day on the theory that efficiency meant less demand. Token consumption that quarter grew anyway — the users never got the memo the market was trading on. Demand never blinked.',
+        'That line ran through two market corrections and one full-scale AI panic, complete with declarations that the buildout was a bubble and the models had hit a wall. The DeepSeek weekend of January 2025 knocked half a trillion dollars off Nvidia in a day on the theory that efficiency meant less demand. Token consumption that quarter grew anyway — the users never got the memo the market was trading on. Demand never blinked.',
     },
     {
       kind: 'p',
@@ -106,7 +106,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'It sounds aggressive until you look at what it assumes about growth. The trailing four years ran at about ×7 a year. We are underwriting a deceleration by half — a wave that is visibly losing speed — and still arrive at nearly four times the street’s floor of ~1,100Q. The floor is not a bear case we invented to look balanced: it is what you get applying unit elasticity to the announced price path — the street’s own arithmetic. The distance between those two lines is the entire debate.',
+        'The call assumes less growth than the recent past delivered. The trailing four years ran at about ×7 a year. We are underwriting a deceleration by half — a wave that is visibly losing speed — and still arrive at nearly four times the street’s floor of ~1,100Q. The floor is not a bear case we invented to look balanced: it is what you get applying unit elasticity to the announced price path — the street’s own arithmetic. The distance between those two lines is the entire debate.',
     },
   ],
 
@@ -153,7 +153,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'It is worth setting the two maps side by side, because they differ in method and agree in direction. Situational Awareness counts in orders of magnitude — factors of ten, the “OOMs” of its title chapter — and reasons from supply: effective compute compounding roughly one order of magnitude a year, capability per token rising, drop-in remote workers arriving as a consequence. We reason from demand: measured elasticity, capability deliberately held constant, adoption counted in users and intensity rather than IQ. Their ceiling is the wage pool; ours is what the elasticity data will bear.',
+        'Set the two maps side by side: they differ in method and agree in direction. Situational Awareness counts in orders of magnitude — factors of ten, the “OOMs” of its title chapter — and reasons from supply: effective compute compounding roughly one order of magnitude a year, capability per token rising, drop-in remote workers arriving as a consequence. We reason from demand: measured elasticity, capability deliberately held constant, adoption counted in users and intensity rather than IQ. Their ceiling is the wage pool; ours is what the elasticity data will bear.',
     },
     {
       kind: 'p',
@@ -180,7 +180,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The commitment deserves to be seen rather than summarized. For a decade, the four largest hyperscalers spent a steady ~$150 billion a year building the cloud — and the number barely moved through ChatGPT’s first year, because you cannot re-plan a datacenter fleet in a quarter. Then the re-planning landed: capex half again higher in 2024, $410 billion in 2025, roughly $700 billion guided for 2026, and a trillion a year on the announced trajectory for 2027.',
+        'The chart makes the commitment plain. For a decade, the four largest hyperscalers spent a steady ~$150 billion a year building the cloud — and the number barely moved through ChatGPT’s first year, because you cannot re-plan a datacenter fleet in a quarter. Then the re-planning landed: capex half again higher in 2024, $410 billion in 2025, roughly $700 billion guided for 2026, and a trillion a year on the announced trajectory for 2027.',
     },
     {
       kind: 'p',
@@ -206,7 +206,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'A build approaching a trillion dollars a year invites the question of whether anything like it has happened before. Three times. British railways absorbed roughly 40% of GDP in cumulative private investment across the 1840s — and the investors of the mania mostly lost, while the users of the rails built the industrial economy on top of them. The US telecom buildout of 1996–2001 laid about a trillion of today’s dollars of fiber before demand arrived; the operators went bankrupt in rows, and the dark fiber they left behind carried the next twenty years of the internet at pennies. The green transition runs at trillions, ongoing.',
+        'Has a build approaching a trillion dollars a year happened before? Three times. British railways absorbed roughly 40% of GDP in cumulative private investment across the 1840s — and the investors of the mania mostly lost, while the users of the rails built the industrial economy on top of them. The US telecom buildout of 1996–2001 laid about a trillion of today’s dollars of fiber before demand arrived; the operators went bankrupt in rows, and the dark fiber they left behind carried the next twenty years of the internet at pennies. The green transition runs at trillions, ongoing.',
     },
     {
       kind: 'p',

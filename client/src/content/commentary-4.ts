@@ -94,7 +94,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'From about $11.3 billion of trailing revenue, here is 2029 framed as three-and-a-half-year CAGR ranges. The fade is consensus: growth exits the decade in the high teens, agents never become a revenue line, and the cohort earns $21–25 billion. Understand what that implies before dismissing it as pessimism — it is a forecast that the 2,000x token expansion, the overage acceleration, and the commitment surge all stall roughly now. That is what today’s price carries.',
+        'From about $11.3 billion of trailing revenue, here is 2029 framed as three-and-a-half-year CAGR ranges. The fade is consensus: growth exits the decade in the high teens, agents never become a revenue line, and the cohort earns $21–25 billion. Before dismissing that as pessimism, read what it implies: the 2,000x token expansion, the overage acceleration, and the commitment surge all stall roughly now. That is what today’s price carries.',
     },
     {
       kind: 'p',
@@ -170,7 +170,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'A screen with three names invites the question of what happens when the wave arrives. The answer is that the cohort is designed to grow, from three directions at once: public converters crossing the 50% line, private meters arriving by IPO, and seat companies whose agent SKUs compound into majority. The precedent for the third path is already a constituent — MongoDB’s Atlas was 26% of revenue in 2019 and is 73% today; the rule watched a subscription company become a meter and admitted it when the filings said so.',
+        'What happens to a three-name screen when the wave arrives? The cohort is designed to grow, from three directions at once: public converters crossing the 50% line, private meters arriving by IPO, and seat companies whose agent SKUs compound into majority. The precedent for the third path is already a constituent — MongoDB’s Atlas was 26% of revenue in 2019 and is 73% today; the rule watched a subscription company become a meter and admitted it when the filings said so.',
     },
     {
       kind: 'p',

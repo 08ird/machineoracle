@@ -149,7 +149,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'It is worth walking through a single day, because the abstraction hides where the money lands. Nothing in the sequence below requires a capability that does not exist in 2026 — teams inside Sky1, our own research stack, run this loop weekly, and the 100,000-event figure comes from counting our own traces.',
+        'Walk through one working day, because the abstraction hides where the money lands. Nothing in the sequence below requires a capability that does not exist in 2026 — teams inside Sky1, our own research stack, run this loop weekly, and the 100,000-event figure comes from counting our own traces.',
     },
     {
       kind: 'p',

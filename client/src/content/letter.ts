@@ -50,7 +50,7 @@ export const letter: Article = {
     {
       kind: 'p',
       text:
-        'If the clock is right about where we stand, it is worth saying plainly what we believe the next decade is — because the final part of this series exists to be remembered for it. Software production has left human hands. When describing software is making software, a billion people become makers; software becomes as abundant as documents — summoned for one task, discarded without regret; and every piece of it runs on rented, metered rails. That is the era this series names infinite software.',
+        'Here is what we believe the next decade is — the final part of this series exists to be remembered for it. Software production has left human hands. When describing software is making software, a billion people become makers; software becomes as abundant as documents — summoned for one task, discarded without regret; and every piece of it runs on rented, metered rails. That is the era this series names infinite software.',
     },
     {
       kind: 'p',
