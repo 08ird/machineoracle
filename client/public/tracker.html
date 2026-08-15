@@ -89,9 +89,13 @@ td{padding:7px 8px;border-bottom:1px solid var(--rule2);vertical-align:middle;co
 <div class="sec">
   <div class="sechead"><span class="secnum">03</span><h2>The tape</h2></div>
   <div class="seccap">Commitment and overage — the wave in the order the accounting requires · quarterly since 2022 · re-measured every filing season</div>
-  <div class="grid g2">
-    <div class="card"><h3 class="blue">Commitment — deferred revenue y/y · measured</h3><div class="chartbox"><canvas id="chCmt"></canvas></div><div class="note">Hypergrowth decelerated for three years, bottomed in early 2025, and turned. The cohort re-accelerated from +17% to +32%.</div></div>
-    <div class="card"><h3 class="blue">Overage — share billed above floors · estimated</h3><div class="chartbox"><canvas id="chOvg"></canvas></div><div class="note">Usage billed above committed floors, at list. Cohort series measured from Q1 2025: $0.25B → $0.59B billed per quarter.</div></div>
+  <div class="card"><h3 class="blue">Commitment — deferred revenue y/y · measured · quarterly since 2022</h3>
+    <div class="chartbox tall"><canvas id="chCmt"></canvas></div>
+    <div class="note">Hypergrowth decelerated for three years, bottomed in early 2025, and turned. The cohort re-accelerated from +17% to +32%.</div>
+  </div>
+  <div class="card" style="margin-top:12px"><h3 class="blue">Overage — share billed above floors · estimated · quarterly since 2022</h3>
+    <div class="chartbox tall"><canvas id="chOvg"></canvas></div>
+    <div class="note">Usage billed above committed floors, at list. Cohort series measured from Q1 2025: $0.25B → $0.59B billed per quarter.</div>
   </div>
 </div>
 
@@ -336,8 +340,8 @@ function tape(id,D,ymax,keys){
       vals:{on:true,keys,fmts:[v=>nfmt(v)+"%",v=>nfmt(v)+"%",v=>nfmt(v)+"%"],colors:[C.cohort,C.state,C.label]}},
     scales:{y:{min:0,max:ymax,grid:gridOpt,ticks:{callback:v=>v+"%"}},x:{grid:{display:false},ticks:{maxTicksLimit:6}}}}});
 }
-tape("chCmt",CMT,90,{0:[0,12,17],1:[14,17],2:[17]});
-tape("chOvg",OVG,28,{0:[12,17],1:[0,17],2:[0,17]});
+tape("chCmt",CMT,90,{0:[0,2,4,6,8,10,12,14,17],1:[1,5,9,13,17],2:[3,7,11,15,17]});
+tape("chOvg",OVG,28,{0:[12,14,16,17],1:[0,4,8,12,15,17],2:[2,6,10,14,17]});
 
 /* 04 — valuation */
 function hollowLast(color,data){
@@ -347,14 +351,14 @@ function hollowLast(color,data){
           pointRadius:d=>d.dataIndex===last?5:(d.raw==null?0:2.4),
           pointBorderWidth:d=>d.dataIndex===last?2.5:1.5};
 }
-new Chart($("chCohVal"),{type:"line",data:{labels:VQ,datasets:[
-  {label:"EV / next-4Q revenue (left)",data:VM,borderColor:C.cohort,backgroundColor:C.cohort,borderWidth:2.4,tension:.25,spanGaps:true,yAxisID:"y",...hollowLast(C.cohort,VM)},
-  {label:"revenue growth y/y (right)",data:VG,borderColor:C.muted,backgroundColor:C.muted,borderWidth:1.8,tension:.25,spanGaps:true,yAxisID:"y2",pointRadius:d=>d.raw==null?0:2.2}]},
+new Chart($("chCohVal"),{data:{labels:VQ,datasets:[
+  {type:"line",label:"EV / next-4Q revenue (left)",data:VM,borderColor:C.cohort,backgroundColor:C.cohort,borderWidth:2.4,tension:.25,spanGaps:true,yAxisID:"y",...hollowLast(C.cohort,VM)},
+  {type:"bar",label:"revenue growth y/y (right)",data:VG,backgroundColor:"#8b8e9540",yAxisID:"y2",maxBarThickness:18,borderRadius:2}]},
  options:{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},layout:pad,
   plugins:{legend:{labels:{boxWidth:8,boxHeight:8,usePointStyle:true}},
-    vals:{on:true,keys:{0:[0,4,10,19,22],1:[4,12,22]},fmts:[v=>nfmt(v)+"x",v=>Math.round(v)+"%"],colors:[C.cohort,C.label]}},
+    vals:{on:true,keys:{0:[0,2,4,6,8,11,13,16,19,21,22],1:[1,4,8,12,16,19,22]},fmts:[v=>nfmt(v)+"x",v=>Math.round(v)+"%"],colors:[C.cohort,C.label]}},
   scales:{y:{position:"left",min:0,max:48,grid:gridOpt,ticks:{callback:v=>v+"x"}},
-          y2:{position:"right",min:0,max:90,grid:{display:false},ticks:{callback:v=>v+"%"}},
+          y2:{position:"right",min:0,max:95,grid:{display:false},ticks:{callback:v=>v+"%"}},
           x:{grid:{display:false},ticks:{maxTicksLimit:8}}}}});
 function layerVal(id,mult,grow,mkeys,gkeys,ymax,gmax){
   new Chart($(id),{data:{labels:LQ,datasets:[
@@ -367,8 +371,8 @@ function layerVal(id,mult,grow,mkeys,gkeys,ymax,gmax){
             y2:{position:"right",min:0,max:gmax,grid:{display:false},ticks:{callback:v=>v+"%"}},
             x:{grid:{display:false},ticks:{maxTicksLimit:7}}}}});
 }
-layerVal("chL2Val",L2M,L2G,[0,6,12,18],[0,6,18],13,45);
-layerVal("chL3Val",L3M,L3G,[0,6,12,18],[0,6,18],21,45);
+layerVal("chL2Val",L2M,L2G,[0,3,6,9,12,15,18],[0,4,8,12,16,18],13,45);
+layerVal("chL3Val",L3M,L3G,[0,3,6,9,12,15,18],[0,4,8,12,16,18],21,45);
 
 /* 06 — meters vs models: modeled ratio, log scale, parity marked */
 new Chart($("chRatio"),{type:"line",data:{labels:RATIOQ,datasets:[
