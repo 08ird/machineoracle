@@ -99,6 +99,9 @@ addEventListener('hashchange', () => {
 
 route(false);
 
+// Local-only review mode: click-to-edit on the dev preview. Never bundled.
+if (import.meta.env.DEV) void import('./review');
+
 // A deep link that includes an in-page anchor lands after render.
 if (location.hash && !location.hash.startsWith('#/')) {
   document.getElementById(location.hash.slice(1))?.scrollIntoView();

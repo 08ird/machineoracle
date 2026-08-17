@@ -13,6 +13,15 @@ import { INDEXED, PIECES, THESIS } from './content';
 import type { Article, Block, Chapter, Deck, Piece } from './content/types';
 import { el, renderExhibit } from './render';
 
+/**
+ * Review mode (dev only): stamp a rendered node with the exact source string it
+ * came from, so src/review.ts can offer click-to-edit and save it back.
+ */
+function srcRef<T extends HTMLElement>(node: T, text?: string): T {
+  if (import.meta.env.DEV && text) (node as T & { __rev?: string }).__rev = text;
+  return node;
+}
+
 const SITE = 'Machine Oracle';
 
 const href = (slug: string) => (slug ? `#/${slug}` : '#/');
@@ -108,7 +117,7 @@ function paragraph(cls: string | undefined, text: string): HTMLElement {
     last = m.index + m[0].length;
   }
   p.append(document.createTextNode(text.slice(last)));
-  return p;
+  return srcRef(p, text);
 }
 
 function renderBlock(b: Block): HTMLElement {
@@ -116,9 +125,9 @@ function renderBlock(b: Block): HTMLElement {
     case 'p':
       return paragraph(b.lead ? 'lead' : undefined, b.text);
     case 'h2':
-      return el('h2', undefined, b.text);
+      return srcRef(el('h2', undefined, b.text), b.text);
     case 'h3':
-      return el('h3', undefined, b.text);
+      return srcRef(el('h3', undefined, b.text), b.text);
     case 'quote': {
       const q = el('blockquote');
       q.append(document.createTextNode(b.text));
@@ -127,11 +136,11 @@ function renderBlock(b: Block): HTMLElement {
     }
     case 'list': {
       const l = el(b.ordered ? 'ol' : 'ul');
-      for (const i of b.items) l.append(el('li', undefined, i));
+      for (const i of b.items) l.append(srcRef(el('li', undefined, i), i));
       return l;
     }
     case 'note':
-      return el('p', 'note', b.text);
+      return srcRef(el('p', 'note', b.text), b.text);
     case 'rule':
       return el('hr');
     case 'signoff': {
@@ -162,9 +171,9 @@ function renderBlock(b: Block): HTMLElement {
     }
     case 'exhibit': {
       const fig = el('figure', 'exhibit');
-      if (b.caption) fig.append(el('figcaption', 'exhibit__cap', b.caption));
+      if (b.caption) fig.append(srcRef(el('figcaption', 'exhibit__cap', b.caption), b.caption));
       fig.append(renderExhibit(b.body));
-      if (b.source) fig.append(el('p', 'figure__src', b.source));
+      if (b.source) fig.append(srcRef(el('p', 'figure__src', b.source), b.source));
       return fig;
     }
   }
@@ -179,8 +188,8 @@ function prose(blocks: Block[]): HTMLElement {
 function pieceHead(p: Piece): HTMLElement {
   const head = el('header', 'head');
   if (p.kicker) head.append(el('div', 'head__kicker', p.kicker));
-  head.append(el('h1', undefined, p.title));
-  if (p.subtitle) head.append(el('div', 'head__sub', p.subtitle));
+  head.append(srcRef(el('h1', undefined, p.title), p.title));
+  if (p.subtitle) head.append(srcRef(el('div', 'head__sub', p.subtitle), p.subtitle));
   if (p.date) head.append(el('div', 'head__date', p.date));
   return head;
 }
@@ -241,7 +250,7 @@ function sectionNode(deck: Deck, s: Slide, figNo: number | null): HTMLElement | 
 
   const frag = el('section', 'sec');
   frag.id = `s${s.id}`;
-  if (s.title) frag.append(el('h2', undefined, s.title));
+  if (s.title) frag.append(srcRef(el('h2', undefined, s.title), s.title));
 
   // Prose carries the argument. Without commentary, fall back to the deck's own
   // takeaway line so the page still reads as sentences rather than a bare chart.
@@ -261,7 +270,7 @@ function sectionNode(deck: Deck, s: Slide, figNo: number | null): HTMLElement | 
   const inner = el('div', 'figure__inner');
   const cap = el('figcaption', 'figure__cap');
   if (figNo != null) cap.append(el('b', undefined, `Figure ${figNo}. `));
-  cap.append(document.createTextNode(s.kicker ?? s.title ?? ''));
+  cap.append(srcRef(el('span', undefined, s.kicker ?? s.title ?? ''), s.kicker ?? s.title));
   inner.append(cap);
 
   // The exhibit is rendered natively — real text and CSS/SVG, restyled from
@@ -269,7 +278,7 @@ function sectionNode(deck: Deck, s: Slide, figNo: number | null): HTMLElement | 
   // cites a slide range, the native exhibit condenses the range.
   inner.append(renderExhibit(s.body));
 
-  if (s.footnote) inner.append(el('p', 'figure__src', s.footnote));
+  if (s.footnote) inner.append(srcRef(el('p', 'figure__src', s.footnote), s.footnote));
   fig.append(inner);
   frag.append(fig);
   return frag;
@@ -284,8 +293,8 @@ function renderChapter(p: Deck, c: Chapter, all: Chapter[]): HTMLElement {
   open.append(
     el('div', 'opener__part', `Part ${WORDS[c.n] ?? c.n}`),
     el('div', 'opener__num', c.numeral),
-    el('h1', undefined, c.title),
-    el('div', 'opener__sub', c.sub)
+    srcRef(el('h1', undefined, c.title), c.title),
+    srcRef(el('div', 'opener__sub', c.sub), c.sub)
   );
   if (c.epigraph) {
     const epi = el('div', 'opener__epi');
@@ -329,7 +338,7 @@ function renderChapter(p: Deck, c: Chapter, all: Chapter[]): HTMLElement {
         if (node) main.append(node);
       } else {
         const sec = el('section', 'sec');
-        if (entry.heading) sec.append(el('h2', undefined, entry.heading));
+        if (entry.heading) sec.append(srcRef(el('h2', undefined, entry.heading), entry.heading));
         sec.append(prose(entry.blocks));
         main.append(sec);
       }
@@ -423,7 +432,7 @@ function renderHome(letter: Article): HTMLElement {
     h.append(a);
     if (tag) h.append(el('span', 'toc2__tag', tag));
     entry.append(h);
-    if (blurb) entry.append(el('p', 'toc2__blurb', blurb));
+    if (blurb) entry.append(srcRef(el('p', 'toc2__blurb', blurb), blurb));
     toc.append(entry);
   };
 
