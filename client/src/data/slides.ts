@@ -59,6 +59,11 @@ export type Body =
       result: { value: string; label: string; note?: string };
     }
   | {
+      // Site-original (fig 6): three consequences, each with a small drawing.
+      kind: 'trio';
+      items: { viz: 'uncap' | 'fanout' | 'week'; value: string; head: string; desc: string }[];
+    }
+  | {
       // Site-original hero (fig 1): the era's two magnitudes, drawn to scale.
       kind: 'unlock';
       price: {
@@ -289,7 +294,7 @@ export const SLIDES: Slide[] = [
       },
     },
     takeaway: { icon: '♾️', text: 'Price collapses, the maker population explodes — and the constraint moves to what all software must rent.' },
-    footnote: 'Cost per unit: Skycatcher production-regime estimates (figure 4). Maker population: GitHub and platform disclosures.',
+    footnote: 'Cost per unit: Skycatcher production-regime estimates (figure 5). Maker population: GitHub and platform disclosures.',
   },
   {
     id: 8,
@@ -385,42 +390,68 @@ export const SLIDES: Slide[] = [
   {
     id: 11,
     part: 1,
-    kicker: 'From copilots that help you, to agents that work for you',
+    kicker: 'Three consequences, and they multiply',
     title: 'Labor is no longer human-limited',
     body: {
-      kind: 'columns',
-      cols: [
+      kind: 'trio',
+      items: [
         {
-          head: 'Copilots / Chat',
-          sub: '1 analyst helping you',
-          items: ['You prompt', 'It answers', 'You check', 'You prompt again…'],
-          foot: 'Human required in every loop',
-          tone: 'cold',
+          viz: 'uncap',
+          value: 'No cap',
+          head: 'The bottleneck is removed',
+          desc: 'Output was capped by human attention-hours. The cap comes off.',
         },
         {
-          head: 'Agents',
-          sub: '1,000 analysts working 24/7',
-          items: ['You define the objective', 'Agents plan, act, verify', 'Tool calls · writes · tests', 'Loop until completion'],
-          foot: 'Human becomes the manager',
-          tone: 'warm',
+          viz: 'fanout',
+          value: '10–100x',
+          head: 'Work parallelizes',
+          desc: 'Agents launch agents — one instruction becomes a hundred workstreams.',
         },
         {
-          head: 'Three consequences',
-          items: [
-            'The human bottleneck is removed — attention-hours no longer cap output',
-            'Work parallelizes — agents launch agents, 10–100x workstreams',
-            'The duty cycle changes — 40 human attention-hours become 168 machine-hours',
-          ],
+          viz: 'week',
+          value: '168 hrs',
+          head: 'The work-week changes',
+          desc: 'A human works the dark hours. A machine works the whole grid, every week.',
         },
       ],
     },
     footnote: 'Skycatcher framework. Agent capabilities illustrative; reliability and supervision requirements remain constraints.',
   },
   {
+    // Site-original exhibit: METR's task-horizon trend, drawn.
+    id: 97,
+    part: 1,
+    kicker: 'An independent measure: the autonomous task horizon, 2019 → 2026',
+    title: 'How long a machine can work alone',
+    body: {
+      kind: 'line',
+      axis: 'Longest software task completed autonomously — human-time equivalent, log scale',
+      log: true,
+      x: ["'19", "'20", "'21", "'22", "'23", "'24", "'25", "'26"],
+      series: [
+        {
+          name: 'Task horizon',
+          values: [0.05, 0.13, 0.4, 0.7, 5, 18, 90, 360],
+          display: ['3 sec', null, null, null, '5 min', null, '1.5 hrs', 'a working day'],
+        },
+      ],
+      marks: [
+        { at: 2, text: 'doubling every ~7 months' },
+        { at: 6, text: 'now every ~4 months', below: true },
+      ],
+    },
+    takeaway: {
+      icon: '⏱️',
+      text: 'From seconds to a working day in seven years — and the doubling is speeding up, not settling down.',
+    },
+    footnote:
+      'METR, “Measuring AI Ability to Complete Long Tasks”, with 2025–26 updates. Task length at roughly 50% success; points are approximate readings of the published trend.',
+  },
+  {
     id: 12,
     part: 1,
     kicker: 'The proof is public and dated',
-    title: 'The era is already measurable',
+    title: 'We are seeing early signs of infinite software...',
     body: {
       kind: 'stats',
       items: [

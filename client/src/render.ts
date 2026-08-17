@@ -492,6 +492,84 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     return w;
   },
 
+  // ── Site-original (fig 6): three consequences, each drawn small ───────────
+  trio(b) {
+    const w = el('div', 'trio');
+    for (const item of b.items) {
+      const card = el('div', 'trio__card');
+      const s = svg('svg', { viewBox: '0 0 220 120', class: 'trio__svg', 'aria-hidden': 'true' }) as SVGSVGElement;
+
+      if (item.viz === 'uncap') {
+        // Bars capped by a dashed ceiling, then bars that grow straight past it.
+        const base = 108;
+        s.append(svg('line', { x1: '10', y1: '34', x2: '102', y2: '34', class: 'trio__cap' }));
+        s.append(svg('line', { x1: '102', y1: '34', x2: '210', y2: '34', class: 'trio__cap trio__cap--gone' }));
+        [
+          { x: 16, top: 62, capped: true },
+          { x: 44, top: 45, capped: true },
+          { x: 72, top: 34, capped: true },
+          { x: 116, top: 34, capped: false },
+          { x: 144, top: 20, capped: false },
+          { x: 172, top: 6, capped: false },
+        ].forEach((bar) => {
+          s.append(
+            svg('rect', {
+              x: String(bar.x),
+              y: String(bar.top),
+              width: '22',
+              height: String(base - bar.top),
+              class: bar.capped ? 'trio__before' : 'trio__after',
+            })
+          );
+        });
+      } else if (item.viz === 'fanout') {
+        // One instruction fanning out into workstreams.
+        const root = { x: 16, y: 60 };
+        const mids = [18, 60, 102].map((y) => ({ x: 100, y }));
+        s.append(svg('circle', { cx: String(root.x), cy: String(root.y), r: '7', class: 'trio__after' }));
+        mids.forEach((m, mi) => {
+          s.append(svg('line', { x1: String(root.x + 7), y1: String(root.y), x2: String(m.x - 6), y2: String(m.y), class: 'trio__link' }));
+          s.append(svg('circle', { cx: String(m.x), cy: String(m.y), r: '5', class: 'trio__after' }));
+          [-14, 0, 14].forEach((dy, li) => {
+            const e = { x: 190, y: m.y + dy + (mi === 1 ? 0 : dy / 7) };
+            s.append(svg('line', { x1: String(m.x + 5), y1: String(m.y), x2: String(e.x - 4), y2: String(e.y), class: 'trio__link' }));
+            s.append(svg('circle', { cx: String(e.x), cy: String(e.y), r: '3.4', class: li === 1 ? 'trio__after' : 'trio__dot' }));
+          });
+        });
+      } else {
+        // The 168-hour week: 24x7 grid, the human 40 in ink, the rest in accent.
+        const cols = 24;
+        const rows = 7;
+        const cw = 8;
+        const gap = 1.2;
+        const x0 = (220 - cols * (cw + gap)) / 2;
+        const y0 = (120 - rows * (cw + gap)) / 2;
+        let n = 0;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            // The human 40: weekdays (rows 0-4), hours 9-17 (cols 9-16).
+            const human = r < 5 && c >= 9 && c < 17;
+            s.append(
+              svg('rect', {
+                x: (x0 + c * (cw + gap)).toFixed(1),
+                y: (y0 + r * (cw + gap)).toFixed(1),
+                width: String(cw),
+                height: String(cw),
+                class: human ? 'trio__before' : 'trio__after trio__after--faint',
+              })
+            );
+            n++;
+          }
+        }
+      }
+
+      card.append(s);
+      card.append(el('div', 'trio__v', item.value), el('div', 'trio__h', item.head), el('div', 'trio__d', item.desc));
+      w.append(card);
+    }
+    return w;
+  },
+
   // ── Site-original hero (fig 1): two magnitudes, drawn to scale ────────────
   unlock(b) {
     const w = el('div', 'unlock');

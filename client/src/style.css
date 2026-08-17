@@ -1077,6 +1077,75 @@ blockquote cite {
   flex: none;
 }
 
+/* ── Exhibit: trio (fig 6 — three consequences, drawn small) ────────────── */
+
+.trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.trio__card {
+  border: 1px solid var(--rule);
+  background: var(--sheet);
+  padding: 0.9rem 1rem 0.85rem;
+}
+.trio__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.trio__before {
+  fill: var(--ink-3);
+}
+.trio__after {
+  fill: var(--accent);
+}
+.trio__after--faint {
+  fill-opacity: 0.45;
+}
+.trio__dot {
+  fill: var(--accent);
+  fill-opacity: 0.55;
+}
+.trio__link {
+  stroke: var(--rule);
+  stroke-width: 1.4;
+}
+.trio__cap {
+  stroke: var(--ink-2);
+  stroke-width: 1.6;
+  stroke-dasharray: 5 4;
+}
+.trio__cap--gone {
+  opacity: 0.18;
+}
+.trio__v {
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 1rem + 0.9vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  margin-top: 0.55rem;
+}
+.trio__h {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 0.25rem;
+}
+.trio__d {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--ink-3);
+  margin-top: 0.2rem;
+}
+@media (max-width: 44rem) {
+  .trio {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Exhibit: unlock (the fig 1 hero — two magnitudes, drawn to scale) ──── */
 
 .unlock {

@@ -74,7 +74,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Trace the cost of a unit of software work across production regimes and the story of the industry falls out of it. Artisan engineering in the 1990s and 2000s ran near $200 a unit. Offshore and outsourcing took it to about $60 — a decade of globalization for a 3x. Open source and reuse took it to $20: don’t write it, import it. Copilots took it to $5, with the model suggesting and the human still steering every line.',
+        'Trace the cost of a unit of software work across production regimes. Artisan engineering in the 1990s and 2000s ran near $200 a unit. Offshore and outsourcing took it to about $60. Open source and reuse took it to $20. Copilots took it to $5, with the model suggesting and the human still steering every line.',
     },
     {
       kind: 'p',
@@ -97,12 +97,16 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'This is no longer a demo-stage claim. METR, an independent evaluation group, has been measuring the length of software tasks frontier systems can complete autonomously since 2019: the task horizon doubled roughly every seven months for six years, accelerated to about every four months across 2024–25, and by early 2026 the leading model completes tasks that would take a skilled engineer most of a working day. The trendline matters more than the level — the loop keeps getting longer, and every doubling moves work from the copilot column to the agent column.',
+        'Three consequences follow, and they multiply. The human bottleneck is removed, so attention-hours no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred workstreams from one instruction. And the duty cycle changes: forty human attention-hours become 168 machine-hours a week. One analyst helping you becomes a thousand analysts working around the clock.',
     },
+  ],
+
+  // Site-original exhibit: the METR task-horizon chart.
+  97: [
     {
       kind: 'p',
       text:
-        'Three consequences follow, and they multiply. The human bottleneck is removed, so attention-hours no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred workstreams from one instruction. And the duty cycle changes: forty human attention-hours become 168 machine-hours a week. One analyst helping you becomes a thousand analysts working around the clock. One qualifier: reliability and supervision still bind, failures are real, and Part 03 will meet a famous one.',
+        'This is no longer a demo-stage claim. METR, an independent evaluation group, has been measuring the length of software tasks frontier systems can complete autonomously since 2019: the task horizon doubled roughly every seven months for six years, accelerated to about every four months across 2024–25, and by early 2026 the leading model completes tasks that would take a skilled engineer most of a working day. The trendline matters more than the level — the loop keeps getting longer, and every doubling moves work from the copilot column to the agent column.',
     },
   ],
 
@@ -110,17 +114,17 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The proof is public and dated, and most of it comes from the platforms’ own disclosures. GitHub now carries 180 million developers, having added 36 million in a single year — its fastest cohort ever, better than one new developer every second. Developers pushed nearly a billion commits in 2025, up 25% in a year, with a record hundred million in August alone. Roughly 80% of new developers use Copilot within their first week — the tool is no longer an add-on but the default way in. In early 2026, GitHub measured a majority — 51% — of committed code as AI-written, and Google reports roughly 75% of its new code is AI-generated and engineer-approved.',
+        'The proof is public and dated, and most of it comes from the platforms’ own disclosures. GitHub now carries 180 million developers, having added 36 million in a single year — its fastest cohort ever. Developers pushed nearly a billion commits in 2025, up 25% in a year, with a record hundred million in August alone. In early 2026, GitHub measured a majority — 51% — of committed code as AI-written, and Google reports roughly 75% of its new code is AI-generated and engineer-approved.',
     },
     {
       kind: 'p',
       text:
-        'The application layer confirms it from the other direction: 630 million repositories growing by 230 new projects a minute, 20 million developers on Copilot, and 8 million users on Lovable building applications from plain English — people who would never have called themselves developers at all.',
+        'The application layer confirms it from the other direction: 630 million repositories growing by 230 new projects a minute, and 8 million users on Lovable building applications from plain English — people who would never have called themselves developers at all.',
     },
     {
       kind: 'p',
       text:
-        'Makers up roughly 2x and the machine-written share up roughly 5x in three years: infinite software is a measured trend, not a metaphor. Every number in the exhibit has a named source and a date, because this piece’s method requires it — and because the next section extrapolates it.',
+        'Software makers is up roughly 2x and the machine-written share up roughly 5x in three years.',
     },
   ],
 
