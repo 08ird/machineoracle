@@ -408,7 +408,7 @@ function renderHome(letter: Article): HTMLElement {
   pdfLink.href = 'infinite-software.pdf';
   note.append(
     pdfLink,
-    document.createTextNode('. Every claim that cites the tape, the ladder, or the ledger is graded live in the ')
+    document.createTextNode('. Every claim that cites the filings, the ladder, or the ledger is graded live in the ')
   );
   const trackerLink = el('a', undefined, 'tracker');
   trackerLink.href = '#/tracker';

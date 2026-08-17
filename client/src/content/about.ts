@@ -38,7 +38,7 @@ export const about: Article = {
     {
       kind: 'p',
       text:
-        'The front page carries the argument in miniature; the four parts carry it in full, and each stands on its own. The tracker is the live companion — the indices, the tape, the ladder, and the ledger, re-marked as filings land. Figures are compiled from company filings, platform disclosures, and market data as of August 11, 2026, and every exhibit labels whether its numbers are measured, estimated, or modeled.',
+        'The front page carries the argument in miniature; the four parts carry it in full, and each stands on its own. The tracker is the live companion — the indices, the filings, the ladder, and the ledger, re-marked as filings land. Figures are compiled from company filings, platform disclosures, and market data as of August 11, 2026, and every exhibit labels whether its numbers are measured, estimated, or modeled.',
     },
     {
       kind: 'p',

@@ -123,16 +123,49 @@ export const part3: Record<number, Block[]> = {
     },
   ],
 
-  47: [
+  // Site-original exhibit: where the backend grows next.
+  95: [
     {
       kind: 'p',
       text:
-        'The backend fishes in two ponds. State is a $161 billion pond growing 18% a year on Gartner’s DBMS forecast — the game there is winning share of something already enormous, and the agent era adds a current to swim with. Work is a smaller $25–30 billion pond growing 12 to 14% — the metered core of observability and SIEM.',
+        'The private list above is also a map of where the backend grows next, because agents are creating categories that did not exist three years ago. Three stand out. Agents need memory — durable state that outlives a session — which is pulling vector and embedding stores from add-on to core infrastructure. A billion agents need identity: credentials, permissions, spending limits, and an attributable owner for every action, a volume that scales with actions rather than headcount. And the third is the one we find most exciting: realtime backends.',
     },
     {
       kind: 'p',
       text:
-        'But the wave is digging a new pond beside it: agent runtime, roughly $1–2 billion today and growing over 100% a year, which our event forecasts put above $10 billion by 2029. And behind both sits roughly $240 billion of annual security budget, almost none of it usage-billed yet — a conversion prize that grows with every agent an enterprise deploys, because the thing security budgets exist to watch is about to multiply a hundredfold.',
+        'For seventy years the database answered questions when asked. A realtime backend inverts that: application logic runs inside the database, and every change streams instantly to every connected human and agent. The pattern only recently became practical — it demands an in-memory engine fast enough to run the application itself — and it fits the agent era precisely, because a team of agents working one problem needs exactly what a realtime backend provides: one live, shared, consistent view of the world.',
+    },
+  ],
+
+  // Site-original exhibit: the SpacetimeDB performance case study.
+  96: [
+    {
+      kind: 'p',
+      text:
+        'The clearest way to make the performance case is to count what disappears. A conventional realtime application runs five systems: an application server for logic, a database for state, a cache to hide the database’s latency, a message broker to move updates, and hand-written code to keep every client’s view consistent. Each user action crosses that pipeline over three or four network hops before anyone sees the result — and every hop is a place to be slow or wrong.',
+    },
+    {
+      kind: 'p',
+      text:
+        'SpacetimeDB collapses the pipeline into one system. The application uploads its logic into the database itself; state and logic share memory, so a transaction commits without crossing a network; and every committed change streams to each subscribed client automatically. We know the pattern first-hand — Sky1, the research stack Part 01 describes, runs on it — and the public stress test is stronger still: BitCraft Online, a massively multiplayer game whose players inhabit one persistent world, ships with no game servers at all. The entire backend is one module inside the database.',
+    },
+    {
+      kind: 'p',
+      text:
+        'It belongs in this part because of the meter. A realtime backend charges for exactly what the backend always charges for — executing, remembering, answering — but it hosts more of the workload than any prior database category, because the application itself moved inside. It is still private; the exhibit above marks where it would enter the universe.',
+    },
+  ],
+
+  47: [
+    {
+      kind: 'p',
+      text:
+        'The backend sells into two markets today. State is a $161 billion market growing 18% a year on Gartner’s database forecast — the game there is winning share of something already enormous, and the agent era adds a tailwind. Work is a smaller $25–30 billion market growing 12 to 14% — the metered core of observability and security monitoring.',
+    },
+    {
+      kind: 'p',
+      text:
+        'And a third market is forming inside work: agent runtime, roughly $1–2 billion today and growing over 100% a year, which our event forecasts put above $10 billion by 2029. And behind both sits roughly $240 billion of annual security budget, almost none of it usage-billed yet — a conversion prize that grows with every agent an enterprise deploys, because the thing security budgets exist to watch is about to multiply a hundredfold.',
     },
   ],
 
@@ -140,12 +173,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Software TAMs measure the old pond. Machine labor ultimately prices against something far larger: the roughly $35 trillion the world pays every year for knowledge work. This is Part 01’s tools-versus-labor distinction arriving on the income statement — a tool is worth a fraction of the worker who uses it; work is worth the wage it replaces.',
+        'Conventional market sizing measures the old market. Machine labor ultimately prices against something far larger: the roughly $35 trillion the world pays every year for knowledge work. This is Part 01’s tools-versus-labor distinction arriving on the income statement — a tool is worth a fraction of the worker who uses it; work is worth the wage it replaces.',
     },
     {
       kind: 'p',
       text:
-        'The arithmetic is simple: the share of task-value the world delegates, times ten to twenty cents billed per human-dollar of work delivered. Our 2029 wave case corresponds to roughly 1% delegated — $35–70 billion a year, a third of today’s enterprise-software market added on top of it. The exhibit shows what the same arithmetic does as delegation compounds through the 2030s. At 5%, machine-labor billings match or double the entire old TAM, every year. At 15%, they are several old TAMs a year. At 25% — a quarter of knowledge work delegated — the new pond runs five to nine times the market software occupies today. The old TAM is a line item inside the new one, and delegation share, not software budgets, sets the ceiling on the royalty.',
+        'The arithmetic is simple: the share of task-value the world delegates, times ten to twenty cents billed per human-dollar of work delivered. Our 2029 wave case corresponds to roughly 1% delegated — $35–70 billion a year, a third of today’s enterprise-software market added on top of it. The exhibit shows what the same arithmetic does as delegation compounds through the 2030s. At 5%, machine-labor billings match or double the entire old market, every year. At 15%, they are several old markets a year. At 25% — a quarter of knowledge work delegated — machine-labor billings run five to nine times the market software occupies today. The old market is a line item inside the new one, and delegation share, not software budgets, sets the ceiling on the royalty.',
     },
   ],
 
@@ -221,7 +254,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The tape has already voted — at the layer level, with no selection involved and no judgement about individual names. Since the ChatGPT line on the chart, equal-weighted: state +177%, work +175%, apps +55%. A three-to-one spread in under four years, produced by nothing more than which layer of the stack a company sits in.',
+        'The stock market has already voted — at the layer level, with no selection involved and no judgement about individual names. Since the ChatGPT line on the chart, equal-weighted: state +177%, work +175%, apps +55%. A three-to-one spread in under four years, produced by nothing more than which layer of the stack a company sits in.',
     },
     {
       kind: 'p',
@@ -268,7 +301,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Hold the last four exhibits together: commitments re-accelerating, overage widening, revenue turning up, margins expanding. Growth and margins improving at the same time is the rarest combination in software. What the market has paid for it so far is the next question — the tape first, then the multiple.',
+        'Hold the last four exhibits together: commitments re-accelerating, overage widening, revenue turning up, margins expanding. Growth and margins improving at the same time is the rarest combination in software. What the market has paid for it so far is the next question — the share prices first, then the valuation.',
     },
   ],
 

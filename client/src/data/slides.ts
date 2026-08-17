@@ -972,7 +972,7 @@ export const SLIDES: Slide[] = [
     id: 39,
     part: 3,
     kicker: 'The invoice line for machine labor — seven vendors, all dated, all public',
-    title: 'Machine billable units have arrived',
+    title: 'Machine work now has a price sheet',
     body: {
       kind: 'steps',
       items: [
@@ -996,7 +996,7 @@ export const SLIDES: Slide[] = [
     extras: [54],
     part: 3,
     kicker: 'Revenue = events × price × capture',
-    title: 'Conversion is the question',
+    title: 'How usage becomes revenue',
     body: {
       kind: 'decompose',
       factors: [
@@ -1165,7 +1165,7 @@ export const SLIDES: Slide[] = [
     id: 45,
     part: 3,
     kicker: 'All 67 names, published — classification, not holdings',
-    title: 'The full roster',
+    title: 'All 67 names, on the record',
     body: {
       kind: 'roster',
       groups: [
@@ -1281,10 +1281,101 @@ export const SLIDES: Slide[] = [
     },
   },
   {
+    // Site-original exhibit: the categories forming around agents.
+    id: 95,
+    part: 3,
+    kicker: 'New meters are forming around agents',
+    title: 'Where the backend grows next',
+    body: {
+      kind: 'columns',
+      cols: [
+        {
+          head: 'Agent memory',
+          sub: 'State that outlives the session',
+          items: [
+            'Agents need recall: what they did, what they learned, what the user prefers',
+            'Vector and embedding stores move from add-on to core infrastructure',
+            'Every long-running agent is a standing database customer',
+          ],
+          tone: 'cold',
+        },
+        {
+          head: 'Machine identity & audit',
+          sub: 'Who did what, at machine speed',
+          items: [
+            'A billion agents need credentials, permissions, and spending limits',
+            'Every action must be attributable to an owner',
+            'Volume scales with actions, not headcount',
+          ],
+          tone: 'cold',
+        },
+        {
+          head: 'Realtime backends',
+          sub: 'Humans and agents share live state',
+          items: [
+            'The database pushes every change to every connected client as it commits',
+            'Logic runs inside the database — the separate server layer disappears',
+            'A team of agents and people can work in one live, consistent world',
+          ],
+          foot: 'The most exciting of the three — case study next',
+          tone: 'warm',
+        },
+      ],
+    },
+    takeaway: {
+      icon: '🌱',
+      text: 'Each category bills by the unit and grows with the agent population — three future entrants to the universe.',
+    },
+    footnote: 'Category framing: Skycatcher, August 2026. Company examples on the previous exhibit.',
+  },
+  {
+    // Site-original exhibit: SpacetimeDB performance case study.
+    id: 96,
+    part: 3,
+    kicker: 'SpacetimeDB, from our own stack',
+    title: 'Case study: the realtime backend we run on',
+    body: {
+      kind: 'panels',
+      panels: [
+        {
+          head: 'The traditional pipeline',
+          sub: 'five systems, kept in sync by hand',
+          verbs: [
+            { verb: 'App server', desc: 'holds the logic' },
+            { verb: 'Database', desc: 'holds the state' },
+            { verb: 'Cache', desc: 'hides the latency' },
+            { verb: 'Message broker', desc: 'moves the updates' },
+            { verb: 'Sync code', desc: 'keeps every client consistent — by hand' },
+          ],
+          foot: 'Each action crosses three to four network hops; correctness depends on the glue holding.',
+          tone: 'cold',
+        },
+        {
+          head: 'The realtime backend',
+          sub: 'one system — the database is the server',
+          verbs: [
+            { verb: 'Logic', desc: 'runs inside the database as modules' },
+            { verb: 'State', desc: 'lives in memory, where the logic runs' },
+            { verb: 'Updates', desc: 'stream to every subscribed client as they commit' },
+            { verb: 'Audit', desc: 'every action is a transaction, logged by default' },
+          ],
+          foot: 'One hop. Transactions commit in memory, in well under a millisecond.',
+          tone: 'warm',
+        },
+      ],
+    },
+    takeaway: {
+      icon: '⚡',
+      text: 'Sky1, our research stack, runs on SpacetimeDB: five systems became one, hops per action fell to one, and every agent action lands as an audited transaction.',
+    },
+    footnote:
+      'Public stress test: BitCraft Online, an MMO whose players share one persistent world, runs its entire backend as a single SpacetimeDB module.',
+  },
+  {
     id: 47,
     part: 3,
     kicker: 'The backend’s markets today',
-    title: 'Two ponds: one giant, one being dug deeper',
+    title: 'Two markets today — and a third forming inside one',
     body: {
       kind: 'ponds',
       ponds: [
@@ -1306,11 +1397,11 @@ export const SLIDES: Slide[] = [
     extras: [49],
     part: 3,
     kicker: 'Machine labor prices against wages, not software budgets',
-    title: 'The biggest pond',
+    title: 'How big the new market can get',
     body: {
       kind: 'tam',
       old: {
-        title: 'The old TAM · ~$190B',
+        title: 'The old market · ~$190B',
         rows: [
           { label: 'State — databases and analytics', value: '$161B' },
           { label: 'Work — metered observability & SIEM', value: '$25–30B' },
@@ -1319,26 +1410,26 @@ export const SLIDES: Slide[] = [
         total: { label: 'Software budgets, measured', value: '~$190B' },
       },
       next: {
-        title: 'The new TAM',
+        title: 'The new market',
         sub: 'share of the ~$35T knowledge-work wage pool delegated, at a 10–20¢ take rate',
         tiers: [
-          { share: '5% delegated', value: '$175–350B/yr', note: '≈ 1–2x the entire old TAM, every year', size: 5 },
-          { share: '15% delegated', value: '$525B–1.05T/yr', note: '≈ 3–5x the old TAM, every year', size: 15 },
-          { share: '25% delegated', value: '$875B–1.75T/yr', note: '≈ 5–9x the old TAM — software re-denominated as labor', size: 25 },
+          { share: '5% delegated', value: '$175–350B/yr', note: '≈ 1–2x the entire old market, every year', size: 5 },
+          { share: '15% delegated', value: '$525B–1.05T/yr', note: '≈ 3–5x the old market, every year', size: 15 },
+          { share: '25% delegated', value: '$875B–1.75T/yr', note: '≈ 5–9x the old market — software re-denominated as labor', size: 25 },
         ],
       },
     },
     takeaway: {
       icon: '🌊',
       text:
-        'At 5% delegation the new pond is one to two times the entire old TAM, every year. The wage-pool frame is the ceiling, not the case — our 2029 wave case (~$42B) is consistent with agents absorbing roughly 1% of knowledge work.',
+        'At 5% delegation the new market is one to two times the entire old one, every year. The wage-pool frame is the ceiling, not the case — our 2029 wave case (~$42B) is consistent with agents absorbing roughly 1% of knowledge work.',
     },
   },
   {
     id: 51,
     part: 3,
     kicker: 'All 67 names, NTM growth against EV / NTM revenue, August 11, 2026 marks',
-    title: 'The market’s actual opinion, one dot per company',
+    title: 'What investors pay today, company by company',
     body: {
       kind: 'scatter',
       xlab: 'NTM revenue growth',
@@ -1431,7 +1522,7 @@ export const SLIDES: Slide[] = [
     id: 53,
     part: 3,
     kicker: 'Two backend layers, two business models',
-    title: 'The ledger and the toll road',
+    title: 'State compounds. Work gets paid first.',
     body: {
       kind: 'columns',
       cols: [
@@ -1498,7 +1589,7 @@ export const SLIDES: Slide[] = [
     id: 56,
     part: 3,
     kicker: 'Deferred revenue, median y/y by layer, quarterly since 2022 — measured from filings',
-    title: 'Commitment: the wave signs before it bills',
+    title: 'Commitments: demand shows up here first',
     body: {
       kind: 'line',
       axis: 'Deferred revenue, median y/y, %',
@@ -1530,7 +1621,7 @@ export const SLIDES: Slide[] = [
     id: 57,
     part: 3,
     kicker: 'Usage billed above committed floors, as a share of revenue, quarterly since 2022',
-    title: 'You cannot bill above a floor that doesn’t exist',
+    title: 'Overage: spending beyond the contract',
     body: {
       kind: 'line',
       axis: 'Overage share of revenue, %',
@@ -1596,7 +1687,7 @@ export const SLIDES: Slide[] = [
     id: 64,
     part: 3,
     kicker: 'Median trailing free-cash-flow margins by layer, quarterly since 2022',
-    title: 'The cash machines turned on',
+    title: 'Free cash flow arrived',
     body: {
       kind: 'line',
       axis: 'Free-cash-flow margin, median, %',
@@ -1628,7 +1719,7 @@ export const SLIDES: Slide[] = [
     extras: [60],
     part: 3,
     kicker: 'Equal-weighted total return by layer since January 2022',
-    title: 'The tape has already voted',
+    title: 'The stock market has already voted',
     body: {
       kind: 'line',
       axis: 'Total return since January 2022, %',
@@ -1686,7 +1777,7 @@ export const SLIDES: Slide[] = [
     id: 61,
     part: 3,
     kicker: 'EV / forward revenue by layer, quarterly since 2022 — last point is consensus NTM',
-    title: 'Nobody has re-rated for agents — at any layer',
+    title: 'No price yet reflects agents — at any layer',
     body: {
       kind: 'line',
       axis: 'EV / forward revenue, Jan 2022 → Jul 2026',
@@ -1717,7 +1808,7 @@ export const SLIDES: Slide[] = [
     id: 62,
     part: 3,
     kicker: 'State layer: multiple (line) against revenue growth (bars), quarterly since 2022',
-    title: 'State: growth turned up, the multiple didn’t',
+    title: 'State: growth turned up, the valuation didn’t',
     body: {
       kind: 'dualline',
       rightBars: true,
@@ -1742,7 +1833,7 @@ export const SLIDES: Slide[] = [
     id: 63,
     part: 3,
     kicker: 'Work layer: multiple (line) against revenue growth (bars), quarterly since 2022',
-    title: 'Work: de-rated while growing steadily',
+    title: 'Work: steady growth, a falling valuation',
     body: {
       kind: 'dualline',
       rightBars: true,
@@ -1794,7 +1885,7 @@ export const SLIDES: Slide[] = [
     extras: [67],
     part: 3,
     kicker: 'Head-to-head on measured evidence — every row from the exhibits in this part',
-    title: 'State vs. work: seven rounds, scored on the tape',
+    title: 'State vs. work: the scorecard',
     body: {
       kind: 'bout',
       heads: ['L2 · State', 'L3 · Work'],
@@ -1966,7 +2057,7 @@ export const SLIDES: Slide[] = [
     extras: [75],
     part: 4,
     kicker: 'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last',
-    title: 'The cohort on the tape',
+    title: 'The cohort’s full market record',
     body: {
       kind: 'line',
       axis: 'Cohort medians, quarterly since 2022 — y/y growth and overage share',
@@ -2110,7 +2201,7 @@ export const SLIDES: Slide[] = [
     id: 79,
     part: 4,
     kicker: 'Across the 67-name universe — the multiple is a step-function, not a slope',
-    title: 'What the tape pays for growth',
+    title: 'What the market pays for growth',
     body: {
       kind: 'bars',
       axis: 'EV / forward revenue by growth band',
@@ -2323,8 +2414,8 @@ export const SLIDES: Slide[] = [
           desc: 'Machine labor cohort and backend layers, marked live from inception (August 11, 2026 = 100). No back-fill, no retouching.',
         },
         {
-          eyebrow: 'The tape',
-          title: 'Four selectors',
+          eyebrow: 'The filings',
+          title: 'Four numbers',
           desc: 'Commitment, overage, retention, and revenue growth, re-measured every filing season — the numbers that pick the growth world.',
         },
         {

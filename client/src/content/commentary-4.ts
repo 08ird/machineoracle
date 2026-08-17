@@ -55,7 +55,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full tape back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths — and the first re-acceleration this cohort has printed since the derate.',
+        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full record back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths — and the first re-acceleration this cohort has printed since the derate.',
     },
     {
       kind: 'p',
@@ -120,7 +120,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Past roughly 30% growth, the tape triples what it pays, because durable 30%+ growth in public software is rare enough that the handful of names exhibiting it get scarcity pricing. Which band a name occupies is the only multiple question that matters — and the three growth worlds map directly onto the bands. The fade parks the cohort in the 4.9x room; the wave holds it in the 15x room with earnings five times higher. Nothing about that arithmetic requires optimism; it requires only deciding which world the filings are describing.',
+        'Past roughly 30% growth, the market triples what it pays, because durable 30%+ growth in public software is rare enough that the handful of names exhibiting it get scarcity pricing. Which band a name occupies is the only multiple question that matters — and the three growth worlds map directly onto the bands. The fade parks the cohort in the 4.9x room; the wave holds it in the 15x room with earnings five times higher. Nothing about that arithmetic requires optimism; it requires only deciding which world the filings are describing.',
     },
   ],
 
@@ -209,7 +209,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'What we publish, every quarter — so the program can be checked rather than believed. The indices mark from inception, August 11, 2026 = 100, live, with no back-fill and no retouching. The tape re-measures commitment, overage, retention, and growth every filing season — the selectors that pick the growth world. The ladder re-scores all twenty-five backend names against the line. The ledger grades the predictions on schedule. All of it runs in the [Machine Oracle tracker](#/tracker), which updates from filings rather than from us.',
+        'What we publish, every quarter — so the program can be checked rather than believed. The indices mark from inception, August 11, 2026 = 100, live, with no back-fill and no retouching. The filings section re-measures commitment, overage, retention, and growth every quarter — the numbers that pick the growth world. The ladder re-scores all twenty-five backend names against the line. The ledger grades the predictions on schedule. All of it runs in the [Machine Oracle tracker](#/tracker), which updates from filings rather than from us.',
     },
     {
       kind: 'p',
