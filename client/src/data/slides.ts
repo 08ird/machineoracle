@@ -456,13 +456,17 @@ export const SLIDES: Slide[] = [
       kind: 'stats',
       items: [
         { value: '180M', label: 'developers on GitHub', sub: '36M added in one year — the fastest cohort ever' },
+        { value: '~1B', label: 'commits pushed in 2025', sub: 'up 25% in a year — a record 100M in August alone' },
         { value: '51%', label: 'of committed code is AI-written', sub: 'GitHub, early 2026' },
         { value: '~75%', label: 'of Google’s new code is AI-generated', sub: 'engineer-approved' },
-        { value: '630M', label: 'repositories', sub: '230 new projects a minute' },
-        { value: '20M', label: 'developers on Copilot', sub: '' },
+        { value: '25%', label: 'of a Y Combinator batch shipped ~95% AI-written code', sub: 'Winter 2025' },
         { value: '8M', label: 'users on Lovable', sub: 'building apps from plain English' },
+        { value: '−75%', label: 'Stack Overflow questions since the 2022 peak', sub: 'the stuck developer now asks the model' },
+        { value: '630M', label: 'repositories on GitHub', sub: '230 new projects a minute' },
       ],
     },
+    footnote:
+      'GitHub Octoverse and platform disclosures, 2025–26; Google, 2025; Y Combinator, Winter 2025 batch; Stack Overflow public data through 2025; Lovable company disclosures.',
   },
   {
     id: 13,
@@ -519,7 +523,7 @@ export const SLIDES: Slide[] = [
     id: 17,
     part: 1,
     kicker: 'Part 01 recap',
-    title: 'The era, in three numbers',
+    title: 'Implications of infinite software...',
     body: {
       kind: 'stats',
       items: [

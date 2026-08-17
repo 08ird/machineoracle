@@ -115,12 +115,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The proof is public and dated, and most of it comes from the platforms’ own disclosures. GitHub now carries 180 million developers, having added 36 million in a single year — its fastest cohort ever. Developers pushed nearly a billion commits in 2025, up 25% in a year, with a record hundred million in August alone. In early 2026, GitHub measured a majority — 51% — of committed code as AI-written, and Google reports roughly 75% of its new code is AI-generated and engineer-approved.',
+        'The proof is public and dated, and most of it comes from the platforms’ own disclosures. GitHub now carries 180 million developers, having added 36 million in a single year. In early 2026, GitHub measured a majority — 51% — of committed code as AI-written, and Google reports roughly 75% of its new code is AI-generated and engineer-approved.',
     },
     {
       kind: 'p',
       text:
-        'The application layer confirms it from the other direction: 630 million repositories growing by 230 new projects a minute, and 8 million users on Lovable building applications from plain English — people who would never have called themselves developers at all.',
+        'The startup end is further along: in Y Combinator’s Winter 2025 batch, a quarter of the companies had codebases that were roughly 95% AI-written, and 8 million people on Lovable build applications from plain English — people who would never have called themselves developers at all. The old way is fading at the same pace: Stack Overflow questions are down roughly three quarters from their 2022 peak, because a stuck developer now asks the model.',
     },
     {
       kind: 'p',
@@ -150,7 +150,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The economics have a name: Jevons, 1865 — make an input more efficient and consumption expands instead of shrinking. It held for coal, electricity, transistors, and bandwidth. When DeepSeek’s cheap models briefly convinced the market in January 2025 that efficient AI meant less infrastructure, Microsoft’s CEO answered with exactly this citation: “Jevons paradox strikes again.” We are not assuming the paradox — Part 02 measures it.',
+        'In 1865, Jevons descreibed that — make an input more efficient and consumption expands instead of shrinking. It held for coal, electricity, transistors, and bandwidth. When DeepSeek’s cheap models briefly convinced the market in January 2025 that efficient AI meant less infrastructure, Microsoft’s CEO answered with exactly this citation: “Jevons paradox strikes again.” In Part 02 we measure this.',
     },
   ],
 
@@ -158,7 +158,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Here is the era in one paragraph. Software production got ~4,000x cheaper, so making software is no longer scarce. The machine work-week is 168 hours against our 40, so labor is no longer scarce. And a billion people can now make software by describing it. Everything that used to be the software industry multiplied — at once.',
+        'Infinite software, in three numbers: production got ~4,000x cheaper, so making software is no longer scarce. The machine work-week is 168 hours against our 40, so labor is no longer scarce. And a billion people can now make software by describing it. Everything that used to be the software industry multiplied — at once.',
     },
     {
       kind: 'p',
