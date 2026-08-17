@@ -541,10 +541,44 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     grid.append(panel(b.price, 'price'), panel(b.makers, 'makers'));
     w.append(grid);
 
+    // The result is drawn, not stated: a field of tiny software pieces,
+    // sparse on the left and numberless on the right — the product of a
+    // collapsed price and an exploded maker population.
     const res = el('div', 'unlock__result');
-    const body = el('div');
-    body.append(el('div', 'unlock__rv', b.result.value), el('div', 'unlock__rl', b.result.label), el('div', 'unlock__rn', b.result.note));
-    res.append(el('div', 'unlock__eq', '='), body);
+    const field = svg('svg', {
+      viewBox: '0 0 680 132',
+      class: 'unlock__field',
+      preserveAspectRatio: 'xMidYMid slice',
+      'aria-hidden': 'true',
+    });
+    let seed = 7;
+    const rand = () => {
+      seed = (seed * 16807) % 2147483647;
+      return seed / 2147483647;
+    };
+    for (let i = 0; i < 300; i++) {
+      const t = Math.pow(rand(), 0.45); // bias right: density grows with x
+      const x = 150 + 522 * t;
+      const y = 6 + 120 * rand();
+      const sz = 2 + rand() * 2.8;
+      const o = Math.min(0.85, 0.12 + 0.75 * t * (0.35 + 0.65 * rand()));
+      field.append(
+        svg('rect', {
+          x: x.toFixed(1),
+          y: y.toFixed(1),
+          width: sz.toFixed(1),
+          height: sz.toFixed(1),
+          opacity: o.toFixed(2),
+          class: 'unlock__bit',
+        })
+      );
+    }
+    res.append(field);
+    const body = el('div', 'unlock__rbody');
+    const rv = el('div', 'unlock__rv');
+    rv.append(el('span', 'unlock__eq', '= '), document.createTextNode(b.result.value));
+    body.append(rv, el('div', 'unlock__rl', b.result.label), el('div', 'unlock__rn', b.result.note));
+    res.append(body);
     w.append(res);
     return w;
   },
