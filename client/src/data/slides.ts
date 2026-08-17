@@ -222,34 +222,6 @@ export const SLIDES: Slide[] = [
     },
   },
   {
-    id: 3,
-    kicker: 'The internet wave vs. the token wave — same clock, new denomination',
-    title: 'By the internet clock, it is 1996',
-    body: {
-      kind: 'timeline',
-      tracks: [
-        {
-          name: 'The internet wave',
-          items: [
-            { when: '1995', text: 'The memo names the discontinuity' },
-            { when: '1996–98', text: 'The rails get built and paid — the street debates “fad”' },
-            { when: '1999–2000', text: 'The mania — 65–100x multiples, then 60–85% compression' },
-            { when: '2001+', text: 'The rails’ owners collect the era’s fortunes' },
-          ],
-        },
-        {
-          name: 'The token wave',
-          items: [
-            { when: 'Nov 2022', text: 'ChatGPT — the Netscape moment, from roughly zero' },
-            { when: '2026', text: 'The debate — multiples still at fade levels', here: true },
-            { when: '2027–28', text: 'Agent GAAP disclosures — agent demand becomes visible in filings' },
-            { when: '2029+', text: 'The meters collect the era’s royalty; every call here is graded' },
-          ],
-        },
-      ],
-    },
-  },
-  {
     id: 4,
     kicker: 'The argument of this piece',
     title: 'Four parts',
