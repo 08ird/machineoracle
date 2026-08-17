@@ -1077,6 +1077,138 @@ blockquote cite {
   flex: none;
 }
 
+/* ── Exhibit: unlock (the fig 1 hero — two magnitudes, drawn to scale) ──── */
+
+.unlock {
+  display: grid;
+  gap: 1rem;
+}
+.unlock__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.unlock__panel {
+  border: 1px solid var(--rule);
+  background: var(--sheet);
+  padding: 0.9rem 1rem 0.8rem;
+}
+.unlock__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.unlock__head {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.unlock__factor {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+}
+.unlock__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0.4rem;
+}
+.unlock__from {
+  fill: var(--ink-3);
+}
+rect.unlock__to {
+  fill: var(--accent);
+}
+.unlock__ring {
+  fill: var(--accent);
+  fill-opacity: 0.08;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+.unlock__base {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.unlock__v {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: var(--sheet);
+  stroke-width: 3px;
+}
+.unlock__v--to {
+  fill: var(--accent);
+}
+.unlock__legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: 0.35rem;
+}
+.unlock__cell {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--ink-3);
+  text-align: center;
+}
+.unlock__cell--to {
+  color: var(--ink);
+  font-weight: 600;
+}
+.unlock__note {
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  color: var(--ink-4);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+.unlock__result {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  border-top: 2px solid var(--accent);
+  padding-top: 0.6rem;
+}
+.unlock__eq {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--ink-4);
+}
+.unlock__rv {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.unlock__rl {
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  margin-top: 0.25rem;
+}
+.unlock__rn {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--ink-4);
+  margin-top: 0.15rem;
+}
+@media (max-width: 44rem) {
+  .unlock__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Exhibit: stats ─────────────────────────────────────────────────────── */
 
 .stats {

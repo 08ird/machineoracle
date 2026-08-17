@@ -41,6 +41,7 @@ function barWidths(values: number[]): number[] {
 
 /** Exhibits that benefit from running wider than the text measure. */
 export const WIDE: ReadonlySet<Body['kind']> = new Set([
+  'unlock',
   'table',
   'timeline',
   'waves',
@@ -487,6 +488,63 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     const res = el('div', 'decomp__factor decomp__factor--result');
     res.append(el('div', 'decomp__v', b.result.value), el('div', 'decomp__l', b.result.label));
     if (b.result.note) res.append(el('div', 'decomp__note', b.result.note));
+    w.append(res);
+    return w;
+  },
+
+  // ── Site-original hero (fig 1): two magnitudes, drawn to scale ────────────
+  unlock(b) {
+    const w = el('div', 'unlock');
+    const grid = el('div', 'unlock__grid');
+
+    const W = 340;
+    const H = 252;
+    const BASE = 214;
+
+    const panel = (d: typeof b.price, kind: 'price' | 'makers') => {
+      const p = el('div', 'unlock__panel');
+      const top = el('div', 'unlock__top');
+      top.append(el('div', 'unlock__head', d.head), el('div', 'unlock__factor', d.factor));
+      p.append(top);
+
+      const s = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'unlock__svg', role: 'img' }) as SVGSVGElement;
+      s.setAttribute('aria-label', `${d.head}: ${d.from.value} (${d.from.label}) to ${d.to.value} (${d.to.label})`);
+
+      if (kind === 'price') {
+        const bw = 84;
+        const h1 = 172;
+        // $200 → $0.05 at true scale is a hundredth of a pixel; draw the
+        // minimum the screen can show and say so in the panel note.
+        const h2 = 1.5;
+        s.append(svg('rect', { x: String(85 - bw / 2), y: String(BASE - h1), width: String(bw), height: String(h1), class: 'unlock__from' }));
+        s.append(svg('rect', { x: String(255 - bw / 2), y: String(BASE - h2), width: String(bw), height: String(h2), class: 'unlock__to' }));
+        s.append(svgText(85, BASE - h1 - 12, d.from.value, 'unlock__v', 'middle'));
+        s.append(svgText(255, BASE - h2 - 12, d.to.value, 'unlock__v unlock__v--to', 'middle'));
+      } else {
+        // Circle areas in true proportion: 1B+ against 30M ≈ 33x.
+        const R = 92;
+        const r = R / Math.sqrt(33);
+        s.append(svg('circle', { cx: '85', cy: String(BASE - r), r: String(r), class: 'unlock__from' }));
+        s.append(svg('circle', { cx: '233', cy: String(BASE - R), r: String(R), class: 'unlock__ring' }));
+        s.append(svgText(85, BASE - 2 * r - 12, d.from.value, 'unlock__v', 'middle'));
+        s.append(svgText(233, BASE - R + 8, d.to.value, 'unlock__v unlock__v--to', 'middle'));
+      }
+      s.append(svg('line', { x1: '8', y1: String(BASE), x2: String(W - 8), y2: String(BASE), class: 'unlock__base' }));
+      p.append(s);
+
+      const legend = el('div', 'unlock__legend');
+      legend.append(el('div', 'unlock__cell', d.from.label), el('div', 'unlock__cell unlock__cell--to', d.to.label));
+      p.append(legend, el('div', 'unlock__note', d.note));
+      return p;
+    };
+
+    grid.append(panel(b.price, 'price'), panel(b.makers, 'makers'));
+    w.append(grid);
+
+    const res = el('div', 'unlock__result');
+    const body = el('div');
+    body.append(el('div', 'unlock__rv', b.result.value), el('div', 'unlock__rl', b.result.label), el('div', 'unlock__rn', b.result.note));
+    res.append(el('div', 'unlock__eq', '='), body);
     w.append(res);
     return w;
   },

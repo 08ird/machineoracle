@@ -58,6 +58,25 @@ export type Body =
       factors: { value: string; label: string; note?: string; from: string; to: string }[];
       result: { value: string; label: string; note?: string };
     }
+  | {
+      // Site-original hero (fig 1): the era's two magnitudes, drawn to scale.
+      kind: 'unlock';
+      price: {
+        head: string;
+        factor: string;
+        from: { value: string; label: string };
+        to: { value: string; label: string };
+        note: string;
+      };
+      makers: {
+        head: string;
+        factor: string;
+        from: { value: string; label: string };
+        to: { value: string; label: string };
+        note: string;
+      };
+      result: { value: string; label: string; note: string };
+    }
   | { kind: 'split'; groups: { head: string; parts: { pct: number; label: string }[] }[] }
   | { kind: 'prose'; paras: { head?: string; text: string }[] }
   | {
@@ -248,12 +267,26 @@ export const SLIDES: Slide[] = [
     kicker: 'The production unlock, in two numbers',
     title: 'The big idea: infinite software',
     body: {
-      kind: 'decompose',
-      factors: [
-        { value: '÷4,000', label: 'cost per unit of software work', note: 'agents write, test, and ship end to end', from: '~$200', to: '~$0.05' },
-        { value: '×33', label: 'people who can make software', note: 'describing software becomes making software', from: '30M', to: '1B+' },
-      ],
-      result: { value: 'Infinite software', label: 'software as abundant as documents', note: 'every piece of it runs on rented, metered rails' },
+      kind: 'unlock',
+      price: {
+        head: 'Price of a unit of software work',
+        factor: '÷4,000',
+        from: { value: '$200', label: 'human-built — a professional’s hours' },
+        to: { value: '$0.05', label: 'agent-built, end to end, 2026' },
+        note: 'Drawn to scale: at this height, the agent-built bar is one pixel tall.',
+      },
+      makers: {
+        head: 'People who can make software',
+        factor: '×33',
+        from: { value: '30M', label: 'professional developers' },
+        to: { value: '1B+', label: 'anyone who can describe what they want' },
+        note: 'Drawn to scale: circle area is proportional to people.',
+      },
+      result: {
+        value: 'Infinite software',
+        label: 'software as abundant as documents',
+        note: 'every piece of it runs on rented, metered rails',
+      },
     },
     takeaway: { icon: '♾️', text: 'Price collapses, the maker population explodes — and the constraint moves to what all software must rent.' },
     footnote: 'Cost per unit: Skycatcher production-regime estimates (figure 4). Maker population: GitHub and platform disclosures.',
