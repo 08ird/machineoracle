@@ -1,9 +1,10 @@
 /**
  * Part 01 — Infinite Software. Prose keyed by exhibit id.
  *
- * Expanded narrative: each section argues the point with dated, checkable
- * examples rather than captioning the exhibit. Sources are named inline, per
- * the method section's promise.
+ * The part does three jobs in order: define the infinite software era, frame
+ * how big the change is, then show the impact at scale — the setup for Part 02
+ * (how the wave works), Part 03 (where the money hits), and Part 04 (how we
+ * track it). Sources are named inline, per the method section's promise.
  */
 
 import type { Block } from './types';
@@ -29,17 +30,17 @@ export const part1: Record<number, Block[]> = {
       kind: 'p',
       lead: true,
       text:
-        'Mainframes, PCs, networking, the web, mobile, cloud. Each wave was larger than the one before, and each followed the same commercial logic: sell a better tool, and the human holding it produces more. A spreadsheet did not do the analyst’s work; it made the analyst faster. That was true of every wave for sixty years, and it quietly set the ceiling on every software market ever sized — the tool could only be worth some fraction of the person using it.',
+        'Mainframes, PCs, networking, the web, mobile, cloud. Every wave followed the same logic: sell a better tool, and the human holding it produces more. A spreadsheet did not do the analyst’s work; it made the analyst faster. For sixty years, that put a ceiling on every software market — the tool could only be worth a fraction of the person using it.',
     },
     {
       kind: 'p',
       text:
-        'The AI wave, running from 2022, is different in kind. For the first time, the product is not a tool that a person operates but the work itself, performed end to end. In 2011 Marc Andreessen wrote that software was eating the world; the fifteen years since were that essay coming true. What began in 2022 is stranger: software started writing itself — and the thing being eaten now is not industries’ distribution, but the labor inside them.',
+        'The AI wave, running from 2022, is different in kind. For the first time, the product is not a tool a person operates — it is the work itself, performed end to end. In 2011 Marc Andreessen wrote that software was eating the world. What began in 2022 is bigger: software started writing itself, and what is being eaten now is the labor inside industries, not just their distribution.',
     },
     {
       kind: 'p',
       text:
-        'That single difference changes what the market is — a labor budget, not a software budget — and what the unit of sale is: a task, not a seat. Everything else in this piece follows from it.',
+        'That one difference changes what the market is (a labor budget, not a software budget) and what the unit of sale is (a task, not a seat). Everything else in this piece follows from it.',
     },
   ],
 
@@ -61,12 +62,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Software has always been rationed, and the ration was people. Those 30 million professionals bill $100 or more an hour and sit behind backlogs that stretch a year and a half, so every piece of software had to pay for itself before a single line was written. The result is the landscape we take for granted: the few million polished applications of the last figure, and an unmeasured ocean of work that never justified an engineer — the dashboard nobody built, the integration nobody got to, the tool one person needed for one week.',
+        'Software has always been rationed, and the ration was people. Those 30 million professionals bill $100 or more an hour and sit behind 18-month backlogs, so every piece of software had to pay for itself before a line was written. The result: a few million polished applications, and an unmeasured ocean of work that never justified an engineer — the dashboard nobody built, the integration nobody got to, the tool one person needed for one week.',
     },
     {
       kind: 'p',
       text:
-        'That ration just ended. Agents produce software on demand, decoupled from human hours for the first time in the industry’s history. The culture noticed before the market did: “vibe coding” — describing what you want and letting the model build it — went from a joke to a job description in about a year. The new state is software as a summonable good: personal, disposable, built for one user and one afternoon, thrown away without regret when the need changes.',
+        'That ration just ended. Agents produce software on demand, decoupled from human hours for the first time in the industry’s history. The culture noticed before the market did: “vibe coding” — describing what you want and letting the model build it — went from a joke to a job description in about a year. Software is now a summonable good: personal, disposable, built for one user and one afternoon, thrown away when the need changes.',
     },
   ],
 
@@ -79,7 +80,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Agent-produced software in 2026 takes it to five cents. Each prior step took roughly a decade to arrive; the last one arrived all at once, riding the collapse in inference prices that Part 02 measures directly. And unlike offshoring, which moved the same human hours somewhere cheaper, this step removed the human hours from the unit entirely — which is why it is a regime change rather than another point on the curve.',
+        'Agent-produced software in 2026 takes it to five cents. Each prior step took a decade; this one arrived all at once, riding the collapse in AI prices that Part 02 measures. And unlike offshoring, which moved the same human hours somewhere cheaper, this step removed the human hours entirely. That is why it is a regime change, not another point on the curve.',
     },
     {
       kind: 'p',
@@ -106,7 +107,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'This is no longer a demo-stage claim. METR, an independent evaluation group, has been measuring the length of software tasks frontier systems can complete autonomously since 2019: the task horizon doubled roughly every seven months for six years, accelerated to about every four months across 2024–25, and by early 2026 the leading model completes tasks that would take a skilled engineer most of a working day. The trendline matters more than the level — the loop keeps getting longer, and every doubling moves work from the copilot column to the agent column.',
+        'This is no longer a demo-stage claim. METR, an independent evaluation group, has measured since 2019 how long a software task a frontier model can finish on its own. The horizon doubled roughly every seven months for six years, then accelerated to about every four months across 2024–25. By early 2026, the leading model completes tasks that would take a skilled engineer most of a working day. The trendline matters more than the level: every doubling moves more work from copilots to agents.',
     },
   ],
 
@@ -123,8 +124,7 @@ export const part1: Record<number, Block[]> = {
     },
     {
       kind: 'p',
-      text:
-        'Software makers is up roughly 2x and the machine-written share up roughly 5x in three years.',
+      text: 'Software makers are up roughly 2x and the machine-written share is up roughly 5x in three years.',
     },
   ],
 
@@ -132,12 +132,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'From 1990 to 2022, software creation was a profession with a syntax wall around it — a small caste who could speak to machines on behalf of everyone else. The natural-language era removes the wall entirely. When describing software is making software, the addressable population of makers is everyone with a job problem and a sentence to describe it. We believe our 1b estimate is conservative.',
+        'From 1990 to 2022, software creation was a profession with a syntax wall around it — a small caste who could speak to machines on behalf of everyone else. The natural-language era removes the wall entirely. When describing software is making software, the addressable population of makers is everyone with a job problem and a sentence to describe it. We believe our 1 billion estimate is conservative.',
     },
     {
       kind: 'p',
       text:
-        'x',
+        'Scale is the point. Every one of a billion new makers summons software that must run, store, authenticate, and log somewhere. Each of them becomes a customer of the backend, whether they ever learn what a backend is.',
     },
   ],
 
@@ -145,12 +145,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'When production costs collapse, value doesn’t disappear — it moves. What deflates to zero is everything the agent can regenerate on demand: code, tests, documentation, integration glue, one-off tools, and ultimately the custom applications themselves. What stays metered forever is what no agent can regenerate: the doing of the work, the keeping of its state, and the accounting for what was done. Those three activities — executing, remembering, answering — are billed per unit of use, and they scale with the population of software rather than the price of writing it. Part 03 gives them a name: the backend.',
+        'When production costs collapse, value does not disappear — it moves. Everything an agent can regenerate on demand deflates toward zero: code, tests, documentation, one-off tools, and ultimately the applications themselves. What no agent can regenerate stays metered forever: doing the work, keeping its state, and accounting for what was done. Those three activities are billed per unit of use, and they scale with the population of software, not the price of writing it. Part 03 dives into this opportunity.',
     },
     {
       kind: 'p',
       text:
-        'The economic framing is Jevons, 1865: make an input more efficient and its consumption expands rather than shrinks. He was writing about coal and steam engines; the same held for electricity, for transistors, for bandwidth. When DeepSeek’s cheap models briefly convinced the market in January 2025 that efficient AI meant less infrastructure, Microsoft’s CEO answered publicly with exactly this citation — “Jevons paradox strikes again” — and the two years since have been on his side. An economist will fairly note that full backfire requires demand elasticity above one and is historically rare. That is precisely the point: we are not assuming the rare case. Part 02 measures it.',
+        'The economics have a name: Jevons, 1865 — make an input more efficient and consumption expands instead of shrinking. It held for coal, electricity, transistors, and bandwidth. When DeepSeek’s cheap models briefly convinced the market in January 2025 that efficient AI meant less infrastructure, Microsoft’s CEO answered with exactly this citation: “Jevons paradox strikes again.” We are not assuming the paradox — Part 02 measures it.',
     },
   ],
 
@@ -158,17 +158,17 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Three numbers close the part. Production got ~4,000x cheaper, so making software stopped being the scarce thing. The machine work-week is 168 hours against our forty, so labor stopped being the scarce thing. What remains scarce — what became more scarce, precisely because everything above it multiplied — is the stack of rails that all of it runs on: five layers, with compute at the bottom, intelligence above it, then the state it keeps, the work it runs, and the outcomes it delivers.',
+        'Here is the era in one paragraph. Software production got ~4,000x cheaper, so making software is no longer scarce. The machine work-week is 168 hours against our 40, so labor is no longer scarce. And a billion people can now make software by describing it. Everything that used to be the software industry multiplied — at once.',
     },
     {
       kind: 'p',
       text:
-        'Hold on to the shape of that stack, because the layers do not benefit equally. The bottom is capital-heavy and already priced; the top is where the deflation of this part plays out. The two in the middle — the layer that meters the work and the layer that keeps the state — sell the three things no agent can regenerate, and they are where this series will argue the money settles.',
+        'What stays scarce is what all of it runs on. Every piece of infinite software must execute, remember, and answer for itself, and it rents those three things from the same five-layer stack: compute at the bottom, then intelligence, then the state it keeps, the work it runs, and the outcomes it delivers. The bigger the software population grows, the harder it leans on the layers in the middle. That is the impact of scale: the era’s growth funnels into the rails.',
     },
     {
       kind: 'p',
       text:
-        'Infinite software is the era. Part 02 counts the wave it unleashes — first in tokens, the unit everyone watches, and then in the infrastructure events that actually get billed, the unit almost nobody does. Part 03 follows those events into the stack, layer by layer, and to the two that collect on all of it.',
+        'The rest of the series follows the money, in order. Part 02 shows how the wave works: token usage — the fuel agents burn — and the agent population itself, the two variables that set demand. Part 03 shows where the money hits: a royalty on machine labor, collected by the backend stack and visible today in public filings. Part 04 shows how we track it: a cohort picked by one rule, dated predictions, and bold calls for the 2030s — all graded in public, every quarter.',
     },
   ],
 };
