@@ -15,12 +15,12 @@ export const part1: Record<number, Block[]> = {
       kind: 'p',
       lead: true,
       text:
-        'One idea governs this piece: we have entered the era of infinite software. Two numbers define it. The cost of a unit of software work fell roughly 4,000x, because agents now write, test, and ship it end to end. And the population able to make software expands roughly 33x, from 30 million professionals to the billion-plus people who can describe what they want. Price down that far, makers up that far — software stops being a scarce product and becomes an abundant good.',
+        'One idea governs this piece: we have entered the era of infinite software. Two factors define it. First, the cost of a unit of software work fell roughly 4,000x, because agents now write, test, and ship it end to end. Second, the population able to make software expanded roughly 33x, from 30 million professionals to the billion-plus knowledge workforce. Software is now an abundant good.',
     },
     {
       kind: 'p',
       text:
-        'This part puts numbers and pictures on both halves of that unlock, then follows the consequence: when making software is nearly free, the money moves to running it. Everything else in this series builds on that one move.',
+        'The implication: when making software becomes free, the place where all of it runs — the backend stack — sees a once-in-a-generation step change in demand. Parts 02 and 03 measure it.',
     },
   ],
 
@@ -39,7 +39,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'That single difference drives everything in this piece. It changes what the market is (a labor budget, not a software budget), what the unit of sale is (a task, not a seat), and — the subject of Part 03 — where the money settles when the tasks become too numerous to count by hand.',
+        'That single difference changes what the market is — a labor budget, not a software budget — and what the unit of sale is: a task, not a seat. Everything else in this piece follows from it.',
     },
   ],
 
@@ -48,12 +48,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Before the argument, the picture. For seventy years, software was a product: a few million applications, each expensive enough to demand a team, a budget, and a roadmap, each built for the average of many users and sold to all of them. That is the left panel — a short shelf of heavy objects, and it is the entire software industry as every market map has ever drawn it.',
+        'For seventy years, software was a product: a few million applications, each expensive enough to demand a team, a budget, and a roadmap, each built for the average of many users and sold to all of them (the left panel in Figure 3).',
     },
     {
       kind: 'p',
       text:
-        'The right panel is the era this part describes. When production is nearly free, software takes the shape of the problems people actually have — small, specific, personal, and numberless. A dashboard for one meeting. A tool for one week. An integration for one customer. None of it appears in an app store, none of it justifies a roadmap, and none of it needs to: it is summoned, used, and discarded like a document. What every piece keeps in common is invisible at this scale, and it is the subject of this entire series — each one runs, stores, authenticates, and logs on infrastructure it rents by the unit.',
+        'The right panel is the era this part describes. When production is nearly free, software takes the shape of the problems people actually have — small, specific, personal, and numberless.',
     },
   ],
 
@@ -61,17 +61,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Software has always been rationed, and the ration was people. There are roughly 30 million professional developers on earth — about four in every thousand humans — billing $100 or more an hour, sitting behind backlogs that stretch a year and a half. Under that constraint, every piece of software had to justify a team, a budget, and a roadmap before a single line was written. The result is the software landscape we take for granted: a few million polished applications serving use cases common enough to amortize their cost, and an unmeasured ocean of work that never justified an engineer — the dashboard nobody built, the integration nobody got to, the tool one person needed for one week.',
+        'Software has always been rationed, and the ration was people. Those 30 million professionals bill $100 or more an hour and sit behind backlogs that stretch a year and a half, so every piece of software had to pay for itself before a single line was written. The result is the landscape we take for granted: the few million polished applications of the last figure, and an unmeasured ocean of work that never justified an engineer — the dashboard nobody built, the integration nobody got to, the tool one person needed for one week.',
     },
     {
       kind: 'p',
       text:
-        'That ration just ended. Agents write, test, and ship software on demand at roughly 4,000x less cost per unit of work, and for the first time in the industry’s history, producing software is decoupled from human hours. The culture noticed before the market did: “vibe coding” — describing what you want and letting the model build it — went from a joke to a job description in about a year. The new state is software as a summonable good: abundant, personal, disposable; built for one user, one task, one afternoon; thrown away without regret when the need changes.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Infinite software isn’t more apps in the store. It’s software becoming as abundant as documents — nobody asks whether a spreadsheet “justifies its roadmap” — and every piece of it runs on rented, metered rails. Hold that last clause; it is where this piece is headed.',
+        'That ration just ended. Agents produce software on demand, decoupled from human hours for the first time in the industry’s history. The culture noticed before the market did: “vibe coding” — describing what you want and letting the model build it — went from a joke to a job description in about a year. The new state is software as a summonable good: personal, disposable, built for one user and one afternoon, thrown away without regret when the need changes.',
     },
   ],
 
@@ -89,7 +84,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'A useful sanity check on magnitude: when a cost falls 3x, you renegotiate contracts. When it falls 4,000x, the question changes from “what does it cost to build?” to “why would we not build it?” — and the binding constraint moves somewhere else. Where it moves is the subject of this part’s last section.',
+        'A useful sanity check on magnitude: when a cost falls 3x, you renegotiate contracts. When it falls 4,000x, the question changes from “what does it cost to build?” to “why would we not build it?”',
     },
   ],
 
@@ -107,7 +102,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Three consequences follow, and they multiply. The human bottleneck is removed, so attention-hours no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred workstreams from one instruction. And the duty cycle changes: forty human attention-hours become 168 machine-hours a week. One analyst helping you becomes a thousand analysts working around the clock. One qualifier: reliability and supervision still bind, failures are real, and Part 03 will meet a famous one. The direction, though, is not in dispute — and the direction is what the meters bill.',
+        'Three consequences follow, and they multiply. The human bottleneck is removed, so attention-hours no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred workstreams from one instruction. And the duty cycle changes: forty human attention-hours become 168 machine-hours a week. One analyst helping you becomes a thousand analysts working around the clock. One qualifier: reliability and supervision still bind, failures are real, and Part 03 will meet a famous one.',
     },
   ],
 
@@ -133,16 +128,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'From 1990 to 2022, software creation was a profession with a syntax wall around it — 30 million people who could speak to machines on behalf of everyone else. The copilot era lowered the wall: 180 million on GitHub, many of them occasional, assisted, half-professional. The natural-language era removes the wall entirely. When describing software is making software, the addressable population of makers is everyone with a job problem and a sentence to describe it.',
+        'From 1990 to 2022, software creation was a profession with a syntax wall around it — a small caste who could speak to machines on behalf of everyone else. The copilot era lowered the wall: 180 million on GitHub, many of them occasional, assisted, half-professional. The natural-language era removes the wall entirely. When describing software is making software, the addressable population of makers is everyone with a job problem and a sentence to describe it.',
     },
     {
       kind: 'p',
       text:
-        'That is a maker population of a billion or more, and history says newly-literate populations do not consume politely. When writing stopped being a scribal profession, the result was not slightly more documents; it was bureaucracy, journalism, science, and the novel — categories of output that did not exist when writing was rationed. We will not pretend to know what the software equivalents are. We only note that every one of a billion new makers summons software that must run, store, authenticate, and log somewhere — which is to say, every one of them is a customer of the meters, whether they ever learn what a meter is.',
-    },
-    {
-      kind: 'p',
-      text: 'When everyone can make software, the money moves to what all software must rent.',
+        'History says newly-literate populations do not consume politely. When writing stopped being a scribal profession, the result was not slightly more documents; it was bureaucracy, journalism, science, and the novel — categories of output that did not exist when writing was rationed. We will not pretend to know what the software equivalents are. We only note that every one of a billion new makers summons software that must run, store, authenticate, and log somewhere — which is to say, every one of them is a customer of the meters, whether they ever learn what a meter is.',
     },
   ],
 
@@ -163,7 +154,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'When production costs collapse, value doesn’t disappear — it moves. What deflates to zero is everything the agent can regenerate on demand: code, tests, documentation, integration glue, one-off tools, and ultimately the custom applications themselves, contested by an infinite knife-fight of entrants whose product can be re-summoned by any customer in an afternoon. What stays metered forever is what no agent can regenerate: the doing of the work, the keeping of its state, and the accounting for what was done. Those three activities — executing, remembering, answering — are billed per unit of use, and they scale with the population of software rather than the price of writing it. Part 03 gives them a name: the backend.',
+        'When production costs collapse, value doesn’t disappear — it moves. What deflates to zero is everything the agent can regenerate on demand: code, tests, documentation, integration glue, one-off tools, and ultimately the custom applications themselves. What stays metered forever is what no agent can regenerate: the doing of the work, the keeping of its state, and the accounting for what was done. Those three activities — executing, remembering, answering — are billed per unit of use, and they scale with the population of software rather than the price of writing it. Part 03 gives them a name: the backend.',
     },
     {
       kind: 'p',
@@ -181,7 +172,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Hold on to the shape of that stack, because the layers do not benefit equally. The bottom is capital-heavy and already priced; the top is where the knife-fight of this part plays out. The two in the middle — the layer that meters the work and the layer that keeps the state — sell the three things no agent can regenerate, and they are where this series will argue the money settles.',
+        'Hold on to the shape of that stack, because the layers do not benefit equally. The bottom is capital-heavy and already priced; the top is where the deflation of this part plays out. The two in the middle — the layer that meters the work and the layer that keeps the state — sell the three things no agent can regenerate, and they are where this series will argue the money settles.',
     },
     {
       kind: 'p',

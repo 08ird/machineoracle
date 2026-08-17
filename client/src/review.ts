@@ -14,6 +14,7 @@ interface RevEl extends HTMLElement {
 
 const ON_KEY = 'mo-review';
 const SCROLL_KEY = 'mo-review-scroll';
+const DRAFT_KEY = 'mo-review-draft';
 
 let active = localStorage.getItem(ON_KEY) === '1';
 let editing: RevEl | null = null;
@@ -59,6 +60,7 @@ function findRev(target: EventTarget | null): RevEl | null {
 }
 
 function stopEdit(el: RevEl, restore: boolean): void {
+  sessionStorage.removeItem(DRAFT_KEY);
   el.removeAttribute('contenteditable');
   el.classList.remove('rev-edit');
   if (restore) el.innerHTML = snapshot;
@@ -168,6 +170,16 @@ function init(): void {
     }
   });
 
+  // A code save reloads the page; stash any open edit so nothing is lost.
+  addEventListener('beforeunload', () => {
+    if (editing) {
+      sessionStorage.setItem(
+        DRAFT_KEY,
+        JSON.stringify({ rev: editing.__rev, text: editing.textContent, hash: location.hash })
+      );
+    }
+  });
+
   document.addEventListener(
     'blur',
     (e) => {
@@ -175,6 +187,30 @@ function init(): void {
     },
     true
   );
+
+  // Recover an edit that a reload interrupted.
+  const draft = sessionStorage.getItem(DRAFT_KEY);
+  if (draft) {
+    sessionStorage.removeItem(DRAFT_KEY);
+    try {
+      const { rev, text, hash } = JSON.parse(draft) as { rev: string; text: string; hash: string };
+      if (hash === location.hash && text && text !== rev) {
+        setTimeout(() => {
+          const host = [...document.querySelectorAll<HTMLElement>('*')].find((n) => (n as RevEl).__rev === rev);
+          if (!host) return;
+          if (!active) {
+            active = true;
+            localStorage.setItem(ON_KEY, '1');
+          }
+          startEdit(host as RevEl);
+          host.textContent = text;
+          toast('Recovered your unsaved edit — Enter saves it.');
+        }, 200);
+      }
+    } catch {
+      /* stale draft — ignore */
+    }
+  }
 
   // Restore position after the reload a save triggers.
   const raw = sessionStorage.getItem(SCROLL_KEY);
