@@ -626,7 +626,7 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
     const field = svg('svg', {
       viewBox: '0 0 680 132',
       class: 'unlock__field',
-      preserveAspectRatio: 'xMidYMid slice',
+      preserveAspectRatio: 'xMaxYMid slice',
       'aria-hidden': 'true',
     });
     let seed = 7;

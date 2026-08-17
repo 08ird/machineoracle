@@ -488,41 +488,10 @@ export const SLIDES: Slide[] = [
     },
   },
   {
-    id: 14,
-    part: 1,
-    kicker: 'A Tuesday in the infinite software era',
-    title: 'The software was disposable. The state and the audit trail weren’t.',
-    body: {
-      kind: 'steps',
-      items: [
-        { n: '9:00 AM', head: 'An ops manager describes a dashboard in plain English', desc: 'No ticket, no sprint, no engineer.' },
-        {
-          n: '9:40 AM',
-          head: 'The agent ships it',
-          desc: 'Code written and tested, database provisioned, app deployed — 100K+ metered events before the coffee is cold.',
-        },
-        {
-          n: '2:00 PM',
-          head: 'The team adopts it',
-          desc: 'The agent adds SSO and audit logging on request. State accumulates in the operational database (L2); every action is traced (L3).',
-        },
-        {
-          n: 'Next quarter',
-          head: 'Requirements changed',
-          desc: 'A better version is summoned in an afternoon, and the app is thrown away.',
-        },
-      ],
-    },
-    takeaway: {
-      icon: '🧾',
-      text: 'The software was disposable. The state and the audit trail weren’t. Multiply this Tuesday by a billion makers — that’s the royalty.',
-    },
-  },
-  {
     id: 15,
     part: 1,
     kicker: 'The scarcity inversion — where the money goes when production costs collapse',
-    title: 'Making software is becoming free. Running it never is.',
+    title: 'Making software is becoming nearly free. But running is not.',
     body: {
       kind: 'columns',
       cols: [

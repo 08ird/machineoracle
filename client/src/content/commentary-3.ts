@@ -147,7 +147,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'SpacetimeDB collapses the pipeline into one system. The application uploads its logic into the database itself; state and logic share memory, so a transaction commits without crossing a network; and every committed change streams to each subscribed client automatically. We know the pattern first-hand — Sky1, the research stack Part 01 describes, runs on it — and the public stress test is stronger still: BitCraft Online, a massively multiplayer game whose players inhabit one persistent world, ships with no game servers at all. The entire backend is one module inside the database.',
+        'SpacetimeDB collapses the pipeline into one system. The application uploads its logic into the database itself; state and logic share memory, so a transaction commits without crossing a network; and every committed change streams to each subscribed client automatically. We know the pattern first-hand — Sky1, our own research stack, runs on it — and the public stress test is stronger still: BitCraft Online, a massively multiplayer game whose players inhabit one persistent world, ships with no game servers at all. The entire backend is one module inside the database.',
     },
     {
       kind: 'p',

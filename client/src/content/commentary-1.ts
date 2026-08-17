@@ -132,25 +132,12 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'From 1990 to 2022, software creation was a profession with a syntax wall around it — a small caste who could speak to machines on behalf of everyone else. The copilot era lowered the wall: 180 million on GitHub, many of them occasional, assisted, half-professional. The natural-language era removes the wall entirely. When describing software is making software, the addressable population of makers is everyone with a job problem and a sentence to describe it.',
+        'From 1990 to 2022, software creation was a profession with a syntax wall around it — a small caste who could speak to machines on behalf of everyone else. The natural-language era removes the wall entirely. When describing software is making software, the addressable population of makers is everyone with a job problem and a sentence to describe it. We believe our 1b estimate is conservative.',
     },
     {
       kind: 'p',
       text:
-        'History says newly-literate populations do not consume politely. When writing stopped being a scribal profession, the result was not slightly more documents; it was bureaucracy, journalism, science, and the novel — categories of output that did not exist when writing was rationed. We will not pretend to know what the software equivalents are. We only note that every one of a billion new makers summons software that must run, store, authenticate, and log somewhere — which is to say, every one of them is a customer of the meters, whether they ever learn what a meter is.',
-    },
-  ],
-
-  14: [
-    {
-      kind: 'p',
-      text:
-        'Walk through one working day, because the abstraction hides where the money lands. Nothing in the sequence below requires a capability that does not exist in 2026 — teams inside Sky1, our own research stack, run this loop weekly, and the 100,000-event figure comes from counting our own traces.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Notice what survives the afternoon and what doesn’t. The application was summoned, used, and discarded — its replacement cost is an afternoon, so it holds no value. What accumulated was everything underneath it: the state in the operational database, the audit trail of every action the agent took, the identity and access records that said who was allowed to do what. The disposable layer generated the durable layer’s revenue on the way through.',
+        'x',
     },
   ],
 
