@@ -385,7 +385,7 @@ export const SLIDES: Slide[] = [
       ],
     },
     takeaway: { icon: '🤯', text: '~4,000x cheaper — in one step.' },
-    footnote: 'Skycatcher illustration; inference economics per Epoch AI constant-performance price data. Illustrative only.',
+    footnote: 'A unit of software work: a scoped piece of work a mid-level engineer ships in about a day. The 4,000x is a Skycatcher estimate — the claim is the order of magnitude, not the precision. Inference economics per Epoch AI constant-performance price data.',
   },
   {
     id: 11,
@@ -399,7 +399,7 @@ export const SLIDES: Slide[] = [
           viz: 'uncap',
           value: 'No cap',
           head: 'The bottleneck is removed',
-          desc: 'Output was capped by human attention-hours. The cap comes off.',
+          desc: 'Output was capped by human working hours. The cap comes off.',
         },
         {
           viz: 'fanout',
@@ -451,7 +451,7 @@ export const SLIDES: Slide[] = [
     id: 12,
     part: 1,
     kicker: 'The proof is public and dated',
-    title: 'We are seeing early signs of infinite software...',
+    title: 'The early signs are already measurable',
     body: {
       kind: 'stats',
       items: [
@@ -522,7 +522,7 @@ export const SLIDES: Slide[] = [
   {
     id: 17,
     part: 1,
-    title: 'Implications of infinite software...',
+    title: 'What infinite software implies',
     // Prose-only closer — the recap figure was removed at the user's request.
     body: { kind: 'prose', paras: [] },
   },

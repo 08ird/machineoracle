@@ -98,7 +98,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Three consequences follow, and they multiply. The human bottleneck is removed, so attention-hours no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred workstreams from one instruction. And the duty cycle changes: forty human attention-hours become 168 machine-hours a week. One analyst helping you becomes a thousand analysts working around the clock.',
+        'Three consequences follow, and they multiply. The human bottleneck is removed, so human working hours no longer cap output. Work parallelizes, because agents launch agents — ten to a hundred workstreams from one instruction. And the clock changes: forty human working hours become 168 machine-hours a week. One analyst helping you becomes a thousand analysts working around the clock.',
     },
   ],
 
@@ -124,7 +124,7 @@ export const part1: Record<number, Block[]> = {
     },
     {
       kind: 'p',
-      text: 'Software makers are up roughly 2x and the machine-written share is up roughly 5x in three years.',
+      text: 'Software makers are up roughly 2x and the machine-written share is up roughly 5x in three years — the people didn’t leave; the bottleneck did.',
     },
   ],
 
@@ -132,7 +132,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'From 1990 to 2022, software creation was a profession with a syntax wall around it — a small caste who could speak to machines on behalf of everyone else. The natural-language era removes the wall entirely. When describing software is making software, the addressable population of makers is everyone with a job problem and a sentence to describe it. We believe our 1 billion estimate is conservative.',
+        'From 1990 to 2022, software creation was a profession with a syntax wall around it — a small group who could speak to machines on behalf of everyone else. The natural-language era removes the wall entirely. When describing software is making software, the addressable population of makers is everyone with a job problem and a sentence to describe it. We believe our 1 billion estimate is conservative.',
     },
     {
       kind: 'p',
@@ -158,7 +158,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'We opened this section with two numbers. There is a third force, and it may be the most powerful: machine work. AI agents do not clock out — the work can run around the clock, at a scale we cannot fully picture today. Part 02 dives into that variable: the agent population, and how token usage is evolving.',
+        'We opened with two numbers. There is a third, and it may be the strongest: machine work never stops. Agents work around the clock, at a scale we cannot fully picture today. Part 02 dives into that variable — the agent population, and how token usage is evolving.',
     },
     {
       kind: 'p',
