@@ -128,12 +128,12 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'A fair question at this point is how much of this depends on AI capability continuing to improve. Less than you would expect: the meters work across the timeline distribution. In the slow world — models plateau near current capability — the street’s own fade still grows the cohort about 2.2x in revenue terms, because the floor is an elasticity bet on already-shipped capability, not an AI bet. In our wave, the demand stack alone puts the cohort in the top growth band. In the Aschenbrenner world, effective machine labor outruns even the token counts, and metered rails are among the few public claims on it.',
+        'Three risks could break this thesis, and each deserves full strength. First, superintelligence: if machine intelligence breaks value creation as we know it, the economic system this piece prices stops existing — no public claim survives that world, ours included. We see no evidence we are close; the capability curves we track are steep, not vertical, and we watch them rather than underwrite them. Second, tokens never commoditize: if the best tokens hold premium pricing and AI’s cost structure stops falling, adoption throttles and the agent population stalls. That is the inverse of our central measured fact — a 50x price collapse in three years, on the path of every prior compute input — and the token prints grade it every quarter.',
     },
     {
       kind: 'p',
       text:
-        'The edge of the map: the one world the thesis does not cover is machine labor migrating off public rails entirely — sealed labs, national projects, work that never touches a rentable meter. We flag it because a thesis that covers every world is a faith, and this is not that. It sits on the bear-case ledger with the rest.',
+        'Third, backend-grade correctness — the moat, and its breaking point. Today AI produces approximately correct software: a single prompt summons your dream, each further prompt returns less, and the result looks right with something slightly off. Approximately correct is fatal in the backend, where a ledger, an identity check, or an audit trail must be exactly correct. That gap is why agents can rebuild the application layer but not the layer underneath it. The honest inverse is the risk we track: if agents reach backend-grade correctness, the incumbents themselves become buildable — it sits on the tripwire list with the rest.',
     },
   ],
 
@@ -231,7 +231,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'If the reader takes one idea from this piece, take the definition, not the screen: machine labor — work performed by software, billed by the unit — is real, priced, and compounding, and almost nothing in public markets is modeled for it. Understanding that one idea early is worth more than any list of tickers, because it re-frames a decade of decisions that have not been made yet. The rest of this site exists to test the idea in public, every quarter, until the record settles it.',
+        'If the reader takes one idea from this piece, take the definition, not the screen: machine labor — work performed by software, billed by the unit — is real, priced, and compounding, and almost nothing in public markets is modeled for it. Understanding that one idea early is worth more than any list of tickers. And the whole debate compresses into two numbers: how many agents operate, and how much of the internet runs through the backend stack. Watch those two, and the ledger grades itself — this site exists to test them in public, every quarter, until the record settles it.',
     },
   ],
 };

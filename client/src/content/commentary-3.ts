@@ -8,7 +8,7 @@ export const part3: Record<number, Block[]> = {
       kind: 'p',
       lead: true,
       text:
-        'Part 02 ended with a forecast. This part starts with an invoice. The single most underappreciated fact in this market is that machine labor already has a price sheet: seven vendors have shipped a machine billable unit between 2023 and 2026 — all dated, all public, all checkable against their own pricing pages.',
+        'State the key assumption plainly: we believe the backend stack — the software infrastructure agents run on — is the best place to capture the growth of Parts 01 and 02, and the specific instrument is a royalty on machine labor. This part defends that assumption with filings, and it starts with an invoice. The single most underappreciated fact in this market is that machine labor already has a price sheet: seven vendors have shipped a machine billable unit between 2023 and 2026 — all dated, all public, all checkable against their own pricing pages.',
     },
     {
       kind: 'p',
@@ -171,7 +171,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'They also fail differently, and one failure mode is already visible. Open, portable state formats would break the ledger case — and the open-table-format movement is not hypothetical; the ledger vendors themselves have been pushed to embrace it, which chips the lock-in even as it defends the workload. Model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty — and both are wired to public metrics on the tripwire list in Part 04.',
+        'Both layers share one more moat, and it is the deepest: correctness. AI today is approximately correct — 99% looks done and is not — which is why the disposable layer above deflates while the exact layer below endures; a ledger or an audit trail at 99% is not a product. They also fail differently, and one failure mode is already visible. Open, portable state formats would break the ledger case — and the open-table-format movement is not hypothetical; the ledger vendors themselves have been pushed to embrace it, which chips the lock-in even as it defends the workload. Model vendors absorbing the runtime would break the toll-road case. Independent falsifiers, one royalty — and both are wired to public metrics on the tripwire list in Part 04.',
     },
   ],
 

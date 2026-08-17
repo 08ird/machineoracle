@@ -8,7 +8,7 @@ export const part2: Record<number, Block[]> = {
       kind: 'p',
       lead: true,
       text:
-        'Part 01 argued that machine labor makes software free to produce. If that is true, it has to show up somewhere measurable — and it does, in the rawest series this industry publishes. Global token consumption ran 0.05 quadrillion in 2022, 0.5Q in 2023, 5Q in 2024, 25Q in 2025, and roughly 100Q in 2026: a ~2,000x expansion in four years.',
+        'Two variables decide how big infinite software gets: token usage, the measurable fuel, and the AI agent population, the workforce that burns it. This part measures the first and models the second. Tokens first, because they are the rawest series this industry publishes. Global token consumption ran 0.05 quadrillion in 2022, 0.5Q in 2023, 5Q in 2024, 25Q in 2025, and roughly 100Q in 2026: a ~2,000x expansion in four years.',
     },
     {
       kind: 'p',
@@ -81,6 +81,34 @@ export const part2: Record<number, Block[]> = {
       kind: 'p',
       text:
         'Intensity is the larger half of the arithmetic, and the least appreciated. Casual chat consumes about 10,000 tokens per user-day — a few questions, a few answers. An always-on agent consumes 5 to 25 million: it reads entire codebases and document sets as context, plans, acts, checks its own work, and loops, around the clock. That is a difference of 500 to 2,500x for the same human being. And the clock itself is different: a person gives you about forty attention-hours a week; an agent gives you 168. Task horizons that double every few months (Part 01) keep converting chat users into agent users — each conversion multiplying one person’s token demand by three orders of magnitude.',
+    },
+  ],
+
+  // Site-original exhibit: the agent population, modeled.
+  52: [
+    {
+      kind: 'p',
+      text:
+        'The second variable is the one that matters most, and almost nobody counts it: how many AI agents are operating? We count always-on instances — an agent deployed and working, not a person chatting. Today, roughly 25 million people delegate to agents, but most agents still run episodically; our modeled estimate of always-on instances is about 10 million. By 2030, with a quarter of ~2.5 billion AI users delegating and several instances per delegator, the population reaches roughly a billion.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The workweek math in the exhibit is why the definition matters: an instance that never clocks out is worth several human schedules, so even a modest instance count already represents an enormous labor pool — and at the modeled endpoint, machine schedules rival humanity’s entire professional class. Every estimate on this page is modeled and labeled as such; the point is the order of magnitude, and the tracker grades it as disclosures arrive.',
+    },
+  ],
+
+  // Site-original exhibit: the internet, and the share on the stack.
+  89: [
+    {
+      kind: 'p',
+      text:
+        'Where does that workforce show up? On the internet’s infrastructure — and the internet is already more machine than most people think. About 5.5 billion humans are online, growing single digits; roughly half of all internet traffic is already non-human — bots, crawlers, APIs — before agents arrive at scale. The machine internet compounds; the human internet does not.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Now place the backend stack on that map. By our modeled estimate, about one in three internet applications touches at least one of the 25 public backend names — Cloudflare alone fronts roughly 20% of all websites, and the data, identity, and observability paths of most large digital businesses run through the rest. Inside the cohort, we estimate 5–10% of consumption is already agent-driven — the source of the overage acceleration in Part 03. The multiplication of those two estimates is the thesis, and it lands exactly where the next part goes.',
     },
   ],
 

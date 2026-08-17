@@ -242,6 +242,23 @@ export const SLIDES: Slide[] = [
     body: { kind: 'section', num: '01', label: 'Infinite Software', sub: 'the era — machine labor makes software unlimited' },
   },
   {
+    // Site-original exhibit: the era's arithmetic, up front.
+    id: 3,
+    part: 1,
+    kicker: 'The production unlock, in two numbers',
+    title: 'The big idea: infinite software',
+    body: {
+      kind: 'decompose',
+      factors: [
+        { value: '÷4,000', label: 'cost per unit of software work', note: 'agents write, test, and ship end to end', from: '~$200', to: '~$0.05' },
+        { value: '×33', label: 'people who can make software', note: 'describing software becomes making software', from: '30M', to: '1B+' },
+      ],
+      result: { value: 'Infinite software', label: 'software as abundant as documents', note: 'every piece of it runs on rented, metered rails' },
+    },
+    takeaway: { icon: '♾️', text: 'Price collapses, the maker population explodes — and the constraint moves to what all software must rent.' },
+    footnote: 'Cost per unit: Skycatcher production-regime estimates (figure 4). Maker population: GitHub and platform disclosures.',
+  },
+  {
     id: 8,
     part: 1,
     kicker: 'Skycatcher illustrative view of tech wave scale',
@@ -591,6 +608,49 @@ export const SLIDES: Slide[] = [
       icon: '🔌',
       text: 'The same human is worth 500–2,500x more tokens the day software stops waiting for prompts.',
     },
+  },
+  {
+    // Site-original exhibit: the agent population, modeled.
+    id: 52,
+    part: 2,
+    kicker: 'Modeled — always-on agent instances, today and 2030',
+    title: 'How many AI agents are operating?',
+    body: {
+      kind: 'bars',
+      axis: 'Always-on agent instances (modeled)',
+      items: [
+        { label: 'Today', sub: '~25M people delegate; most agents still episodic', value: 10, display: '~10M', tone: 'muted' },
+        { label: '2028', sub: 'delegation reaches the enterprise mainstream', value: 150, display: '~150M' },
+        { label: '2030', sub: '~25% of ~2.5B users delegating, several instances each', value: 1000, display: '~1B', tone: 'accent' },
+      ],
+    },
+    takeaway: {
+      icon: '🤖',
+      text:
+        'Each always-on agent works a 168-hour week — 4.2 human workweeks. ~10M agents ≈ 40M human workweeks today; ~1B ≈ 4 billion — a second workforce larger than the world’s ~1B knowledge workers.',
+    },
+    footnote: 'Skycatcher model from platform disclosures and our adoption framework. Instances, not people; episodic agents excluded.',
+  },
+  {
+    // Site-original exhibit: the internet, and how much of it runs on the stack.
+    id: 89,
+    part: 2,
+    kicker: 'The internet, and the share of it that touches the backend stack',
+    title: 'Where the agent population lands',
+    body: {
+      kind: 'stats',
+      items: [
+        { value: '5.5B', label: 'people on the internet', sub: 'the human internet has one growth rate left' },
+        { value: '~50%', label: 'of internet traffic is already non-human', sub: 'bots, crawlers, APIs — before agents arrive at scale' },
+        { value: '~1 in 3', label: 'internet applications touch the 25-name backend', sub: 'modeled — Cloudflare alone fronts ~20% of websites' },
+        { value: '~5–10%', label: 'of cohort consumption is agent-driven today', sub: 'modeled — the source of the overage acceleration' },
+      ],
+    },
+    takeaway: {
+      icon: '🌐',
+      text: 'Multiply the two: a billion agents, a third of the internet running through the stack — that product is the demand curve of Part 03.',
+    },
+    footnote: 'Application touch and agent-driven consumption are Skycatcher estimates from public traffic disclosures and cohort filings.',
   },
   {
     id: 24,
@@ -2065,33 +2125,41 @@ export const SLIDES: Slide[] = [
   {
     id: 80,
     part: 4,
-    kicker: 'The meters work across the timeline distribution',
-    title: 'You don’t need AGI for this thesis',
+    kicker: 'The three risks we take seriously',
+    title: 'What would break this thesis',
     body: {
       kind: 'columns',
       cols: [
         {
-          head: 'The slow world',
-          sub: 'AI plateaus near current capability',
-          items: ['The street’s own fade still grows the cohort ~2.2x in revenue terms'],
-          foot: 'The floor is an elasticity bet, not an AI bet',
+          head: 'Superintelligence',
+          items: [
+            'The system-breaking case: value creation as we know it ends, and no public claim survives — this piece included',
+            'We see no evidence we are close; capability curves are steep, not vertical',
+          ],
+          foot: 'Watched, not underwritten',
           tone: 'cold',
         },
         {
-          head: 'Our wave',
-          sub: '~40x tokens',
-          items: ['The demand stack alone puts the cohort in the top growth band'],
-          foot: 'What this piece underwrites',
-          tone: 'warm',
+          head: 'Tokens never commoditize',
+          items: [
+            'The best tokens keep premium pricing, costs stop falling, and adoption throttles — the agent population stalls',
+            'Against it: a 50x price collapse in three years, and every prior compute input',
+          ],
+          foot: 'The inverse of our measured elasticity — graded in the token prints',
+          tone: 'cold',
         },
         {
-          head: 'The Aschenbrenner world',
-          sub: 'effective machine labor far outruns tokens',
-          items: ['Metered rails are among the few public claims on it'],
-          foot: 'Upside, not requirement',
+          head: 'Backend-grade correctness',
+          items: [
+            'Today AI is approximately correct; the backend must be exactly correct — 99% looks done and is not',
+            'That gap is the backend’s moat. The risk is the inverse: agents reaching 100% would make the incumbents buildable',
+          ],
+          foot: 'The moat and its breaking point — on the tripwire list',
+          tone: 'warm',
         },
       ],
     },
+    takeaway: { icon: '⚠️', text: 'Each risk has a public signal; none requires trusting us.' },
   },
   {
     id: 82,

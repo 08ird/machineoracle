@@ -9,6 +9,21 @@
 import type { Block } from './types';
 
 export const part1: Record<number, Block[]> = {
+  // Site-original exhibit: the era's arithmetic, up front.
+  3: [
+    {
+      kind: 'p',
+      lead: true,
+      text:
+        'One idea governs this piece: we have entered the era of infinite software. Two numbers define it. The cost of a unit of software work fell roughly 4,000x, because agents now write, test, and ship it end to end. And the population able to make software expands roughly 33x, from 30 million professionals to the billion-plus people who can describe what they want. Price down that far, makers up that far — software stops being a scarce product and becomes an abundant good.',
+    },
+    {
+      kind: 'p',
+      text:
+        'This part puts numbers and pictures on both halves of that unlock, then follows the consequence: when making software is nearly free, the money moves to running it. Everything else in this series builds on that one move.',
+    },
+  ],
+
   8: [
     {
       kind: 'p',
