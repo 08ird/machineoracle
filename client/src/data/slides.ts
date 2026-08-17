@@ -522,16 +522,9 @@ export const SLIDES: Slide[] = [
   {
     id: 17,
     part: 1,
-    kicker: 'Part 01 recap',
     title: 'Implications of infinite software...',
-    body: {
-      kind: 'stats',
-      items: [
-        { value: '~4,000x', label: 'cheaper to make software', sub: 'production broke free of human hands' },
-        { value: '168 hrs', label: 'machine duty cycle per week', sub: 'against ~40 human attention-hours' },
-        { value: '2 of 5', label: 'layers collect the royalty', sub: 'a five-layer stack runs it all; the money settles where work is metered and state is kept' },
-      ],
-    },
+    // Prose-only closer — the recap figure was removed at the user's request.
+    body: { kind: 'prose', paras: [] },
   },
 
   // ── Part 02 ───────────────────────────────────────────────────────────────

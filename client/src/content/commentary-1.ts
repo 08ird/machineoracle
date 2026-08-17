@@ -150,7 +150,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'In 1865, Jevons descreibed that — make an input more efficient and consumption expands instead of shrinking. It held for coal, electricity, transistors, and bandwidth. When DeepSeek’s cheap models briefly convinced the market in January 2025 that efficient AI meant less infrastructure, Microsoft’s CEO answered with exactly this citation: “Jevons paradox strikes again.” In Part 02 we measure this.',
+        'In 1865, Jevons described the pattern: make an input more efficient and consumption expands instead of shrinking. It held for coal, electricity, transistors, and bandwidth. When DeepSeek’s cheap models briefly convinced the market in January 2025 that efficient AI meant less infrastructure, Microsoft’s CEO answered with exactly this citation: “Jevons paradox strikes again.” In Part 02 we measure this.',
     },
   ],
 
@@ -158,17 +158,17 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Infinite software, in three numbers: production got ~4,000x cheaper, so making software is no longer scarce. The machine work-week is 168 hours against our 40, so labor is no longer scarce. And a billion people can now make software by describing it. Everything that used to be the software industry multiplied — at once.',
+        'We opened this section with two numbers. There is a third force, and it may be the most powerful: machine work. AI agents do not clock out — the work can run around the clock, at a scale we cannot fully picture today. Part 02 dives into that variable: the agent population, and how token usage is evolving.',
     },
     {
       kind: 'p',
       text:
-        'What stays scarce is what all of it runs on. Every piece of infinite software must execute, remember, and answer for itself, and it rents those three things from the same five-layer stack: compute at the bottom, then intelligence, then the state it keeps, the work it runs, and the outcomes it delivers. The bigger the software population grows, the harder it leans on the layers in the middle. That is the impact of scale: the era’s growth funnels into the rails.',
+        'Everything those agents produce has to run somewhere. The more software the era creates, the harder it leans on the layer underneath — the rails all of it rents.',
     },
     {
       kind: 'p',
       text:
-        'The rest of the series follows the money, in order. Part 02 shows how the wave works: token usage — the fuel agents burn — and the agent population itself, the two variables that set demand. Part 03 shows where the money hits: a royalty on machine labor, collected by the backend stack and visible today in public filings. Part 04 shows how we track it: a cohort picked by one rule, dated predictions, and bold calls for the 2030s — all graded in public, every quarter.',
+        'After that, Part 03 goes to where the money hits: a royalty on machine labor, collected by the backend stack and visible today in the filings of public companies. Part 04 closes with the leading companies in the space, our predictions — some of them ambitious — and the human side of it all.',
     },
   ],
 };
