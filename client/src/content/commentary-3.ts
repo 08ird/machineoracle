@@ -343,4 +343,74 @@ export const part3: Record<number, Block[]> = {
         'What remains is what a research program owes its readers: name the instrument precisely, state what it is worth under explicit assumptions, put dates on the predictions, and stand somewhere findable to be graded. That is Part 04 — where this piece stops describing a wave and starts keeping score of one.',
     },
   ],
+
+  // Site-original exhibit: the vendor equation.
+  130: [
+    {
+      kind: 'p',
+      text:
+        'The model of Part 02 ends in backend units. Revenue needs four more terms. Does the workload touch this category — maybe only 70% of it gets instrumented. Does this vendor capture it — maybe a quarter of the relevant workloads. Is it billable — sampling may pass only a third of incremental telemetry to the invoice. And what happens to price per unit, when volume discounts and cheaper hardware push it down. For each name: incremental revenue = incremental backend units × attach × share × pass-through × realized price.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The last two terms keep the model honest. A vendor can watch machine workload explode while revenue merely grows. The next three sections apply the equation to the three meters — each with a different bottleneck.',
+    },
+  ],
+
+  // Site-original exhibit: MongoDB model.
+  131: [
+    {
+      kind: 'p',
+      text:
+        'MongoDB’s machine-demand equation: agent workflows × stateful share × database operations per workflow × efficiency, plus a storage term — persistent bytes × retention. Concurrency matters on top: Atlas bills dedicated clusters on provisioned compute, memory, and storage, so many agents working at once can force larger tiers even when transaction counts look modest.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The biggest 2031 question for MongoDB is not how many database calls agents make. It is whether persistent agent state — memory, checkpoints, task history, artifacts — becomes a major new class of operational application data. If it does, the database becomes the memory of the machine workforce, and that is a structurally larger thesis than incremental transactions.',
+    },
+  ],
+
+  // Site-original exhibit: Snowflake model.
+  132: [
+    {
+      kind: 'p',
+      text:
+        'A human analyst answers a question in about three Snowflake queries. An agent answering the same question queries, inspects the result, reformulates, queries again, validates, cross-checks another table, retries, and investigates the anomaly it just found — twenty-five queries. Roughly an 8x gross multiplier per workflow, before efficiency.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Snowflake increasingly exposes both sides of this: warehouses, storage, and services bill platform credits, while Cortex agent features bill AI credits — and agent workflows generate additive costs across the services they invoke. The ratio we track is queries — better, credits — per agent-hour. The offset to watch is semantic caching, so the honest series is net queries: gross × (1 − cache rate).',
+    },
+  ],
+
+  // Site-original exhibit: Datadog model.
+  133: [
+    {
+      kind: 'p',
+      text:
+        'Datadog has the highest raw fan-out of the three — every step of the agent waterfall emits spans and log bytes, and Cloudflare’s agent traces show what that waterfall looks like: invocations, subagents, model calls, tool calls, database operations. But raw telemetry is not revenue. Sampling and retention sit between ingest and invoice, so ten times the spans might be three times the billable consumption.',
+    },
+    {
+      kind: 'p',
+      text:
+        'That makes pass-through the Datadog question: does agent complexity force enterprises to buy more observability even while they sample more aggressively? We track it as spans and log gigabytes per agent-hour, times sampling rate, times billable retention — and we treat strong workload growth with weak pass-through as a real bear case, not a rounding error.',
+    },
+  ],
+
+  // Site-original exhibit: five sensitivities.
+  134: [
+    {
+      kind: 'p',
+      text:
+        'A bull, base, and bear model does not need fifty assumptions. It needs five. Penetration is the obvious one. Work expansion is the underappreciated one. Fan-out is where the backend gets its leverage. Efficiency is the offset that can quietly destroy a naive thesis. Pass-through converts workload into dollars — or fails to.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Everything else in the framework is detail around those five. When we update the model each quarter, these are the rows that move the answer.',
+    },
+  ],
 };

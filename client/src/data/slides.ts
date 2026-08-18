@@ -1972,6 +1972,120 @@ export const SLIDES: Slide[] = [
     footnote: 'Layer medians from filings; trailing-twelve-month basis, approximate before 2025.',
   },
   {
+    // Site-original exhibit: the vendor equation.
+    id: 130,
+    part: 3,
+    kicker: 'From backend units to reported revenue — five questions per name',
+    title: 'The vendor equation',
+    body: {
+      kind: 'decompose',
+      factors: [
+        { value: 'Δ units', label: 'incremental backend units', from: 'the Part 02 model', to: 'per category' },
+        { value: 'attach', label: 'does the workload touch this category?', from: 'not all does', to: 'e.g. ~70% instrumented' },
+        { value: 'share', label: 'does this vendor capture it?', from: 'market share', to: 'e.g. ~25%' },
+        { value: 'pass-through', label: 'is it billable?', from: 'sampling, caching', to: 'e.g. ~30%' },
+        { value: 'price', label: 'realized price per unit', from: 'volume discounts', to: 'erosion over 5 years' },
+      ],
+      result: {
+        value: 'Δ revenue',
+        label: 'what the vendor actually reports',
+        note: 'the last two terms keep the model from becoming absurd',
+      },
+    },
+  },
+  {
+    // Site-original exhibit: MongoDB model.
+    id: 131,
+    part: 3,
+    kicker: 'MongoDB — the state meter',
+    title: 'MongoDB: does agent state become operational data?',
+    body: {
+      kind: 'decompose',
+      factors: [
+        { value: 'workflows', label: 'agent workflows', from: 'the Part 02 model', to: 'per customer' },
+        { value: '× stateful', label: 'share keeping durable state (S)', from: '10–30% today', to: '60–90% by 2031' },
+        { value: '× DB ops', label: 'reads, writes, checkpoints per workflow', from: 'per trace', to: 'measured' },
+        { value: '× efficiency', label: 'net of batching and reuse', from: '1.0x', to: '0.3–0.6x' },
+      ],
+      result: {
+        value: 'MongoDB units',
+        label: 'plus storage: persistent bytes × retention',
+        note: 'concurrency forces cluster-tier upgrades on top',
+      },
+    },
+    takeaway: {
+      icon: '🗄️',
+      text: 'Killer ratios: database operations per agent-hour, persistent gigabytes per agent, stateful share of workflows.',
+    },
+    footnote: 'Billing mechanics per MongoDB Atlas invoice documentation; some AI-related APIs are separately usage-based.',
+  },
+  {
+    // Site-original exhibit: Snowflake model.
+    id: 132,
+    part: 3,
+    kicker: 'Snowflake — the analysis meter',
+    title: 'Snowflake: queries per agent-hour',
+    body: {
+      kind: 'stats',
+      items: [
+        { value: '3', label: 'queries — a human analyst, one question', sub: 'ask, check, answer' },
+        { value: '25', label: 'queries — an agent, the same question', sub: 'query, inspect, reformulate, validate, cross-check, retry' },
+        { value: '~8x', label: 'gross multiplier per workflow', sub: 'before efficiency' },
+        { value: 'net', label: '= gross × (1 − cache rate)', sub: 'semantic caching is the offset to watch' },
+      ],
+    },
+    takeaway: {
+      icon: '❄️',
+      text: 'Snowflake exposes both sides of the ledger: platform credits for warehouses, AI credits for agent features — and agent workflows bill additively across the services they invoke.',
+    },
+    footnote: 'Billing mechanics per Snowflake Cortex pricing documentation, 2026.',
+  },
+  {
+    // Site-original exhibit: Datadog model.
+    id: 133,
+    part: 3,
+    kicker: 'Datadog — the telemetry meter',
+    title: 'Datadog: fan-out in, sampling out',
+    body: {
+      kind: 'decompose',
+      factors: [
+        { value: '~10x', label: 'raw telemetry per agent workflow', from: 'spans + log bytes', to: 'the agent waterfall' },
+        { value: '× ~0.3x', label: 'sampling and billable retention', from: 'ingest ≠ invoice', to: 'the pass-through question' },
+      ],
+      result: {
+        value: '~3x',
+        label: 'billable Datadog consumption',
+        note: 'more observability and harder sampling — both true at once',
+      },
+    },
+    takeaway: {
+      icon: '📡',
+      text: 'Killer ratio: spans and log gigabytes per agent-hour × sampling rate × billable retention. Pass-through is the Datadog question.',
+    },
+    footnote: 'Datadog billing mixes volume-based log ingestion with host, function, and APM units — pass-through differs by product. Datadog billing documentation.',
+  },
+  {
+    // Site-original exhibit: the five sensitivities.
+    id: 134,
+    part: 3,
+    kicker: 'Five assumptions carry the bull, base, and bear',
+    title: 'The five highest-sensitivity assumptions',
+    body: {
+      kind: 'steps',
+      items: [
+        { n: 'P', head: 'Agent penetration', desc: 'How much work moves to agents. Obvious — and the least interesting.', meta: 'watch' },
+        { n: 'X', head: 'Work expansion', desc: 'Does cheap intelligence cause 2x or 20x more work?', meta: 'underappreciated' },
+        { n: 'F', head: 'Fan-out per workflow', desc: 'Where backend infrastructure gets its leverage.', meta: 'the leverage' },
+        { n: 'I', head: 'Efficiency offset', desc: '20x more actions at 90% less resource per action is only 2x real workload.', meta: 'the offset' },
+        { n: 'B', head: 'Billing pass-through', desc: 'Huge workload growth can coexist with weak revenue growth — decisive for Datadog.', meta: 'the equity test' },
+      ],
+    },
+    takeaway: {
+      icon: '🎛️',
+      text: 'Backend revenue impact ≈ P × X × F × I × B × V — with different fan-out, efficiency, pass-through, and capture for every name.',
+    },
+  },
+  {
     id: 59,
     extras: [60],
     part: 3,
