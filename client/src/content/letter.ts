@@ -50,7 +50,7 @@ export const letter: Article = {
     {
       kind: 'p',
       text:
-        'Here is what we believe the next decade is — the final part of this series exists to be remembered for it. The internet was built for billions of humans using software. We are now adding billions of software workers — persistent and transient agents that consume databases, APIs, compute, and observability on their own, at machine speed, around the clock. Software production has left human hands; software consumption is leaving them too. That is the era this series names the machine economy.',
+        'Here is what we believe the next decade is — the final part of this series exists to be remembered for it. The internet was built for billions of humans interacting with software. We are now beginning to add potentially billions of persistent and transient software workers that can independently consume databases, APIs, compute, storage, analytics, and observability. Unlike humans, these workers operate at machine speed, can run continuously, can spawn other workers, and can generate work that previously wasn’t economical to perform. The central infrastructure question of the next decade is therefore not simply how much AI inference grows, but how rapidly machine-generated demand becomes a material share of total software activity. That is the era this series names the machine economy.',
     },
     {
       kind: 'p',

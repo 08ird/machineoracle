@@ -198,7 +198,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The internet was built for billions of humans interacting with software. We are now adding billions of persistent and transient software workers that independently consume databases, APIs, compute, storage, analytics, and observability. Unlike humans, they operate at machine speed, run continuously, spawn other workers, and perform work that was never economical before. The central infrastructure question of the next decade is not how much AI inference grows — it is how fast machine-generated demand becomes a material share of all software activity.',
+        'The thesis, then, where it can be graded. An internet built for humans is gaining a second population of workers — machine-speed, continuous, self-spawning, doing work that was never economical before. The question of the decade is not how much AI inference grows; it is how rapidly machine-generated demand becomes a material share of total software activity.',
     },
     {
       kind: 'p',
