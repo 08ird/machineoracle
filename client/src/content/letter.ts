@@ -46,11 +46,11 @@ export const letter: Article = {
       text:
         'The token wave: November 2022, ChatGPT — the Netscape moment, from roughly zero; 2026, the debate, with multiples still at fade levels. You are here. Then 2027–28, agent GAAP disclosures make agent demand visible in filings; and 2029 onward, the meters collect the era’s royalty — with every call in this piece graded.',
     },
-    { kind: 'h2', text: 'The decade ahead: the era of infinite software' },
+    { kind: 'h2', text: 'The decade ahead: the machine economy' },
     {
       kind: 'p',
       text:
-        'Here is what we believe the next decade is — the final part of this series exists to be remembered for it. Software production has left human hands. When describing software is making software, a billion people become makers; software becomes as abundant as documents — summoned for one task, discarded without regret; and every piece of it runs on rented, metered rails. That is the era this series names infinite software.',
+        'Here is what we believe the next decade is — the final part of this series exists to be remembered for it. The internet was built for billions of humans using software. We are now adding billions of software workers — persistent and transient agents that consume databases, APIs, compute, and observability on their own, at machine speed, around the clock. Software production has left human hands; software consumption is leaving them too. That is the era this series names the machine economy.',
     },
     {
       kind: 'p',

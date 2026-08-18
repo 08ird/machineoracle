@@ -1,4 +1,4 @@
-/** Part 02 — The Token Tidal Wave. Expanded narrative with dated sources. */
+/** Part 02 — Measuring Machine Demand. The model, then the token evidence. */
 
 import type { Block } from './types';
 

@@ -1,5 +1,5 @@
 /**
- * Exhibit data for "Infinite Software" (Skycatcher, Aug 11 2026 — 94 slides).
+ * Exhibit data for "The Machine Economy" (Skycatcher, 2026).
  *
  * Each entry is one section of the written piece: a title, its exhibit, the
  * takeaway line, and the source note. Prose lives in content/commentary-*.ts;
@@ -258,10 +258,10 @@ export const SLIDES: Slide[] = [
     body: {
       kind: 'agenda',
       items: [
-        { n: '01', title: 'Infinite Software', desc: 'the era — machine labor makes software free; the software population explodes' },
-        { n: '02', title: 'The Token Tidal Wave', desc: 'the phenomenon — every price drop buys more demand than it gives up: ~40x tokens by 2029' },
-        { n: '03', title: 'A Royalty on Machine Labor', desc: 'the royalty — infinite software runs on metered rails; two layers collect it' },
-        { n: '04', title: 'Machine Oracle', desc: 'the mispricing — three backend meters, priced for deceleration and zero agents' },
+        { n: '01', title: 'The Machine Economy', desc: 'the era — the marginal consumer of software becomes software itself' },
+        { n: '02', title: 'Measuring Machine Demand', desc: 'the model — work × penetration × fan-out × duty cycle, proven on the token record' },
+        { n: '03', title: 'A Royalty on Machine Labor', desc: 'the money — machine demand runs on metered rails; two layers collect it' },
+        { n: '04', title: 'Machine Oracle', desc: 'the instrument — three meters, killer ratios, signals, and dated predictions, graded in public' },
       ],
     },
   },
@@ -2772,6 +2772,78 @@ export const SLIDES: Slide[] = [
     },
   },
   {
+    // Site-original exhibit: the signals dashboard.
+    id: 140,
+    part: 4,
+    kicker: 'Leading indicators predict; coincident confirm; lagging report',
+    title: 'The signals dashboard',
+    body: {
+      kind: 'columns',
+      cols: [
+        {
+          head: 'Leading — capability & adoption',
+          sub: '6–18 months ahead',
+          items: [
+            'Cost per completed task; autonomous completion rate',
+            'Agent sessions per user; agent jobs started',
+            'Tool & MCP integrations available',
+            'Enterprise rollouts; human-approval rates',
+          ],
+          foot: 'Predicts future agent workload',
+          tone: 'cold',
+        },
+        {
+          head: 'Coincident — infrastructure consumption',
+          sub: 'the middle layer',
+          items: [
+            'Tool calls and subagents per session',
+            'Database reads and writes per session',
+            'Warehouse queries and credits per session',
+            'Spans, log volume, and persistent state per agent',
+          ],
+          foot: 'Where the analytical advantage lives',
+          tone: 'warm',
+        },
+        {
+          head: 'Lagging — financial results',
+          sub: 'what the sell side models',
+          items: [
+            'Consumption revenue',
+            'Net dollar retention',
+            'Commitments — deferred revenue, RPO',
+            'Upsells and larger renewals',
+          ],
+          foot: 'By the time this moves, it is priced',
+          tone: 'cold',
+        },
+      ],
+    },
+    takeaway: {
+      icon: '📶',
+      text: 'Observe the middle layer before it becomes reported revenue and you hold a 6–18 month analytical advantage. That is what this instrument is built to do.',
+    },
+  },
+  {
+    // Site-original exhibit: killer ratios per name.
+    id: 141,
+    part: 4,
+    kicker: 'What we track per name, from real agent traces',
+    title: 'The killer ratios',
+    body: {
+      kind: 'table',
+      head: ['Name', 'Ratio', 'The question it answers'],
+      rows: [
+        ['MongoDB', 'database operations per agent-hour · persistent GB per agent · stateful share', 'does persistent agent state become operational data?'],
+        ['Snowflake', 'credits per agent-hour · machine-generated vs human-generated queries', 'what share of analysis is machine-run?'],
+        ['Datadog', 'spans + log GB per agent-hour × sampling × billable retention', 'does complexity outrun sampling — does it pass through?'],
+      ],
+    },
+    takeaway: {
+      icon: '🔍',
+      text: 'The most valuable primary research of 2026: real agent execution traces, normalized to backend units per 1,000 agent workflows.',
+    },
+  },
+  {
     id: 90,
     part: 4,
     kicker: 'What we publish, every quarter',
@@ -2788,6 +2860,11 @@ export const SLIDES: Slide[] = [
           eyebrow: 'The filings',
           title: 'Four numbers',
           desc: 'Commitment, overage, retention, and revenue growth, re-measured every filing season — the numbers that pick the growth world.',
+        },
+        {
+          eyebrow: 'The signals',
+          title: 'Lead → coincide → lag',
+          desc: 'Capability and adoption ahead of consumption; consumption ahead of revenue. The middle layer is the advantage.',
         },
         {
           eyebrow: 'The ladder',
@@ -2816,8 +2893,8 @@ export const SLIDES: Slide[] = [
       items: [
         {
           eyebrow: 'The era',
-          title: '~4,000x',
-          desc: 'Software production left human hands. Making software deflates toward zero; running it stays metered. The population of software explodes.',
+          title: 'Machine demand',
+          desc: 'The marginal consumer of software becomes software itself. Work expands, tasks fan out, duty cycles lengthen — backend activity decouples from human population.',
         },
         {
           eyebrow: 'The wave',

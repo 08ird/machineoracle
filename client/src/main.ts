@@ -59,7 +59,7 @@ function route(scrollToTop = true) {
     sheet.className = 'sheet';
     sheet.append(renderAll(THESIS as Deck));
     app.replaceChildren(masthead(THESIS.slug), sheet, footer());
-    document.title = 'Infinite Software — full text — Machine Oracle';
+    document.title = 'The Machine Economy — full text — Machine Oracle';
     if (scrollToTop) scrollTo({ top: 0, behavior: 'auto' });
     return;
   }

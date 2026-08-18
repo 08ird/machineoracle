@@ -151,6 +151,27 @@ Research prototype for discussion. The machine labor cohort is a mechanical rese
 </div>
 </div>
 
+
+<!-- ============ 07 THE SIGNALS ============ -->
+<div class="sec">
+  <div class="sechead"><span class="secnum">07</span><h2>The signals</h2></div>
+  <div class="seccap">Leading, coincident, and lagging indicators of machine demand · the middle layer moves 6–18 months before revenue · baselines being collected from agent traces (Sky1), platform usage APIs, and vendor disclosures</div>
+  <div class="card"><table>
+    <thead><tr><th>Group</th><th>Signals</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><b>Leading</b><br><span style="font-size:11px;color:var(--ink3)">capability &amp; adoption</span></td>
+          <td style="font-size:12.5px">cost per completed task · autonomous completion rate · agent sessions &amp; jobs started (GitHub usage API) · agent-framework adoption (Datadog: 9% → 18% of observed orgs, y/y) · MCP/tool integrations · human-approval rates</td>
+          <td style="font-size:12px;color:var(--ink2)">collecting — first marks Q4 2026</td></tr>
+      <tr><td><b>Coincident</b><br><span style="font-size:11px;color:var(--ink3)">infrastructure consumption</span></td>
+          <td style="font-size:12.5px">tool calls &amp; subagents per session · DB reads/writes per session · warehouse queries &amp; credits per session · spans &amp; log GB per session · persistent state per agent · cached-read share (28% of observed model calls)</td>
+          <td style="font-size:12px;color:var(--ink2)">collecting — normalized to backend units per 1,000 agent workflows</td></tr>
+      <tr><td><b>Lagging</b><br><span style="font-size:11px;color:var(--ink3)">financial results</span></td>
+          <td style="font-size:12.5px">consumption revenue · net dollar retention · commitments (deferred revenue, RPO) · upsells &amp; larger renewals</td>
+          <td style="font-size:12px;color:var(--ink2)">live — sections 03–04 above</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
 <script>
 /* ---------- inception marks (Aug 11, 2026) ---------- */
 const MARK={SNOW:335.47,MDB:438.11,DDOG:248.42,TWLO:257.665,FSLY:28.89,BAND:53.115,
@@ -236,6 +257,9 @@ const RATIOQ=["2022","2023","2024","2025","today"];
 const RATIO=[16.7,3.3,1.6,0.6,0.34];
 const WATCH=[
  ["Snowflake","L2","Consumption share of product revenue (10-K note); retention","share <90% or retention <115 → admission re-check"],
+ ["MongoDB","L2 · ratio","Killer ratio: DB ops per agent-hour · stateful share of workflows","2026 baseline from agent traces → grade vs Atlas consumption"],
+ ["Snowflake","L2 · ratio","Killer ratio: credits per agent-hour · machine vs human queries","2026 baseline → grade vs platform + AI credit disclosures"],
+ ["Datadog","L3 · ratio","Killer ratio: spans + log GB per agent-hour × sampling","2026 baseline → grade vs billable telemetry pass-through"],
  ["MongoDB","L2","Atlas share of revenue, quarterly","<65% → exit watch · >80% → thesis confirming"],
  ["Datadog","L3","Commitment growth vs revenue growth","commitment below revenue growth two straight quarters → tripwire"],
  ["Fastly","L2","First disclosed usage percentage","a disclosed ≥50% admits it — one filing away"],

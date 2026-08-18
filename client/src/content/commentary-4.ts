@@ -205,11 +205,39 @@ export const part4: Record<number, Block[]> = {
     },
   ],
 
+  // Site-original exhibit: the signals dashboard.
+  140: [
+    {
+      kind: 'p',
+      text:
+        'Signals divide into three groups by when they move. Leading signals — cost per completed task, autonomous completion rates, agent sessions, tool integrations, enterprise rollouts — predict future agent workload. Coincident signals are the infrastructure consumption itself: tool calls, database operations, queries, telemetry, state. Lagging signals are the financial results: consumption revenue, retention, commitments. By the time the lagging group moves, the sell side has re-modeled.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The middle layer is the edge. Machine identity, agent tracing, and platform usage APIs are making it observable for the first time — which is why the tracker now carries it.',
+    },
+  ],
+
+  // Site-original exhibit: killer ratios.
+  141: [
+    {
+      kind: 'p',
+      text:
+        'Per name, the whole model reduces to a ratio or two, measured from real agent traces rather than argued from narrative. MongoDB: operations and durable state per agent-hour — the test of whether agent state becomes operational data. Snowflake: credits per agent-hour, and machine-generated queries against human-generated ones. Datadog: telemetry per agent-hour times what sampling lets through.',
+    },
+    {
+      kind: 'p',
+      text:
+        'This is unglamorous work, and it is the point: collect execution traces, normalize them to backend units per 1,000 agent workflows, and the AI-infrastructure narrative becomes a forecastable revenue model. Sky1 does exactly this, and the ratios land in the tracker as they stabilize.',
+    },
+  ],
+
   90: [
     {
       kind: 'p',
       text:
-        'What we publish, every quarter — so the program can be checked rather than believed. The indices mark from inception, August 11, 2026 = 100, live, with no back-fill and no retouching. The filings section re-measures commitment, overage, retention, and growth every quarter — the numbers that pick the growth world. The ladder re-scores all twenty-five backend names against the line. The ledger grades the predictions on schedule. All of it runs in the [Machine Oracle tracker](#/tracker), which updates from filings rather than from us.',
+        'What we publish, every quarter — so the program can be checked rather than believed. The indices mark from inception, August 11, 2026 = 100, live, with no back-fill and no retouching. The filings section re-measures commitment, overage, retention, and growth every quarter — the numbers that pick the growth world. The signals dashboard watches the leading and coincident indicators of machine demand — the layer that moves 6–18 months before revenue. The ladder re-scores all twenty-five backend names against the line. The ledger grades the predictions on schedule. All of it runs in the [Machine Oracle tracker](#/tracker), which updates from filings rather than from us.',
     },
     {
       kind: 'p',
@@ -231,7 +259,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'If the reader takes one idea from this piece, take the definition, not the screen: machine labor — work performed by software, billed by the unit — is real, priced, and compounding, and almost nothing in public markets is modeled for it. Understanding that one idea early is worth more than any list of tickers. And the whole debate compresses into two numbers: how many agents operate, and how much of the internet runs through the backend stack. Watch those two, and the ledger grades itself — this site exists to test them in public, every quarter, until the record settles it.',
+        'If the reader takes one idea from this piece, take the definition, not the screen: machine labor — work performed by software, billed by the unit — is real, priced, and compounding, and almost nothing in public markets is modeled for it. Understanding that one idea early is worth more than any list of tickers. And the whole debate compresses into three variables: how much more work happens because intelligence is cheap, how much backend activity each unit of agent work generates, and whether agents become continuously running workers. Watch those three, and the ledger grades itself — this site exists to test them in public, every quarter, until the record settles it.',
     },
   ],
 };
