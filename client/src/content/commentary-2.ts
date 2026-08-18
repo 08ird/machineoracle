@@ -3,12 +3,64 @@
 import type { Block } from './types';
 
 export const part2: Record<number, Block[]> = {
+  // Site-original exhibit: the model chain.
+  120: [
+    {
+      kind: 'p',
+      lead: true,
+      text:
+        'Part 01 named the variables. This part turns them into a model, and the model starts from work — not from a guess about the number of agents. The chain runs: addressable digital workflows, times the share assigned to agents, times the machine actions each workflow generates, netted for efficiency, filtered by what is actually billable. Only then does it become vendor revenue.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Two things keep the chain honest. Work itself expands when it gets cheap — a hundred analyst queries do not become a hundred agent queries; they become five thousand. And every link is a place the naive thesis can leak: efficiency, sampling, pricing. We model the leaks explicitly.',
+    },
+  ],
+
+  // Site-original exhibit: scenario priors.
+  121: [
+    {
+      kind: 'p',
+      text:
+        'These are the priors we use to build the model — assumptions, labeled as such, not observed facts. The two that carry the most weight are also the two the market discusses least: work expansion and infrastructure efficiency. Penetration compounds fast from a small base; autonomy rises as models clear the task-horizon curve of Part 01; the human-approval gate loosens as reliability earns trust.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Every row is re-markable against public disclosures, and the tracker holds us to that. When the model is wrong, one of these rows is where.',
+    },
+  ],
+
+  // Site-original exhibit: net multiplier.
+  122: [
+    {
+      kind: 'p',
+      text:
+        'The bull and the bear case live in one multiplication. By 2029, an agent may generate eight times the machine actions a person would for the same workflow — while caching, batching, semantic layers, and cheaper hardware cut the resources needed per action by a third or more. Multiply the two and you get the net backend multiplier: roughly 5x per agent workflow in our 2029 mid-case.',
+    },
+  ],
+
+  // Site-original exhibit: the worked example.
+  123: [
+    {
+      kind: 'p',
+      text:
+        'Put the pieces together for 2029: a fifth of workflows on agents, work expanded 1.35x, a 5x net multiplier on the agent share. Backend demand lands at roughly 2.4 times the workload of the same economy without agents.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Notice what causes it: only 20% penetration. Agents do not need to take over most of the world’s work for backend demand to move dramatically. This is the mechanism the rest of the series prices — and the reason the token record below matters: it is the first measured proof that demand behaves this way when the price of intelligence falls.',
+    },
+  ],
+
   19: [
     {
       kind: 'p',
       lead: true,
       text:
-        'Two variables decide how big infinite software gets: token usage, the measurable fuel, and the AI agent population, the workforce that burns it. This part measures the first and models the second. Tokens first, because they are the rawest series this industry publishes. Global token consumption ran 0.05 quadrillion in 2022, 0.5Q in 2023, 5Q in 2024, 25Q in 2025, and roughly 100Q in 2026: a ~2,000x expansion in four years.',
+        'The model needs measured fuel, and tokens are the rawest series this industry publishes. Everything from here is the demand evidence: what happened to consumption when the price of intelligence collapsed. Global token consumption ran 0.05 quadrillion in 2022, 0.5Q in 2023, 5Q in 2024, 25Q in 2025, and roughly 100Q in 2026: a ~2,000x expansion in four years.',
     },
     {
       kind: 'p',
@@ -85,33 +137,6 @@ export const part2: Record<number, Block[]> = {
   ],
 
   // Site-original exhibit: the agent population, modeled.
-  52: [
-    {
-      kind: 'p',
-      text:
-        'The second variable is the one that matters most, and almost nobody counts it: how many AI agents are operating? We count always-on instances — an agent deployed and working, not a person chatting. Today, roughly 25 million people delegate to agents, but most agents still run episodically; our modeled estimate of always-on instances is about 10 million. By 2030, with a quarter of ~2.5 billion AI users delegating and several instances per delegator, the population reaches roughly a billion.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The workweek math in the exhibit is why the definition matters: an instance that never clocks out is worth several human schedules, so even a modest instance count already represents an enormous labor pool — and at the modeled endpoint, machine schedules rival humanity’s entire professional class. Every estimate on this page is modeled and labeled as such; the point is the order of magnitude, and the tracker grades it as disclosures arrive.',
-    },
-  ],
-
-  // Site-original exhibit: the internet, and the share on the stack.
-  89: [
-    {
-      kind: 'p',
-      text:
-        'Where does that workforce show up? On the internet’s infrastructure — and the internet is already more machine than most people think. About 5.5 billion humans are online, growing single digits; roughly half of all internet traffic is already non-human — bots, crawlers, APIs — before agents arrive at scale. The machine internet compounds; the human internet does not.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Now place the backend stack on that map. By our modeled estimate, about one in three internet applications touches at least one of the 25 public backend names — Cloudflare alone fronts roughly 20% of all websites, and the data, identity, and observability paths of most large digital businesses run through the rest. Inside the cohort, we estimate 5–10% of consumption is already agent-driven — the source of the overage acceleration in Part 03. The multiplication of those two estimates is the thesis, and it lands exactly where the next part goes.',
-    },
-  ],
-
   24: [
     {
       kind: 'p',
@@ -177,19 +202,6 @@ export const part2: Record<number, Block[]> = {
     },
   ],
 
-  29: [
-    {
-      kind: 'p',
-      text:
-        'Set the two maps side by side: they differ in method and agree in direction. Situational Awareness counts in orders of magnitude — factors of ten, the “OOMs” of its title chapter — and reasons from supply: effective compute compounding roughly one order of magnitude a year, capability per token rising, drop-in remote workers arriving as a consequence. We reason from demand: measured elasticity, capability deliberately held constant, adoption counted in users and intensity rather than IQ. Their ceiling is the wage pool; ours is what the elasticity data will bear.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Two maps drawn from opposite coasts landing within 2x of each other is not a coincidence to explain away; it is triangulation. The maps multiply rather than compete — and where they disagree, the disagreement is upside to the meters, not risk. That is why we underwrite the lower number.',
-    },
-  ],
-
   30: [
     {
       kind: 'p',
@@ -230,19 +242,6 @@ export const part2: Record<number, Block[]> = {
     },
   ],
 
-  32: [
-    {
-      kind: 'p',
-      text:
-        'Has a build approaching a trillion dollars a year happened before? Three times. British railways absorbed roughly 40% of GDP in cumulative private investment across the 1840s — and the investors of the mania mostly lost, while the users of the rails built the industrial economy on top of them. The US telecom buildout of 1996–2001 laid about a trillion of today’s dollars of fiber before demand arrived; the operators went bankrupt in rows, and the dark fiber they left behind carried the next twenty years of the internet at pennies. The green transition runs at trillions, ongoing.',
-    },
-    {
-      kind: 'p',
-      text:
-        'The pattern across all three is uncomfortable for builders and comfortable for meters: economies periodically rebuild themselves around a new input, over-invest at the peak, and hand the durable economics to whoever bills the input’s use rather than whoever financed its construction. The AI buildout — approaching 3% of GDP — is the fourth great mobilization. This piece is about positioning for the royalty, not the construction.',
-    },
-  ],
-
   33: [
     {
       kind: 'p',
@@ -277,11 +276,32 @@ export const part2: Record<number, Block[]> = {
     },
   ],
 
-  37: [
+
+  // Site-original exhibit: observable signals.
+  126: [
     {
       kind: 'p',
       text:
-        'Three numbers close the part: ~40x tokens, ~75% of them doing rather than asking, ~190x billable events landing on the rails. None of the three stands on a single support — the history, the precedents, the platform prints, the suppliers’ capex, and our own production telemetry all point the same way, and removing any one of them leaves the call standing. Part 01 said the software population explodes; this part counted the explosion. What it has not yet shown is the only thing an investor of any kind should care about — whether anyone actually gets paid. That is Part 03: the companies already billing machine labor by the unit, and the evidence, line by line, in their filings.',
+        'We do not have to wait for filings to grade the priors. Datadog’s telemetry shows agent-framework adoption among observed organizations nearly doubling in a year. GitHub now exposes agent job starts and sessions in its usage API. Cloudflare’s agent traces expose invocations, subagents, model calls, tool calls, and database operations — the raw material for measuring fan-out. Even the efficiency headroom is visible: cached reads appear in barely a quarter of observed model calls today.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Machine identity is making the machine share of traffic measurable too: the Model Context Protocol puts OAuth-style identity on tool access, and Cloudflare is pushing cryptographically identifiable agent traffic. The internet is starting to label its machines.',
+    },
+  ],
+
+  // Site-original exhibit: the questions by year.
+  127: [
+    {
+      kind: 'p',
+      text:
+        '2026 is for coefficients: how infrastructure-intensive are real production agents — actions, queries, telemetry, and state per workflow. 2029 is for penetration and persistence: how much work is assigned to agents, and whether they run occasionally or continuously. 2031 is for the second-order effects: how elastic work proves to be, and how hard efficiency pushes back.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Part 03 takes the model to the vendors: which backend companies collect machine demand, category by category and name by name — and what their filings already show.',
     },
   ],
 };

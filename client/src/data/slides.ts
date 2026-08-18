@@ -217,7 +217,7 @@ export interface Slide {
 
 export const PARTS: { n: Part; title: string; sub: string; start: number }[] = [
   { n: 1, title: 'The Machine Economy', sub: 'the era — the marginal consumer of software becomes software itself', start: 7 },
-  { n: 2, title: 'The Token Tidal Wave', sub: 'the phenomenon — our ~40x call, landing on the rails', start: 18 },
+  { n: 2, title: 'Measuring Machine Demand', sub: 'the model — from work to workflows to billable units', start: 18 },
   {
     n: 3,
     title: 'A Royalty on Machine Labor',
@@ -706,7 +706,97 @@ export const SLIDES: Slide[] = [
   {
     id: 18,
     part: 2,
-    body: { kind: 'section', num: '02', label: 'The Token Tidal Wave', sub: 'the phenomenon — our ~40x call, landing on the rails' },
+    body: { kind: 'section', num: '02', label: 'Measuring Machine Demand', sub: 'the model — from work to workflows to billable units' },
+  },
+  {
+    // Site-original exhibit: the model chain.
+    id: 120,
+    part: 2,
+    kicker: 'A top-down work model feeding a bottom-up infrastructure model',
+    title: 'Start with the work, not the number of agents',
+    body: {
+      kind: 'flow',
+      items: [
+        { head: 'Work', desc: 'addressable digital workflows in the economy — expanded by cheap intelligence (X)' },
+        { head: 'Agent penetration', desc: 'the share of workflows assigned to agents (P)' },
+        { head: 'Machine actions', desc: 'each workflow fans out — tool calls, retries, subagents (F)' },
+        { head: 'Backend units', desc: 'database operations, queries, telemetry, state — net of efficiency (E)' },
+        { head: 'Billable units', desc: 'what survives sampling, caching, and pricing (M)' },
+      ],
+      out: [{ value: 'Vendor revenue', label: 'the only number the market grades' }],
+    },
+    takeaway: {
+      icon: '🧮',
+      text: 'The mistake to avoid is starting with “there will be X billion agents.” Work is measurable; agents are a means.',
+    },
+    footnote: 'We model three checkpoints: 2026, 2029, and 2031.',
+  },
+  {
+    // Site-original exhibit: scenario priors.
+    id: 121,
+    part: 2,
+    kicker: 'Scenario priors, not observed facts',
+    title: 'Our starting assumptions: 2026 → 2029 → 2031',
+    body: {
+      kind: 'table',
+      head: ['Assumption', '2026', '2029', '2031', 'Weight'],
+      rows: [
+        ['Agent share of workflows (P)', '1–5%', '10–30%', '25–60%', 'very high'],
+        ['End-to-end autonomous completion', '30–60%', '60–80%', '75–90%', 'very high'],
+        ['Work expansion (X)', '1.0–1.1x', '1.2–1.6x', '1.5–2.5x', 'very high'],
+        ['Gross machine actions per workflow (F)', '3–8x', '5–15x', '5–20x', 'very high'],
+        ['External API / tool-call share', '20–40%', '40–70%', '60–85%', 'high'],
+        ['Stateful, durable workflows (S)', '10–30%', '40–70%', '60–90%', 'high'],
+        ['Retry & subagent overhead', '1.2–2.0x', '1.1–1.5x', '1.05–1.3x', 'medium'],
+        ['Infrastructure efficiency per action (E)', '0.8–1.0x', '0.5–0.8x', '0.3–0.6x', 'very high'],
+        ['Human approval frequency', 'high', 'medium', 'low', 'adoption gate'],
+      ],
+    },
+    footnote:
+      'Skycatcher scenario priors, August 2026 — published to be graded, and re-marked in the tracker as disclosures land.',
+  },
+  {
+    // Site-original exhibit: the net backend multiplier.
+    id: 122,
+    part: 2,
+    kicker: 'The critical tension: more activity against more efficient infrastructure',
+    title: 'The net backend multiplier',
+    body: {
+      kind: 'decompose',
+      factors: [
+        { value: '8x', label: 'gross machine actions per workflow', from: 'a person’s workflow', to: '2029 mid-case' },
+        { value: '0.65x', label: 'infrastructure per action', from: 'today’s waste', to: 'caching, batching, reuse' },
+      ],
+      result: {
+        value: '5.2x',
+        label: 'net backend workload per agent workflow',
+        note: 'versus the same workflow done by a person',
+      },
+    },
+    takeaway: {
+      icon: '⚖️',
+      text: 'Agents may generate 10x the actions while efficiency cuts resource use per action by half or more. Model both, or the thesis is naive.',
+    },
+  },
+  {
+    // Site-original exhibit: the 2029 worked example.
+    id: 123,
+    part: 2,
+    kicker: 'The 2029 base case, worked',
+    title: 'You do not need agents to take over the work',
+    body: {
+      kind: 'stats',
+      items: [
+        { value: '20%', label: 'agent penetration', sub: 'the only adoption assumption' },
+        { value: '1.35x', label: 'work expansion', sub: 'new work, because work got cheap' },
+        { value: '5x', label: 'net backend multiplier', sub: 'per agent workflow, after efficiency' },
+        { value: '≈2.4x', label: 'total backend workload', sub: 'vs the same economy without agents' },
+      ],
+    },
+    takeaway: {
+      icon: '🎯',
+      text: 'Backend demand = X × [(1−P) + P×M] = 1.35 × (0.8 + 1.0) ≈ 2.4x. That is the central mechanism to prove or disprove.',
+    },
   },
   {
     id: 19,
@@ -813,49 +903,6 @@ export const SLIDES: Slide[] = [
       icon: '🔌',
       text: 'The same human is worth 500–2,500x more tokens the day software stops waiting for prompts.',
     },
-  },
-  {
-    // Site-original exhibit: the agent population, modeled.
-    id: 52,
-    part: 2,
-    kicker: 'Modeled — always-on agent instances, today and 2030',
-    title: 'How many AI agents are operating?',
-    body: {
-      kind: 'bars',
-      axis: 'Always-on agent instances (modeled)',
-      items: [
-        { label: 'Today', sub: '~25M people delegate; most agents still episodic', value: 10, display: '~10M', tone: 'muted' },
-        { label: '2028', sub: 'delegation reaches the enterprise mainstream', value: 150, display: '~150M' },
-        { label: '2030', sub: '~25% of ~2.5B users delegating, several instances each', value: 1000, display: '~1B', tone: 'accent' },
-      ],
-    },
-    takeaway: {
-      icon: '🤖',
-      text:
-        'Each always-on agent works a 168-hour week — 4.2 human workweeks. ~10M agents ≈ 40M human workweeks today; ~1B ≈ 4 billion — a second workforce larger than the world’s ~1B knowledge workers.',
-    },
-    footnote: 'Skycatcher model from platform disclosures and our adoption framework. Instances, not people; episodic agents excluded.',
-  },
-  {
-    // Site-original exhibit: the internet, and how much of it runs on the stack.
-    id: 89,
-    part: 2,
-    kicker: 'The internet, and the share of it that touches the backend stack',
-    title: 'Where the agent population lands',
-    body: {
-      kind: 'stats',
-      items: [
-        { value: '5.5B', label: 'people on the internet', sub: 'the human internet has one growth rate left' },
-        { value: '~50%', label: 'of internet traffic is already non-human', sub: 'bots, crawlers, APIs — before agents arrive at scale' },
-        { value: '~1 in 3', label: 'internet applications touch the 25-name backend', sub: 'modeled — Cloudflare alone fronts ~20% of websites' },
-        { value: '~5–10%', label: 'of cohort consumption is agent-driven today', sub: 'modeled — the source of the overage acceleration' },
-      ],
-    },
-    takeaway: {
-      icon: '🌐',
-      text: 'Multiply the two: a billion agents, a third of the internet running through the stack — that product is the demand curve of Part 03.',
-    },
-    footnote: 'Application touch and agent-driven consumption are Skycatcher estimates from public traffic disclosures and cohort filings.',
   },
   {
     id: 24,
@@ -981,24 +1028,6 @@ export const SLIDES: Slide[] = [
     footnote: 'Forecasts from Aschenbrenner, Situational Awareness (June 2024), graded against 2026 data.',
   },
   {
-    id: 29,
-    part: 2,
-    kicker: 'Two independent maps of the same wave',
-    title: 'Their orders of magnitude, our meters',
-    body: {
-      kind: 'table',
-      head: ['', 'Situational Awareness', 'Machine Oracle'],
-      rows: [
-        ['Core driver', 'Supply-side — effective compute up ~10x a year', 'Demand-side — measured elasticity'],
-        ['Unit', 'Capability per token', 'Raw tokens, capability held constant'],
-        ['Adoption path', 'Drop-in remote workers by 2027', '22% of ~2B users by 2029'],
-        ['Ceiling', 'The wage pool', 'Measured elasticity and capture'],
-        ['Implied 2029 tokens', '~6,000Q+, power-bounded', '~4,000Q — still a slowdown vs. ×7/yr'],
-      ],
-      highlight: 4,
-    },
-  },
-  {
     id: 30,
     part: 2,
     kicker: 'Can compute deliver 40x tokens?',
@@ -1057,25 +1086,6 @@ export const SLIDES: Slide[] = [
         { label: 'Our wave case', sub: '×3.4/yr — underwritten', value: 4000, display: '~4,000Q', tone: 'accent' },
         { label: 'Situational Awareness case', sub: 'adoption below the physical ceiling', value: 6000, display: '~6,000Q' },
         { label: 'Physical ceiling', sub: '~10x power × 3x FLOPs × 2.5x perf/watt', value: 7500, display: '~7,500Q', tone: 'warn' },
-      ],
-    },
-  },
-  {
-    id: 32,
-    part: 2,
-    kicker: 'The fourth great mobilization',
-    title: 'Capital mobilizations of this scale have precedent',
-    body: {
-      kind: 'steps',
-      items: [
-        { n: '1840s', head: 'British railways', desc: '~40% of GDP in cumulative private investment.' },
-        {
-          n: '1996–2001',
-          head: 'US telecom buildout',
-          desc: '~$1T (today’s dollars) of internet infrastructure laid before demand fully arrived — the rails outlived the bust.',
-        },
-        { n: 'Ongoing', head: 'The green transition', desc: 'Trillions, still running.' },
-        { n: 'Now', head: 'The AI buildout', desc: 'Approaching $1T a year — ~3% of GDP.' },
       ],
     },
   },
@@ -1147,22 +1157,64 @@ export const SLIDES: Slide[] = [
     },
     footnote: 'Skycatcher conversion model.',
   },
-  {
-    id: 37,
-    part: 2,
-    kicker: 'Part 02 recap',
-    title: 'The tidal wave, in three numbers',
-    body: {
-      kind: 'stats',
-      items: [
-        { value: '~40x', label: 'tokens by 2029', sub: '×3.4 a year against a ×7 history — the call is still a slowdown' },
-        { value: '~75%', label: 'of tokens doing, not asking', sub: 'above 60% already beats consensus' },
-        { value: '~190x', label: 'billable infrastructure events', sub: 'the wave amplifies as it lands on the meters' },
-      ],
-    },
-  },
 
   // ── Part 03 ───────────────────────────────────────────────────────────────
+  {
+    // Site-original exhibit: the observable signals.
+    id: 126,
+    part: 2,
+    kicker: 'In 2026, the job is measuring behavior — not forecasting agent counts',
+    title: 'The variables are becoming observable',
+    body: {
+      kind: 'table',
+      head: ['Signal', 'Informs', 'Source'],
+      rows: [
+        ['Agent-framework adoption: 9% → 18% of observed organizations in one year', 'penetration (P)', 'Datadog, State of AI Engineering, 2026'],
+        ['Agent job starts and sessions, now in the usage-metrics API', 'activity & duty cycle (D)', 'GitHub, August 2026'],
+        ['Tool calls, subagents, and database operations per trace', 'fan-out (F)', 'Cloudflare agent tracing; Sky1 traces'],
+        ['Cached reads in only ~28% of observed model-call spans', 'efficiency headroom (E)', 'Datadog, 2026'],
+        ['Authenticated machine identities on tool access; signed agent traffic', 'the machine share of requests', 'MCP authorization spec; Cloudflare, 2026'],
+      ],
+    },
+    takeaway: {
+      icon: '🔬',
+      text: 'The 2026 question — how infrastructure-intensive are real production agents? — is measurable today. We measure it.',
+    },
+  },
+  {
+    // Site-original exhibit: the questions by checkpoint.
+    id: 127,
+    part: 2,
+    kicker: 'What each checkpoint asks',
+    title: 'The questions, by year',
+    body: {
+      kind: 'steps',
+      items: [
+        {
+          n: '2026',
+          head: 'Measure the coefficients',
+          desc: 'Actions, queries, telemetry, and state per workflow — from real production traces, not forecasts.',
+          meta: 'measurable now',
+        },
+        {
+          n: '2029',
+          head: 'Watch penetration and persistence',
+          desc: 'How many workflows are assigned to agents; whether employees run one agent occasionally or ten continuously; machine-initiated versus human-initiated backend actions.',
+          meta: 'the swing years',
+        },
+        {
+          n: '2031',
+          head: 'Second-order effects decide',
+          desc: 'How elastic work proves to be, how aggressively infrastructure is optimized, and whether agents become continuously running workers.',
+          meta: 'bull vs base vs bear',
+        },
+      ],
+    },
+    takeaway: {
+      icon: '📐',
+      text: 'Get the coefficients right in 2026, and the 2029–2031 answers become arithmetic instead of narrative.',
+    },
+  },
   {
     id: 38,
     part: 3,
