@@ -42,6 +42,7 @@ function barWidths(values: number[]): number[] {
 /** Exhibits that benefit from running wider than the text measure. */
 export const WIDE: ReadonlySet<Body['kind']> = new Set([
   'unlock',
+  'fantree',
   'table',
   'timeline',
   'waves',
@@ -567,6 +568,54 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       card.append(el('div', 'trio__v', item.value), el('div', 'trio__h', item.head), el('div', 'trio__d', item.desc));
       w.append(card);
     }
+    return w;
+  },
+
+  // ── Site-original (Part 1): human chain vs agent fan-out tree ─────────────
+  fantree(b) {
+    const w = el('div', 'fantree');
+
+    const lp = el('div', 'fantree__panel');
+    lp.append(el('div', 'fantree__head', b.left.head));
+    const lh = 36 + b.left.nodes.length * 34;
+    const ls = svg('svg', { viewBox: `0 0 300 ${lh}`, class: 'fantree__svg', role: 'img' }) as SVGSVGElement;
+    ls.setAttribute('aria-label', `${b.left.head}: ${b.left.nodes.join(', ')}`);
+    b.left.nodes.forEach((n, i) => {
+      const y = 26 + i * 34;
+      if (i) ls.append(svg('line', { x1: '24', y1: String(y - 34 + 7), x2: '24', y2: String(y - 7), class: 'fantree__link' }));
+      ls.append(svg('circle', { cx: '24', cy: String(y), r: '5', class: 'fantree__node' }));
+      ls.append(svgText(40, y + 4, n, 'fantree__lab'));
+    });
+    lp.append(ls, el('div', 'fantree__foot', b.left.foot));
+
+    const rp = el('div', 'fantree__panel fantree__panel--agent');
+    rp.append(el('div', 'fantree__head', b.right.head));
+    const rh = 34 + b.right.trunk.length * 30;
+    const rs = svg('svg', { viewBox: `0 0 340 ${rh}`, class: 'fantree__svg', role: 'img' }) as SVGSVGElement;
+    rs.setAttribute('aria-label', `${b.right.head}: ${b.right.trunk.join(', ')}, with a subagent branch`);
+    b.right.trunk.forEach((n, i) => {
+      const y = 24 + i * 30;
+      if (i) rs.append(svg('line', { x1: '24', y1: String(y - 30 + 6), x2: '24', y2: String(y - 6), class: 'fantree__link' }));
+      rs.append(svg('circle', { cx: '24', cy: String(y), r: '5', class: 'fantree__node fantree__node--agent' }));
+      rs.append(svgText(40, y + 4, n, 'fantree__lab'));
+    });
+    const bx = 196;
+    const ay = 24 + b.right.branch.at * 30;
+    rs.append(
+      svg('path', {
+        d: `M 30 ${ay} C 110 ${ay}, ${bx} ${ay + 4}, ${bx} ${ay + 22}`,
+        class: 'fantree__link fantree__link--branch',
+      })
+    );
+    b.right.branch.nodes.forEach((n, i) => {
+      const y = ay + 30 + i * 30;
+      if (i) rs.append(svg('line', { x1: String(bx), y1: String(y - 30 + 6), x2: String(bx), y2: String(y - 6), class: 'fantree__link fantree__link--branch' }));
+      rs.append(svg('circle', { cx: String(bx), cy: String(y), r: '4.5', class: 'fantree__node fantree__node--branch' }));
+      rs.append(svgText(bx + 14, y + 4, n, 'fantree__lab fantree__lab--branch'));
+    });
+    rp.append(rs, el('div', 'fantree__foot', b.right.foot));
+
+    w.append(lp, rp);
     return w;
   },
 

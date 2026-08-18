@@ -64,6 +64,12 @@ export type Body =
       items: { viz: 'uncap' | 'fanout' | 'week'; value: string; head: string; desc: string }[];
     }
   | {
+      // Site-original (Part 1): human chain vs agent fan-out tree.
+      kind: 'fantree';
+      left: { head: string; nodes: string[]; foot: string };
+      right: { head: string; trunk: string[]; branch: { at: number; nodes: string[] }; foot: string };
+    }
+  | {
       // Site-original hero (fig 1): the era's two magnitudes, drawn to scale.
       kind: 'unlock';
       price: {
@@ -210,7 +216,7 @@ export interface Slide {
 }
 
 export const PARTS: { n: Part; title: string; sub: string; start: number }[] = [
-  { n: 1, title: 'Infinite Software', sub: 'the era — machine labor makes software unlimited', start: 7 },
+  { n: 1, title: 'The Machine Economy', sub: 'the era — the marginal consumer of software becomes software itself', start: 7 },
   { n: 2, title: 'The Token Tidal Wave', sub: 'the phenomenon — our ~40x call, landing on the rails', start: 18 },
   {
     n: 3,
@@ -263,14 +269,271 @@ export const SLIDES: Slide[] = [
   {
     id: 7,
     part: 1,
-    body: { kind: 'section', num: '01', label: 'Infinite Software', sub: 'the era — machine labor makes software unlimited' },
+    body: { kind: 'section', num: '01', label: 'The Machine Economy', sub: 'the era — the marginal consumer of software becomes software itself' },
+  },
+  {
+    // Site-original exhibit: the three chains.
+    id: 100,
+    part: 1,
+    kicker: 'The cloud era, the agent era, and what comes after',
+    title: 'From human intent to machine execution',
+    body: {
+      kind: 'columns',
+      cols: [
+        {
+          head: 'The cloud era',
+          sub: 'humans → software → infrastructure',
+          items: [
+            'A person opens the app, runs the query, starts the workflow',
+            'Human attention is the rate limiter on every backend',
+          ],
+          foot: '1995–2022',
+          tone: 'cold',
+        },
+        {
+          head: 'The agent era',
+          sub: 'humans → agents → tools & APIs → infrastructure',
+          items: [
+            'A person sets the goal; agents do the work',
+            'Each goal fans out into many machine actions',
+          ],
+          foot: 'Now',
+          tone: 'cold',
+        },
+        {
+          head: 'The machine era',
+          sub: 'events → agents → other agents → infrastructure',
+          items: [
+            'No human action required at the start',
+            'Machines respond to machines, continuously',
+          ],
+          foot: 'Where the decade is headed',
+          tone: 'warm',
+        },
+      ],
+    },
+    takeaway: {
+      icon: '🔁',
+      text: 'The defining feature of the era is not that software becomes intelligent — it is that the marginal consumer of software infrastructure becomes software itself.',
+    },
+  },
+  {
+    // Site-original exhibit: the decoupling, drawn as an org.
+    id: 101,
+    part: 1,
+    kicker: 'Backend activity decouples from human population',
+    title: 'Humans stop being the rate limiter',
+    body: {
+      kind: 'rings',
+      rings: [
+        { value: '10,000', label: 'employees' },
+        { value: '50,000+', label: 'persistent agents & subagents' },
+        { value: 'Millions', label: 'machine workflows a day' },
+      ],
+      eras: [
+        {
+          when: 'Then',
+          name: 'One worker, one login',
+          count: '10,000',
+          desc: 'Backend activity scaled with headcount — employees, developers, customers, users.',
+        },
+        {
+          when: 'Now',
+          name: 'Agents beside every team',
+          count: '50,000+',
+          desc: 'Persistent agents plus transient subagents, each making calls no person initiates.',
+        },
+        {
+          when: 'Ahead',
+          name: 'Workflows without people',
+          count: 'Millions/day',
+          desc: 'Machine intensity — machine actions over human actions — becomes the era’s defining ratio.',
+        },
+      ],
+    },
+    takeaway: {
+      icon: '⚙️',
+      text: 'A human makes ~50 meaningful software actions in a workday. An agent makes thousands — continuously, at machine speed, while spawning more agents.',
+    },
+    footnote: 'Illustrative company; counts are orders of magnitude, not forecasts.',
+  },
+  {
+    // Site-original exhibit: work expansion examples.
+    id: 102,
+    part: 1,
+    kicker: 'Cheap intelligence does not shrink the work — it multiplies it',
+    title: 'Work expansion: the most underappreciated variable',
+    body: {
+      kind: 'table',
+      head: ['The job', 'A human does', 'Agents do'],
+      rows: [
+        ['Equity research', '30 companies, covered deeply', 'every company, every day, hundreds of scenarios'],
+        ['Security', 'the 50 most suspicious events', 'all 5 million'],
+        ['Sales research', '20 accounts', '20,000 accounts'],
+        ['Software testing', '10 test runs', '10,000 permutations'],
+      ],
+    },
+    takeaway: {
+      icon: '📈',
+      text: 'Work expansion (X) = work performed with agents ÷ work that would have been performed without them. We care about this more than the share of jobs automated.',
+    },
+    footnote: 'Skycatcher illustrations of demand elasticity at the level of work, not price.',
+  },
+  {
+    // Site-original exhibit: passive vs active software.
+    id: 103,
+    part: 1,
+    kicker: 'Software stops waiting',
+    title: 'From request–response to observe, reason, act',
+    body: {
+      kind: 'columns',
+      cols: [
+        {
+          head: 'Software that waits',
+          sub: 'the SaaS era',
+          items: [
+            'Salesforce waits for someone to update the CRM',
+            'Snowflake waits for a query',
+            'MongoDB waits for an application request',
+            'Datadog waits for telemetry to arrive',
+          ],
+          foot: 'request → response',
+          tone: 'cold',
+        },
+        {
+          head: 'Software that acts',
+          sub: 'the agent era',
+          items: [
+            'Monitors, investigates, reconciles',
+            'Researches, tests, optimizes',
+            'Negotiates, reports, acts — continuously',
+            'A standing loop: observe → reason → act',
+          ],
+          foot: 'Duty cycle (D) = active time ÷ available time',
+          tone: 'warm',
+        },
+      ],
+    },
+    takeaway: {
+      icon: '🔄',
+      text: 'Most agents today run 45 seconds after a prompt. The consequential world is an agent provisioned once and operating for six months — 1% duty cycle against 80% is an enormous difference for the backend.',
+    },
+  },
+  {
+    // Site-original exhibit: the fan-out tree.
+    id: 104,
+    part: 1,
+    kicker: 'One unit of thought, many units of infrastructure',
+    title: 'Every agent task fans out',
+    body: {
+      kind: 'fantree',
+      left: {
+        head: 'A human interaction',
+        nodes: ['Click', 'API call', 'Database', 'Response'],
+        foot: 'one action → a few backend touches',
+      },
+      right: {
+        head: 'An agent task',
+        trunk: [
+          'Goal',
+          'Reason',
+          'Retrieve context',
+          'Query database',
+          'Call model',
+          'Call API',
+          'Validate',
+          'Retry',
+          'Write state',
+          'Emit telemetry',
+          'Complete',
+        ],
+        branch: { at: 5, nodes: ['Spawn subagent', 'Retrieve · call API', 'Query database'] },
+        foot: 'one task → dozens of backend actions',
+      },
+    },
+    takeaway: {
+      icon: '🌳',
+      text: 'Agent fan-out (F) = backend actions ÷ agent task. A small population of agents with deep fan-out can out-consume a large population of humans.',
+    },
+    footnote: 'Trace shape per Cloudflare’s agent tracing and Skycatcher’s own Sky1 traces: invocations, subagents, model calls, tool calls, database operations.',
+  },
+  {
+    // Site-original exhibit: from stateless inference to persistent workers.
+    id: 105,
+    part: 1,
+    kicker: 'Prompts in, tokens out was the easy part. Agents need to remember.',
+    title: 'Agents create state',
+    body: {
+      kind: 'convert',
+      from: {
+        head: 'The inference era',
+        value: 'Model + prompt',
+        sub: 'stateless — nothing persists between calls',
+        tag: '2023–2025',
+      },
+      via: {
+        head: 'What a useful agent must keep',
+        rows: [
+          { verb: 'Identity', desc: 'who it is, what it may touch' },
+          { verb: 'Memory', desc: 'context, preferences, history' },
+          { verb: 'Checkpoints', desc: 'where the work stands' },
+          { verb: 'Artifacts', desc: 'what it produced, and for whom' },
+        ],
+      },
+      to: {
+        head: 'The agent era',
+        value: 'Model + state + tools + identity + memory',
+        sub: 'a persistent digital worker',
+        tag: '2026 →',
+      },
+    },
+    takeaway: {
+      icon: '💾',
+      text: 'State intensity (S) = persistent state ÷ unit of agent work. If agents stay ephemeral, databases get incremental transactions. If they become persistent workers, databases become their memory.',
+    },
+  },
+  {
+    // Site-original exhibit: machine-to-machine as an economic category.
+    id: 106,
+    part: 1,
+    kicker: 'Machines become a class of economic actor — operationally, not legally',
+    title: 'Machine-to-machine becomes an economic category',
+    body: {
+      kind: 'grid3',
+      items: [
+        {
+          eyebrow: 'Agent → API',
+          title: 'They transact',
+          desc: 'Machines call services, consume quotas, and pay for resources.',
+        },
+        {
+          eyebrow: 'Agent → database',
+          title: 'They remember',
+          desc: 'Reads, writes, and state that no human ever sees.',
+        },
+        {
+          eyebrow: 'Agent → agent',
+          title: 'They coordinate',
+          desc: 'Work handed between machines, with no person in the chain.',
+        },
+        {
+          eyebrow: 'Agent → everything',
+          title: 'They must be governed',
+          desc: 'Identity, permissions, observability, security — a new infrastructure layer dedicated to machines.',
+        },
+      ],
+    },
+    takeaway: {
+      icon: '🤝',
+      text: 'The internet was built for billions of humans. We are adding billions of software workers that authenticate, transact, generate data, and fail — all of which someone must meter.',
+    },
   },
   {
     // Site-original exhibit: the era's arithmetic, up front.
     id: 3,
     part: 1,
-    kicker: 'The production unlock, in two numbers',
-    title: 'The big idea: infinite software',
+    kicker: 'Why now — making software collapsed in price',
+    title: 'The production unlock: infinite software',
     body: {
       kind: 'unlock',
       price: {
@@ -294,129 +557,9 @@ export const SLIDES: Slide[] = [
       },
     },
     takeaway: { icon: '♾️', text: 'Price collapses, the maker population explodes — and the constraint moves to what all software must rent.' },
-    footnote: 'Cost per unit: Skycatcher production-regime estimates (figure 5). Maker population: GitHub and platform disclosures.',
+    footnote: 'A unit of software work: a scoped piece a mid-level engineer ships in about a day. 4,000x is a Skycatcher estimate — the claim is the order of magnitude, not the precision.',
   },
-  {
-    id: 8,
-    part: 1,
-    kicker: 'Skycatcher illustrative view of tech wave scale',
-    title: 'Every tech wave was bigger than the last — this one produces labor',
-    body: {
-      kind: 'waves',
-      items: [
-        { name: 'Mainframe', era: '1960–80', cos: ['IBM', 'DEC'] },
-        { name: 'PC', era: '1980s', cos: ['Microsoft', 'Intel'] },
-        { name: 'Networking', era: '1990s', cos: ['Cisco', 'Nokia'] },
-        { name: 'Web 1.0', era: '2000s', cos: ['Google', 'Amazon'] },
-        { name: 'Mobile', era: '2010s', cos: ['Apple', 'Tencent'] },
-        { name: 'Cloud / SaaS', era: '2015–20', cos: ['AWS', 'Salesforce'] },
-        { name: 'Artificial Intelligence', era: '2022–2029+', cos: ['NVIDIA', 'OpenAI', 'Anthropic'], last: true },
-      ],
-    },
-    takeaway: { icon: '🚀', text: 'Every prior wave sold tools. This one sells labor.' },
-    footnote: 'Skycatcher illustrative framework. Company references informational only.',
-  },
-  {
-    // Site-original exhibit (no deck slide): what "infinite software" means.
-    id: 5,
-    part: 1,
-    kicker: 'Illustrative — the software population, before and after production left human hands',
-    title: 'What infinite software looks like',
-    body: {
-      kind: 'contrast',
-      left: {
-        head: 'Software as a product',
-        items: ['ERP', 'CRM', 'Email', 'BI', 'HR', 'Docs'],
-        caption: '~5M applications · built by teams, for everyone',
-      },
-      right: {
-        head: 'Software as a document',
-        caption: 'uncounted · one user, one task, one afternoon',
-      },
-    },
-    takeaway: {
-      icon: '✨',
-      text: 'Software stops being a product you buy and becomes a document you write — and every piece of it rents the rails.',
-    },
-    footnote: 'Illustrative, not counted — the right panel is the point, not a census.',
-  },
-  {
-    id: 9,
-    part: 1,
-    kicker: 'The ration that just ended',
-    title: 'What “infinite software” actually means',
-    body: {
-      kind: 'columns',
-      cols: [
-        {
-          head: 'The old ration',
-          sub: '~30M developers',
-          items: ['$100+ an hour', '18-month backlogs', 'Every app justifies a team, a budget, a roadmap'],
-          foot: 'Only mass-market software gets built',
-          tone: 'cold',
-        },
-        {
-          head: 'The new state',
-          sub: 'Summonable',
-          items: [
-            'Agents write, test, and ship on demand',
-            '~4,000x cheaper per unit of work',
-            'Built for one user, one task, one afternoon',
-          ],
-          foot: 'Abundant, personal, disposable',
-          tone: 'warm',
-        },
-      ],
-    },
-  },
-  {
-    id: 10,
-    part: 1,
-    kicker: 'Cost per unit of software work, by production regime ($, log scale, illustrative)',
-    title: 'Production broke free of human hands',
-    body: {
-      kind: 'bars',
-      items: [
-        { label: 'Artisan engineering', sub: '1990s–2000s', value: 200, display: '$200', tone: 'muted' },
-        { label: 'Offshore & outsourcing', sub: '2000s', value: 60, display: '$60', tone: 'muted' },
-        { label: 'Open source & reuse', sub: '2010s', value: 20, display: '$20', tone: 'muted' },
-        { label: 'Copilot-assisted', sub: '2021–24', value: 5, display: '$5' },
-        { label: 'Agent-produced', sub: '2026', value: 0.05, display: '$0.05', tone: 'accent' },
-      ],
-    },
-    takeaway: { icon: '🤯', text: '~4,000x cheaper — in one step.' },
-    footnote: 'A unit of software work: a scoped piece of work a mid-level engineer ships in about a day. The 4,000x is a Skycatcher estimate — the claim is the order of magnitude, not the precision. Inference economics per Epoch AI constant-performance price data.',
-  },
-  {
-    id: 11,
-    part: 1,
-    kicker: 'Three consequences, and they multiply',
-    title: 'Labor is no longer human-limited',
-    body: {
-      kind: 'trio',
-      items: [
-        {
-          viz: 'uncap',
-          value: 'No cap',
-          head: 'The bottleneck is removed',
-          desc: 'Output was capped by human working hours. The cap comes off.',
-        },
-        {
-          viz: 'fanout',
-          value: '10–100x',
-          head: 'Work parallelizes',
-          desc: 'Agents launch agents — one instruction becomes a hundred workstreams.',
-        },
-        {
-          viz: 'week',
-          value: '168 hrs',
-          head: 'The work-week changes',
-          desc: 'A human works the dark hours. A machine works the whole grid, every week.',
-        },
-      ],
-    },
-    footnote: 'Skycatcher framework. Agent capabilities illustrative; reliability and supervision requirements remain constraints.',
-  },
+
   {
     // Site-original exhibit: METR's task-horizon trend, drawn.
     id: 97,
@@ -447,6 +590,7 @@ export const SLIDES: Slide[] = [
     footnote:
       'METR, “Measuring AI Ability to Complete Long Tasks”, with 2025–26 updates. Task length at roughly 50% success; points are approximate readings of the published trend.',
   },
+
   {
     id: 12,
     part: 1,
@@ -468,62 +612,93 @@ export const SLIDES: Slide[] = [
     footnote:
       'GitHub Octoverse and platform disclosures, 2025–26; Google, 2025; Y Combinator, Winter 2025 batch; Stack Overflow public data through 2025; Lovable company disclosures.',
   },
+
   {
-    id: 13,
+    // Site-original exhibit: the seven variables on one page.
+    id: 107,
     part: 1,
-    kicker: 'The syntax wall comes down',
-    title: 'Everyone becomes a software developer',
+    kicker: 'The whole thesis on one page',
+    title: 'Seven variables above everything else',
     body: {
-      kind: 'rings',
-      rings: [
-        { value: '30M', label: 'professionals' },
-        { value: '180M', label: 'on GitHub' },
-        { value: '1B+', label: 'knowledge workers' },
-      ],
-      eras: [
-        { when: '1990–2022', name: 'The priesthood', count: '30M', desc: 'A profession behind a syntax wall — four in every thousand humans.' },
-        { when: '2022–2026', name: 'The copilot era', count: '180M', desc: 'The wall lowers: assisted, occasional, half-professional makers.' },
-        { when: '2026 →', name: 'The natural-language era', count: '1B+', desc: 'Describing software is making software. The wall is removed.' },
+      kind: 'table',
+      head: ['Variable', 'Definition', 'Why it matters'],
+      rows: [
+        ['P · Agent penetration', 'share of addressable workflows performed by agents', 'how broadly the technology spreads — important, and the most obvious'],
+        ['X · Work expansion', 'work performed with agents ÷ work performed without them', 'entirely new activity — possibly the most underappreciated'],
+        ['F · Agent fan-out', 'backend actions ÷ agent task', 'the backend’s leverage — the most important technical variable'],
+        ['D · Duty cycle', 'active agent time ÷ available time', 'occasional tools, or continuously running workers'],
+        ['S · State intensity', 'persistent state ÷ unit of agent work', 'decides whether databases become agent memory'],
+        ['E · Efficiency', 'infrastructure per action, future ÷ today', 'the biggest counterargument — today’s waste will improve'],
+        ['M · Monetization', 'incremental vendor revenue ÷ incremental consumption', 'converts a technology thesis into an equity thesis'],
       ],
     },
     takeaway: {
-      icon: '🌍',
-      text: '~33x more makers — the meters’ addressable population, multiplied.',
+      icon: '🔑',
+      text: 'Three of the seven decide whether this is a normal software cycle or an enormous backend cycle: work expansion, fan-out, and duty cycle.',
     },
   },
   {
-    id: 15,
+    // Site-original exhibit: the master equation.
+    id: 108,
     part: 1,
-    kicker: 'The scarcity inversion — where the money goes when production costs collapse',
-    title: 'Making software is becoming nearly free. But running is not.',
+    kicker: 'The era, reduced to one equation',
+    title: 'Machine demand, factored',
     body: {
-      kind: 'columns',
-      cols: [
+      kind: 'decompose',
+      factors: [
+        { value: 'P', label: 'agent penetration', from: '1–5% today', to: '25–60% by 2031' },
+        { value: 'X', label: 'work expansion', from: '~1.0x', to: '1.5–2.5x' },
+        { value: 'F', label: 'fan-out per task', from: '3–8x', to: '5–20x' },
+        { value: 'D', label: 'duty cycle', from: '~1%', to: 'toward 80%' },
+        { value: 'E', label: 'efficiency offset', from: '1.0x', to: '0.3–0.6x' },
+      ],
+      result: {
+        value: 'Machine demand',
+        label: 'the machine-generated share of all software activity',
+        note: 'vendor value = machine demand × category exposure × vendor share × monetization',
+      },
+    },
+    footnote: 'Ranges are Skycatcher scenario priors for 2026 → 2031 — assumptions published to be graded, not observed facts. Part 02 builds the model.',
+  },
+  {
+    // Site-original exhibit: the three stages.
+    id: 109,
+    part: 1,
+    kicker: 'Three stages, 2023 → 2031+',
+    title: 'Where we are in the era',
+    body: {
+      kind: 'steps',
+      items: [
         {
-          head: 'Deflates to zero',
-          items: ['Code, tests, documentation', 'Integration glue & boilerplate', 'One-off tools & scripts', 'Custom applications themselves'],
-          foot: 'An infinite knife-fight of entrants',
-          tone: 'cold',
+          n: '2023–2026',
+          head: 'Intelligence becomes abundant',
+          desc: 'The bottleneck is inference. The winners are GPUs, model providers, and cloud compute.',
+          meta: 'ending now',
         },
         {
-          head: 'Metered forever',
-          items: [
-            'Execute — runs, steps, compute-seconds',
-            'Remember — reads, writes, queries, storage',
-            'Answer for it — logs, identities, audit trails',
-          ],
-          foot: 'Billed per unit of use, scaling with the software population — the three activities Part 03 names the backend',
-          tone: 'warm',
+          n: '2026–2029',
+          head: 'Intelligence starts acting',
+          desc: 'Answers become actions. Agents gain tools, identity, memory, and permissions — and AI starts generating material non-AI infrastructure demand.',
+          meta: 'the window this piece is about',
+        },
+        {
+          n: '2029–2031+',
+          head: 'Machine activity becomes a material share of the economy',
+          desc: 'The question stops being how many humans use AI, and becomes: what fraction of the world’s digital work is initiated and executed by machines?',
+          meta: 'the bold call',
         },
       ],
     },
-    takeaway: { icon: '💡', text: 'The value moves to the metered column.' },
+    takeaway: {
+      icon: '🗺️',
+      text: 'Stage two is the window this piece is written in — answers becoming actions is what turns the backend thesis on.',
+    },
   },
   {
-    id: 17,
+    id: 110,
     part: 1,
-    title: 'What infinite software implies',
-    // Prose-only closer — the recap figure was removed at the user's request.
+    title: 'The thesis, in one paragraph',
+    // Prose-only closer.
     body: { kind: 'prose', paras: [] },
   },
 
