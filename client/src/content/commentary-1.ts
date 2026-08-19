@@ -78,7 +78,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'We call the ratio the action multiplier: backend actions per agent task. It is the core variable for the backend thesis, because it breaks the link between adoption and consumption — agent adoption can be modest while backend consumption grows enormously, if the multiplier is large.',
+        'We call the ratio the action multiplier: backend actions per agent task. Crucially, it breaks the link between adoption and consumption — agent adoption can be modest while backend consumption grows enormously, if the multiplier is large.',
     },
   ],
 
@@ -198,7 +198,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The thesis, then, where it can be graded. An internet built for humans is gaining a second population of workers — machine-speed, continuous, self-spawning, doing work that was never economical before. The question of the decade is not how much AI inference grows; it is how rapidly machine-generated demand becomes a material share of total software activity.',
+        'Taken together, this is the thesis — stated where it can be graded. An internet built for humans is gaining a second population of workers — machine-speed, continuous, self-spawning, doing work that was never economical before. The question of the decade is not how much AI inference grows; it is how rapidly machine-generated demand becomes a material share of total software activity.',
     },
     {
       kind: 'p',

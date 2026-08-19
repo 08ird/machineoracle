@@ -51,7 +51,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Notice what causes it: only 15% penetration. Agents do not need to take over most of the world’s work for backend demand to move dramatically. This is the mechanism the rest of the series prices — and the reason the token record below matters: it is the first measured proof that demand behaves this way when the price of intelligence falls.',
+        'Importantly, notice what causes it: only 15% penetration. Agents do not need to take over most of the world’s work for backend demand to move dramatically. This is the mechanism the rest of the series prices — and the reason the token record below matters: it is the first measured proof that demand behaves this way when the price of intelligence falls.',
     },
   ],
 
@@ -310,7 +310,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Timelines stated without odds are marketing. Ours: roughly a 30% chance the infrastructure inflection is visible by end-2028, 55% by end-2029, 70% by end-2030, 85% by end-2032 — judgmental probabilities, ours alone, published to be re-marked. Each quarter we ask one question: did the evidence pull the inflection forward six months, or push it back?',
+        'In our view, a timeline stated without odds is marketing. Ours: roughly a 30% chance the infrastructure inflection is visible by end-2028, 55% by end-2029, 70% by end-2030, 85% by end-2032 — judgmental probabilities, ours alone, published to be re-marked. Each quarter we ask one question: did the evidence pull the inflection forward six months, or push it back?',
     },
   ],
 };

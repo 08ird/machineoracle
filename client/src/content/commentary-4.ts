@@ -55,7 +55,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full record back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. Same wave, measured three ways — and the first re-acceleration this cohort has printed since the 2022 selloff.',
+        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full record back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. The same wave, measured three ways — and the first re-acceleration this cohort has printed since the 2022 selloff.',
     },
     {
       kind: 'p',
@@ -277,12 +277,12 @@ export const part4: Record<number, Block[]> = {
   91: [
     {
       kind: 'p',
-      text: 'The argument, assembled.',
+      text: 'Taken together, the argument:',
     },
     {
       kind: 'p',
       text:
-        'An era in which software production left human hands. A wave measured at 2,000x and forecast — as a deceleration — to run 40x more, amplifying to ~190x where it lands. A royalty already visible in retention, commitment, and overage, billed by three companies a mechanical rule selects. And a price: roughly 16x forward revenue, a growth-adjusted multiple identical to the trough of 2022 — for the fastest-growing, most directly wired claims on machine labor in public markets. Consensus prices the fade; the growth worlds above it are the debate; the ledger will grade every claim.',
+        'An era in which software production left human hands. A wave measured at 2,000x and forecast — as a deceleration — to run 40x more, amplifying to ~190x where it lands. A royalty already visible in retention, commitment, and overage, billed by three companies a mechanical rule selects. And a price: roughly 16x forward revenue, a growth-adjusted multiple identical to the trough of 2022 — for the fastest-growing, most directly wired claims on machine labor in public markets. Consensus prices the fade; the growth worlds above it are the debate; and the cohort has multiple paths to win — commitments, overage, retention, and conversion each move the answer on their own. The ledger will grade every claim.',
     },
     {
       kind: 'p',

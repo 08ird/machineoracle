@@ -114,7 +114,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'A reader who follows this space will notice the most interesting meters are missing from the public universe. They are being built in private, at speeds that make the public comps look sleepy — and the milestones are specific. Cursor set the record for the fastest software company to $100 million of annual recurring revenue, then ran past half a billion within two years of launch. Lovable took the same $100 million mark in about eight months — the fastest ramp Europe has produced. Replit grew revenue roughly tenfold in under a year as agent-built apps arrived. On the state side, Databricks crossed a $100 billion private valuation on a revenue run-rate near $4 billion — a usage-billed data platform larger than most of the public universe it is not yet part of.',
+        'A reader who follows this space will notice the most interesting meters are missing from the public universe. They are being built in private, growing at a pace the public names cannot match — and the milestones are specific. Cursor set the record for the fastest software company to $100 million of annual recurring revenue, then ran past half a billion within two years of launch. Lovable took the same $100 million mark in about eight months — the fastest ramp Europe has produced. Replit grew revenue roughly tenfold in under a year as agent-built apps arrived. On the state side, Databricks crossed a $100 billion private valuation on a revenue run-rate near $4 billion — a usage-billed data platform larger than most of the public universe it is not yet part of.',
     },
     {
       kind: 'p',
@@ -301,7 +301,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Hold the last four exhibits together: commitments re-accelerating, overage widening, revenue turning up, margins expanding. Growth and margins improving at the same time is the rarest combination in software. What the market has paid for it so far is the next question — the share prices first, then the valuation.',
+        'Taken together, the last four exhibits show commitments re-accelerating, overage widening, revenue turning up, and margins expanding. Growth and margins improving at the same time is the rarest combination in software. What the market has paid for it so far is the next question — the share prices first, then the valuation.',
     },
   ],
 
