@@ -1146,6 +1146,140 @@ blockquote cite {
   }
 }
 
+/* ── Exhibit: eqn (the master equation, drawn) ──────────────────────────── */
+
+.eqn {
+  display: grid;
+  gap: 0.9rem;
+}
+.eqn__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.6rem;
+}
+.eqn__term {
+  flex: 1 1 6.5rem;
+  min-width: 6rem;
+  border: 1px solid var(--rule);
+  background: var(--sheet);
+  padding: 0.6rem 0.7rem 0.55rem;
+}
+.eqn__term--result {
+  border-color: var(--accent);
+  border-top-width: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.eqn__sym {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+}
+.eqn__name {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  line-height: 1.3;
+  color: var(--ink-3);
+  margin-top: 0.15rem;
+}
+.eqn__mini {
+  display: block;
+  width: 100%;
+  max-width: 6rem;
+  height: auto;
+  margin-top: 0.4rem;
+}
+.eqn__now {
+  fill: var(--ink-4);
+}
+.eqn__later {
+  fill: var(--accent);
+}
+.eqn__later--down {
+  fill: var(--ink-3);
+}
+.eqn__arrow {
+  stroke: var(--ink-4);
+  stroke-width: 1.4;
+  fill: none;
+}
+.eqn__range {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  color: var(--ink-4);
+  margin-top: 0.3rem;
+  white-space: nowrap;
+}
+.eqn__op {
+  align-self: center;
+  font-family: var(--display);
+  font-size: 1.2rem;
+  color: var(--ink-4);
+  flex: none;
+}
+.eqn__rv {
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 0.9rem + 0.7vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.eqn__second {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.5rem;
+}
+
+/* ── Exhibit: hub (the agent at the center) ─────────────────────────────── */
+
+.hub__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hub__center {
+  fill: var(--accent);
+  fill-opacity: 0.08;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+.hub__clab {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 700;
+  fill: var(--accent);
+}
+.hub__node {
+  fill: var(--ink-3);
+}
+.hub__link {
+  stroke: var(--rule);
+  stroke-width: 1.5;
+}
+.hub__lab {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: var(--bg-2);
+  stroke-width: 3px;
+}
+.hub__desc {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  fill: var(--ink-3);
+  paint-order: stroke;
+  stroke: var(--bg-2);
+  stroke-width: 3px;
+}
+
 /* ── Exhibit: fantree (human chain vs agent fan-out) ────────────────────── */
 
 .fantree {

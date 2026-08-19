@@ -64,6 +64,19 @@ export type Body =
       items: { viz: 'uncap' | 'fanout' | 'week'; value: string; head: string; desc: string }[];
     }
   | {
+      // Site-original (Part 1, fig 12): the master equation, drawn.
+      kind: 'eqn';
+      terms: { sym: string; name: string; now: string; later: string; dir: 'up' | 'down' }[];
+      result: { value: string; label: string };
+      second?: string;
+    }
+  | {
+      // Site-original (Part 1): agent at the center, spokes to what it touches.
+      kind: 'hub';
+      center: string;
+      spokes: { label: string; desc: string }[];
+    }
+  | {
       // Site-original (Part 1): human chain vs agent fan-out tree.
       kind: 'fantree';
       left: { head: string; nodes: string[]; foot: string };
@@ -365,12 +378,12 @@ export const SLIDES: Slide[] = [
     title: 'Work expansion: the most underappreciated variable',
     body: {
       kind: 'table',
-      head: ['The job', 'A human does', 'Agents do'],
+      head: ['The job', 'A human does', 'Agents do', 'Expansion'],
       rows: [
-        ['Equity research', '30 companies, covered deeply', 'every company, every day, hundreds of scenarios'],
-        ['Security', 'the 50 most suspicious events', 'all 5 million'],
-        ['Sales research', '20 accounts', '20,000 accounts'],
-        ['Software testing', '10 test runs', '10,000 permutations'],
+        ['Equity research', '30 companies, covered deeply', 'every company, every day, hundreds of scenarios', '×100+'],
+        ['Security', 'the 50 most suspicious events', 'all 5 million', '×100,000'],
+        ['Sales research', '20 accounts', '20,000 accounts', '×1,000'],
+        ['Software testing', '10 test runs', '10,000 permutations', '×1,000'],
       ],
     },
     takeaway: {
@@ -499,28 +512,15 @@ export const SLIDES: Slide[] = [
     kicker: 'Machines become a class of economic actor — operationally, not legally',
     title: 'Machine-to-machine becomes an economic category',
     body: {
-      kind: 'grid3',
-      items: [
-        {
-          eyebrow: 'Agent → API',
-          title: 'They transact',
-          desc: 'Machines call services, consume quotas, and pay for resources.',
-        },
-        {
-          eyebrow: 'Agent → database',
-          title: 'They remember',
-          desc: 'Reads, writes, and state that no human ever sees.',
-        },
-        {
-          eyebrow: 'Agent → agent',
-          title: 'They coordinate',
-          desc: 'Work handed between machines, with no person in the chain.',
-        },
-        {
-          eyebrow: 'Agent → everything',
-          title: 'They must be governed',
-          desc: 'Identity, permissions, observability, security — a new infrastructure layer dedicated to machines.',
-        },
+      kind: 'hub',
+      center: 'Agent',
+      spokes: [
+        { label: 'APIs', desc: 'calls services, consumes quotas' },
+        { label: 'Databases', desc: 'reads and writes state no human sees' },
+        { label: 'Other agents', desc: 'hands work between machines' },
+        { label: 'Payments', desc: 'transacts for resources' },
+        { label: 'Identity & security', desc: 'authenticates, holds permissions, fails' },
+        { label: 'Observability', desc: 'is watched, traced, and audited' },
       ],
     },
     takeaway: {
@@ -634,7 +634,7 @@ export const SLIDES: Slide[] = [
     },
     takeaway: {
       icon: '🔑',
-      text: 'Three of the seven decide whether this is a normal software cycle or an enormous backend cycle: work expansion, fan-out, and duty cycle.',
+      text: 'The gate is reliable autonomy. The cleanest top-down metric is machine-hours per human. The bridge to the backend is backend actions per machine-hour.',
     },
   },
   {
@@ -644,54 +644,57 @@ export const SLIDES: Slide[] = [
     kicker: 'The era, reduced to one equation',
     title: 'Machine demand, factored',
     body: {
-      kind: 'decompose',
-      factors: [
-        { value: 'P', label: 'agent penetration', from: '1–5% today', to: '25–60% by 2031' },
-        { value: 'X', label: 'work expansion', from: '~1.0x', to: '1.5–2.5x' },
-        { value: 'F', label: 'fan-out per task', from: '3–8x', to: '5–20x' },
-        { value: 'D', label: 'duty cycle', from: '~1%', to: 'toward 80%' },
-        { value: 'E', label: 'efficiency offset', from: '1.0x', to: '0.3–0.6x' },
+      kind: 'eqn',
+      terms: [
+        { sym: 'P', name: 'agent penetration', now: '2–5%', later: '40–70%', dir: 'up' },
+        { sym: 'X', name: 'work expansion', now: '~1.05x', later: '1.8–3x', dir: 'up' },
+        { sym: 'F', name: 'fan-out per task', now: '3–8x', later: '10–30x', dir: 'up' },
+        { sym: 'D', name: 'duty cycle', now: '<5%', later: '30%+', dir: 'up' },
+        { sym: 'E', name: 'efficiency offset', now: '1x', later: '0.2–0.4x', dir: 'down' },
       ],
-      result: {
-        value: 'Machine demand',
-        label: 'the machine-generated share of all software activity',
-        note: 'vendor value = machine demand × category exposure × vendor share × monetization',
-      },
+      result: { value: 'Machine demand', label: 'the machine-generated share of all software activity' },
+      second: 'equivalently: machine demand = humans × machine-hours per human × backend actions per machine-hour — then vendor value = machine demand × category exposure × vendor share × monetization',
     },
-    footnote: 'Ranges are Skycatcher scenario priors for 2026 → 2031 — assumptions published to be graded, not observed facts. Part 02 builds the model.',
+    footnote: 'Ranges are Skycatcher scenario priors for 2026 → 2035 — assumptions published to be graded, not observed facts. Part 02 builds the model.',
   },
   {
-    // Site-original exhibit: the three stages.
+    // Site-original exhibit: the four phases.
     id: 109,
     part: 1,
-    kicker: 'Three stages, 2023 → 2031+',
+    kicker: 'Four phases, 2026 → 2035',
     title: 'Where we are in the era',
     body: {
       kind: 'steps',
       items: [
         {
-          n: '2023–2026',
-          head: 'Intelligence becomes abundant',
-          desc: 'The bottleneck is inference. The winners are GPUs, model providers, and cloud compute.',
-          meta: 'ending now',
+          n: '2026–27',
+          head: 'Agent experimentation',
+          desc: 'The loop works — goal, reason, tool, observe, act — but agents are expensive, supervised, and operationally messy. Roughly 5% of AI requests still fail. This phase is for learning the coefficients.',
+          meta: 'we are here',
         },
         {
-          n: '2026–2029',
-          head: 'Intelligence starts acting',
-          desc: 'Answers become actions. Agents gain tools, identity, memory, and permissions — and AI starts generating material non-AI infrastructure demand.',
-          meta: 'the window this piece is about',
+          n: '2028–29',
+          head: 'Workflow delegation',
+          desc: '“Own this workflow and escalate exceptions.” One human commands a portfolio of agents, and adoption × fan-out becomes visible in backend consumption.',
+          meta: '2029 — the infrastructure inflection',
         },
         {
-          n: '2029–2031+',
-          head: 'Machine activity becomes a material share of the economy',
-          desc: 'The question stops being how many humans use AI, and becomes: what fraction of the world’s digital work is initiated and executed by machines?',
+          n: '2030–32',
+          head: 'The persistent agent workforce',
+          desc: 'Agents stop being executions and become entities: memory, standing permissions, event-driven work. Duty cycle rivals adoption in importance.',
+          meta: '2032 — the architectural inflection',
+        },
+        {
+          n: '2033–35+',
+          head: 'The machine economy',
+          desc: 'Chains run agent → agent → API → database with no human at the start. In software-intensive domains, machine-generated backend actions pass human-generated ones.',
           meta: 'the bold call',
         },
       ],
     },
     takeaway: {
       icon: '🗺️',
-      text: 'Stage two is the window this piece is written in — answers becoming actions is what turns the backend thesis on.',
+      text: 'You do not need agents doing half the work: mid-teens penetration is enough to move the meters.',
     },
   },
   {
@@ -732,34 +735,34 @@ export const SLIDES: Slide[] = [
     footnote: 'We model three checkpoints: 2026, 2029, and 2031.',
   },
   {
-    // Site-original exhibit: scenario priors.
+    // Site-original exhibit: four-phase scenario priors.
     id: 121,
     part: 2,
-    kicker: 'Scenario priors, not observed facts',
-    title: 'Our starting assumptions: 2026 → 2029 → 2031',
+    kicker: 'Scenario priors across four phases — shares are of addressable digital workflows',
+    title: 'Our base case: 2026 → 2035, in four phases',
     body: {
       kind: 'table',
-      head: ['Assumption', '2026', '2029', '2031', 'Weight'],
+      head: ['', '2026–27 · experimentation', '2028–29 · delegation', '2030–32 · persistent agents', '2033–35 · machine economy'],
       rows: [
-        ['Agent share of workflows (P)', '1–5%', '10–30%', '25–60%', 'very high'],
-        ['End-to-end autonomous completion', '30–60%', '60–80%', '75–90%', 'very high'],
-        ['Work expansion (X)', '1.0–1.1x', '1.2–1.6x', '1.5–2.5x', 'very high'],
-        ['Gross machine actions per workflow (F)', '3–8x', '5–15x', '5–20x', 'very high'],
-        ['External API / tool-call share', '20–40%', '40–70%', '60–85%', 'high'],
-        ['Stateful, durable workflows (S)', '10–30%', '40–70%', '60–90%', 'high'],
-        ['Retry & subagent overhead', '1.2–2.0x', '1.1–1.5x', '1.05–1.3x', 'medium'],
-        ['Infrastructure efficiency per action (E)', '0.8–1.0x', '0.5–0.8x', '0.3–0.6x', 'very high'],
-        ['Human approval frequency', 'high', 'medium', 'low', 'adoption gate'],
+        ['Main interface', 'human → agent', 'human → many agents', 'events → agents', 'agents → agents'],
+        ['Agent penetration (P)', '2–5%', '10–20%', '25–45%', '40–70%'],
+        ['Work expansion (X)', '~1.05x', '1.15–1.4x', '1.4–2.0x', '1.8–3x+'],
+        ['Duty cycle (D)', '<5%', '5–15%', '15–35%', '30%+'],
+        ['Stateful workflows (S)', '10–25%', '25–50%', '50–75%', '70%+'],
+        ['Agent fan-out (F)', '3–8x', '5–12x', '7–20x', '10–30x'],
+        ['Efficiency vs 2026 (E)', '1x', '0.6–0.8x', '0.35–0.6x', '0.2–0.4x'],
+        ['Human approval', 'nearly every action', 'exceptions only', 'mostly supervisory', 'policy & governance'],
+        ['Backend consequence', 'detectable', 'growth inflection', 'material demand driver', 'architecture shift'],
       ],
     },
     footnote:
-      'Skycatcher scenario priors, August 2026 — published to be graded, and re-marked in the tracker as disclosures land.',
+      'Skycatcher scenario priors, August 2026 — assumptions published to be graded, not measured forecasts. Penetration is of addressable digital workflows, not all economic tasks.',
   },
   {
     // Site-original exhibit: the net backend multiplier.
     id: 122,
     part: 2,
-    kicker: 'The critical tension: more activity against more efficient infrastructure',
+    kicker: 'The critical tension, at the 2029 base case: more activity against more efficient infrastructure',
     title: 'The net backend multiplier',
     body: {
       kind: 'decompose',
@@ -785,18 +788,24 @@ export const SLIDES: Slide[] = [
     kicker: 'The 2029 base case, worked',
     title: 'You do not need agents to take over the work',
     body: {
-      kind: 'stats',
+      kind: 'bars',
+      axis: 'Backend workload — indexed to the all-human world',
       items: [
-        { value: '20%', label: 'agent penetration', sub: 'the only adoption assumption' },
-        { value: '1.35x', label: 'work expansion', sub: 'new work, because work got cheap' },
-        { value: '5x', label: 'net backend multiplier', sub: 'per agent workflow, after efficiency' },
-        { value: '≈2.4x', label: 'total backend workload', sub: 'vs the same economy without agents' },
+        { label: 'All-human world', sub: 'the same economy, no agents', value: 1, display: '1.0x', tone: 'muted' },
+        {
+          label: 'With agents — 2029 base case',
+          sub: '15% penetration · 1.3x work expansion · 5.2x net multiplier',
+          value: 2.12,
+          display: '≈2.1x',
+          tone: 'accent',
+        },
       ],
     },
     takeaway: {
       icon: '🎯',
-      text: 'Backend demand = X × [(1−P) + P×M] = 1.35 × (0.8 + 1.0) ≈ 2.4x. That is the central mechanism to prove or disprove.',
+      text: 'Backend demand = X × [(1−P) + P×M] = 1.3 × (0.85 + 0.78) ≈ 2.1x. Fifteen percent penetration ≈ twice the backend activity — that is why 2029 matters.',
     },
+    footnote: '2029 penetration scenarios: bear 7%, base 15%, bull 30%. 2032 base case: 35% penetration, 1.7x expansion, 12x fan-out at 0.45 efficiency — net 5.4x.',
   },
   {
     id: 19,
@@ -1169,7 +1178,10 @@ export const SLIDES: Slide[] = [
       kind: 'table',
       head: ['Signal', 'Informs', 'Source'],
       rows: [
+        ['Active agents in Microsoft 365: 15x year over year through March 2026', 'penetration (P)', 'Microsoft Work Trend Index, 2026'],
         ['Agent-framework adoption: 9% → 18% of observed organizations in one year', 'penetration (P)', 'Datadog, State of AI Engineering, 2026'],
+        ['99th-percentile Codex users: 60+ hours of agent turns a day via parallel agents; >70% of sampled users assigned hour-plus tasks', 'duty cycle (D) · machine-hours per human', 'OpenAI, June 2026'],
+        ['~5% of AI model requests fail; capacity limits a major cause', 'the reliability gate (A)', 'Datadog, 2026'],
         ['Agent job starts and sessions, now in the usage-metrics API', 'activity & duty cycle (D)', 'GitHub, August 2026'],
         ['Tool calls, subagents, and database operations per trace', 'fan-out (F)', 'Cloudflare agent tracing; Sky1 traces'],
         ['Cached reads in only ~28% of observed model-call spans', 'efficiency headroom (E)', 'Datadog, 2026'],
@@ -1182,38 +1194,60 @@ export const SLIDES: Slide[] = [
     },
   },
   {
-    // Site-original exhibit: the questions by checkpoint.
+    // Site-original exhibit: the questions by phase.
     id: 127,
     part: 2,
-    kicker: 'What each checkpoint asks',
-    title: 'The questions, by year',
+    kicker: 'What each phase asks',
+    title: 'The questions, by phase',
     body: {
       kind: 'steps',
       items: [
         {
-          n: '2026',
-          head: 'Measure the coefficients',
-          desc: 'Actions, queries, telemetry, and state per workflow — from real production traces, not forecasts.',
-          meta: 'measurable now',
+          n: '2026–27',
+          head: 'Learn the coefficients',
+          desc: 'Fan-out, duty cycle, state, and success rates from production traces. Exit signal: agents complete multi-hour workflows at 80–90%+ success, and human intervention moves from inside the workflow to after it.',
+          meta: 'we are here',
         },
         {
-          n: '2029',
-          head: 'Watch penetration and persistence',
-          desc: 'How many workflows are assigned to agents; whether employees run one agent occasionally or ten continuously; machine-initiated versus human-initiated backend actions.',
-          meta: 'the swing years',
+          n: '2028–29',
+          head: 'Delegation shows up in consumption',
+          desc: 'Penetration reaches the mid-teens; one human runs a portfolio of agents. Backend consumption inflects before the labor market notices.',
+          meta: 'infrastructure inflection',
         },
         {
-          n: '2031',
-          head: 'Second-order effects decide',
-          desc: 'How elastic work proves to be, how aggressively infrastructure is optimized, and whether agents become continuously running workers.',
-          meta: 'bull vs base vs bear',
+          n: '2030–32',
+          head: 'Persistence changes the architecture',
+          desc: 'Agents become entities with memory and standing permissions. Watch for machine-generated backend actions passing human-generated ones — first in software-intensive domains.',
+          meta: 'architectural inflection',
         },
       ],
     },
     takeaway: {
       icon: '📐',
-      text: 'Get the coefficients right in 2026, and the 2029–2031 answers become arithmetic instead of narrative.',
+      text: 'Get the coefficients right in 2026–27, and the two inflections become arithmetic instead of narrative.',
     },
+  },
+  {
+    // Site-original exhibit: judgmental probabilities.
+    id: 128,
+    part: 2,
+    kicker: 'Judgmental probabilities, re-marked quarterly — not externally sourced',
+    title: 'When does the infrastructure inflection arrive?',
+    body: {
+      kind: 'bars',
+      axis: 'Probability that agent-driven activity materially lifts backend vendor growth',
+      items: [
+        { label: 'By end-2028', value: 30, display: '~30%', tone: 'muted' },
+        { label: 'By end-2029', value: 55, display: '~55%', tone: 'accent' },
+        { label: 'By end-2030', value: 70, display: '~70%', tone: 'muted' },
+        { label: 'By end-2032', value: 85, display: '~85%', tone: 'muted' },
+      ],
+    },
+    takeaway: {
+      icon: '🎲',
+      text: 'The deeper, architectural shift — persistent agents, machine-originated actions exceeding human ones across software-intensive businesses — centers on 2031–33, with wider uncertainty.',
+    },
+    footnote: 'Skycatcher judgmental probabilities, August 2026 — re-marked quarterly against the thresholds in Part 04.',
   },
   {
     id: 38,
@@ -2769,6 +2803,55 @@ export const SLIDES: Slide[] = [
         { head: 'Management becomes review, intent, and audit', desc: '' },
         { head: 'The new moats are proprietary state and earned trust', desc: 'When anyone can summon software, code stops being an advantage.' },
       ],
+    },
+  },
+  {
+    // Site-original exhibit: the six clocks.
+    id: 142,
+    part: 4,
+    kicker: 'Forecast by instrument, not by calendar',
+    title: 'Six clocks',
+    body: {
+      kind: 'table',
+      head: ['Clock', 'The question', 'Milestones'],
+      rows: [
+        ['Capability', 'how long a task can an agent reliably own', 'hours → a day → several days → weeks, at ~80% success'],
+        ['Cost', 'is it cheaper to give the work to a machine?', 'adoption accelerates below 10–20% of human cost'],
+        ['Autonomy', 'share of workflows completed without intervention', '50% interesting · 80% deployable · 95%+ infrastructure'],
+        ['Penetration', 'share of addressable workflows on agents', 'the backend trade starts at 10–20%, not 50%'],
+        ['Duty cycle', 'active agent hours per day', 'episodic minutes → hours of parallel work → persistent → continuous'],
+        ['Work elasticity', 'work done vs the counterfactual', '10 analyses a week becoming 1,000 — uneconomic work turning economic'],
+      ],
+    },
+    takeaway: {
+      icon: '🕰️',
+      text: 'Six clocks beat one adoption line. Each has thresholds where the regime changes, and each is separately observable.',
+    },
+    footnote:
+      'Capability clock per METR, which cautions that its tasks are well-specified software work and beyond-16-hour estimates are not yet reliable.',
+  },
+  {
+    // Site-original exhibit: the 2029 thresholds.
+    id: 143,
+    part: 4,
+    kicker: 'Do not move the calendar — move the probabilities',
+    title: 'The 2029 thresholds',
+    body: {
+      kind: 'table',
+      head: ['Signal', 'Today', '2029 threshold', 'Moves'],
+      rows: [
+        ['Multi-hour task success', 'emerging', '>85%', 'P ↑'],
+        ['Agent cost vs human cost', 'falling', '<20%', 'P, X ↑'],
+        ['Agent hours per user per day', 'low outside the frontier', '>5', 'D ↑'],
+        ['Tool calls per session', 'growing', '>10', 'F ↑'],
+        ['Autonomous runs', 'early', '>50% of workflows', 'P, D ↑'],
+        ['Persistent-agent share', 'low', '>30%', 'S, D ↑'],
+        ['Machine share of relevant API traffic', 'early', '>20%', 'the whole thesis ↑'],
+      ],
+    },
+    takeaway: {
+      icon: '🚦',
+      text: 'Each quarter the question is the same: did the evidence pull the inflection forward six months, or push it back?',
     },
   },
   {

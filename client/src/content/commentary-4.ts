@@ -205,6 +205,29 @@ export const part4: Record<number, Block[]> = {
     },
   ],
 
+  // Site-original exhibit: six clocks.
+  142: [
+    {
+      kind: 'p',
+      text:
+        'One adoption line cannot carry a forecast, so we track six clocks. Capability: how long a task an agent can reliably own — the METR horizon. Cost: adoption accelerates when the agent runs below 10–20% of the human cost at sufficient reliability, which may matter more than raw intelligence. Autonomy: 50% success is an interesting tool, 80% is deployable automation, 95%+ is infrastructure — that last jump is enormous. Penetration: the backend trade starts at 10–20%, not 50%. Duty cycle: from episodic minutes to continuous populations. Work elasticity: ten analyses a week becoming a thousand.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Each clock has thresholds where the regime changes, each is separately observable, and together they replace the question we refuse to answer — how many agents will exist by year X.',
+    },
+  ],
+
+  // Site-original exhibit: the 2029 thresholds.
+  143: [
+    {
+      kind: 'p',
+      text:
+        'This is how the forecast updates: not by moving the calendar, but by moving the probabilities. Every row is a measurable signal with a 2029 threshold written in advance. Evidence that crosses a threshold pulls the inflection forward; evidence that stalls pushes it back — six months at a time, graded quarterly in the tracker.',
+    },
+  ],
+
   // Site-original exhibit: the signals dashboard.
   140: [
     {
@@ -259,7 +282,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'If the reader takes one idea from this piece, take the definition, not the screen: machine labor — work performed by software, billed by the unit — is real, priced, and compounding, and almost nothing in public markets is modeled for it. Understanding that one idea early is worth more than any list of tickers. And the whole debate compresses into three variables: how much more work happens because intelligence is cheap, how much backend activity each unit of agent work generates, and whether agents become continuously running workers. Watch those three, and the ledger grades itself — this site exists to test them in public, every quarter, until the record settles it.',
+        'If the reader takes one idea from this piece, take the definition, not the screen: machine labor — work performed by software, billed by the unit — is real, priced, and compounding, and almost nothing in public markets is modeled for it. Understanding that one idea early is worth more than any list of tickers. And the whole debate compresses into three gates: reliable autonomy, machine-hours per human, and backend actions per machine-hour. Watch those three, and the ledger grades itself — this site exists to test them in public, every quarter, until the record settles it.',
     },
   ],
 };

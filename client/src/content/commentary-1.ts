@@ -64,7 +64,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'That makes duty cycle — active time over available time — one of the biggest swing factors of 2026–2031. Today most agents look like: prompt, 45 seconds of work, stop. The consequential world is: provision an agent, and it operates for six months. A backend serving 1% duty-cycle agents and one serving 80% duty-cycle agents are different markets.',
+        'That makes duty cycle — active time over available time — one of the biggest swing factors of 2026–2031. Today most agents look like: prompt, 45 seconds of work, stop. The consequential world is: provision an agent, and it operates for six months. A backend serving 1% duty-cycle agents and one serving 80% duty-cycle agents are different markets. The frontier already shows where this goes: by June 2026, OpenAI’s 99th-percentile Codex users were generating 60+ hours of agent turns per day through parallel agents — machine-hours decoupling from human-hours.',
     },
   ],
 
@@ -129,7 +129,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The capability trend is measured, not asserted. METR, an independent evaluation group, has tracked since 2019 how long a software task a frontier model can finish on its own. The horizon doubled roughly every seven months for six years, then accelerated to about every four months across 2024–25. By early 2026, the leading model completes tasks that would take a skilled engineer most of a working day. Every doubling lengthens the loop — which raises duty cycle and fan-out at the same time.',
+        'The capability trend is measured, not asserted. METR, an independent evaluation group, has tracked since 2019 how long a software task a frontier model can finish on its own. The horizon doubled roughly every seven months for six years, then accelerated to about every four months across 2024–25. By early 2026, the leading model completes tasks that would take a skilled engineer most of a working day. Every doubling lengthens the loop — which raises duty cycle and fan-out at the same time. One honest caveat, from METR itself: the tasks are well-specified software work, estimates beyond 16-hour tasks are not yet reliable, and real work is messier.',
     },
   ],
 
@@ -170,7 +170,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Multiply them and you have the era’s demand: machine demand = human economic activity × penetration × work expansion × fan-out × duty cycle × efficiency. Then the equity translation: vendor value = machine demand × category exposure × vendor share × monetization. That is the entire research framework in two lines.',
+        'Multiply them and you have the era’s demand: machine demand = human economic activity × penetration × work expansion × fan-out × duty cycle × efficiency. Then the equity translation: vendor value = machine demand × category exposure × vendor share × monetization. That is the entire research framework in two lines. We increasingly prefer an equivalent form: humans × machine-hours per human × backend actions per machine-hour — it counts what machines do, not how many there are.',
     },
     {
       kind: 'p',
@@ -179,17 +179,17 @@ export const part1: Record<number, Block[]> = {
     },
   ],
 
-  // Three stages.
+  // Four phases.
   109: [
     {
       kind: 'p',
       text:
-        'The era arrives in three stages. In 2023–2026, intelligence became abundant: the bottleneck was inference, and the winners were GPUs, model providers, and cloud compute. In 2026–2029 — the window this piece is about — intelligence starts acting: answers become actions, agents gain tools, identity, memory, and permissions, and AI begins generating material demand for infrastructure that is not itself AI. That is when the backend thesis turns on.',
+        'The era arrives in four phases, and the evidence has made us somewhat more aggressive than our earlier framing. In 2026–27, agents prove the unit economics: the loop works, Microsoft reports active agents in Microsoft 365 up 15x in a year, Datadog sees agent frameworks in nearly twice as many organizations — and roughly 5% of AI requests still fail, which is why this phase is for learning coefficients, not declaring victory. In 2028–29, delegation: “own this workflow, escalate exceptions.” One human commands a portfolio of agents, and backend consumption inflects. We make 2029 the primary investment anchor — the infrastructure inflection.',
     },
     {
       kind: 'p',
       text:
-        'By 2029–2031, the interesting question is no longer how many humans use AI. It is what fraction of the world’s digital work is initiated and executed by machines — and whether machine-to-machine activity passes human-to-machine for substantial categories of computing. If it does, the architecture of the internet changes.',
+        'In 2030–32, agents become persistent — entities with memory that monitor, respond, sleep, and resume — and 2032 becomes the architectural inflection: the year to watch for machine-generated backend actions passing human-generated ones, first in software-intensive businesses. Beyond 2033, chains start without a person at all. Backend impact leads labor-market impact the whole way: consumption moves at mid-teens penetration, years before agents do most of the work.',
     },
   ],
 
@@ -203,7 +203,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Three variables decide whether this is a normal software cycle or an enormous backend cycle. Work expansion: how much more work happens because intelligence is cheap. Fan-out: how much backend activity each unit of agent work generates. Duty cycle: whether agents stay occasional tools or become continuously operating workers. These matter more than the raw number of agents.',
+        'Three things gate the outcome, and none of them is the number of agents. Reliable autonomy — the gate between assistance and delegation. Machine-hours per human — the cleanest top-down metric of adoption: perhaps half an agent-hour per person per day in 2026, five by 2029, thirty by 2032, at which point parallel machine work is structurally larger than human work time. And backend actions per machine-hour — the bridge that connects all of it to the meters.',
     },
     {
       kind: 'p',

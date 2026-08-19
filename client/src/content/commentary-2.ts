@@ -23,7 +23,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'These are the priors we use to build the model — assumptions, labeled as such, not observed facts. The two that carry the most weight are also the two the market discusses least: work expansion and infrastructure efficiency. Penetration compounds fast from a small base; autonomy rises as models clear the task-horizon curve of Part 01; the human-approval gate loosens as reliability earns trust.',
+        'These are the priors we use to build the model — assumptions, labeled as such, not observed facts, laid across the four phases of Part 01. The two rows that carry the most weight are also the two the market discusses least: work expansion and infrastructure efficiency. Penetration compounds from a small base; the human-approval gate loosens as reliability earns trust; and the bottom row is the point — the backend consequence inflects a full phase before the labor market notices.',
     },
     {
       kind: 'p',
@@ -46,12 +46,12 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Put the pieces together for 2029: a fifth of workflows on agents, work expanded 1.35x, a 5x net multiplier on the agent share. Backend demand lands at roughly 2.4 times the workload of the same economy without agents.',
+        'Put the pieces together for 2029: 15% of workflows on agents (bear 7%, bull 30%), work expanded 1.3x, a 5.2x net multiplier on the agent share. Backend demand lands at roughly 2.1 times the workload of the same economy without agents.',
     },
     {
       kind: 'p',
       text:
-        'Notice what causes it: only 20% penetration. Agents do not need to take over most of the world’s work for backend demand to move dramatically. This is the mechanism the rest of the series prices — and the reason the token record below matters: it is the first measured proof that demand behaves this way when the price of intelligence falls.',
+        'Notice what causes it: only 15% penetration. Agents do not need to take over most of the world’s work for backend demand to move dramatically. This is the mechanism the rest of the series prices — and the reason the token record below matters: it is the first measured proof that demand behaves this way when the price of intelligence falls.',
     },
   ],
 
@@ -282,7 +282,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'We do not have to wait for filings to grade the priors. Datadog’s telemetry shows agent-framework adoption among observed organizations nearly doubling in a year. GitHub now exposes agent job starts and sessions in its usage API. Cloudflare’s agent traces expose invocations, subagents, model calls, tool calls, and database operations — the raw material for measuring fan-out. Even the efficiency headroom is visible: cached reads appear in barely a quarter of observed model calls today.',
+        'We do not have to wait for filings to grade the priors. Microsoft reports active agents in its 365 ecosystem up 15x year over year through March 2026. Datadog’s telemetry shows agent-framework adoption among observed organizations nearly doubling in a year — and, on the other side of the ledger, about 5% of AI requests failing. OpenAI’s heaviest Codex users already generate more agent-hours in a day than a person can work. GitHub now exposes agent job starts and sessions in its usage API. Cloudflare’s agent traces expose invocations, subagents, model calls, tool calls, and database operations — the raw material for measuring fan-out. Even the efficiency headroom is visible: cached reads appear in barely a quarter of observed model calls today.',
     },
     {
       kind: 'p',
@@ -296,12 +296,21 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        '2026 is for coefficients: how infrastructure-intensive are real production agents — actions, queries, telemetry, and state per workflow. 2029 is for penetration and persistence: how much work is assigned to agents, and whether they run occasionally or continuously. 2031 is for the second-order effects: how elastic work proves to be, and how hard efficiency pushes back.',
+        '2026–27 is for coefficients: how infrastructure-intensive real production agents are — actions, queries, telemetry, and state per workflow — and whether success rates clear the bar that lets delegation begin. 2028–29 is for penetration and portfolios: how much work is assigned to agents, and how many agents each person runs. 2030–32 is for persistence and the second-order effects: how elastic work proves to be, how hard efficiency pushes back, and whether machine-originated actions pass human-originated ones where software is the business.',
     },
     {
       kind: 'p',
       text:
         'Part 03 takes the model to the vendors: which backend companies collect machine demand, category by category and name by name — and what their filings already show.',
+    },
+  ],
+
+  // Site-original exhibit: judgmental probabilities.
+  128: [
+    {
+      kind: 'p',
+      text:
+        'Timelines stated without odds are marketing. Ours: roughly a 30% chance the infrastructure inflection is visible by end-2028, 55% by end-2029, 70% by end-2030, 85% by end-2032 — judgmental probabilities, ours alone, published to be re-marked. Each quarter we ask one question: did the evidence pull the inflection forward six months, or push it back?',
     },
   ],
 };

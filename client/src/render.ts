@@ -43,6 +43,8 @@ function barWidths(values: number[]): number[] {
 export const WIDE: ReadonlySet<Body['kind']> = new Set([
   'unlock',
   'fantree',
+  'eqn',
+  'hub',
   'table',
   'timeline',
   'waves',
@@ -568,6 +570,81 @@ const renderers: { [K in Body['kind']]: (b: Extract<Body, { kind: K }>) => HTMLE
       card.append(el('div', 'trio__v', item.value), el('div', 'trio__h', item.head), el('div', 'trio__d', item.desc));
       w.append(card);
     }
+    return w;
+  },
+
+  // ── Site-original (Part 1, fig 12): the master equation, drawn ────────────
+  eqn(b) {
+    const w = el('div', 'eqn');
+    const row = el('div', 'eqn__row');
+    b.terms.forEach((t, i) => {
+      if (i) row.append(el('div', 'eqn__op', '×'));
+      const tile = el('div', 'eqn__term');
+      tile.append(el('div', 'eqn__sym', t.sym), el('div', 'eqn__name', t.name));
+      const s = svg('svg', { viewBox: '0 0 90 40', class: 'eqn__mini', 'aria-hidden': 'true' });
+      const up = t.dir === 'up';
+      const h1 = up ? 10 : 32;
+      const h2 = up ? 32 : 12;
+      s.append(svg('rect', { x: '10', y: String(36 - h1), width: '26', height: String(h1), class: 'eqn__now' }));
+      s.append(
+        svg('rect', {
+          x: '54',
+          y: String(36 - h2),
+          width: '26',
+          height: String(h2),
+          class: up ? 'eqn__later' : 'eqn__later eqn__later--down',
+        })
+      );
+      s.append(svg('path', { d: 'M 39 22 L 49 22 M 45.5 18.5 L 49 22 L 45.5 25.5', class: 'eqn__arrow' }));
+      tile.append(s);
+      tile.append(el('div', 'eqn__range', `${t.now} → ${t.later}`));
+      row.append(tile);
+    });
+    row.append(el('div', 'eqn__op', '='));
+    const res = el('div', 'eqn__term eqn__term--result');
+    res.append(el('div', 'eqn__rv', b.result.value), el('div', 'eqn__name', b.result.label));
+    row.append(res);
+    w.append(row);
+    if (b.second) w.append(el('div', 'eqn__second', b.second));
+    return w;
+  },
+
+  // ── Site-original (Part 1): the agent hub ─────────────────────────────────
+  hub(b) {
+    const w = el('div', 'hub');
+    const W = 780;
+    const H = 320;
+    const cx = W / 2;
+    const cy = H / 2;
+    const R = 122;
+    const s = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'hub__svg', role: 'img' }) as SVGSVGElement;
+    s.setAttribute('aria-label', `${b.center} connects to: ${b.spokes.map((x) => x.label).join(', ')}`);
+    const angles = [-52, 0, 52, 128, 180, 232];
+    b.spokes.forEach((sp, i) => {
+      const a = ((angles[i % angles.length] ?? 0) * Math.PI) / 180;
+      const x = cx + R * Math.cos(a);
+      const y = cy + R * Math.sin(a);
+      s.append(
+        svg('line', {
+          x1: String(cx + 48 * Math.cos(a)),
+          y1: String(cy + 48 * Math.sin(a)),
+          x2: String(x - 8 * Math.cos(a)),
+          y2: String(y - 8 * Math.sin(a)),
+          class: 'hub__link',
+        })
+      );
+      s.append(svg('circle', { cx: String(x), cy: String(y), r: '6', class: 'hub__node' }));
+      const right = Math.cos(a) > 0.15;
+      const left = Math.cos(a) < -0.15;
+      const anchor = right ? 'start' : left ? 'end' : 'middle';
+      const lx = x + (right ? 14 : left ? -14 : 0);
+      const ly = y + (right || left ? 0 : Math.sin(a) > 0 ? 22 : -26);
+      s.append(svgText(lx, ly + 4, sp.label, 'hub__lab', anchor));
+      s.append(svgText(lx, ly + 20, sp.desc, 'hub__desc', anchor));
+    });
+    s.append(svg('circle', { cx: String(cx), cy: String(cy), r: '44', class: 'hub__center' }));
+    s.append(svgText(cx, cy + 5, b.center, 'hub__clab', 'middle'));
+    w.append(s);
     return w;
   },
 
