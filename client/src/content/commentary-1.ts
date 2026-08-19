@@ -64,11 +64,11 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'That makes duty cycle — active time over available time — one of the biggest swing factors of the next five years. Today most agents look like: prompt, 45 seconds of work, stop. The consequential world is: provision an agent, and it operates for six months. A backend serving 1% duty-cycle agents and one serving 80% duty-cycle agents are different markets. The frontier already shows where this goes: by June 2026, OpenAI’s 99th-percentile Codex users were generating 60+ hours of agent turns per day through parallel agents — machine-hours decoupling from human-hours.',
+        'That makes active time — the share of the clock an agent actually works — one of the biggest swing factors of the next five years. Today most agents look like: prompt, 45 seconds of work, stop. The consequential world is: provision an agent, and it operates for six months. A backend serving agents active 1% of the time and one serving agents active 80% of the time are different markets. The frontier already shows where this goes: by June 2026, OpenAI’s 99th-percentile Codex users were generating 60+ hours of agent turns per day through parallel agents — machine-hours decoupling from human-hours.',
     },
   ],
 
-  // Fan-out.
+  // The action multiplier.
   104: [
     {
       kind: 'p',
@@ -78,7 +78,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'We call the ratio agent fan-out: backend actions per agent task. It is the core variable for the backend thesis, because it breaks the link between adoption and consumption — agent adoption can be modest while backend consumption grows enormously, if fan-out is high.',
+        'We call the ratio the action multiplier: backend actions per agent task. It is the core variable for the backend thesis, because it breaks the link between adoption and consumption — agent adoption can be modest while backend consumption grows enormously, if the multiplier is large.',
     },
   ],
 
@@ -129,7 +129,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The capability trend is measured, not asserted. METR, an independent evaluation group, has tracked since 2019 how long a software task a frontier model can finish on its own. The horizon doubled roughly every seven months for six years, then accelerated to about every four months across 2024–25. By early 2026, the leading model completes tasks that would take a skilled engineer most of a working day. Every doubling lengthens the loop — which raises duty cycle and fan-out at the same time. One honest caveat, from METR itself: the tasks are well-specified software work, estimates beyond 16-hour tasks are not yet reliable, and real work is messier.',
+        'The capability trend is measured, not asserted. METR, an independent evaluation group, has tracked since 2019 how long a software task a frontier model can finish on its own. The horizon doubled roughly every seven months for six years, then accelerated to about every four months across 2024–25. By early 2026, the leading model completes tasks that would take a skilled engineer most of a working day. Every doubling lengthens the loop — which lifts both active time and the action multiplier. One honest caveat, from METR itself: the tasks are well-specified software work, estimates beyond 16-hour tasks are not yet reliable, and real work is messier.',
     },
   ],
 
@@ -156,7 +156,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'If you want the whole thesis on one page, these seven variables are it. Penetration spreads the technology. Work expansion creates new activity. Fan-out multiplies backend actions. Duty cycle turns tools into workers. State intensity turns databases into memory. Efficiency is the honest counterweight: agents today retry, re-retrieve the same information, over-query, and send huge contexts — all of that will improve, so 20x more actions could be partly offset by 5x better efficiency. Monetization decides what vendors actually get paid.',
+        'If you want the whole thesis on one page, these seven variables are it. Penetration spreads the technology. Work expansion creates new activity. The action multiplier turns one task into many backend actions. Active time turns tools into workers. State intensity turns databases into memory. Efficiency is the honest counterweight: agents today retry, re-retrieve the same information, over-query, and send huge contexts — all of that will improve, so 20x more actions could be partly offset by 5x better efficiency. Monetization decides what vendors actually get paid.',
     },
     {
       kind: 'p',
@@ -170,7 +170,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Multiply them and you have the era’s demand: machine demand = human economic activity × penetration × work expansion × fan-out × duty cycle × efficiency. Then the equity translation: vendor value = machine demand × category exposure × vendor share × monetization. That is the entire research framework in two lines. We increasingly prefer an equivalent form: humans × machine-hours per human × backend actions per machine-hour — it counts what machines do, not how many there are.',
+        'Multiply them and you have the era’s demand: machine demand = human economic activity × penetration × work expansion × action multiplier × active time × efficiency. Then the equity translation: vendor value = machine demand × category exposure × vendor share × monetization. That is the entire research framework in two lines. We increasingly prefer an equivalent form: humans × machine-hours per human × backend actions per machine-hour — it counts what machines do, not how many there are.',
     },
     {
       kind: 'p',

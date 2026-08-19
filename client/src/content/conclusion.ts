@@ -78,7 +78,7 @@ export const conclusion: Conclusion = {
         {
           kind: 'p',
           text:
-            'The economics above are the measurable part of a larger change — and the larger change is the reason to care. Start with the cost of trying. When an experiment costs a quarter and a team, organizations attempt only the experiments they can defend in a planning meeting; the great silent tax on the modern economy is every idea that died in prioritization. When an experiment costs an afternoon, that tax is repealed. Most of the era’s growth, we suspect, comes from work that was never attempted — the long tail of things worth doing that were never worth staffing.',
+            'The economics above are the measurable part of a larger change — and the larger change is the reason to care. Start with the cost of trying. When an experiment costs a quarter and a team, organizations attempt only the experiments they can defend in a planning meeting. The silent tax on the economy is every idea that died there. When an experiment costs an afternoon, that tax is repealed. Most of the era’s growth, we suspect, comes from work that was never attempted — the long tail of things worth doing that were never worth staffing.',
         },
         {
           kind: 'p',

@@ -225,7 +225,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The next three exhibits photograph one wave at three depths, in the order the accounting requires. First, commitment: deferred revenue is money customers have signed for but not yet consumed, which makes it the earliest public trace of demand — it moves one to three quarters before the income statement does. The state layer’s deferred growth dipped, turned, and re-accelerated to the low twenties; work holds mid-teens; apps drift along at twelve to fifteen, the profile of renewals without expansion.',
+        'The next three exhibits measure one wave three ways, in the order the accounting reports it. First, commitment: deferred revenue is money customers have signed for but not yet consumed, which makes it the earliest public trace of demand — it moves one to three quarters before the income statement does. The state layer’s deferred growth dipped, turned, and re-accelerated to the low twenties; work holds mid-teens; apps drift along at twelve to fifteen, the profile of renewals without expansion.',
     },
   ],
 
@@ -238,7 +238,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Apps are at zero, and structurally must be — you cannot bill above a floor that doesn’t exist. Contracted floors rising while the overage above them widens is what demand outrunning planning looks like, written in accounting.',
+        'Apps are at zero, and structurally must be — you cannot bill above a floor that doesn’t exist. Floors rising while the overage above them widens is what demand outrunning planning looks like.',
     },
   ],
 
@@ -340,7 +340,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'What remains is what a research program owes its readers: name the instrument precisely, state what it is worth under explicit assumptions, put dates on the predictions, and stand somewhere findable to be graded. That is Part 04 — where this piece stops describing a wave and starts keeping score of one.',
+        'What remains is what a research program owes its readers: name the instrument precisely, state what it is worth under explicit assumptions, put dates on the predictions, and stand in public to be graded. That is Part 04 — where this piece stops describing a wave and starts keeping score of one.',
     },
   ],
 
@@ -391,7 +391,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Datadog has the highest raw fan-out of the three — every step of the agent waterfall emits spans and log bytes, and Cloudflare’s agent traces show what that waterfall looks like: invocations, subagents, model calls, tool calls, database operations. But raw telemetry is not revenue. Sampling and retention sit between ingest and invoice, so ten times the spans might be three times the billable consumption.',
+        'Datadog has the largest action multiplier of the three — every step of the agent waterfall emits spans and log bytes, and Cloudflare’s agent traces show what that waterfall looks like: invocations, subagents, model calls, tool calls, database operations. But raw telemetry is not revenue. Sampling and retention sit between ingest and invoice, so ten times the spans might be three times the billable consumption.',
     },
     {
       kind: 'p',
@@ -405,7 +405,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'A bull, base, and bear model does not need fifty assumptions. It needs five. Penetration is the obvious one. Work expansion is the underappreciated one. Fan-out is where the backend gets its leverage. Efficiency is the offset that can quietly destroy a naive thesis. Pass-through converts workload into dollars — or fails to.',
+        'A bull, base, and bear model does not need fifty assumptions. It needs five. Penetration is the obvious one. Work expansion is the underappreciated one. The action multiplier is where the backend gets its leverage. Efficiency is the offset that can quietly destroy a naive thesis. Pass-through converts workload into dollars — or fails to.',
     },
     {
       kind: 'p',

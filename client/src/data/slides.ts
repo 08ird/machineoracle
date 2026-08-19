@@ -77,7 +77,7 @@ export type Body =
       spokes: { label: string; desc: string }[];
     }
   | {
-      // Site-original (Part 1): human chain vs agent fan-out tree.
+      // Site-original (Part 1): human chain vs the agent action tree.
       kind: 'fantree';
       left: { head: string; nodes: string[]; foot: string };
       right: { head: string; trunk: string[]; branch: { at: number; nodes: string[] }; foot: string };
@@ -272,7 +272,7 @@ export const SLIDES: Slide[] = [
       kind: 'agenda',
       items: [
         { n: '01', title: 'The Machine Economy', desc: 'the era — the marginal consumer of software becomes software itself' },
-        { n: '02', title: 'Measuring Machine Demand', desc: 'the model — work × penetration × fan-out × duty cycle, proven on the token record' },
+        { n: '02', title: 'Measuring Machine Demand', desc: 'the model — work × penetration × action multiplier × active time, proven on the token record' },
         { n: '03', title: 'A Royalty on Machine Labor', desc: 'the money — machine demand runs on metered rails; two layers collect it' },
         { n: '04', title: 'Machine Oracle', desc: 'the instrument — three meters, killer ratios, signals, and dated predictions, graded in public' },
       ],
@@ -308,7 +308,7 @@ export const SLIDES: Slide[] = [
           sub: 'humans → agents → tools & APIs → infrastructure',
           items: [
             'A person sets the goal; agents do the work',
-            'Each goal fans out into many machine actions',
+            'Each goal becomes many machine actions',
           ],
           foot: 'Now',
           tone: 'cold',
@@ -422,22 +422,22 @@ export const SLIDES: Slide[] = [
             'Negotiates, reports, acts — continuously',
             'A standing loop: observe → reason → act',
           ],
-          foot: 'Duty cycle (D) = active time ÷ available time',
+          foot: 'Active time (D) = hours working ÷ hours available',
           tone: 'warm',
         },
       ],
     },
     takeaway: {
       icon: '🔄',
-      text: 'Most agents today run 45 seconds after a prompt. The consequential world is an agent provisioned once and operating for six months — 1% duty cycle against 80% is an enormous difference for the backend.',
+      text: 'Most agents today run 45 seconds after a prompt. The consequential world is an agent provisioned once and operating for six months — active 1% of the time against 80% is an enormous difference for the backend.',
     },
   },
   {
-    // Site-original exhibit: the fan-out tree.
+    // Site-original exhibit: one task becoming many actions.
     id: 104,
     part: 1,
     kicker: 'One unit of thought, many units of infrastructure',
-    title: 'Every agent task fans out',
+    title: 'One task becomes many actions',
     body: {
       kind: 'fantree',
       left: {
@@ -466,7 +466,7 @@ export const SLIDES: Slide[] = [
     },
     takeaway: {
       icon: '🌳',
-      text: 'Agent fan-out (F) = backend actions ÷ agent task. A small population of agents with deep fan-out can out-consume a large population of humans.',
+      text: 'The action multiplier (F) = backend actions ÷ agent task. A small population of agents with a large multiplier can out-consume a large population of humans.',
     },
     footnote: 'Trace shape per Cloudflare’s agent tracing and Skycatcher’s own Sky1 traces: invocations, subagents, model calls, tool calls, database operations.',
   },
@@ -625,8 +625,8 @@ export const SLIDES: Slide[] = [
       rows: [
         ['P · Agent penetration', 'share of addressable workflows performed by agents', 'how broadly the technology spreads — important, and the most obvious'],
         ['X · Work expansion', 'work performed with agents ÷ work performed without them', 'entirely new activity — possibly the most underappreciated'],
-        ['F · Agent fan-out', 'backend actions ÷ agent task', 'the backend’s leverage — the most important technical variable'],
-        ['D · Duty cycle', 'active agent time ÷ available time', 'occasional tools, or continuously running workers'],
+        ['F · Action multiplier', 'backend actions ÷ agent task', 'the backend’s leverage — the most important technical variable'],
+        ['D · Active time', 'hours working ÷ hours available', 'occasional tools, or continuously running workers'],
         ['S · State intensity', 'persistent state ÷ unit of agent work', 'decides whether databases become agent memory'],
         ['E · Efficiency', 'infrastructure per action, future ÷ today', 'the biggest counterargument — today’s waste will improve'],
         ['M · Monetization', 'incremental vendor revenue ÷ incremental consumption', 'converts a technology thesis into an equity thesis'],
@@ -648,8 +648,8 @@ export const SLIDES: Slide[] = [
       terms: [
         { sym: 'P', name: 'agent penetration', now: '2–5%', later: '40–70%', dir: 'up' },
         { sym: 'X', name: 'work expansion', now: '~1.05x', later: '1.8–3x', dir: 'up' },
-        { sym: 'F', name: 'fan-out per task', now: '3–8x', later: '10–30x', dir: 'up' },
-        { sym: 'D', name: 'duty cycle', now: '<5%', later: '30%+', dir: 'up' },
+        { sym: 'F', name: 'action multiplier', now: '3–8x', later: '10–30x', dir: 'up' },
+        { sym: 'D', name: 'active time', now: '<5%', later: '30%+', dir: 'up' },
         { sym: 'E', name: 'efficiency offset', now: '1x', later: '0.2–0.4x', dir: 'down' },
       ],
       result: { value: 'Machine demand', label: 'the machine-generated share of all software activity' },
@@ -675,13 +675,13 @@ export const SLIDES: Slide[] = [
         {
           n: '2028–29',
           head: 'Workflow delegation',
-          desc: '“Own this workflow and escalate exceptions.” One human commands a portfolio of agents, and adoption × fan-out becomes visible in backend consumption.',
+          desc: '“Own this workflow and escalate exceptions.” One human commands a portfolio of agents, and adoption × the action multiplier becomes visible in backend consumption.',
           meta: '2029 — the infrastructure inflection',
         },
         {
           n: '2030–32',
           head: 'The persistent agent workforce',
-          desc: 'Agents stop being executions and become entities: memory, standing permissions, event-driven work. Duty cycle rivals adoption in importance.',
+          desc: 'Agents stop being executions and become entities: memory, standing permissions, event-driven work. Active time rivals adoption in importance.',
           meta: '2032 — the architectural inflection',
         },
         {
@@ -722,7 +722,7 @@ export const SLIDES: Slide[] = [
       items: [
         { head: 'Work', desc: 'addressable digital workflows in the economy — expanded by cheap intelligence (X)' },
         { head: 'Agent penetration', desc: 'the share of workflows assigned to agents (P)' },
-        { head: 'Machine actions', desc: 'each workflow fans out — tool calls, retries, subagents (F)' },
+        { head: 'Machine actions', desc: 'each workflow multiplies — tool calls, retries, subagents (F)' },
         { head: 'Backend units', desc: 'database operations, queries, telemetry, state — net of efficiency (E)' },
         { head: 'Billable units', desc: 'what survives sampling, caching, and pricing (M)' },
       ],
@@ -747,9 +747,9 @@ export const SLIDES: Slide[] = [
         ['Main interface', 'human → agent', 'human → many agents', 'events → agents', 'agents → agents'],
         ['Agent penetration (P)', '2–5%', '10–20%', '25–45%', '40–70%'],
         ['Work expansion (X)', '~1.05x', '1.15–1.4x', '1.4–2.0x', '1.8–3x+'],
-        ['Duty cycle (D)', '<5%', '5–15%', '15–35%', '30%+'],
+        ['Active time (D)', '<5%', '5–15%', '15–35%', '30%+'],
         ['Stateful workflows (S)', '10–25%', '25–50%', '50–75%', '70%+'],
-        ['Agent fan-out (F)', '3–8x', '5–12x', '7–20x', '10–30x'],
+        ['Action multiplier (F)', '3–8x', '5–12x', '7–20x', '10–30x'],
         ['Efficiency vs 2026 (E)', '1x', '0.6–0.8x', '0.35–0.6x', '0.2–0.4x'],
         ['Human approval', 'nearly every action', 'exceptions only', 'mostly supervisory', 'policy & governance'],
         ['Backend consequence', 'detectable', 'growth inflection', 'material demand driver', 'architecture shift'],
@@ -805,7 +805,7 @@ export const SLIDES: Slide[] = [
       icon: '🎯',
       text: 'Backend demand = X × [(1−P) + P×M] = 1.3 × (0.85 + 0.78) ≈ 2.1x. Fifteen percent penetration ≈ twice the backend activity — that is why 2029 matters.',
     },
-    footnote: '2029 penetration scenarios: bear 7%, base 15%, bull 30%. 2032 base case: 35% penetration, 1.7x expansion, 12x fan-out at 0.45 efficiency — net 5.4x.',
+    footnote: '2029 penetration scenarios: bear 7%, base 15%, bull 30%. 2032 base case: 35% penetration, 1.7x expansion, a 12x action multiplier at 0.45 efficiency — net 5.4x.',
   },
   {
     id: 19,
@@ -898,7 +898,7 @@ export const SLIDES: Slide[] = [
   {
     id: 23,
     part: 2,
-    kicker: 'Where the 40x comes from — penetration × intensity × duty cycle',
+    kicker: 'Where the 40x comes from — users × always-on share × intensity',
     title: 'The heaviest users barely exist yet',
     body: {
       kind: 'stats',
@@ -1180,10 +1180,10 @@ export const SLIDES: Slide[] = [
       rows: [
         ['Active agents in Microsoft 365: 15x year over year through March 2026', 'penetration (P)', 'Microsoft Work Trend Index, 2026'],
         ['Agent-framework adoption: 9% → 18% of observed organizations in one year', 'penetration (P)', 'Datadog, State of AI Engineering, 2026'],
-        ['99th-percentile Codex users: 60+ hours of agent turns a day via parallel agents; >70% of sampled users assigned hour-plus tasks', 'duty cycle (D) · machine-hours per human', 'OpenAI, June 2026'],
+        ['99th-percentile Codex users: 60+ hours of agent turns a day via parallel agents; >70% of sampled users assigned hour-plus tasks', 'active time (D) · machine-hours per human', 'OpenAI, June 2026'],
         ['~5% of AI model requests fail; capacity limits a major cause', 'the reliability gate (A)', 'Datadog, 2026'],
-        ['Agent job starts and sessions, now in the usage-metrics API', 'activity & duty cycle (D)', 'GitHub, August 2026'],
-        ['Tool calls, subagents, and database operations per trace', 'fan-out (F)', 'Cloudflare agent tracing; Sky1 traces'],
+        ['Agent job starts and sessions, now in the usage-metrics API', 'activity & active time (D)', 'GitHub, August 2026'],
+        ['Tool calls, subagents, and database operations per trace', 'action multiplier (F)', 'Cloudflare agent tracing; Sky1 traces'],
         ['Cached reads in only ~28% of observed model-call spans', 'efficiency headroom (E)', 'Datadog, 2026'],
         ['Authenticated machine identities on tool access; signed agent traffic', 'the machine share of requests', 'MCP authorization spec; Cloudflare, 2026'],
       ],
@@ -1205,7 +1205,7 @@ export const SLIDES: Slide[] = [
         {
           n: '2026–27',
           head: 'Learn the coefficients',
-          desc: 'Fan-out, duty cycle, state, and success rates from production traces. Exit signal: agents complete multi-hour workflows at 80–90%+ success, and human intervention moves from inside the workflow to after it.',
+          desc: 'The action multiplier, active time, state, and success rates from production traces. Exit signal: agents complete multi-hour workflows at 80–90%+ success, and human intervention moves from inside the workflow to after it.',
           meta: 'we are here',
         },
         {
@@ -2079,7 +2079,7 @@ export const SLIDES: Slide[] = [
     id: 133,
     part: 3,
     kicker: 'Datadog — the telemetry meter',
-    title: 'Datadog: fan-out in, sampling out',
+    title: 'Datadog: actions in, sampling out',
     body: {
       kind: 'decompose',
       factors: [
@@ -2109,14 +2109,14 @@ export const SLIDES: Slide[] = [
       items: [
         { n: 'P', head: 'Agent penetration', desc: 'How much work moves to agents. Obvious — and the least interesting.', meta: 'watch' },
         { n: 'X', head: 'Work expansion', desc: 'Does cheap intelligence cause 2x or 20x more work?', meta: 'underappreciated' },
-        { n: 'F', head: 'Fan-out per workflow', desc: 'Where backend infrastructure gets its leverage.', meta: 'the leverage' },
+        { n: 'F', head: 'Action multiplier', desc: 'Where backend infrastructure gets its leverage.', meta: 'the leverage' },
         { n: 'I', head: 'Efficiency offset', desc: '20x more actions at 90% less resource per action is only 2x real workload.', meta: 'the offset' },
         { n: 'B', head: 'Billing pass-through', desc: 'Huge workload growth can coexist with weak revenue growth — decisive for Datadog.', meta: 'the equity test' },
       ],
     },
     takeaway: {
       icon: '🎛️',
-      text: 'Backend revenue impact ≈ P × X × F × I × B × V — with different fan-out, efficiency, pass-through, and capture for every name.',
+      text: 'Backend revenue impact ≈ P × X × F × I × B × V — with a different action multiplier, efficiency, pass-through, and capture for every name.',
     },
   },
   {
@@ -2522,7 +2522,7 @@ export const SLIDES: Slide[] = [
         {
           n: '3',
           head: 'Agent workloads stack a second S-curve on the first',
-          desc: 'The cloud base still grows ~20%; always-on agents add 168-hour duty cycles on top of it.',
+          desc: 'The cloud base still grows ~20%; always-on agents add 168-hour weeks on top of it.',
         },
         {
           n: '4',
@@ -2819,7 +2819,7 @@ export const SLIDES: Slide[] = [
         ['Cost', 'is it cheaper to give the work to a machine?', 'adoption accelerates below 10–20% of human cost'],
         ['Autonomy', 'share of workflows completed without intervention', '50% interesting · 80% deployable · 95%+ infrastructure'],
         ['Penetration', 'share of addressable workflows on agents', 'the backend trade starts at 10–20%, not 50%'],
-        ['Duty cycle', 'active agent hours per day', 'episodic minutes → hours of parallel work → persistent → continuous'],
+        ['Active time', 'active agent hours per day', 'episodic minutes → hours of parallel work → persistent → continuous'],
         ['Work elasticity', 'work done vs the counterfactual', '10 analyses a week becoming 1,000 — uneconomic work turning economic'],
       ],
     },
@@ -2977,7 +2977,7 @@ export const SLIDES: Slide[] = [
         {
           eyebrow: 'The era',
           title: 'Machine demand',
-          desc: 'The marginal consumer of software becomes software itself. Work expands, tasks fan out, duty cycles lengthen — backend activity decouples from human population.',
+          desc: 'The marginal consumer of software becomes software itself. Work expands, every task becomes many actions, agents work more of the clock — backend activity decouples from human population.',
         },
         {
           eyebrow: 'The wave',

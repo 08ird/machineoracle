@@ -282,7 +282,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'We do not have to wait for filings to grade the priors. Microsoft reports active agents in its 365 ecosystem up 15x year over year through March 2026. Datadog’s telemetry shows agent-framework adoption among observed organizations nearly doubling in a year — and, on the other side of the ledger, about 5% of AI requests failing. OpenAI’s heaviest Codex users already generate more agent-hours in a day than a person can work. GitHub now exposes agent job starts and sessions in its usage API. Cloudflare’s agent traces expose invocations, subagents, model calls, tool calls, and database operations — the raw material for measuring fan-out. Even the efficiency headroom is visible: cached reads appear in barely a quarter of observed model calls today.',
+        'We do not have to wait for filings to grade the priors. Microsoft reports active agents in its 365 ecosystem up 15x year over year through March 2026. Datadog’s telemetry shows agent-framework adoption among observed organizations nearly doubling in a year — and, on the other side of the ledger, about 5% of AI requests failing. OpenAI’s heaviest Codex users already generate more agent-hours in a day than a person can work. GitHub now exposes agent job starts and sessions in its usage API. Cloudflare’s agent traces expose invocations, subagents, model calls, tool calls, and database operations — the raw material for measuring the action multiplier. Even the efficiency headroom is visible: cached reads appear in barely a quarter of observed model calls today.',
     },
     {
       kind: 'p',

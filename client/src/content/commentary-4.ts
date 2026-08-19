@@ -34,7 +34,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Just as important is who stays out, because a screen that admits everyone you like is a portfolio wearing a lab coat. Fastly is structurally usage-billed but discloses no percentage — below the confidence bar, onto the converter watchlist. Cloudflare’s own 10-K says revenue is primarily subscription, whatever the narrative says. Elastic’s cloud share sits at 46 to 48% — close, and not majority. Twilio and Bandwidth pass the billing test but sit on the worksite, not the backend. The rule survives contact with the filings; names that fail it stay out, however much we like the story.',
+        'Just as important is who stays out, because a screen only means something if it can say no. Fastly is structurally usage-billed but discloses no percentage — below the confidence bar, onto the converter watchlist. Cloudflare’s own 10-K says revenue is primarily subscription, whatever the narrative says. Elastic’s cloud share sits at 46 to 48% — close, and not majority. Twilio and Bandwidth pass the billing test but sit on the worksite, not the backend. The rule survives contact with the filings; names that fail it stay out, however much we like the story.',
     },
   ],
 
@@ -55,7 +55,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full record back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths — and the first re-acceleration this cohort has printed since the 2022 selloff.',
+        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full record back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. Same wave, measured three ways — and the first re-acceleration this cohort has printed since the 2022 selloff.',
     },
     {
       kind: 'p',
@@ -73,7 +73,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The retention math is the quiet one worth understanding. At the cohort’s ~117 and rising, the installed base alone compounds double digits before a single new customer signs. If agent workloads push net dollar retention past 130, the installed base compounds above 30% by itself. That is not a hypothetical ceiling: Snowflake ran retention near 170 through the last platform shift, when cloud data workloads were the new S-curve. Meters have done this before, on a smaller wave.',
+        'The retention math is the one to understand. At the cohort’s ~117 and rising, the installed base alone compounds double digits before a single new customer signs. If agent workloads push net dollar retention past 130, the installed base compounds above 30% by itself. That is not a hypothetical ceiling: Snowflake ran retention near 170 through the last platform shift, when cloud data workloads were the new S-curve. Meters have done this before, on a smaller wave.',
     },
   ],
 
@@ -149,7 +149,12 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'And five bolder calls, on a longer clock — direction is the claim, timing is the error bar, and each date comes from arithmetic rather than enthusiasm. The largest meter today bills about $4.5 billion a year; $100 billion is a twenty-fold, which takes roughly nine years at wave-case growth and twelve at 30% — the 2036 date splits that range. The trillion-dollar call is measured plainly — the summed annual revenue of the 25 public backend names, roughly $60 billion today, re-summed quarterly on this site — and a seventeen-fold at 25–30% compounding lands around 2038. The out-earning call has already run half its arc: the meters out-earned the labs roughly seventeen to one in 2022, the labs crossed parity in 2024, and today they bill about three dollars for every dollar the cohort meters. The labs cut their unit price 30–40% a year by design while the meters’ events per token rise as workloads reach production — engines compete on price, toll roads compound on volume, and every prior mobilization ended with the toll collectors out-earning the engine builders. We track the ratio quarterly because the re-crossing, not the calendar, is the claim.',
+        'And five bolder calls, on a longer clock — direction is the claim, timing is the error bar, and each date comes from arithmetic rather than enthusiasm. The largest meter today bills about $4.5 billion a year; $100 billion is a twenty-fold, which takes roughly nine years at wave-case growth and twelve at 30% — the 2036 date splits that range. The trillion-dollar call is measured plainly — the summed annual revenue of the 25 public backend names, roughly $60 billion today, re-summed quarterly on this site — and a seventeen-fold at 25–30% compounding lands around 2038.',
+    },
+    {
+      kind: 'p',
+      text:
+        'The out-earning call has already run half its arc: the meters out-earned the labs roughly seventeen to one in 2022, the labs crossed parity in 2024, and today they bill about three dollars for every dollar the cohort meters. The labs cut their unit price 30–40% a year by design while the meters’ events per token rise as workloads reach production — engines compete on price, toll roads compound on volume, and every prior mobilization ended with the toll collectors out-earning the engine builders. We track the ratio quarterly because the re-crossing, not the calendar, is the claim.',
     },
   ],
 
@@ -162,7 +167,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The strongest case against us, stated at full strength: attach is an engineering artifact; vendors cannibalize themselves; Jevons proves the wave but not the royalty; the historical precedents cut against vendor margins; the hyperscalers bundle it away; the endgame nationalizes off public rails. These are serious, and pieces of them have already happened in miniature — Klarna spent 2024 boasting that its assistant did the work of seven hundred agents and spent 2025 walking parts of it back and rehiring for quality, a useful reminder that agent economics arrive unevenly and get re-priced in daylight. Against each objection we hold a measured counter — overage at list accelerating, more than 75% still paying at enforced limits, premium mix gaining share, our own production telemetry in Sky1, a decade of meters compounding through first-party bundles, and enterprise workloads staying on rented rails in every prior mobilization. The thesis doesn’t need protection from this argument; it needs to be worth beating it.',
+        'The strongest case against us, stated at full strength: attach is an engineering artifact; vendors cannibalize themselves; Jevons proves the wave but not the royalty; the historical precedents cut against vendor margins; the hyperscalers bundle it away; the endgame nationalizes off public rails. These are serious, and pieces of them have already happened in miniature — Klarna spent 2024 boasting that its assistant did the work of seven hundred agents and spent 2025 walking parts of it back and rehiring for quality, a useful reminder that agent economics arrive unevenly and get re-priced in daylight. Against each objection we hold a measured counter — overage at list accelerating, more than 75% still paying at enforced limits, premium mix gaining share, our own production telemetry in Sky1, a decade of meters compounding through first-party bundles, and enterprise workloads staying on rented rails in every prior mobilization. We do not want to dodge this argument. We want to beat it.',
     },
   ],
 
@@ -210,7 +215,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'One adoption line cannot carry a forecast, so we track six clocks. Capability: how long a task an agent can reliably own — the METR horizon. Cost: adoption accelerates when the agent runs below 10–20% of the human cost at sufficient reliability, which may matter more than raw intelligence. Autonomy: 50% success is an interesting tool, 80% is deployable automation, 95%+ is infrastructure — that last jump is enormous. Penetration: the backend trade starts at 10–20%, not 50%. Duty cycle: from episodic minutes to continuous populations. Work elasticity: ten analyses a week becoming a thousand.',
+        'One adoption line cannot carry a forecast, so we track six clocks. Capability: how long a task an agent can reliably own — the METR horizon. Cost: adoption accelerates when the agent runs below 10–20% of the human cost at sufficient reliability, which may matter more than raw intelligence. Autonomy: 50% success is an interesting tool, 80% is deployable automation, 95%+ is infrastructure — that last jump is enormous. Penetration: the backend trade starts at 10–20%, not 50%. Active time: from episodic minutes to continuous populations. Work elasticity: ten analyses a week becoming a thousand.',
     },
     {
       kind: 'p',
