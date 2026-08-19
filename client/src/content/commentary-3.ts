@@ -18,7 +18,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Four flavours emerge — outcomes, actions, sessions, metered compute — and the variety matters less than the fact of it. The unit of account for machine work is being standardized in public, vendor by vendor, the way the kilowatt-hour was standardized a century ago. When an industry invents a unit of account, the market has arrived; nobody prices a thing that isn’t selling.',
+        'Four flavors emerge — outcomes, actions, sessions, metered compute — and the variety matters less than the fact of it. The unit of account for machine work is being standardized in public, vendor by vendor, the way the kilowatt-hour was standardized a century ago. When an industry invents a unit of account, the market has arrived; nobody prices a thing that isn’t selling.',
     },
   ],
 
@@ -63,12 +63,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The first thing to notice is how unevenly the public market is distributed across them. Sixty-seven public companies make up the investable universe of this part, and the exhibit counts them layer by layer: forty-two sit at the top, where agents deliver outcomes; nineteen meter the work; six keep the state; and the bottom two layers offer almost nothing to buy — the models have no public pure play, and compute sits outside the universe entirely. The pyramid is widest exactly where Part 01 said the knife-fight happens, and thinnest where the royalty is collected.',
+        'The first thing to notice is how unevenly the public market is distributed across them. Sixty-seven public companies make up the investable universe of this part, and the exhibit counts them layer by layer: forty-two sit at the top, where agents deliver outcomes; nineteen meter the work; six keep the state; and the bottom two layers offer almost nothing to buy — the models have no public pure play, and compute sits outside the universe entirely. The pyramid is widest where prices deflate fastest, and thinnest where the royalty is collected.',
     },
     {
       kind: 'p',
       text:
-        'Layer 0 is capital-heavy and already priced: the market needs no help noticing Nvidia. Layer 1 — the models — creates the most value and keeps the least: it is competitive, deflating by design (the 50x price collapse of Part 02 is its business model). Layer 4 is where agents deliver outcomes, and Part 01 explained why its packaged products deflate. The key layers are the two in the middle: the ones that meter work as it happens and accumulate state as it compounds. Everything an agent does passes through both.',
+        'Layer 0 is capital-heavy and already priced: the market needs no help noticing Nvidia. Layer 1 — the models — creates the most value and keeps the least: it is competitive, deflating by design (the 50x price collapse of Part 02 is its business model). Layer 4 is where agents deliver outcomes — and where prices deflate, because anything an agent can rebuild in an afternoon cannot hold a price. The key layers are the two in the middle: the ones that meter work as it happens and accumulate state as it compounds. Everything an agent does passes through both.',
     },
   ],
 
@@ -85,7 +85,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The worksite is where agents do the work: forty-two companies whose rails get paid per action, whose records convert or compress, and whose seats are the other side of the trade. The royalty is collected in the backend. Winners on the worksite are tracked, but the cohort is not picked there — a distinction that matters because the worksite is where the knife-fight of Part 01 happens, and the backend is where it gets billed.',
+        'The worksite is where agents do the work: forty-two companies whose rails get paid per action, whose records convert or compress, and whose seats are the other side of the trade. The royalty is collected in the backend. Winners on the worksite are tracked, but the cohort is not picked there — a distinction that matters because the worksite is where the deflation happens, and the backend is where the work gets billed.',
     },
   ],
 
@@ -173,7 +173,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Conventional market sizing measures the old market. Machine labor ultimately prices against something far larger: the roughly $35 trillion the world pays every year for knowledge work. This is Part 01’s tools-versus-labor distinction arriving on the income statement — a tool is worth a fraction of the worker who uses it; work is worth the wage it replaces.',
+        'Conventional market sizing measures the old market. Machine labor ultimately prices against something far larger: the roughly $35 trillion the world pays every year for knowledge work. The reason is the difference between tools and labor: a tool is worth a fraction of the worker who uses it; work is worth the wage it replaces.',
     },
     {
       kind: 'p',
@@ -259,7 +259,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The full period adds a caveat: from January 2022 — which includes the great derate — work is +46%, state +28%, and apps −9%, still underwater after four and a half years. The deeper a layer derated, the harder it rebounded. The market pays the layers that meter machine labor, not the seats it replaces — it has just never said so out loud.',
+        'The full period adds a caveat: from January 2022 — which includes the 2022 selloff — work is +46%, state +28%, and apps −9%, still underwater after four and a half years. The deeper a layer fell, the harder it rebounded. The market pays the layers that meter machine labor, not the seats it replaces — it has just never said so out loud.',
     },
   ],
 
@@ -267,12 +267,12 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Here is the anomaly this entire piece is built around. Four and a half years of multiples, on a realized-forward basis, show all three layers derating in 2022 and then grinding sideways-to-down — through the biggest software demand shock ever recorded. The returns of the previous exhibit were earned by earnings growth dragging flat multiples along, not by anyone re-rating anything.',
+        'Here is the anomaly this entire piece is built around. Four and a half years of multiples show all three layers falling in 2022 and then grinding sideways-to-down — through the biggest software demand shock ever recorded. The returns of the previous exhibit were earned by earnings growth dragging flat multiples along, not by the market paying more per point of growth.',
     },
     {
       kind: 'p',
       text:
-        'Nothing is priced for agents; consensus forward numbers carry zero of them. The state layer is the cleanest illustration: growth turned up from 13% to 20% while the multiple did not move, leaving it at roughly 0.26x its growth rate — half the cohort’s ~0.5x. The work layer de-rated while growing steadily, its audit mandate still priced as a maintenance product rather than a meter. A market that has repriced every AI narrative from chips to power utilities has, so far, declined to reprice the layer that bills the work.',
+        'Nothing is priced for agents; consensus forward numbers carry zero of them. The state layer is the cleanest illustration: growth turned up from 13% to 20% while the multiple did not move, leaving it at roughly 0.26x its growth rate — half the cohort’s ~0.5x. The work layer got cheaper while growing steadily, its audit mandate still priced as a maintenance product rather than a meter. A market that has repriced every AI narrative from chips to power utilities has, so far, declined to reprice the layer that bills the work.',
     },
   ],
 
@@ -327,7 +327,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Each clock carries its own pre-registered falsifier — open state formats for the decade case, runtime absorption for the three-year case — and Part 04 wires both to public metrics. Different moats, different risks, independent failure modes: one royalty.',
+        'Each clock carries its own falsifier, written down in advance — open state formats for the decade case, runtime absorption for the three-year case — and Part 04 wires both to public metrics. Different moats, different risks, independent failure modes: one royalty.',
     },
   ],
 
@@ -335,7 +335,7 @@ export const part3: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The royalty, measured: retention of ~117 against ~101, overage share climbing from 14% to 24%, and the meter layers at 5–7x forward revenue with real cash margins — multiples that assume the fade while the filings print the turn. Part 01 named the era; Part 02 counted the wave; this part located who bills it and showed the receipts.',
+        'The royalty, measured: retention of ~117 against ~101, overage share climbing from 14% to 24%, and the meter layers at 5–7x forward revenue with real cash margins — multiples that assume the fade while the filings print the turn. Part 01 named the era; Part 02 modeled the demand and measured the wave; this part located who bills it and showed the receipts.',
     },
     {
       kind: 'p',

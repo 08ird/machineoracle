@@ -905,7 +905,7 @@ export const SLIDES: Slide[] = [
       items: [
         { value: '~2.5%', label: 'of ~1B weekly AI users run agents today', sub: '40x headroom in users alone' },
         { value: '500–2,500x', label: 'intensity span', sub: 'casual chat ~10K tokens/user-day vs. always-on agent 5–25M' },
-        { value: '168 hrs', label: 'agent duty cycle per week', sub: 'against ~40 human attention-hours' },
+        { value: '168 hrs', label: 'agent hours per week', sub: 'against ~40 human working hours' },
       ],
     },
     takeaway: {
@@ -1045,7 +1045,7 @@ export const SLIDES: Slide[] = [
       kind: 'flow',
       items: [
         { head: '40x tokens', desc: 'the demand our curve implies' },
-        { head: '÷ ~3x FLOPs-per-token efficiency', desc: 'model and serving gains' },
+        { head: '÷ ~3x software efficiency', desc: 'fewer computations per token' },
         { head: '÷ ~2–3x performance-per-watt', desc: 'two hardware generations' },
       ],
       out: [
@@ -1094,7 +1094,7 @@ export const SLIDES: Slide[] = [
         { label: 'Street floor', sub: '×2.2/yr', value: 1100, display: '~1,100Q', tone: 'muted' },
         { label: 'Our wave case', sub: '×3.4/yr — underwritten', value: 4000, display: '~4,000Q', tone: 'accent' },
         { label: 'Situational Awareness case', sub: 'adoption below the physical ceiling', value: 6000, display: '~6,000Q' },
-        { label: 'Physical ceiling', sub: '~10x power × 3x FLOPs × 2.5x perf/watt', value: 7500, display: '~7,500Q', tone: 'warn' },
+        { label: 'Physical ceiling', sub: '~10x power × 3x software × 2.5x perf/watt', value: 7500, display: '~7,500Q', tone: 'warn' },
       ],
     },
   },
@@ -2568,13 +2568,13 @@ export const SLIDES: Slide[] = [
   {
     id: 77,
     part: 4,
-    kicker: 'From ~$11.3B LTM revenue — 2029 framed as 3.5-year CAGR ranges',
+    kicker: 'From ~$11.3B trailing revenue — 2029 framed as 3.5-year growth ranges',
     title: 'Three growth worlds',
     body: {
       kind: 'bars',
       axis: '2029 cohort revenue, $B',
       items: [
-        { label: 'The fade', sub: '~20–25% CAGR — what today’s price carries', value: 23, display: '$21–25B', tone: 'muted' },
+        { label: 'The fade', sub: '~20–25% a year — what today’s price carries', value: 23, display: '$21–25B', tone: 'muted' },
         { label: 'Partial conversion', sub: '~25–35% — street-floor tokens, capture leaks', value: 29, display: '$25–33B' },
         { label: 'The wave', sub: '~35–50% — the ~4,000Q case through four haircuts', value: 42, display: '$33–47B', tone: 'accent' },
       ],
@@ -2889,7 +2889,7 @@ export const SLIDES: Slide[] = [
         },
         {
           head: 'Lagging — financial results',
-          sub: 'what the sell side models',
+          sub: 'what analysts model',
           items: [
             'Consumption revenue',
             'Net dollar retention',

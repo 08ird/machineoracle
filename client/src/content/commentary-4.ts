@@ -55,12 +55,12 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full record back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths — and the first re-acceleration this cohort has printed since the derate.',
+        'The wave arrives in the order the accounting requires: contracts first, meters next, revenue last. The full record back to 2022 shows the whole round trip: hypergrowth in the eighties decelerating for three straight years, bottoming in early 2025 — and then turning. Cohort deferred revenue accelerated from its +17% trough to +32% year over year — demand being signed. Overage went from 11% to 19% of revenue, with dollars more than doubling to about $0.59 billion a quarter — demand outrunning what was signed. Recognized revenue followed, 25% to 32% — demand finally reaching the income statement. One wave, photographed three times at three depths — and the first re-acceleration this cohort has printed since the 2022 selloff.',
     },
     {
       kind: 'p',
       text:
-        'And the rule alone beats the layers: +218% since ChatGPT against +177% for state, +175% for work, and +55% for apps. One mechanical filter — usage-billed or not — separates +218% from +55%. The other side of the cut: the cohort also absorbed the deepest 2022 derate, at −60%, and from January 2022 it is +18%, behind both layers on the full period. We show that deliberately — consumption is higher-beta in both directions, and the round trip matters more than the flattering half.',
+        'And the rule alone beats the layers: +218% since ChatGPT against +177% for state, +175% for work, and +55% for apps. One mechanical filter — usage-billed or not — separates +218% from +55%. The other side of the cut: the cohort also absorbed the deepest 2022 drawdown, −60%, and from January 2022 it is +18%, behind both layers on the full period. We show that deliberately — consumption swings harder in both directions, and the round trip matters more than the flattering half.',
     },
   ],
 
@@ -68,7 +68,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The natural objection to a 33%-growth cohort is that growth decays — every software analyst has watched it happen a hundred times. We think this one accelerates instead, and the mechanisms are individually measurable in filings rather than a matter of conviction: the +32% commitment growth is already signed and sitting on the balance sheet; overage re-rates floors at every renewal; agent workloads stack a second S-curve on a cloud base still growing 20%; and the wave’s transmission is direct — 40x tokens driving ~190x events onto exactly these meters.',
+        'The natural objection to a 33%-growth cohort is that growth decays — every software analyst has watched it happen a hundred times. We think this one accelerates instead, and the mechanisms are individually measurable in filings rather than a matter of conviction: the +32% commitment growth is already signed and sitting on the balance sheet; overage resets contract floors higher at every renewal; agent workloads stack a second S-curve on a cloud base still growing 20%; and the wave’s transmission is direct — 40x tokens driving ~190x events onto exactly these meters.',
     },
     {
       kind: 'p',
@@ -94,12 +94,12 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'From about $11.3 billion of trailing revenue, here is 2029 framed as three-and-a-half-year CAGR ranges. The fade is consensus: growth exits the decade in the high teens, agents never become a revenue line, and the cohort earns $21–25 billion. Before dismissing that as pessimism, read what it implies: the 2,000x token expansion, the overage acceleration, and the commitment surge all stall roughly now. That is what today’s price carries.',
+        'From about $11.3 billion of trailing revenue, here is 2029 framed as compound-growth ranges over the next three and a half years. The fade is consensus: growth exits the decade in the high teens, agents never become a revenue line, and the cohort earns $21–25 billion. Before dismissing that as pessimism, read what it implies: the 2,000x token expansion, the overage acceleration, and the commitment surge all stall roughly now. That is what today’s price carries.',
     },
     {
       kind: 'p',
       text:
-        'Partial conversion is the world where the wave arrives but leaks: event volumes on the street-floor token path, capture below our measured band — $25–33 billion. The wave is the ~4,000Q case run through four deliberate haircuts — falling unit prices, discounted commitments, measured capture, compute-heavier margins — landing near $42 billion. And the selectors that decide between these worlds are written down in advance: commitment above 40%, overage above 25%, net dollar retention above 130. Watch three numbers each quarter and you will know which world you are in years before the sell side re-models it.',
+        'Partial conversion is the world where the wave arrives but leaks: event volumes on the consensus token floor, capture below our measured band — $25–33 billion. The wave is the ~4,000Q case run through four deliberate haircuts — falling unit prices, discounted commitments, measured capture, compute-heavier margins — landing near $42 billion. And the selectors that decide between these worlds are written down in advance: commitment above 40%, overage above 25%, net dollar retention above 130. Watch three numbers each quarter and you will know which world you are in years before analysts re-model it.',
     },
   ],
 
@@ -196,7 +196,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The firm changes shape too. Revenue decouples from headcount, and revenue per employee becomes the defining metric of the era — the corporate scoreboard equivalent of what Part 01 did to the cost of software. The signs are already on record: Shopify’s CEO told his company in 2025 that teams must prove a job cannot be done by AI before hiring for it, and the standing joke in venture — the one-person billion-dollar company — has stopped being a joke and started being a milestone someone will hit.',
+        'The firm changes shape too. Revenue decouples from headcount, and revenue per employee becomes the defining metric of the era. The signs are already on record: Shopify’s CEO told his company in 2025 that teams must prove a job cannot be done by AI before hiring for it, and the standing joke in venture — the one-person billion-dollar company — has stopped being a joke and started being a milestone someone will hit.',
     },
     {
       kind: 'p',
@@ -233,7 +233,7 @@ export const part4: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Signals divide into three groups by when they move. Leading signals — cost per completed task, autonomous completion rates, agent sessions, tool integrations, enterprise rollouts — predict future agent workload. Coincident signals are the infrastructure consumption itself: tool calls, database operations, queries, telemetry, state. Lagging signals are the financial results: consumption revenue, retention, commitments. By the time the lagging group moves, the sell side has re-modeled.',
+        'Signals divide into three groups by when they move. Leading signals — cost per completed task, autonomous completion rates, agent sessions, tool integrations, enterprise rollouts — predict future agent workload. Coincident signals are the infrastructure consumption itself: tool calls, database operations, queries, telemetry, state. Lagging signals are the financial results: consumption revenue, retention, commitments. By the time the lagging group moves, analysts have re-modeled.',
     },
     {
       kind: 'p',

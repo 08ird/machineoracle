@@ -22,7 +22,7 @@ export const letter: Article = {
     {
       kind: 'p',
       text:
-        'Someone named the last wave while it was still deniable. In May 1995, with the street debating whether the whole thing was a fad, Bill Gates sent Microsoft an internal memo:',
+        'Someone named the last wave while it was still deniable. In May 1995, with the market debating whether the whole thing was a fad, Bill Gates sent Microsoft an internal memo:',
     },
     {
       kind: 'wavequote',
@@ -33,18 +33,18 @@ export const letter: Article = {
     {
       kind: 'p',
       text:
-        'The memo marked the moment an incumbent recognized a paradigm shift. It was right about the magnitude even where the details were fuzzy, and it timestamps the start of a roughly thirty-year value-creation wave.',
+        'The memo marked the moment an incumbent recognized a paradigm shift. It was right about the magnitude even where the details were fuzzy, and it timestamps the start of a thirty-year wave of value creation.',
     },
     { kind: 'h2', text: 'By the internet clock, it is 1996' },
     {
       kind: 'p',
       text:
-        'Set the two waves on the same clock. The internet: 1995, the memo names the discontinuity; 1996–98, the rails get built and paid while the street debates “fad”; 1999–2000, the mania — 65–100x multiples, then 60–85% compression; 2001 onward, the rails’ owners collect the era’s fortunes.',
+        'Set the two waves on the same clock. The internet: 1995, the memo names the discontinuity; 1996–98, the rails get built and paid while the market debates “fad”; 1999–2000, the mania — 65–100x multiples, then 60–85% compression; 2001 onward, the rails’ owners collect the era’s fortunes.',
     },
     {
       kind: 'p',
       text:
-        'The token wave: November 2022, ChatGPT — the Netscape moment, from roughly zero; 2026, the debate, with multiples still at fade levels. You are here. Then 2027–28, agent GAAP disclosures make agent demand visible in filings; and 2029 onward, the meters collect the era’s royalty — with every call in this piece graded.',
+        'The token wave: November 2022, ChatGPT — the Netscape moment, from roughly zero; 2026, the debate, with multiples still at fade levels. You are here. Then 2027–28, agent revenue disclosures make agent demand visible in filings; and 2029 onward, the meters collect the era’s royalty — with every call in this piece graded.',
     },
     { kind: 'h2', text: 'The decade ahead: the machine economy' },
     {

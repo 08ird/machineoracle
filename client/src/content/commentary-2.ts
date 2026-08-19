@@ -23,7 +23,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'These are the priors we use to build the model — assumptions, labeled as such, not observed facts, laid across the four phases of Part 01. The two rows that carry the most weight are also the two the market discusses least: work expansion and infrastructure efficiency. Penetration compounds from a small base; the human-approval gate loosens as reliability earns trust; and the bottom row is the point — the backend consequence inflects a full phase before the labor market notices.',
+        'These are the priors we use to build the model — assumptions, labeled as such, not observed facts, laid across the four phases of Part 01. The two rows that carry the most weight are also the two the market discusses least: work expansion and infrastructure efficiency. Penetration compounds from a small base, and the human-approval gate loosens as reliability earns trust. The bottom row is the point: the backend consequence inflects a full phase before the labor market notices.',
     },
     {
       kind: 'p',
@@ -65,12 +65,12 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'That line ran through two market corrections and one full-scale AI panic, complete with declarations that the buildout was a bubble and the models had hit a wall. The DeepSeek weekend of January 2025 knocked half a trillion dollars off Nvidia in a day on the theory that efficiency meant less demand. Token consumption that quarter grew anyway — the users never got the memo the market was trading on. Demand never blinked.',
+        'That line ran through two market corrections and one full-scale AI panic, complete with declarations that the buildout was a bubble and the models had hit a wall. The DeepSeek weekend of January 2025 knocked half a trillion dollars off Nvidia in a day on the theory that efficiency meant less demand. Token consumption that quarter grew anyway — the users never got the memo the market was trading on.',
     },
     {
       kind: 'p',
       text:
-        'Two caveats: tokenizers differ across labs, so cross-platform counts are not perfectly commensurable, and the disclosure anchors are sparse. The uncertainty is in the second digit; the phenomenon is in the exponent.',
+        'Two caveats: tokenizers differ across labs, so counts across platforms are not perfectly comparable, and the disclosure anchors are sparse. The uncertainty is in the second digit; the phenomenon is in the exponent.',
     },
   ],
 
@@ -78,12 +78,12 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The institutional model of this market assumes falling prices compress revenue. It is the reflex of anyone who has watched a hardware cycle, it produces the fade case that dominates every sell-side model, and it has been wrong for four consecutive years.',
+        'The standard model of this market assumes falling prices compress revenue. That reflex — learned from hardware cycles — produces the fade case in every analyst model, and it has been wrong for four consecutive years.',
     },
     {
       kind: 'p',
       text:
-        'What actually happened: frontier token prices fell about 50x while volume rose about 2,000x. To make the price line concrete — GPT-4 launched in March 2023 at $30 per million input tokens; sixteen months later GPT-4o-mini did most of the same work at fifteen cents, a 200x collapse on one axis alone, and the 2025 price war pushed capable models below a dime. The measured slope across the whole window is ~1.2–1.3: every 10x price decline bought 15 to 20x more demand. This is the single most important measured fact in the piece — the demand curve for machine cognition is elastic above one.',
+        'What actually happened: frontier token prices fell about 50x while volume rose about 2,000x. To make the price line concrete — GPT-4 launched in March 2023 at $30 per million input tokens; sixteen months later GPT-4o-mini did most of the same work at fifteen cents, a 200x collapse on one axis alone, and the 2025 price war pushed capable models below a dime. The measured slope across the whole window is ~1.2–1.3: every 10x price decline bought 15 to 20x more demand. This is the single most important measured fact in the piece: when the price of machine cognition falls, total spending on it rises.',
     },
     {
       kind: 'p',
@@ -132,11 +132,11 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Intensity is the larger half of the arithmetic, and the least appreciated. Casual chat consumes about 10,000 tokens per user-day — a few questions, a few answers. An always-on agent consumes 5 to 25 million: it reads entire codebases and document sets as context, plans, acts, checks its own work, and loops, around the clock. That is a difference of 500 to 2,500x for the same human being. And the clock itself is different: a person gives you about forty attention-hours a week; an agent gives you 168. Task horizons that double every few months (Part 01) keep converting chat users into agent users — each conversion multiplying one person’s token demand by three orders of magnitude.',
+        'Intensity is the larger half of the arithmetic, and the least appreciated. Casual chat consumes about 10,000 tokens per user-day — a few questions, a few answers. An always-on agent consumes 5 to 25 million: it reads entire codebases and document sets as context, plans, acts, checks its own work, and loops, around the clock. That is a difference of 500 to 2,500x for the same human being. And the clock itself is different: a person gives you about forty working hours a week; an agent gives you 168. Task horizons that double every few months (Part 01) keep converting chat users into agent users — each conversion multiplying one person’s token demand by three orders of magnitude.',
     },
   ],
 
-  // Site-original exhibit: the agent population, modeled.
+  // The ask → doing mix shift.
   24: [
     {
       kind: 'p',
@@ -206,7 +206,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The obvious physical objection is supply: can compute actually deliver 40x more tokens? The arithmetic is less demanding than it sounds, because two efficiency terms sit between token demand and power draw — roughly 3x from FLOPs-per-token improvements and 2–3x from two hardware generations of performance-per-watt. 40x the tokens needs only about 4–7x the inference power.',
+        'The obvious physical objection is supply: can compute actually deliver 40x more tokens? The arithmetic is less demanding than it sounds, because two efficiency terms sit between token demand and power draw — roughly 3x from software efficiency (fewer computations per token) and 2–3x from two hardware generations of performance per watt. 40x the tokens needs only about 4–7x the inference power.',
     },
     {
       kind: 'p',
@@ -233,7 +233,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'Run the same meters on Situational Awareness assumptions, bounded by physics. If the announced build fully lands — roughly 10x inference power by 2029, times ~3x FLOPs-per-token, times ~2.5x performance-per-watt — the physical ceiling is about 75x today’s tokens, or ~7,500Q. The Situational Awareness case adopts below that ceiling: always-on share above 30%, intensity of 60 to 100 million tokens a day, landing near 6,000Q.',
+        'Run the same meters on Situational Awareness assumptions, bounded by physics. If the announced build fully lands — roughly 10x inference power by 2029, times ~3x software efficiency, times ~2.5x performance per watt — the physical ceiling is about 75x today’s tokens, or ~7,500Q. The Situational Awareness case sits below that ceiling: always-on share above 30%, intensity of 60 to 100 million tokens a day, landing near 6,000Q.',
     },
     {
       kind: 'p',
@@ -272,7 +272,7 @@ export const part2: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The amplification comes from two ratios deepening at once: the agentic share of tokens (the delegation ladder), and the events each agentic token drags behind it (attach, which rises as workloads graduate from pilots to production with security, audit, and observability switched on). Both basis and label matter here: this series is modeled, not disclosed — it is our conversion model applied to measured token data, and it is the single number in this piece most dependent on our own assumptions. Part 03 exists to check it against filings. For the labs this is a token story; for the meters it is an event story — and the event is the larger number.',
+        'The amplification comes from two ratios deepening at once: the agentic share of tokens (the delegation ladder), and the events each agentic token drags behind it (attach, which rises as workloads graduate from pilots to production with security, audit, and observability switched on). One label matters here: this series is modeled, not disclosed — it is our conversion model applied to measured token data, and it is the single number in this piece most dependent on our own assumptions. Part 03 exists to check it against filings. For the labs this is a token story; for the meters it is an event story — and the event is the larger number.',
     },
   ],
 

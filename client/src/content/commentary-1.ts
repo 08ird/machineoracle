@@ -3,8 +3,8 @@
  *
  * The part's jobs, in order: name the shift (human intent → machine
  * execution), walk its six defining features, ground it in evidence, then
- * hand the reader the seven variables, the master equation, and the three
- * stages — the setup for Part 02 (the model), Part 03 (the money), and
+ * hand the reader the seven variables, the master equation, and the four
+ * phases — the setup for Part 02 (the model), Part 03 (the money), and
  * Part 04 (the instrument).
  */
 
@@ -64,7 +64,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'That makes duty cycle — active time over available time — one of the biggest swing factors of 2026–2031. Today most agents look like: prompt, 45 seconds of work, stop. The consequential world is: provision an agent, and it operates for six months. A backend serving 1% duty-cycle agents and one serving 80% duty-cycle agents are different markets. The frontier already shows where this goes: by June 2026, OpenAI’s 99th-percentile Codex users were generating 60+ hours of agent turns per day through parallel agents — machine-hours decoupling from human-hours.',
+        'That makes duty cycle — active time over available time — one of the biggest swing factors of the next five years. Today most agents look like: prompt, 45 seconds of work, stop. The consequential world is: provision an agent, and it operates for six months. A backend serving 1% duty-cycle agents and one serving 80% duty-cycle agents are different markets. The frontier already shows where this goes: by June 2026, OpenAI’s 99th-percentile Codex users were generating 60+ hours of agent turns per day through parallel agents — machine-hours decoupling from human-hours.',
     },
   ],
 
@@ -175,7 +175,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The ranges in the exhibit are our scenario priors for 2026 to 2031 — published to be graded, not asserted as fact. Part 02 turns them into a working model with a worked example.',
+        'The ranges in the exhibit are our scenario priors for 2026 to 2035 — published to be graded, not asserted as fact. Part 02 turns them into a working model with a worked example.',
     },
   ],
 
@@ -184,7 +184,7 @@ export const part1: Record<number, Block[]> = {
     {
       kind: 'p',
       text:
-        'The era arrives in four phases, and the evidence has made us somewhat more aggressive than our earlier framing. In 2026–27, agents prove the unit economics: the loop works, Microsoft reports active agents in Microsoft 365 up 15x in a year, Datadog sees agent frameworks in nearly twice as many organizations — and roughly 5% of AI requests still fail, which is why this phase is for learning coefficients, not declaring victory. In 2028–29, delegation: “own this workflow, escalate exceptions.” One human commands a portfolio of agents, and backend consumption inflects. We make 2029 the primary investment anchor — the infrastructure inflection.',
+        'The era arrives in four phases, and the evidence has made us more aggressive than our earlier framing. In 2026–27, agents prove the unit economics. The loop works — Microsoft reports active agents in Microsoft 365 up 15x in a year, and Datadog sees agent frameworks in nearly twice as many organizations — but roughly 5% of AI requests still fail. This phase is for learning the coefficients, not declaring victory. In 2028–29 comes delegation: “own this workflow, escalate exceptions.” One human commands a portfolio of agents, and backend consumption inflects. We make 2029 the primary investment anchor — the infrastructure inflection.',
     },
     {
       kind: 'p',
